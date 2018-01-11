@@ -13,3 +13,5 @@ local.properties
 .classpath
 .project
 .settings/
+/build/
+/dist/
