@@ -11,7 +11,5 @@
 .loadpath
 .recommenders
 .factorypath
-.classpath
-.project
 .settings
 .DS_Store
