@@ -1,18 +1,5 @@
-.metadata
+# Directories
 bin/org/
 tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-.recommenders
-.factorypath
-.classpath
-.project
-.settings/
 /build/
 /dist/
-.DS_Store

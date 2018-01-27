@@ -1,0 +1,17 @@
+# Extensions
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.class
+
+# Files
+.metadata
+.settings/
+.loadpath
+.recommenders
+.factorypath
+.classpath
+.project
+.settings
+.DS_Store
