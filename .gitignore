@@ -6,10 +6,12 @@
 *.class
 
 # Files
-.metadata
-.settings/
-.loadpath
-.recommenders
-.factorypath
-.settings
-.DS_Store
+.*
+build.xml
+build.properties
+
+# Directories
+**/bin
+**/tmp
+**/build
+**/dist
