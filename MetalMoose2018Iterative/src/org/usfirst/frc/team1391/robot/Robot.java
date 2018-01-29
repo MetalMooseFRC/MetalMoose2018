@@ -11,6 +11,14 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -22,7 +30,18 @@ public class Robot extends IterativeRobot {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
 	private String m_autoSelected;
+	
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
+	
+	private int kLeftMotorPort = 0;
+	private int kRightMotorPort = 1;
+	private int kJoystickPort = 0;
+	private int kUltrasonicPort = 2;
+	
+	private DifferentialDrive m_robotDrive;
+	private Joystick m_stick;
+	private Timer m_timer;	//Periodic timer
+	private AnalogInput m_ultrasonic;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -33,6 +52,11 @@ public class Robot extends IterativeRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto choices", m_chooser);
+		
+		m_robotDrive = new DifferentialDrive(new Spark(kLeftMotorPort), new Spark(kRightMotorPort));
+		m_stick = new Joystick(kJoystickPort);
+		m_timer = new Timer();
+		m_ultrasonic = new AnalogInput(kUltrasonicPort);
 	}
 
 	/**
@@ -52,6 +76,9 @@ public class Robot extends IterativeRobot {
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + m_autoSelected);
+		
+		m_timer.reset();
+		m_timer.start();
 	}
 
 	/**
@@ -75,6 +102,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		m_robotDrive.arcadeDrive(m_stick.getY(), m_stick.getX());
+		
+		System.out.println(m_ultrasonic.getValue());
 	}
 
 	/**
