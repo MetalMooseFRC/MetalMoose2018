@@ -110,7 +110,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	}
+		kExampleSubsystem.diffDrive(OI.stick.getY(), OI.stick.getX());
+	}	
 
 	/**
 	 * This function is called periodically during test mode.
