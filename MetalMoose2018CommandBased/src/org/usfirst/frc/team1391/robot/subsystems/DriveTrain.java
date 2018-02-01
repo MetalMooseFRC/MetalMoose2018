@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.*;
 
+import org.usfirst.frc.team1391.robot.commands.ArcadeDrive;
 /**
  *
  */
@@ -23,6 +24,7 @@ public class DriveTrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    		setDefaultCommand(new ArcadeDrive());
     }
     
     public void arcadeDrive(double left, double right) {
