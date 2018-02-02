@@ -110,7 +110,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		kExampleSubsystem.diffDrive(OI.stick.getY(), OI.stick.getX());
+
+		//Tank or Differential drive for the controller 0
+		//kExampleSubsystem.tankDrive(OI.stick.getY(), OI.stick.getX());
+		kExampleSubsystem.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
 	}	
 
 	/**

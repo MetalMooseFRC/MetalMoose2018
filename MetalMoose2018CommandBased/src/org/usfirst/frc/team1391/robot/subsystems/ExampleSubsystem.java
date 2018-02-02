@@ -30,7 +30,11 @@ public class ExampleSubsystem extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 	
-	public void diffDrive(double d, double e) {
+	public void arcadeDrive(double d, double e) {
 		drive.arcadeDrive(d, e);
+	}
+	
+	public void tankDrive(double d, double e) {
+		drive.tankDrive(d, e);
 	}
 }
