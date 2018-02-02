@@ -113,7 +113,7 @@ public class Robot extends TimedRobot {
 		
 		//Tank or Differential drive for the controller 0
 		//kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
-		kDriveTrain.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
+//		kDriveTrain.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
 	}	
 
 	/**
