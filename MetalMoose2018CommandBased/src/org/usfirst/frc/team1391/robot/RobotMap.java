@@ -21,7 +21,7 @@ public class RobotMap {
 	public static Spark leftMotor = new Spark(0);
 	public static Spark rightMotor = new Spark(1);
 	
-	public static int joyStickPort = 0;
+	public static int controllerPort = 0;
 	public static int ultrasonicAnaloguePort = 2;
 	
 	// If you are using multiple modules, make sure to define both the port
