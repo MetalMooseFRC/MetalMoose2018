@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team1391.robot.commands.ArcadeDrive;
-import org.usfirst.frc.team1391.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team1391.robot.commands.*;
+import org.usfirst.frc.team1391.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -110,6 +110,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		//Tank or Differential drive for the controller 0
+		//kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
+		kDriveTrain.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
 	}	
 
 	/**
