@@ -6,27 +6,23 @@
   * 1 turning motor on each side; total 2 motors
 * Elevator
   * 1 motor for lifting
-  * 1 motor for rotating
 * Cameras
 * Gyroscope
 
 # Command
 
-* DifferentiateDrive 
+* ArcadeDrive/TankDrive
   * requires: Drivetrain
   * Not written as a command; impelment it like iterative
-* SpinIn
+* Intake
   * requires: Fidget
-* SpinOut 
+* Discharge 
   * requires: Fidget
-* Lift 
+* Lift/Drop 
   * requires: Elevator
-* Drop
-  * requires: Elevator
+  * controlled by a joystick
 
 # Things to be done
 
-* Learning the final designes of the fidget and the elevator
 * Decide what sensors/encoder to use
-* Decide which joystick to use and the mapping of buttons
-* 
+* Mapping the controller to commands
