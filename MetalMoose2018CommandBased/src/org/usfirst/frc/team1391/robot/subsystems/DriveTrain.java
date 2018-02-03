@@ -1,38 +1,32 @@
 package org.usfirst.frc.team1391.robot.subsystems;
 
-//import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.*;
 
-import org.usfirst.frc.team1391.robot.commands.ArcadeDrive;
+import org.usfirst.frc.team1391.robot.commands.Drive;
 /**
  *
  */
 public class DriveTrain extends Subsystem {
 
-	Spark leftMotor = new Spark(RobotMap.leftMotorPort);
-	Spark rightMotor = new Spark(RobotMap.rightMotorPort);
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	VictorSP leftMotor = new VictorSP(RobotMap.leftMotorPort);
+	VictorSP rightMotor = new VictorSP(RobotMap.rightMotorPort);
 
 	DifferentialDrive myDrive = new DifferentialDrive(leftMotor,rightMotor);
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new ArcadeDrive());
+    	setDefaultCommand(new Drive());
     }
     
     public void arcadeDrive(double left, double right) {
-    	myDrive.arcadeDrive(left,right);
+    	myDrive.arcadeDrive(left, right);
     }
 	
-	public void tankDrive(double d, double e) {
-		myDrive.tankDrive(d, e);
-	}
+    public void tankDrive(double left, double right) {
+    	myDrive.tankDrive(left, right);
+    }
 }
 
