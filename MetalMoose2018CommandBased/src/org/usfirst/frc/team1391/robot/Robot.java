@@ -23,8 +23,7 @@ import org.usfirst.frc.team1391.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final DriveTrain kDriveTrain
-			= new DriveTrain();
+	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -37,8 +36,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-//		m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
@@ -95,10 +92,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it  out.
+		// This makes sure that the autonomous stops running when teleop starts running.
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -110,10 +104,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		//Tank or Differential drive for the controller 0
-		//kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
-		kDriveTrain.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
 	}	
 
 	/**
