@@ -22,7 +22,7 @@ public class RobotMap {
 	public static int rightMotorPort = 1;
 	
 	public static int controllerPort = 0;
-	public static int ultrasonicAnaloguePort = 2;
+	public static int ultrasonicAnalogPort = 2;
 	
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

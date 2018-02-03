@@ -98,7 +98,7 @@ public class Robot extends TimedRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		// this line or comment it  out.
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -113,7 +113,7 @@ public class Robot extends TimedRobot {
 		
 		//Tank or Differential drive for the controller 0
 		//kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
-//		kDriveTrain.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
+		kDriveTrain.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
 	}	
 
 	/**
