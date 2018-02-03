@@ -8,12 +8,10 @@ import org.usfirst.frc.team1391.robot.Robot;
 /**
  *
  */
-public class ArcadeDrive extends Command {
+public class Drive extends Command {
 
-    public ArcadeDrive() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    		requires(Robot.kDriveTrain);
+    public Drive() {
+    	requires(Robot.kDriveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +20,8 @@ public class ArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		Robot.kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
+		//Robot.kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
+		Robot.kDriveTrain.tankDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(5));
     }
 
     // Make this return true when this Command no longer needs to run execute()
