@@ -26,10 +26,4 @@ public class RobotMap {
 	public static int rightMotorPort3 = 5;
 	
 	public static int controllerPort = 0;
-	public static int ultrasonicAnalogPort = 2;
-	
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
 }
