@@ -6,7 +6,7 @@ import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.Robot;
 
 /**
- *
+ * Drives the robot (using either arcade or tank).
  */
 public class Drive extends Command {
 
@@ -20,6 +20,9 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//Arcade reads only one joystick. Tank is set up so that
+    	//each side of the robot is controlled with one joystick
+    	
 		//Robot.kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
 		Robot.kDriveTrain.tankDrive(OI.stick.getRawAxis(5), OI.stick.getRawAxis(1));
     }

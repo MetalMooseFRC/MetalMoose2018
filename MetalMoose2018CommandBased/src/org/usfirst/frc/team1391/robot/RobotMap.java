@@ -17,13 +17,13 @@ package org.usfirst.frc.team1391.robot;
  */
 public class RobotMap {
 	//Motor ports
-	public static int leftMotorPort1 = 0;
-	public static int leftMotorPort2 = 1;
-	public static int leftMotorPort3 = 2;
+	public static int leftMotor1Port = 0;
+	public static int leftMotor2Port = 1;
+	public static int leftMotor3Port = 2;
 
-	public static int rightMotorPort1 = 3;
-	public static int rightMotorPort2 = 4;
-	public static int rightMotorPort3 = 5;
+	public static int rightMotor1Port = 3;
+	public static int rightMotor2Port = 4;
+	public static int rightMotor3Port = 5;
 	
 	public static int controllerPort = 0;
 }
