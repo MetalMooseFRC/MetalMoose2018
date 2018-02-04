@@ -1,7 +1,7 @@
 # Subsystems
 * Systems not yet implemented are in italics.
 
-## Default
+## Basic
 * Drivetrain
   * 3 driving motors on each side; total 6 motors
 * *FidgetSpinner*
@@ -28,4 +28,8 @@
   * Disables non-endgame functions
   
 # To-do
-* Gyroscope and sensor inputs -> autonomous
+* Figure out the best way to approach the autonomous code - layout of the commands and the information about field layout from the drive station.
+	* [Link to the 2018 Game Data details](http://wpilib.screenstepslive.com/s/currentCS/m/getting_started/l/826278-2018-game-data-details).
+	* Decide on sensor input for autonomous.
+* Figure out, how to best connect SmartDashboard to variable values in the code.
+* Decide, whether to use GitKraken instead of GitHub Desktop (more control over the repository).
