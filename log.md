@@ -22,3 +22,5 @@
 ## 04/02/18 (Tom)
 * Change default dashboard of FRC Driver Station to SmartDashboard
 * Change default location of SmartDashboard's XML layout file to "C:\Users\1391\Documents\GitHub\MetalMoose2018\SmartDashboard\"
+* Change RobotMap variables to final and change their naming convention to all upper case.
+* Finalize naming conventions for variables in Robot.java (kDriveTrain, m_oi...)
