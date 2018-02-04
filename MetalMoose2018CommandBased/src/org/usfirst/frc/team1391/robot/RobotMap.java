@@ -10,13 +10,13 @@ package org.usfirst.frc.team1391.robot;
 //import edu.wpi.first.wpilibj.*;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * Simplifies the wiring of the robot (so there are no magic numbers in the code)
  */
 public class RobotMap {
-	//Motor ports
+	/** CONTROLLER MAPPING **/
+	public static int controllerPort = 0;
+
+	/** MOTOR MAPPING **/
 	public static int leftMotor1Port = 0;
 	public static int leftMotor2Port = 1;
 	public static int leftMotor3Port = 2;
@@ -24,6 +24,4 @@ public class RobotMap {
 	public static int rightMotor1Port = 3;
 	public static int rightMotor2Port = 4;
 	public static int rightMotor3Port = 5;
-	
-	public static int controllerPort = 0;
 }

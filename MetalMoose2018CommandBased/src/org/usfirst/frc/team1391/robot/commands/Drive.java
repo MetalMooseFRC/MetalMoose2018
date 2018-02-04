@@ -6,7 +6,7 @@ import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.Robot;
 
 /**
- * Drives the robot (using either arcade or tank).
+ * Drives the robot.
  */
 public class Drive extends Command {
 
@@ -18,7 +18,7 @@ public class Drive extends Command {
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // Repeatedly adjust the speed of the drive train from the reading of the joystick axes
     protected void execute() {
     	
     	//The reading is from the "primary" joystick of the connected controller
