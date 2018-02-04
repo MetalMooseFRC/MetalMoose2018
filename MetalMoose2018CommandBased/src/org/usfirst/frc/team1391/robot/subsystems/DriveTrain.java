@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.drive.*;
 import org.usfirst.frc.team1391.robot.commands.Drive;
 
 /**
- * Controls the 6 drivebase motors.
+ * Controls the drivebase motors.
  */
 public class DriveTrain extends Subsystem {
 
-	//Left motor speed controllers
+	//Left motor speed controllers																																						
 	VictorSP leftMotor1 = new VictorSP(RobotMap.leftMotor1Port);
 	VictorSP leftMotor2 = new VictorSP(RobotMap.leftMotor2Port);
 	VictorSP leftMotor3 = new VictorSP(RobotMap.leftMotor3Port);

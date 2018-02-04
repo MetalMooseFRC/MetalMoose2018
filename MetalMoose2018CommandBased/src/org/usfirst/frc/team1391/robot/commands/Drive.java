@@ -20,11 +20,15 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//Arcade reads only one joystick. Tank is set up so that
-    	//each side of the robot is controlled with one joystick
     	
-		//Robot.kDriveTrain.arcadeDrive(OI.stick.getY(), OI.stick.getX());
-		Robot.kDriveTrain.tankDrive(OI.stick.getRawAxis(5), OI.stick.getRawAxis(1));
+    	//The reading is from the "primary" joystick of the connected controller
+    	//The '-' is because pulling the joystick forward is -1 and we want it to be +1 (and vice versa)
+    	//The X axis is fine, since the rotation is clockwise and rightmost value of the x axis is +1
+		Robot.kDriveTrain.arcadeDrive(-OI.stick.getY(), OI.stick.getX());
+    	
+    	//1 is the Y axis of the left joystick, 5 is the Y axis of the right joystick
+		//The '-' is for the same reason as the '-' on the arcade drive
+    	//Robot.kDriveTrain.tankDrive(-OI.stick.getRawAxis(1), -OI.stick.getRawAxis(5));
     }
 
     // Make this return true when this Command no longer needs to run execute()
