@@ -1,7 +1,7 @@
 # Driver Base Log
-* This file is a log of the activity on both the Drive station laptops over the course of the FRC 2018 season.
+* This file is a log of the (non-code oriented) activity on both the driver station laptops over the course of the FRC 2018 season.
 
-## Pre-log (date unknown)
+## Date Unknown
 * Install programs
 	- Eclipse + Java (JDK 1.8 and JRE 1.8)
 	- Google Chrome + Firefox
@@ -18,3 +18,7 @@
 	- GitHub Desktop
 	- Google Drive with Google programs (Docs, Sheets, Slides)
 	- Navx-mpx
+	
+## 04/02/18 (Tom)
+* Change default dashboard of FRC Driver Station to SmartDashboard
+* Change default location of SmartDashboard's XML layout file to "C:\Users\1391\Documents\GitHub\MetalMoose2018\SmartDashboard\"
