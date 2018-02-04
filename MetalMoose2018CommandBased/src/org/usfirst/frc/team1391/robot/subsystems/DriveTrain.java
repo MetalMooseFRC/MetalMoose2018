@@ -26,18 +26,18 @@ public class DriveTrain extends Subsystem {
 	VictorSP rightMotor3 = new VictorSP(RobotMap.rightMotor3Port);
 	SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
 
-	DifferentialDrive myDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
+	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
 	
     public void initDefaultCommand() {
     	setDefaultCommand(new Drive());
     }
     
     public void arcadeDrive(double left, double right) {
-    	myDrive.arcadeDrive(left, right);
+    	myDifferentialDrive.arcadeDrive(left, right);
     }
 	
     public void tankDrive(double left, double right) {
-    	myDrive.tankDrive(left, right);
+    	myDifferentialDrive.tankDrive(left, right);
     }
 }
 
