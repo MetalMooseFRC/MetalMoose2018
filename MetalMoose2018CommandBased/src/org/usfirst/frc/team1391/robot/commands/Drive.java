@@ -21,17 +21,25 @@ public class Drive extends Command {
 
     // Repeatedly adjust the speed of the drive train from the reading of the joystick axes
     protected void execute() {
-    	if (RobotMap.driveMode) {
-        	//The reading is from the "primary" joystick of the connected controller - no need for raw axis
-        	//The '-' is because pulling the joystick forward is -1 and we want it to be +1 (and vice versa)
-        	//The X axis is fine, since the rotation is clockwise and rightmost value of the x axis is +1
-    		Robot.kDriveTrain.arcadeDrive(-OI.stick.getY(), OI.stick.getX());
-    	} else {
-        	//1 is the Y axis of the left joystick, 5 is the Y axis of the right joystick
-    		//The '-' is for the same reason as the '-' on the arcade drive
-        	Robot.kDriveTrain.tankDrive(
-        			-OI.stick.getRawAxis(RobotMap.tankDriveLeftStickYAxisPort), 
-        			-OI.stick.getRawAxis(RobotMap.tankDriveRightStickYAxisPort));
+    	switch (RobotMap.driveMode) {
+    		//Arcade drive using the reading from the main joystick of the Logitech controller
+    		case 0:
+            	//The '-' is because pulling the joystick forward is -1 and we want it to be +1 (and vice versa)
+            	//The X axis is fine, since the rotation is clockwise and rightmost value of the x axis is +1
+        		Robot.kDriveTrain.arcadeDrive(-OI.stick.getY(), OI.stick.getX());
+        		break;
+        	//Tank drive using both joysticks from the Logitech controller
+    		case 1:
+    			//Reading the Y axes of the joysticks on the Logitech controller
+        		//The '-' is for the same reason as the '-' on the arcade drive
+            	Robot.kDriveTrain.tankDrive(
+            			-OI.stick.getRawAxis(RobotMap.tankDriveLeftStickYAxisPort), 
+            			-OI.stick.getRawAxis(RobotMap.tankDriveRightStickYAxisPort));
+        		break;
+        	//Arcade drive using the Y and the rotation (as X) axis of the Logitech joystick
+    		case 2:
+    			Robot.kDriveTrain.arcadeDrive(-OI.stick.getY(), OI.stick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort));
+    			break;
     	}
     }
 

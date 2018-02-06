@@ -26,10 +26,15 @@ public class RobotMap {
 	public static int rightMotor3Port = 5;
 	
 	/** MISC. **/
-	// Switching drive modes (tank == true, arcade == false)
-	public static boolean driveMode = true;
+	//Switching drive modes (tank == 0, arcade == 1, joystick = 2)
+	//0 is tank drive and 1 is arcade drive with the Logitech controller
+	//2 uses the Y axis and the rotation axis from the joystick controller
+	public static int driveMode = 2;
 	
-	//Ports for the tank drive from the logitech controller
+	//Ports for the Y axes of the two joysticks of the Logitech controller
 	public static int tankDriveLeftStickYAxisPort = 1;
 	public static int tankDriveRightStickYAxisPort = 5;
+	
+	//Port of the rotation axis of the Logitech joystick
+	public static int arcadeDriveRotationAxisPort = 2;
 }
