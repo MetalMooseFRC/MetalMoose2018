@@ -28,8 +28,7 @@
   * Disables non-endgame functions
   
 # To-do
-* Figure out the best way to approach the autonomous code - layout of the commands and the information about field layout from the drive station.
-	* [Link to the 2018 Game Data details](wpilib.screenstepslive.com/s/currentCS/m/getting_started/l/826278-2018-game-data-details).
+* Figure out the best way to approach the autonomous code - layout of the commands.
 	* Decide on sensor input for autonomous.
 * Figure out, how to best connect SmartDashboard to variable values in the code.
-* Decide, whether to use GitKraken instead of GitHub Desktop (more control over the repository).
+* Finalize naming conventions for variables in Robot.java (kDriveTrain, m_oi...).
