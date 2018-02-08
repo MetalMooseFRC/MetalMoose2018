@@ -23,6 +23,7 @@ import org.usfirst.frc.team1391.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
 	public static final DriveTrain kDriveTrain = new DriveTrain();
+	public static final FidgetSpinner kFidgetSpinner = new FidgetSpinner();
 	public static OI m_oi;
 
 	Command m_autonomousCommand;

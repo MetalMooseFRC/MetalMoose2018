@@ -35,6 +35,11 @@ public class RobotMap {
 	public static final int rightMotor2Port = 4;
 	public static final int rightMotor3Port = 5;
 	
+	//Collector/fidget spinner motors
+	public static final int rightCollectorMotorPort = 6;
+	public static final int leftCollectorMotorPort = 7;
+	
+	
 	/** MISCELLANEOUS **/
 	//Switching drive modes
 	//0 is tank drive and 1 is arcade drive with the Logitech controller
