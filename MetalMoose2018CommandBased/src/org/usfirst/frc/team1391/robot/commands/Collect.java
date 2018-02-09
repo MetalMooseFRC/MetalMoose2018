@@ -1,7 +1,10 @@
 package org.usfirst.frc.team1391.robot.commands;
 
 import org.usfirst.frc.team1391.robot.Robot;
+import org.usfirst.frc.team1391.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team1391.robot.OI;
 
 /**
  * Makes collector/fidget spinner intake power cubes by running motors inwards
@@ -10,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Collect extends Command {
 	
 	public Collect() {
-		requires(Robot.kFidgetSpinner);
+		requires(Robot.kCollector);
 	}
 	
 	// Called just before this Command runs the first time
@@ -18,7 +21,9 @@ public class Collect extends Command {
     }
     
     protected void execute() {
-    	
+    	//detects if the buttons are pressed. It returns a boolean true/false
+    		Robot.kCollector.intake(OI.stick.getRawButtonPressed(RobotMap.intakeButtonPort));
+    		Robot.kCollector.outtake(OI.stick.getRawButtonPressed(RobotMap.outtakeButtonPort));
     }
     
 	 // Make this return true when this Command no longer needs to run execute()
