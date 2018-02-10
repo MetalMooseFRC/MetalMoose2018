@@ -35,6 +35,13 @@ public class RobotMap {
 	public static final int rightMotor2Port = 4;
 	public static final int rightMotor3Port = 5;
 	
+	/*
+	 * TO-DO: Determine which motor controller is responsible for which direction of elevator movement. Port number TBD
+	 */
+	//Channels for motors on the elevator
+	public static final int eleMotorA = 6;
+	public static final int eleMotorB = 7;
+	
 	/** MISCELLANEOUS **/
 	//Switching drive modes
 	//0 is tank drive and 1 is arcade drive with the Logitech controller

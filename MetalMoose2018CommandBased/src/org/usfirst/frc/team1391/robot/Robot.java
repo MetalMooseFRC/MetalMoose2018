@@ -22,6 +22,7 @@ import org.usfirst.frc.team1391.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
 	public static final DriveTrain myDriveTrain = new DriveTrain();
+	public static final Elevator myElevator = new Elevator();
 	public static final OI myOI = new OI();
 
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
