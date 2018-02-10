@@ -10,9 +10,9 @@ import org.usfirst.frc.team1391.robot.OI;
  * Makes collector/fidget spinner intake power cubes by running motors inwards
  */
 
-public class Collect extends Command {
+public class Shoot extends Command {
 	
-	public Collect() {
+	public Shoot() {
 		requires(Robot.myCollector);
 	}
 	
@@ -22,7 +22,7 @@ public class Collect extends Command {
     
     protected void execute() {
     	//detects if the buttons are pressed. It returns a boolean true/false
-    		Robot.myCollector.intake(OI.stick.getRawButtonPressed(RobotMap.intakeButtonPort));
+    		Robot.myCollector.outtake(OI.stick.getRawButtonPressed(RobotMap.outtakeButtonPort));
     }
     
 	 // Make this return true when this Command no longer needs to run execute()
