@@ -40,4 +40,3 @@ public class DriveTrain extends Subsystem {
     	myDifferentialDrive.tankDrive(left, right);
     }
 }
-

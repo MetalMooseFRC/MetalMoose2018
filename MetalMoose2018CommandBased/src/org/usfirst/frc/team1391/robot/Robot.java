@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc.team1391.robot;
+
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -24,14 +25,14 @@ public class Robot extends TimedRobot {
 	public static final DriveTrain myDriveTrain = new DriveTrain();
 	public static final Elevator myElevator = new Elevator();
 	public static final Collector myCollector = new Collector();
-	
+
 	public static final OI myOI = new OI();
 
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
@@ -42,9 +43,9 @@ public class Robot extends TimedRobot {
 	}
 
 	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
+	 * This function is called once each time the robot enters Disabled mode. You
+	 * can use it to reset any subsystem information you want to clear when the
+	 * robot is disabled.
 	 */
 	@Override
 	public void disabledInit() {
@@ -58,14 +59,15 @@ public class Robot extends TimedRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
+	 * between different autonomous modes using the dashboard. The sendable chooser
+	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+	 * remove all of the chooser code and uncomment the getString code to get the
+	 * auto name from the text box below the Gyro
 	 *
-	 * <p>You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
+	 * <p>
+	 * You can add additional auto modes by adding additional commands to the
+	 * chooser code above (like the commented example) or additional comparisons to
+	 * the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
@@ -92,13 +94,13 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	}	
+	}
 
 	/**
 	 * This function is called periodically during test mode.
 	 */
 	@Override
 	public void testPeriodic() {
-		
+
 	}
 }
