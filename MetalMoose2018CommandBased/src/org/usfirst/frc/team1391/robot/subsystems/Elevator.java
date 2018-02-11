@@ -15,9 +15,15 @@ public class Elevator extends Subsystem {
 	Spark leftMotor = new Spark(RobotMap.elevatorMotorLeftPort);
 	Spark rightMotor = new Spark(RobotMap.elevatorMotorRightPort);
 	
+	//Since the movement of the motors will be simultaneous, we can group them.
+	SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(leftMotor, rightMotor);
+	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ElevatorMovement());
+    }
+    
+    public void moveElevator(double speed) {
+    	
     }
 }
 
