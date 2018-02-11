@@ -22,6 +22,11 @@ public class RobotMap {
 	
 	//Port of the rotation axis of the Logitech joystick
 	public static final int arcadeDriveRotationAxisPort = 2;
+	
+	//Ports for collector buttons on Logitech controller
+	public static final int intakeButtonPort = 1;
+	public static final int outtakeButtonPort = 2;
+
 
 	/** MOTOR MAPPING **/
 	//When looking at the left side of the robot, the motors go counter-clockwise form the top one.
@@ -37,6 +42,11 @@ public class RobotMap {
 	//Channels for motors on the elevator
 	public static final int elevatorMotorLeftPort = 6;
 	public static final int elevatorMotorRightPort = 7;
+	
+	//Collector/fidget spinner motors
+	public static final int rightCollectorMotorPort = 6;
+	public static final int leftCollectorMotorPort = 7;
+	
 	
 	/** MISCELLANEOUS **/
 	//Switching drive modes

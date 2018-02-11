@@ -8,6 +8,8 @@
 package org.usfirst.frc.team1391.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * Connect physical operator interface to commands.
@@ -21,7 +23,7 @@ public class OI {
 	//// joystick.
 	// You create one by telling it which joystick it's on and which button
 	// number it is.
-	// Button button = new JoystickButton(stick, buttonNumber);
+	//Button button = new JoystickButton(stick, 1);
 
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
