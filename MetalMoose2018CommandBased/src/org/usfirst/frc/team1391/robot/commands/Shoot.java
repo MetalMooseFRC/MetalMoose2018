@@ -22,7 +22,7 @@ public class Shoot extends Command {
     
     protected void execute() {
     	//detects if the buttons are pressed. It returns a boolean true/false
-    		Robot.myCollector.outtake(OI.stick.getRawButtonPressed(RobotMap.outtakeButtonPort));
+    		Robot.myCollector.outtake(OI.operatorStick.getRawButtonPressed(RobotMap.outtakeButtonPort));
     }
     
 	 // Make this return true when this Command no longer needs to run execute()

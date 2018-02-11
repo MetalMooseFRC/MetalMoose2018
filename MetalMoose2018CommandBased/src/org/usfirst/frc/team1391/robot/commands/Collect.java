@@ -22,7 +22,7 @@ public class Collect extends Command {
     
     protected void execute() {
     	//detects if the buttons are pressed. It returns a boolean true/false
-    		Robot.myCollector.intake(OI.stick.getRawButtonPressed(RobotMap.intakeButtonPort));
+    		Robot.myCollector.intake(OI.operatorStick.getRawButtonPressed(RobotMap.intakeButtonPort));
     }
     
 	 // Make this return true when this Command no longer needs to run execute()
