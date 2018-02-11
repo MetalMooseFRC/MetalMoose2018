@@ -26,19 +26,19 @@ public class Drive extends Command {
     		case 0:
             	//The '-' is because pulling the joystick forward is -1 and we want it to be +1 (and vice versa)
             	//The X axis is fine, since the rotation is clockwise and rightmost value of the x axis is +1
-        		Robot.myDriveTrain.arcadeDrive(-OI.stick.getY(), OI.stick.getX());
+        		Robot.myDriveTrain.arcadeDrive(-OI.driveStick.getY(), OI.driveStick.getX());
         		break;
         	//Tank drive using both joysticks from the Logitech controller
     		case 1:
     			//Reading the Y axes of the joysticks on the Logitech controller
         		//The '-' is for the same reason as the '-' on the arcade drive
             	Robot.myDriveTrain.tankDrive(
-            			-OI.stick.getRawAxis(RobotMap.tankDriveLeftStickYAxisPort), 
-            			-OI.stick.getRawAxis(RobotMap.tankDriveRightStickYAxisPort));
+            			-OI.driveStick.getRawAxis(RobotMap.tankDriveLeftStickYAxisPort), 
+            			-OI.driveStick.getRawAxis(RobotMap.tankDriveRightStickYAxisPort));
         		break;
         	//Arcade drive using the Y and the rotation (as X) axis of the Logitech joystick
     		case 2:
-    			Robot.myDriveTrain.arcadeDrive(-OI.stick.getY(), OI.stick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort));
+    			Robot.myDriveTrain.arcadeDrive(-OI.driveStick.getY(), OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort));
     			break;
     	}
     }

@@ -15,7 +15,8 @@ package org.usfirst.frc.team1391.robot;
 public class RobotMap {
 	/** CONTROLLER MAPPING **/
 	//Default controller port
-	public static final int controllerPort = 0;	
+	public static final int driverControllerPort = 0;	
+	public static final int operatorControllerPort = 1;
 	
 	//Ports for the Y axes of the two joysticks of the Logitech controller
 	public static final int tankDriveLeftStickYAxisPort = 1;
