@@ -7,8 +7,6 @@
 
 package org.usfirst.frc.team1391.robot;
 
-//import edu.wpi.first.wpilibj.*;
-
 /**
  * Simplifies the wiring of the robot (so there are no magic numbers in the code)
  */

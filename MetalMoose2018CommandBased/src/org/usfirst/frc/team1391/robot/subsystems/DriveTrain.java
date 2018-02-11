@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1391.robot.subsystems;
 
+import org.usfirst.frc.team1391.robot.commands.Drive;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -7,7 +8,6 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.*;
 
-import org.usfirst.frc.team1391.robot.commands.Drive;
 
 /**
  * Controls the drivebase motors.
