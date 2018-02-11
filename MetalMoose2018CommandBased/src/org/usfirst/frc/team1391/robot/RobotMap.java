@@ -7,15 +7,14 @@
 
 package org.usfirst.frc.team1391.robot;
 
-//import edu.wpi.first.wpilibj.*;
-
 /**
  * Simplifies the wiring of the robot (so there are no magic numbers in the code)
  */
 public class RobotMap {
 	/** CONTROLLER MAPPING **/
 	//Default controller port
-	public static final int controllerPort = 0;	
+	public static final int driverControllerPort = 0;	
+	public static final int operatorControllerPort = 1;
 	
 	//Ports for the Y axes of the two joysticks of the Logitech controller
 	public static final int tankDriveLeftStickYAxisPort = 1;
@@ -26,14 +25,18 @@ public class RobotMap {
 
 	/** MOTOR MAPPING **/
 	//When looking at the left side of the robot, the motors go counter-clockwise form the top one.
-	public static final int leftMotor1Port = 0;
-	public static final int leftMotor2Port = 1;
-	public static final int leftMotor3Port = 2;
+	public static final int drivebaseLeftMotor1Port = 0;
+	public static final int drivebaseLeftMotor2Port = 1;
+	public static final int drivebaseLeftMotor3Port = 2;
 
 	//When looking at the right side of the robot, the motors go counter-clockwise form the top one.
-	public static final int rightMotor1Port = 3;
-	public static final int rightMotor2Port = 4;
-	public static final int rightMotor3Port = 5;
+	public static final int drivebaseRightMotor1Port = 3;
+	public static final int drivebaseRightMotor2Port = 4;
+	public static final int drivebaseRightMotor3Port = 5;
+	
+	//Channels for motors on the elevator
+	public static final int elevatorMotorLeftPort = 6;
+	public static final int elevatorMotorRightPort = 7;
 	
 	/** MISCELLANEOUS **/
 	//Switching drive modes

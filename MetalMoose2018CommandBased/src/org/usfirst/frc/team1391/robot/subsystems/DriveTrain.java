@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1391.robot.subsystems;
 
+import org.usfirst.frc.team1391.robot.commands.Drive;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -7,7 +8,6 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.*;
 
-import org.usfirst.frc.team1391.robot.commands.Drive;
 
 /**
  * Controls the drivebase motors.
@@ -15,15 +15,15 @@ import org.usfirst.frc.team1391.robot.commands.Drive;
 public class DriveTrain extends Subsystem {
 
 	//Left motor speed controllers																																						
-	VictorSP leftMotor1 = new VictorSP(RobotMap.leftMotor1Port);
-	VictorSP leftMotor2 = new VictorSP(RobotMap.leftMotor2Port);
-	VictorSP leftMotor3 = new VictorSP(RobotMap.leftMotor3Port);
+	VictorSP leftMotor1 = new VictorSP(RobotMap.drivebaseLeftMotor1Port);
+	VictorSP leftMotor2 = new VictorSP(RobotMap.drivebaseLeftMotor2Port);
+	VictorSP leftMotor3 = new VictorSP(RobotMap.drivebaseLeftMotor3Port);
 	SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftMotor1, leftMotor2, leftMotor3);
 	
 	//Right motor speed controllers
-	VictorSP rightMotor1 = new VictorSP(RobotMap.rightMotor1Port);
-	VictorSP rightMotor2 = new VictorSP(RobotMap.rightMotor2Port);
-	VictorSP rightMotor3 = new VictorSP(RobotMap.rightMotor3Port);
+	VictorSP rightMotor1 = new VictorSP(RobotMap.drivebaseRightMotor1Port);
+	VictorSP rightMotor2 = new VictorSP(RobotMap.drivebaseRightMotor2Port);
+	VictorSP rightMotor3 = new VictorSP(RobotMap.drivebaseRightMotor3Port);
 	SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
 
 	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);

@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj.Joystick;
  * Connect physical operator interface to commands.
  */
 public class OI {
-	public static Joystick stick = new Joystick(RobotMap.controllerPort);
+	public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort);
+	public static final Joystick operatorStick = new Joystick(RobotMap.operatorControllerPort);
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
