@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class Elevator extends Subsystem {
 	
-	Spark motorA = new Spark(RobotMap.eleMotorA);
-	Spark motorB = new Spark(RobotMap.eleMotorB);
+	Spark leftMotor = new Spark(RobotMap.elevatorMotorLeftPort);
+	Spark rightMotor = new Spark(RobotMap.elevatorMotorRightPort);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
