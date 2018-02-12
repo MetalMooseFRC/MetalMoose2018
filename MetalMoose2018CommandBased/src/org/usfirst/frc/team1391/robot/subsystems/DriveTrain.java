@@ -3,6 +3,7 @@ package org.usfirst.frc.team1391.robot.subsystems;
 import org.usfirst.frc.team1391.robot.commands.Drive;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,14 +27,21 @@ public class DriveTrain extends Subsystem {
 	VictorSP rightMotor3 = new VictorSP(RobotMap.drivebaseRightMotor3Port);
 	SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
 
+	//The actual drive
 	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
+	
+	Encoder myEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 	
     public void initDefaultCommand() {
     	setDefaultCommand(new Drive());
+    	
+    	myEncoder.reset();
     }
     
     public void arcadeDrive(double left, double right) {
     	myDifferentialDrive.arcadeDrive(left, right);
+
+    	System.out.println(myEncoder.getRaw());
     }
 	
     public void tankDrive(double left, double right) {
