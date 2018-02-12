@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Controls the collector/fidget spinner motors.
  */
 public class Collector extends Subsystem {
-	VictorSP rightCollectorMotor = new VictorSP(RobotMap.rightCollectorMotorPort);
-	VictorSP leftCollectorMotor = new VictorSP(RobotMap.leftCollectorMotorPort);
+	VictorSP rightCollectorMotor = new VictorSP(RobotMap.collectorRightMotorPort);
+	VictorSP leftCollectorMotor = new VictorSP(RobotMap.collectorLeftMotorPort);
 
 	public void initDefaultCommand() {
 

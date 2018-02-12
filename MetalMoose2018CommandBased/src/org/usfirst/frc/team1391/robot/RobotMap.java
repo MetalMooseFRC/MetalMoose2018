@@ -8,8 +8,7 @@
 package org.usfirst.frc.team1391.robot;
 
 /**
- * Simplifies the wiring of the robot (so there are no magic numbers in the
- * code)
+ * Used for global variables and to reduce magic numbers in the code.
  */
 public class RobotMap {
 	/** CONTROLLER MAPPING **/
@@ -25,18 +24,14 @@ public class RobotMap {
 	public static final int arcadeDriveRotationAxisPort = 2;
 
 	// Ports for collector buttons on Logitech controller
-	public static final int intakeButtonPort = 1;
-	public static final int outtakeButtonPort = 2;
+	public static final int collectorIntakeButtonPort = 1;
+	public static final int collectorOuttakeButtonPort = 2;
 
 	/** MOTOR MAPPING **/
-	// When looking at the left side of the robot, the motors go counter-clockwise
-	// form the top one.
 	public static final int drivebaseLeftMotor1Port = 0;
 	public static final int drivebaseLeftMotor2Port = 1;
 	public static final int drivebaseLeftMotor3Port = 2;
 
-	// When looking at the right side of the robot, the motors go counter-clockwise
-	// form the top one.
 	public static final int drivebaseRightMotor1Port = 3;
 	public static final int drivebaseRightMotor2Port = 4;
 	public static final int drivebaseRightMotor3Port = 5;
@@ -46,8 +41,8 @@ public class RobotMap {
 	public static final int elevatorMotorRightPort = 7;
 
 	// Collector/fidget spinner motors
-	public static final int rightCollectorMotorPort = 6;
-	public static final int leftCollectorMotorPort = 7;
+	public static final int collectorRightMotorPort = 6;
+	public static final int collectorLeftMotorPort = 7;
 
 	/** MISCELLANEOUS **/
 	// Switching drive modes

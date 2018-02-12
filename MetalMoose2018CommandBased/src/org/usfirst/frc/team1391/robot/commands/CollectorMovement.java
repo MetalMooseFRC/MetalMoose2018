@@ -7,7 +7,7 @@ import org.usfirst.frc.team1391.robot.OI;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Makes collector/fidget spinner intake power cubes by running motors inwards
+ * Makes collector/fidget spinner intake/outtake cubes.
  */
 
 public class CollectorMovement extends Command {
@@ -21,9 +21,9 @@ public class CollectorMovement extends Command {
 	}
 
 	protected void execute() {
-		if (OI.operatorStick.getRawButtonPressed(RobotMap.intakeButtonPort))
+		if (OI.operatorStick.getRawButtonPressed(RobotMap.collectorIntakeButtonPort))
 			Robot.myCollector.intake();
-		else if (OI.operatorStick.getRawButtonPressed(RobotMap.intakeButtonPort))
+		else if (OI.operatorStick.getRawButtonPressed(RobotMap.collectorIntakeButtonPort))
 			Robot.myCollector.outtake();
 	}
 
