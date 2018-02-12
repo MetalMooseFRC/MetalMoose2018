@@ -35,10 +35,17 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		//Which DriveMode to use in the teleop
 		driveModeChooser.addDefault("Arcade Drive", 0);
 		driveModeChooser.addObject("Tank Drive", 1);
 		driveModeChooser.addObject("Joystick Arcade Drive", 2);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
+		
+		//Status of the scheduler and the subsystems
+		SmartDashboard.putData(Scheduler.getInstance());
+		SmartDashboard.putData(myDriveTrain);
+		SmartDashboard.putData(myElevator);
+		SmartDashboard.putData(myCollector);
 	}
 
 	@Override
@@ -63,6 +70,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		//Get DriveMode from SmartDashBoard
 		RobotMap.driveMode = driveModeChooser.getSelected();
 	}
 
