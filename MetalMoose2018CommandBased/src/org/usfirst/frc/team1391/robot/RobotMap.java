@@ -44,6 +44,10 @@ public class RobotMap {
 	public static final int collectorRightMotorPort = 6;
 	public static final int collectorLeftMotorPort = 7;
 
+	/** SENSOR MAPPING **/
+	public static final int encoderAPort = 0;
+	public static final int encoderBPort = 1;
+	
 	/** MISCELLANEOUS **/
 	// Switching drive modes
 	// 0 is tank drive and 1 is arcade drive with the Logitech controller

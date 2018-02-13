@@ -7,8 +7,10 @@
 
 package org.usfirst.frc.team1391.robot;
 
+import org.usfirst.frc.team1391.robot.commands.DriveAutonomous;
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -22,11 +24,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+	// Create subsystem objects
 	public static final DriveTrain myDriveTrain = new DriveTrain();
 	public static final Elevator myElevator = new Elevator();
 	public static final Collector myCollector = new Collector();
 
+	// Create OI object
 	public static final OI myOI = new OI();
+
+	// Create sensor objects
+	public static Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false,
+			Encoder.EncodingType.k4X);
 
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 
@@ -35,13 +43,13 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		//Which DriveMode to use in the teleop
+		// Which DriveMode to use in the teleop
 		driveModeChooser.addDefault("Arcade Drive", 0);
 		driveModeChooser.addObject("Tank Drive", 1);
 		driveModeChooser.addObject("Joystick Arcade Drive", 2);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
-		
-		//Status of the scheduler and the subsystems
+
+		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(myDriveTrain);
 		SmartDashboard.putData(myElevator);
@@ -60,7 +68,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-
+		//Drive forward for 500 units
+		new DriveAutonomous(500).start();
 	}
 
 	@Override
@@ -70,7 +79,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		//Get DriveMode from SmartDashBoard
+		// Get DriveMode from SmartDashBoard
 		RobotMap.driveMode = driveModeChooser.getSelected();
 	}
 

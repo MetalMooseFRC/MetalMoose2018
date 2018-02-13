@@ -30,18 +30,12 @@ public class DriveTrain extends Subsystem {
 	//The actual drive
 	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
 	
-	Encoder myEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-	
     public void initDefaultCommand() {
     	setDefaultCommand(new Drive());
-    	
-    	myEncoder.reset();
     }
     
     public void arcadeDrive(double left, double right) {
     	myDifferentialDrive.arcadeDrive(left, right);
-
-    	System.out.println(myEncoder.getRaw());
     }
 	
     public void tankDrive(double left, double right) {
