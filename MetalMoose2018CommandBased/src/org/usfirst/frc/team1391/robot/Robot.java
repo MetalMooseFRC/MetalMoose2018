@@ -26,8 +26,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 	// Create subsystem objects
 	public static final DriveTrain myDriveTrain = new DriveTrain();
-	public static final Elevator myElevator = new Elevator();
-	public static final Collector myCollector = new Collector();
 
 	// Create OI object
 	public static final OI myOI = new OI();
@@ -52,8 +50,6 @@ public class Robot extends TimedRobot {
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(myDriveTrain);
-		SmartDashboard.putData(myElevator);
-		SmartDashboard.putData(myCollector);
 	}
 
 	@Override

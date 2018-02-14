@@ -23,10 +23,6 @@ public class RobotMap {
 	// Port of the rotation axis of the Logitech joystick
 	public static final int arcadeDriveRotationAxisPort = 2;
 
-	// Ports for collector buttons on Logitech controller
-	public static final int collectorIntakeButtonPort = 1;
-	public static final int collectorOuttakeButtonPort = 2;
-
 	/** MOTOR MAPPING **/
 	public static final int drivebaseLeftMotor1Port = 0;
 	public static final int drivebaseLeftMotor2Port = 1;
@@ -35,14 +31,6 @@ public class RobotMap {
 	public static final int drivebaseRightMotor1Port = 3;
 	public static final int drivebaseRightMotor2Port = 4;
 	public static final int drivebaseRightMotor3Port = 5;
-
-	// Channels for motors on the elevator
-	public static final int elevatorMotorLeftPort = 6;
-	public static final int elevatorMotorRightPort = 7;
-
-	// Collector/fidget spinner motors
-	public static final int collectorRightMotorPort = 6;
-	public static final int collectorLeftMotorPort = 7;
 
 	/** SENSOR MAPPING **/
 	public static final int encoderAPort = 0;

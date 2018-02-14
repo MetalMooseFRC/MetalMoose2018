@@ -3,18 +3,16 @@ package org.usfirst.frc.team1391.robot.subsystems;
 import org.usfirst.frc.team1391.robot.commands.Drive;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.*;
 
-
 /**
  * Controls the drivebase motors.
  */
 public class DriveTrain extends Subsystem {
-
+	
 	//Left motor speed controllers																																						
 	VictorSP leftMotor1 = new VictorSP(RobotMap.drivebaseLeftMotor1Port);
 	VictorSP leftMotor2 = new VictorSP(RobotMap.drivebaseLeftMotor2Port);
@@ -30,6 +28,7 @@ public class DriveTrain extends Subsystem {
 	//The actual drive
 	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
 	
+
     public void initDefaultCommand() {
     	setDefaultCommand(new Drive());
     }
@@ -41,4 +40,6 @@ public class DriveTrain extends Subsystem {
     public void tankDrive(double left, double right) {
     	myDifferentialDrive.tankDrive(left, right);
     }
+    
+    
 }
