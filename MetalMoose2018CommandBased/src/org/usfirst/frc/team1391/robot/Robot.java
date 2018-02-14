@@ -10,7 +10,10 @@ package org.usfirst.frc.team1391.robot;
 import org.usfirst.frc.team1391.robot.commands.DriveAutonomous;
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -29,10 +32,10 @@ public class Robot extends TimedRobot {
 
 	// Create OI object
 	public static final OI myOI = new OI();
-
-	// Create sensor objects
-	public static Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false,
-			Encoder.EncodingType.k4X);
+	
+	// Create sensors
+	public static Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false, Encoder.EncodingType.k4X);
+	public static AHRS myAHRS = new AHRS(SPI.Port.kMXP);
 
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 
@@ -65,7 +68,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		//Drive forward for 500 units
-		new DriveAutonomous(500).start();
+		new DriveAutonomous(500, 0).start();
+		new DriveAutonomous(0, 45.0).start();
 	}
 
 	@Override

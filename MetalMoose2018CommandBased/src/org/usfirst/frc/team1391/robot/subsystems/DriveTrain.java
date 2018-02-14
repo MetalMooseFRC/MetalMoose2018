@@ -12,34 +12,32 @@ import edu.wpi.first.wpilibj.drive.*;
  * Controls the drivebase motors.
  */
 public class DriveTrain extends Subsystem {
-	
-	//Left motor speed controllers																																						
+
+	// Left motor speed controllers
 	VictorSP leftMotor1 = new VictorSP(RobotMap.drivebaseLeftMotor1Port);
 	VictorSP leftMotor2 = new VictorSP(RobotMap.drivebaseLeftMotor2Port);
 	VictorSP leftMotor3 = new VictorSP(RobotMap.drivebaseLeftMotor3Port);
 	SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftMotor1, leftMotor2, leftMotor3);
-	
-	//Right motor speed controllers
+
+	// Right motor speed controllers
 	VictorSP rightMotor1 = new VictorSP(RobotMap.drivebaseRightMotor1Port);
 	VictorSP rightMotor2 = new VictorSP(RobotMap.drivebaseRightMotor2Port);
 	VictorSP rightMotor3 = new VictorSP(RobotMap.drivebaseRightMotor3Port);
 	SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
 
-	//The actual drive
+	// The actual drive
 	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
-	
 
-    public void initDefaultCommand() {
-    	setDefaultCommand(new Drive());
-    }
-    
-    public void arcadeDrive(double left, double right) {
-    	myDifferentialDrive.arcadeDrive(left, right);
-    }
-	
-    public void tankDrive(double left, double right) {
-    	myDifferentialDrive.tankDrive(left, right);
-    }
-    
-    
+	public void initDefaultCommand() {
+		setDefaultCommand(new Drive());
+	}
+
+	public void arcadeDrive(double left, double right) {
+		myDifferentialDrive.arcadeDrive(left, right);
+	}
+
+	public void tankDrive(double left, double right) {
+		myDifferentialDrive.tankDrive(left, right);
+	}
+
 }
