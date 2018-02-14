@@ -3,7 +3,7 @@ package org.usfirst.frc.team1391.robot;
 import edu.wpi.first.wpilibj.PIDOutput;
 
 public class BlankPIDOutput implements PIDOutput {
-    public double output;
+    double output;
     
     public BlankPIDOutput()
     {

@@ -32,10 +32,6 @@ public class Robot extends TimedRobot {
 
 	// Create OI object
 	public static final OI myOI = new OI();
-	
-	// Create sensors
-	public static Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false, Encoder.EncodingType.k4X);
-	public static AHRS myAHRS = new AHRS(SPI.Port.kMXP);
 
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 

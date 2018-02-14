@@ -1,8 +1,15 @@
 package org.usfirst.frc.team1391.robot.subsystems;
 
 import org.usfirst.frc.team1391.robot.commands.Drive;
+
+import com.kauailabs.navx.frc.AHRS;
+
+import org.usfirst.frc.team1391.robot.BlankPIDOutput;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,6 +35,26 @@ public class DriveTrain extends Subsystem {
 	// The actual drive
 	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
 
+	// Create sensors
+	public Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false, Encoder.EncodingType.k4X);
+	public AHRS myAHRS = new AHRS(SPI.Port.kMXP);
+
+	public BlankPIDOutput encoderOutput = new BlankPIDOutput();
+	public BlankPIDOutput gyroOutput = new BlankPIDOutput();
+	
+	public PIDController encoderController = new PIDController(0, 0, 0, 0, myEncoder, encoderOutput);
+	public PIDController gyroController = new PIDController(0, 0, 0, 0, myAHRS, gyroOutput);
+	
+	public DriveTrain() {
+		encoderController.setOutputRange(-1.0, 1.0);
+		encoderController.setAbsoluteTolerance(0.0);
+		
+		gyroController.setInputRange(-180.0, +180.0);
+		gyroController.setOutputRange(-1.0, 1.0);
+		gyroController.setAbsoluteTolerance(0.0);
+		gyroController.setContinuous(true);
+		
+	}
 	public void initDefaultCommand() {
 		setDefaultCommand(new Drive());
 	}
@@ -39,5 +66,6 @@ public class DriveTrain extends Subsystem {
 	public void tankDrive(double left, double right) {
 		myDifferentialDrive.tankDrive(left, right);
 	}
-
+	
+	
 }
