@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1391.robot;
 
+import edu.wpi.first.wpilibj.Preferences;
+
 /**
  * Used for global variables and to reduce magic numbers in the code.
  */
@@ -41,4 +43,10 @@ public class RobotMap {
 	// 0 is tank drive and 1 is arcade drive with the Logitech controller
 	// 2 uses the Y axis and the rotation axis from the joystick controller
 	public static int driveMode = 2;
+	public static String autoType;
+	public static String autoStrategy;
+	public static Preferences prefs = Preferences.getInstance();
+	public static String gameData;
+	public static String autoCommandString;
+	public static String autoCommandStringKey;
 }

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1391.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Takes a string consisting of g-code style command series and produces an
@@ -10,9 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonomousCommandGroup extends CommandGroup {
 
-	public AutonomousCommandGroup() {
-		String autonString = SmartDashboard.getString("AutoString", "");
-		String[] autonStepList = autonString.split(" ");
+	public AutonomousCommandGroup(String autoCommandString) {
+
+		String[] autonStepList = autoCommandString.split(" ");
 		for (String step : autonStepList) {
 			String[] args = step.split(":");
 

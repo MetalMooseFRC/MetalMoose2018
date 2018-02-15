@@ -7,10 +7,13 @@
 
 package org.usfirst.frc.team1391.robot;
 
+import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.commands.DriveAutonomous;
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -35,6 +38,8 @@ public class Robot extends TimedRobot {
 			Encoder.EncodingType.k4X);
 
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
+	SendableChooser<String> autoTypeChooser = new SendableChooser<>();
+	SendableChooser<String> autoStrategyChooser = new SendableChooser<>();
 
 	/**
 	 * Puts values on SmartDashboard.
@@ -46,6 +51,18 @@ public class Robot extends TimedRobot {
 		driveModeChooser.addObject("Tank Drive", 1);
 		driveModeChooser.addObject("Joystick Arcade Drive", 2);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
+		
+		autoTypeChooser.addDefault("Center", "Center");
+		autoTypeChooser.addObject("Left", "Left");
+		autoTypeChooser.addObject("Right", "Left");
+		autoTypeChooser.addObject("Custom", "Custom");
+		SmartDashboard.putData("Autonomous Type", autoTypeChooser);
+		
+		autoStrategyChooser.addDefault("Aggressive", "Aggressive");
+		autoStrategyChooser.addObject("Conservative", "Conservative");
+		autoStrategyChooser.addObject("Basic", "Basic");
+		SmartDashboard.putData("Autonomous Strategy", autoStrategyChooser);
+		SmartDashboard.putString("Custom Autonomous Command String", "");
 
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
@@ -64,8 +81,18 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		//Drive forward for 500 units
-		new DriveAutonomous(500).start();
+		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
+		RobotMap.autoType = autoTypeChooser.getSelected();
+		RobotMap.autoStrategy = autoStrategyChooser.getSelected();
+		if (RobotMap.autoType == "Custom") {
+			RobotMap.autoCommandString = SmartDashboard.getString("Custom Autonomous String", "");
+		} else {
+			RobotMap.autoCommandString = RobotMap.prefs.getString(RobotMap.autoType + RobotMap.gameData + RobotMap.autoStrategy, "");
+		}
+		AutonomousCommandGroup myAutonomousCommandGroup = new AutonomousCommandGroup(RobotMap.autoCommandString);
+			
+		
+		
 	}
 
 	@Override
