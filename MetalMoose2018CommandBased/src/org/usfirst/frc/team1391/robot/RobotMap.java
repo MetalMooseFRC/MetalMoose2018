@@ -42,8 +42,14 @@ public class RobotMap {
 	// 2 uses the Y axis and the rotation axis from the joystick controller
 	public static int driveMode = 2;
 	
-	public static double P = 0.09;
-	public static double I = 0.0;
-	public static double D = 0.0;
+	public static double gyroP = 0.09;
+	public static double gyroI = 0.0;
+	public static double gyroD = 0.0;
+	
+	public static double encoderP = 0.09;
+	public static double encoderI = 0.0;
+	public static double encoderD = 0.0;
+	
+	public static double encoderCoefficient = 165.037744;
 	
 }

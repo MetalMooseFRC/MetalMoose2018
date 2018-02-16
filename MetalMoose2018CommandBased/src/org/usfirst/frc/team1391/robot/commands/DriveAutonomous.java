@@ -3,6 +3,7 @@ package org.usfirst.frc.team1391.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team1391.robot.Robot;
+import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
  * Drives the robot.
@@ -11,7 +12,7 @@ public class DriveAutonomous extends Command {
 	double distance, angle;
 	
 	public DriveAutonomous(double distance, double angle) {
-		this.distance = distance;
+		this.distance = RobotMap.encoderCoefficient*distance;
 		this.angle = angle;
 	}
 

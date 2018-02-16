@@ -46,9 +46,16 @@ public class Robot extends TimedRobot {
 		driveModeChooser.addObject("Joystick Arcade Drive", 2);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
 		
-		SmartDashboard.putNumber("P", RobotMap.P);
-		SmartDashboard.putNumber("I", RobotMap.I);
-		SmartDashboard.putNumber("D", RobotMap.D);
+		SmartDashboard.putNumber("Gyro P", RobotMap.gyroP);
+		SmartDashboard.putNumber("Gyro I", RobotMap.gyroI);
+		SmartDashboard.putNumber("Gyro D", RobotMap.gyroD);
+		
+		SmartDashboard.putNumber("Encoder P", RobotMap.encoderP);
+		SmartDashboard.putNumber("Encoder I", RobotMap.encoderI);
+		SmartDashboard.putNumber("Encoder D", RobotMap.encoderD);
+		
+		SmartDashboard.putNumber("Distance", 0);
+		SmartDashboard.putNumber("Angle", 0);
 
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
@@ -67,15 +74,19 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		RobotMap.P = SmartDashboard.getNumber("P", 0);
-		RobotMap.I = SmartDashboard.getNumber("I", 0);
-		RobotMap.D = SmartDashboard.getNumber("D", 0);
+		RobotMap.gyroP = SmartDashboard.getNumber("Gyro P", 0);
+		RobotMap.gyroI = SmartDashboard.getNumber("Gyro I", 0);
+		RobotMap.gyroD = SmartDashboard.getNumber("Gyro D", 0);
 		
-		Robot.myDriveTrain.gyroController.setPID(RobotMap.P, RobotMap.I, RobotMap.D);
-		Robot.myDriveTrain.gyroController.reset();
+		RobotMap.encoderP = SmartDashboard.getNumber("Encoder P", 0);
+		RobotMap.encoderI = SmartDashboard.getNumber("Encoder I", 0);
+		RobotMap.encoderD = SmartDashboard.getNumber("Encoder D", 0);
 		
+		Robot.myDriveTrain.gyroController.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
 		
-		new DriveAutonomous(0, 90).start();
+		Robot.myDriveTrain.encoderController.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
+		
+		new DriveAutonomous(SmartDashboard.getNumber("Distance", 0), SmartDashboard.getNumber("Angle", 0)).start();
 	}
 
 	@Override
@@ -86,7 +97,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		Robot.myDriveTrain.myAHRS.reset();
-		// Get DriveMode from SmartDashBoard
+		// Get DriveMode from SmartDashBoard2
 		RobotMap.driveMode = driveModeChooser.getSelected();
 	}
 
