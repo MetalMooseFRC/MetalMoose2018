@@ -3,7 +3,6 @@ package org.usfirst.frc.team1391.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team1391.robot.Robot;
-import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
  * Drives the robot.
@@ -11,8 +10,11 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 public class DriveAutonomous extends Command {
 	double distance, angle;
 	
+	int onTargetCounter = 0;
+	int onTargetCounterGoal = 3;
+	
 	public DriveAutonomous(double distance, double angle) {
-		this.distance = RobotMap.encoderCoefficient*distance;
+		this.distance = distance;
 		this.angle = angle;
 	}
 
@@ -21,7 +23,7 @@ public class DriveAutonomous extends Command {
 		Robot.myDriveTrain.myEncoder.reset();
 		Robot.myDriveTrain.myAHRS.reset();
 
-		Robot.myDriveTrain.gyroController.setSetpoint(distance);
+		Robot.myDriveTrain.encoderController.setSetpoint(distance);
 		Robot.myDriveTrain.encoderController.enable();
 		
 		Robot.myDriveTrain.gyroController.setSetpoint(angle);
@@ -29,13 +31,17 @@ public class DriveAutonomous extends Command {
 	}
 	
 	protected void execute() {
-		Robot.myDriveTrain.arcadeDrive(Robot.myDriveTrain.encoderOutput.getOutput()/1.5, Robot.myDriveTrain.gyroOutput.getOutput()/1.5);
-		System.out.println(Robot.myDriveTrain.gyroOutput.getOutput() + " " + Robot.myDriveTrain.myAHRS.getAngle());
+		Robot.myDriveTrain.arcadeDrive(Robot.myDriveTrain.encoderOutput.getOutput(), Robot.myDriveTrain.gyroOutput.getOutput());
+		System.out.println(Robot.myDriveTrain.encoderOutput.getOutput() + " " + Robot.myDriveTrain.myEncoder.getDistance());
 	}
 
 	protected boolean isFinished() {
-		if (Robot.myDriveTrain.gyroController.onTarget() && Robot.myDriveTrain.gyroController.onTarget()) return true;	
-		return false;
+		if (Robot.myDriveTrain.gyroController.onTarget() && Robot.myDriveTrain.encoderController.onTarget()) onTargetCounter++;
+		if (onTargetCounter == onTargetCounterGoal) return true;
+		else {
+			onTargetCounter = 0;
+			return false;
+		}
 	}
 
 	protected void end() {
@@ -43,6 +49,6 @@ public class DriveAutonomous extends Command {
 	}
 
 	protected void interrupted() {
-
+		
 	}
 }

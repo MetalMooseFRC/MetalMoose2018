@@ -35,21 +35,25 @@ public class RobotMap {
 	/** SENSOR MAPPING **/
 	public static final int encoderAPort = 0;
 	public static final int encoderBPort = 1;
-	
+
 	/** MISCELLANEOUS **/
 	// Switching drive modes
 	// 0 is tank drive and 1 is arcade drive with the Logitech controller
 	// 2 uses the Y axis and the rotation axis from the joystick controller
 	public static int driveMode = 2;
-	
+
+	// Values for the PID objects (P, I, D)
 	public static double gyroP = 0.09;
 	public static double gyroI = 0.0;
 	public static double gyroD = 0.0;
-	
+
 	public static double encoderP = 0.09;
 	public static double encoderI = 0.0;
 	public static double encoderD = 0.0;
+
+	// Conversion factor for rotational units of encoder to inches of robot travel
+	public static double encoderCoefficient = 0.00618040;
 	
-	public static double encoderCoefficient = 165.037744;
-	
+	// Slows speed of the robot in autonomous to this value
+	public static double autonSpeedLimit = 0.66;
 }

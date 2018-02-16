@@ -1,17 +1,43 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Encoder P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="255" y="130"/>
+	</widget>
+	<widget field="Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="371" y="270"/>
+		<height>27</height>
+	</widget>
+	<widget field="Encoder I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="434" y="122"/>
+	</widget>
+	<widget field="Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="559" y="276"/>
+	</widget>
+	<widget field="Encoder D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="628" y="117"/>
+	</widget>
+	<widget field="Gyro P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="273" y="162"/>
+	</widget>
+	<widget field="Gyro I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="437" y="155"/>
+	</widget>
+	<widget field="Gyro D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="621" y="163"/>
+	</widget>
 	<widget field="D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="595" y="68"/>
+		<location x="739" y="7"/>
 		<height>22</height>
 	</widget>
 	<widget field="I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="455" y="68"/>
+		<location x="604" y="10"/>
 	</widget>
 	<widget field="P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="316" y="65"/>
+		<location x="441" y="14"/>
+		<height>22</height>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="67" y="22"/>
+		<location x="62" y="123"/>
 		<property name="Text" value="Drive Modes"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
@@ -29,24 +55,29 @@
 		<location x="0" y="0"/>
 	</widget>
 	<widget field="Drive Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="16" y="40"/>
+		<location x="35" y="139"/>
 	</widget>
 	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
-		<location x="10" y="15"/>
+		<location x="221" y="359"/>
 	</widget>
 	<widget field="DriveTrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-		<location x="4" y="12"/>
+		<location x="124" y="66"/>
 	</widget>
 </dashboard>
 <live-window>
 	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<location x="3" y="0"/>
+		<location x="0" y="0"/>
 	</widget>
 	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="Encoder[0]" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="18"/>
-			<height>106</height>
-			<width>234</width>
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Encoder[0]" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
 		</widget>
 		<location x="15" y="17"/>
 		<width>246</width>

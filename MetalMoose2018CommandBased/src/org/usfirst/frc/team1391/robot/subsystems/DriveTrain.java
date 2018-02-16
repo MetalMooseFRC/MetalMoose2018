@@ -5,6 +5,7 @@ import org.usfirst.frc.team1391.robot.commands.Drive;
 import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team1391.robot.BlankPIDOutput;
+import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -32,40 +33,47 @@ public class DriveTrain extends Subsystem {
 	VictorSP rightMotor3 = new VictorSP(RobotMap.drivebaseRightMotor3Port);
 	SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
 
-	// The actual drive
+	// DifferentialDrive object
 	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
 
-	// Create sensors
-	public Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false, Encoder.EncodingType.k4X);
+	// Sensors (encoder, gyro)
+	public Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false,
+			Encoder.EncodingType.k4X);
 	public AHRS myAHRS = new AHRS(SPI.Port.kMXP);
 
+	// PIDOutput objects
 	public BlankPIDOutput encoderOutput = new BlankPIDOutput();
 	public BlankPIDOutput gyroOutput = new BlankPIDOutput();
-	
+
+	// PIDController objects
 	public PIDController encoderController = new PIDController(0, 0, 0, 0, myEncoder, encoderOutput);
 	public PIDController gyroController = new PIDController(0.09, 0.005, 0, 0, myAHRS, gyroOutput);
-	
+
 	public DriveTrain() {
-		encoderController.setOutputRange(-1.0, 1.0);
+		// Encoder PIDObject values
+		encoderController.setOutputRange(-RobotMap.autonSpeedLimit, RobotMap.autonSpeedLimit);
 		encoderController.setAbsoluteTolerance(0.5);
-		
+
+		// Gyro PIDObject values
 		gyroController.setInputRange(-180.0, +180.0);
-		gyroController.setOutputRange(-1.0, 1.0);
+		gyroController.setOutputRange(-RobotMap.autonSpeedLimit, RobotMap.autonSpeedLimit);
 		gyroController.setAbsoluteTolerance(0.1);
 		gyroController.setContinuous(true);
-		
-	}
-	public void initDefaultCommand() {
-		//setDefaultCommand(new Drive());
+
+		// Sets myEncoder to output distance travelled in inches
+		myEncoder.setDistancePerPulse(RobotMap.encoderCoefficient);
 	}
 
-	public void arcadeDrive(double left, double right) {
-		myDifferentialDrive.arcadeDrive(left, right);
+	public void initDefaultCommand() {
+		setDefaultCommand(new Drive());
+	}
+
+	public void arcadeDrive(double x, double y) {
+		myDifferentialDrive.arcadeDrive(x, y);
 	}
 
 	public void tankDrive(double left, double right) {
 		myDifferentialDrive.tankDrive(left, right);
 	}
-	
-	
+
 }

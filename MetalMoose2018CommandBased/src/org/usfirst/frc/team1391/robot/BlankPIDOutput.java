@@ -2,20 +2,22 @@ package org.usfirst.frc.team1391.robot;
 
 import edu.wpi.first.wpilibj.PIDOutput;
 
+/*
+ * Interface between the PIDController object and the other code.
+ */
 public class BlankPIDOutput implements PIDOutput {
-    double output;
-    
-    public BlankPIDOutput()
-    {
-        output = 0;
-    }
+	private double output;
 
-    public void pidWrite(double output) {
-        this.output = output;
-    }
+	public BlankPIDOutput() {
+		output = 0;
+	}
 
-    public double getOutput() {
-        return output;
-    }
-    
+	public void pidWrite(double output) {
+		this.output = output;
+	}
+
+	public double getOutput() {
+		return output;
+	}
+
 }
