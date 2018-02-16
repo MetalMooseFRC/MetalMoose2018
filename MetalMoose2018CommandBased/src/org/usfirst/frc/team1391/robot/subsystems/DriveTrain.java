@@ -43,20 +43,20 @@ public class DriveTrain extends Subsystem {
 	public BlankPIDOutput gyroOutput = new BlankPIDOutput();
 	
 	public PIDController encoderController = new PIDController(0, 0, 0, 0, myEncoder, encoderOutput);
-	public PIDController gyroController = new PIDController(0, 0, 0, 0, myAHRS, gyroOutput);
+	public PIDController gyroController = new PIDController(0.09, 0.005, 0, 0, myAHRS, gyroOutput);
 	
 	public DriveTrain() {
 		encoderController.setOutputRange(-1.0, 1.0);
-		encoderController.setAbsoluteTolerance(0.0);
+		encoderController.setAbsoluteTolerance(0.5);
 		
 		gyroController.setInputRange(-180.0, +180.0);
 		gyroController.setOutputRange(-1.0, 1.0);
-		gyroController.setAbsoluteTolerance(0.0);
+		gyroController.setAbsoluteTolerance(0.1);
 		gyroController.setContinuous(true);
 		
 	}
 	public void initDefaultCommand() {
-		setDefaultCommand(new Drive());
+		//setDefaultCommand(new Drive());
 	}
 
 	public void arcadeDrive(double left, double right) {

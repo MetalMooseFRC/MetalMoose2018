@@ -45,6 +45,10 @@ public class Robot extends TimedRobot {
 		driveModeChooser.addObject("Tank Drive", 1);
 		driveModeChooser.addObject("Joystick Arcade Drive", 2);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
+		
+		SmartDashboard.putNumber("P", RobotMap.P);
+		SmartDashboard.putNumber("I", RobotMap.I);
+		SmartDashboard.putNumber("D", RobotMap.D);
 
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
@@ -63,9 +67,15 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		//Drive forward for 500 units
-		new DriveAutonomous(500, 0).start();
-		new DriveAutonomous(0, 45.0).start();
+		RobotMap.P = SmartDashboard.getNumber("P", 0);
+		RobotMap.I = SmartDashboard.getNumber("I", 0);
+		RobotMap.D = SmartDashboard.getNumber("D", 0);
+		
+		Robot.myDriveTrain.gyroController.setPID(RobotMap.P, RobotMap.I, RobotMap.D);
+		Robot.myDriveTrain.gyroController.reset();
+		
+		
+		new DriveAutonomous(0, 90).start();
 	}
 
 	@Override
@@ -75,12 +85,14 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		Robot.myDriveTrain.myAHRS.reset();
 		// Get DriveMode from SmartDashBoard
 		RobotMap.driveMode = driveModeChooser.getSelected();
 	}
 
 	@Override
 	public void teleopPeriodic() {
+		System.out.println(Robot.myDriveTrain.myAHRS.getAngle());
 		Scheduler.getInstance().run();
 	}
 

@@ -41,4 +41,9 @@ public class RobotMap {
 	// 0 is tank drive and 1 is arcade drive with the Logitech controller
 	// 2 uses the Y axis and the rotation axis from the joystick controller
 	public static int driveMode = 2;
+	
+	public static double P = 0.09;
+	public static double I = 0.0;
+	public static double D = 0.0;
+	
 }

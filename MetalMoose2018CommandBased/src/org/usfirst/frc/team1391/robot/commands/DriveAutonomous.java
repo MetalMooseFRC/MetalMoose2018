@@ -28,7 +28,8 @@ public class DriveAutonomous extends Command {
 	}
 	
 	protected void execute() {
-		Robot.myDriveTrain.arcadeDrive(Robot.myDriveTrain.gyroOutput.getOutput(), Robot.myDriveTrain.encoderOutput.getOutput());
+		Robot.myDriveTrain.arcadeDrive(Robot.myDriveTrain.encoderOutput.getOutput()/1.5, Robot.myDriveTrain.gyroOutput.getOutput()/1.5);
+		System.out.println(Robot.myDriveTrain.gyroOutput.getOutput() + " " + Robot.myDriveTrain.myAHRS.getAngle());
 	}
 
 	protected boolean isFinished() {

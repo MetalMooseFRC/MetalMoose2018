@@ -1,5 +1,15 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="595" y="68"/>
+		<height>22</height>
+	</widget>
+	<widget field="I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="455" y="68"/>
+	</widget>
+	<widget field="P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="316" y="65"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="67" y="22"/>
 		<property name="Text" value="Drive Modes"/>
@@ -21,13 +31,26 @@
 	<widget field="Drive Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="16" y="40"/>
 	</widget>
+	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
+		<location x="10" y="15"/>
+	</widget>
+	<widget field="DriveTrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="4" y="12"/>
+	</widget>
 </dashboard>
 <live-window>
 	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<location x="6" y="11"/>
+		<location x="3" y="0"/>
 	</widget>
 	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<location x="12" y="4"/>
+		<widget field="Encoder[0]" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="6" y="18"/>
+			<height>106</height>
+			<width>234</width>
+		</widget>
+		<location x="15" y="17"/>
+		<width>246</width>
+		<height>131</height>
 	</widget>
 </live-window>
 </xml>
