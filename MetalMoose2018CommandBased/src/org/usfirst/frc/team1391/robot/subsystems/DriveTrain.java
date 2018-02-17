@@ -46,8 +46,8 @@ public class DriveTrain extends Subsystem {
 	public BlankPIDOutput gyroOutput = new BlankPIDOutput();
 
 	// PIDController objects
-	public PIDController encoderController = new PIDController(0, 0, 0, 0, myEncoder, encoderOutput);
-	public PIDController gyroController = new PIDController(0.09, 0.005, 0, 0, myAHRS, gyroOutput);
+	public PIDController encoderController = new PIDController(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD, 0, myEncoder, encoderOutput);
+	public PIDController gyroController = new PIDController(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD, 0, myAHRS, gyroOutput);
 
 	public DriveTrain() {
 		// Encoder PIDObject values
