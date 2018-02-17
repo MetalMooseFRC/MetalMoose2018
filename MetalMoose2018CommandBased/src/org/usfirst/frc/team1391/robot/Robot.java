@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team1391.robot;
 
-import org.usfirst.frc.team1391.robot.commands.DriveAutonomous;
+import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -31,6 +31,8 @@ public class Robot extends TimedRobot {
 
 	// Create SmartDashboard objects
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
+	
+	AutonomousCommandGroup myAutonomousCommand;
 
 	/**
 	 * Initial setup of the robot (values on SmartDashboard)
@@ -42,6 +44,8 @@ public class Robot extends TimedRobot {
 		driveModeChooser.addObject("Tank Drive", 1);
 		driveModeChooser.addObject("Joystick Arcade Drive", 2);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
+		
+		SmartDashboard.putString("Custom Autonomous Command", "");
 
 		/** Temp for PID tuning **/
 		SmartDashboard.putNumber("Gyro P", RobotMap.gyroP);
@@ -83,8 +87,9 @@ public class Robot extends TimedRobot {
 
 		Robot.myDriveTrain.gyroController.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
 		Robot.myDriveTrain.encoderController.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
-
-		new DriveAutonomous(SmartDashboard.getNumber("Distance", 0), SmartDashboard.getNumber("Angle", 0)).start();
+		
+		myAutonomousCommand = new AutonomousCommandGroup(SmartDashboard.getString("Custom Autonomous Command", ""));
+		myAutonomousCommand.start();
 	}
 
 	@Override
@@ -94,11 +99,14 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		myAutonomousCommand.cancel();
+		
 		Robot.myDriveTrain.myAHRS.reset();
 		Robot.myDriveTrain.myEncoder.reset();
 		
 		// Get DriveMode from SmartDashBoard
 		RobotMap.driveMode = driveModeChooser.getSelected();
+		
 	}
 
 	@Override

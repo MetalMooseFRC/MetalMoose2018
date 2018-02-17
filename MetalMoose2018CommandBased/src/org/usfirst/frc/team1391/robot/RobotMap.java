@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1391.robot;
 
+import edu.wpi.first.wpilibj.Preferences;
+
 /**
  * Used for global variables and to reduce magic numbers in the code.
  */
@@ -56,4 +58,10 @@ public class RobotMap {
 	
 	// Slows speed of the robot in autonomous to this value
 	public static double autonSpeedLimit = 0.66;
+	
+	public static String[] chunks = {
+			"m:0:40",
+			"m:20:0",
+			"m:0:40 m:0:40"
+	};
 }
