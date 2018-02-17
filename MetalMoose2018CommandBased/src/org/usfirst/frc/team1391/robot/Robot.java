@@ -8,12 +8,9 @@
 package org.usfirst.frc.team1391.robot;
 
 import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
-import org.usfirst.frc.team1391.robot.commands.DriveAutonomous;
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -40,6 +37,8 @@ public class Robot extends TimedRobot {
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 	SendableChooser<String> autoTypeChooser = new SendableChooser<>();
 	SendableChooser<String> autoStrategyChooser = new SendableChooser<>();
+	
+	AutonomousCommandGroup myAuton;
 
 	/**
 	 * Puts values on SmartDashboard.
@@ -81,17 +80,9 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
-		RobotMap.autoType = autoTypeChooser.getSelected();
-		RobotMap.autoStrategy = autoStrategyChooser.getSelected();
-		if (RobotMap.autoType == "Custom") {
-			RobotMap.autoCommandString = SmartDashboard.getString("Custom Autonomous String", "");
-		} else {
-			RobotMap.autoCommandString = RobotMap.prefs.getString(RobotMap.autoType + RobotMap.gameData + RobotMap.autoStrategy, "");
-		}
-		AutonomousCommandGroup myAutonomousCommandGroup = new AutonomousCommandGroup(RobotMap.autoCommandString);
-			
 		
+		myAuton = new AutonomousCommandGroup(autoTypeChooser, autoStrategyChooser);
+		myAuton.start();
 		
 	}
 
@@ -103,7 +94,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		// Get DriveMode from SmartDashBoard
+		myAuton.cancel();
 		RobotMap.driveMode = driveModeChooser.getSelected();
+		
 	}
 
 	@Override
