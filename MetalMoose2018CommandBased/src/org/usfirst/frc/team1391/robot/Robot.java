@@ -10,7 +10,6 @@ package org.usfirst.frc.team1391.robot;
 import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -30,10 +29,7 @@ public class Robot extends TimedRobot {
 	// Create OI object
 	public static final OI myOI = new OI();
 
-	// Create sensor objects
-	public static Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false,
-			Encoder.EncodingType.k4X);
-
+	// Create SmartDashboard objects
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 	SendableChooser<String> autoTypeChooser = new SendableChooser<>();
 	SendableChooser<String> autoStrategyChooser = new SendableChooser<>();
@@ -41,7 +37,7 @@ public class Robot extends TimedRobot {
 	AutonomousCommandGroup myAuton;
 
 	/**
-	 * Puts values on SmartDashboard.
+	 * Initial setup of the robot (values on SmartDashboard)
 	 */
 	@Override
 	public void robotInit() {
@@ -63,6 +59,18 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Autonomous Strategy", autoStrategyChooser);
 		SmartDashboard.putString("Custom Autonomous Command String", "");
 
+		/** Temp for PID tuning **/
+		SmartDashboard.putNumber("Gyro P", RobotMap.gyroP);
+		SmartDashboard.putNumber("Gyro I", RobotMap.gyroI);
+		SmartDashboard.putNumber("Gyro D", RobotMap.gyroD);
+
+		SmartDashboard.putNumber("Encoder P", RobotMap.encoderP);
+		SmartDashboard.putNumber("Encoder I", RobotMap.encoderI);
+		SmartDashboard.putNumber("Encoder D", RobotMap.encoderD);
+
+		SmartDashboard.putNumber("Distance", 0);
+		SmartDashboard.putNumber("Angle", 0);
+
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(myDriveTrain);
@@ -80,6 +88,17 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
+		/** Temp for PID tuning **/
+		RobotMap.gyroP = SmartDashboard.getNumber("Gyro P", 0);
+		RobotMap.gyroI = SmartDashboard.getNumber("Gyro I", 0);
+		RobotMap.gyroD = SmartDashboard.getNumber("Gyro D", 0);
+
+		RobotMap.encoderP = SmartDashboard.getNumber("Encoder P", 0);
+		RobotMap.encoderI = SmartDashboard.getNumber("Encoder I", 0);
+		RobotMap.encoderD = SmartDashboard.getNumber("Encoder D", 0);
+
+		Robot.myDriveTrain.gyroController.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
+		Robot.myDriveTrain.encoderController.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
 		
 		myAuton = new AutonomousCommandGroup(autoTypeChooser, autoStrategyChooser);
 		myAuton.start();
@@ -93,6 +112,9 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		Robot.myDriveTrain.myAHRS.reset();
+		Robot.myDriveTrain.myEncoder.reset();
+		
 		// Get DriveMode from SmartDashBoard
 		myAuton.cancel();
 		RobotMap.driveMode = driveModeChooser.getSelected();

@@ -26,3 +26,6 @@
 ## 06/02/18 (Tom)
 * Install GitKraken
 * Add Markdown viewing to Notepad++ (using an XML file to define a new language syntax highlighting)
+
+## 14/02/18 (Tom)
+* Install FRC Radio Configuration Utility 

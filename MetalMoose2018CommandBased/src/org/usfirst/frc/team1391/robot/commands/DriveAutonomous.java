@@ -8,30 +8,40 @@ import org.usfirst.frc.team1391.robot.Robot;
  * Drives the robot.
  */
 public class DriveAutonomous extends Command {
-	public int distanceToDrive;
-
-	public DriveAutonomous(int distanceToDrive) {
-		requires(Robot.myDriveTrain);
-		this.distanceToDrive = distanceToDrive;
+	double distance, angle;
+	
+	int onTargetCounter = 0;
+	int onTargetCounterGoal = 3;
+	
+	public DriveAutonomous(double distance, double angle) {
+		this.distance = distance;
+		this.angle = angle;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.myEncoder.reset();
-	}
+		Robot.myDriveTrain.myEncoder.reset();
+		Robot.myDriveTrain.myAHRS.reset();
 
-	// Drives until stopped by isFinished
+		Robot.myDriveTrain.encoderController.setSetpoint(distance);
+		Robot.myDriveTrain.encoderController.enable();
+		
+		Robot.myDriveTrain.gyroController.setSetpoint(angle);
+		Robot.myDriveTrain.gyroController.enable();
+	}
+	
 	protected void execute() {
-		Robot.myDriveTrain.tankDrive(0.0, 0.0);
+		Robot.myDriveTrain.arcadeDrive(Robot.myDriveTrain.encoderOutput.getOutput(), Robot.myDriveTrain.gyroOutput.getOutput());
+		System.out.println(Robot.myDriveTrain.encoderOutput.getOutput() + " " + Robot.myDriveTrain.myEncoder.getDistance());
 	}
 
-	// Returns true when myEncoder's measured distance exceeds the distance that the
-	// robot has to drive
 	protected boolean isFinished() {
-		if (distanceToDrive < Robot.myEncoder.getDistance())
-			return true;
-		else
+		if (Robot.myDriveTrain.gyroController.onTarget() && Robot.myDriveTrain.encoderController.onTarget()) onTargetCounter++;
+		if (onTargetCounter == onTargetCounterGoal) return true;
+		else {
+			onTargetCounter = 0;
 			return false;
+		}
 	}
 
 	protected void end() {
@@ -39,6 +49,6 @@ public class DriveAutonomous extends Command {
 	}
 
 	protected void interrupted() {
-
+		
 	}
 }
