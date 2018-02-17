@@ -2,10 +2,7 @@ package org.usfirst.frc.team1391.robot.commands;
 
 import org.usfirst.frc.team1391.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Takes a string consisting of g-code style command series and produces an
@@ -14,51 +11,32 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonomousCommandGroup extends CommandGroup {
 
-	public AutonomousCommandGroup(SendableChooser<String> autoTypeChooser,
-			SendableChooser<String> autoStrategyChooser) {
+	public AutonomousCommandGroup(String command) {
+		parseCommand(command, false);
+	}
 
-		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
-		RobotMap.autoType = autoTypeChooser.getSelected();
-		RobotMap.autoStrategy = autoStrategyChooser.getSelected();
-		if (RobotMap.autoType == "Custom") {
-			RobotMap.autoCommandString = SmartDashboard.getString("Custom Autonomous String", "");
-		} else {
-			RobotMap.autoCommandString = RobotMap.prefs
-					.getString(RobotMap.autoType + RobotMap.gameData + RobotMap.autoStrategy, "");
+	private void parseCommand(String command, boolean reverseAngle) {
+		String[] stepList = command.split(" ");
 
-			String[] autonStepList = RobotMap.autoCommandString.split(" ");
-			for (String step : autonStepList) {
-				String[] args = step.split(":");
+		for (String step : stepList) {
+			String[] stepValues = step.split(":");
 
-				switch (args[0]) {
-
-				case "m":
-					// addSequential(new
-					// DriveDistance(Integer.parseInt(args[1])));
+			switch (stepValues[0]) {
+				case "m": {
+					int distance = Integer.parseInt(stepValues[1]);
+					int angle = ((reverseAngle) ? (-1) : (1)) * Integer.parseInt(stepValues[2]);
+					
+					System.out.println(angle);
+	
+					addSequential(new DriveAutonomous(distance, angle), 5);
 					break;
-
-				case "r":
-					// addSequential(new TurnAngle(Integer.parseInt(args[1])));
-					break;
-
-				case "e":
-					// addParallel(new
-					// ElevatorToPosition(Integer.parseInt(args[1])));
-					break;
-
-				case "i":
-					// addParallel(new
-					// CollectCube(Double.parseDouble(args[1])));
-					break;
-				case "o":
-					// addSequential(new
-					// IntakeCube(Double.parseDouble(args[1])));
-					break;
-
-				case "w":
-					// addSequential(new Wait(Double.parseDouble(args[1])));
-					break;
-
+				}
+	
+				case "f": {
+					int chunkNumber = Integer.parseInt(stepValues[1]);
+					int reverseNumber = Integer.parseInt(stepValues[2]);
+	
+					parseCommand(RobotMap.chunks[chunkNumber], reverseNumber == 1);
 				}
 			}
 		}

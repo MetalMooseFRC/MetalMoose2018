@@ -31,10 +31,8 @@ public class Robot extends TimedRobot {
 
 	// Create SmartDashboard objects
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
-	SendableChooser<String> autoTypeChooser = new SendableChooser<>();
-	SendableChooser<String> autoStrategyChooser = new SendableChooser<>();
 	
-	AutonomousCommandGroup myAuton;
+	AutonomousCommandGroup myAutonomousCommand;
 
 	/**
 	 * Initial setup of the robot (values on SmartDashboard)
@@ -47,17 +45,7 @@ public class Robot extends TimedRobot {
 		driveModeChooser.addObject("Joystick Arcade Drive", 2);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
 		
-		autoTypeChooser.addDefault("Center", "Center");
-		autoTypeChooser.addObject("Left", "Left");
-		autoTypeChooser.addObject("Right", "Left");
-		autoTypeChooser.addObject("Custom", "Custom");
-		SmartDashboard.putData("Autonomous Type", autoTypeChooser);
-		
-		autoStrategyChooser.addDefault("Aggressive", "Aggressive");
-		autoStrategyChooser.addObject("Conservative", "Conservative");
-		autoStrategyChooser.addObject("Basic", "Basic");
-		SmartDashboard.putData("Autonomous Strategy", autoStrategyChooser);
-		SmartDashboard.putString("Custom Autonomous Command String", "");
+		SmartDashboard.putString("Custom Autonomous Command", "");
 
 		/** Temp for PID tuning **/
 		SmartDashboard.putNumber("Gyro P", RobotMap.gyroP);
@@ -100,9 +88,8 @@ public class Robot extends TimedRobot {
 		Robot.myDriveTrain.gyroController.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
 		Robot.myDriveTrain.encoderController.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
 		
-		myAuton = new AutonomousCommandGroup(autoTypeChooser, autoStrategyChooser);
-		myAuton.start();
-		
+		myAutonomousCommand = new AutonomousCommandGroup(SmartDashboard.getString("Custom Autonomous Command", ""));
+		myAutonomousCommand.start();
 	}
 
 	@Override
@@ -112,11 +99,12 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		myAutonomousCommand.cancel();
+		
 		Robot.myDriveTrain.myAHRS.reset();
 		Robot.myDriveTrain.myEncoder.reset();
 		
 		// Get DriveMode from SmartDashBoard
-		myAuton.cancel();
 		RobotMap.driveMode = driveModeChooser.getSelected();
 		
 	}

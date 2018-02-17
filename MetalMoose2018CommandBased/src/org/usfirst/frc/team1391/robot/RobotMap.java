@@ -58,10 +58,10 @@ public class RobotMap {
 	
 	// Slows speed of the robot in autonomous to this value
 	public static double autonSpeedLimit = 0.66;
-	public static String autoType;
-	public static String autoStrategy;
-	public static Preferences prefs = Preferences.getInstance();
-	public static String gameData;
-	public static String autoCommandString;
-	public static String autoCommandStringKey;
+	
+	public static String[] chunks = {
+			"m:0:40",
+			"m:20:0",
+			"m:0:40 m:0:40"
+	};
 }
