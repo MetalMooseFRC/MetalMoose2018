@@ -31,15 +31,24 @@ public class DriveAutonomous extends Command {
 	}
 	
 	protected void execute() {
-		Robot.myDriveTrain.arcadeDrive(Robot.myDriveTrain.encoderOutput.getOutput(), Robot.myDriveTrain.gyroOutput.getOutput());
 		System.out.println(Robot.myDriveTrain.encoderOutput.getOutput() + " " + Robot.myDriveTrain.myEncoder.getDistance());
+		double pidEncoderOutput = Robot.myDriveTrain.encoderOutput.getOutput();
+		double pidGyroOutput = Robot.myDriveTrain.gyroOutput.getOutput();
+		
+		if (distance == 0) pidEncoderOutput = 0;
+		
+		Robot.myDriveTrain.arcadeDrive(pidEncoderOutput, pidGyroOutput);
 	}
 
 	protected boolean isFinished() {
-		if (Robot.myDriveTrain.gyroController.onTarget() && Robot.myDriveTrain.encoderController.onTarget()) onTargetCounter++;
+		if (Robot.myDriveTrain.gyroController.onTarget() && (Robot.myDriveTrain.encoderController.onTarget() || distance == 0)) onTargetCounter++;
+		else onTargetCounter = 0;
+		
 		if (onTargetCounter == onTargetCounterGoal) return true;
 		else {
-			onTargetCounter = 0;
+			RobotMap.angleError = Robot.myDriveTrain.gyroController.getError();
+			if (distance != 0) RobotMap.distanceError = Robot.myDriveTrain.encoderController.getError();
+			
 			return false;
 		}
 	}
