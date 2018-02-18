@@ -26,13 +26,8 @@ public class RobotMap {
 	public static final int arcadeDriveRotationAxisPort = 2;
 
 	/** MOTOR MAPPING **/
-	public static final int drivebaseLeftMotor1Port = 0;
-	public static final int drivebaseLeftMotor2Port = 1;
-	public static final int drivebaseLeftMotor3Port = 2;
-
-	public static final int drivebaseRightMotor1Port = 3;
-	public static final int drivebaseRightMotor2Port = 4;
-	public static final int drivebaseRightMotor3Port = 5;
+	public static final int drivebaseLeftMotorPort = 0;
+	public static final int drivebaseRightMotorPort = 1;
 
 	/** SENSOR MAPPING **/
 	public static final int encoderAPort = 0;
