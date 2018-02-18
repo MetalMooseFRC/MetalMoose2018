@@ -27,8 +27,9 @@ public class RobotMap {
 	public static final int drivebaseLeftMotorPort = 0;
 	public static final int drivebaseRightMotorPort = 1;
 
-	public static final int collectorLeftMotorPort = 8;
-	public static final int collectorRightMotorPort = 9;
+	public static final int collectorLeftMotorPort = 2;
+	public static final int collectorRightMotorPort = 3;
+	
 	/** SENSOR MAPPING **/
 	public static final int encoderAPort = 0;
 	public static final int encoderBPort = 1;
