@@ -22,15 +22,12 @@ public class OI {
 	public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort),
 			operatorController = new Joystick(RobotMap.operatorControllerPort);
 
-	public static final Button operatorA = new JoystickButton(operatorController, 1),
-			operatorB = new JoystickButton(operatorController, 2),
-			operatorX = new JoystickButton(operatorController, 3),
-			operatorY = new JoystickButton(operatorController, 4),
-			operatorLB = new JoystickButton(operatorController, 5),
-			operatorRB = new JoystickButton(operatorController, 6);
-
-	public static final int operatorLeftX = 0, operatorLeftY = 1, operatorLeftTrigger = 2, operatorRightTrigger = 3,
-			operatoRightX = 4, operatorRightY = 5;
+	public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),
+			operatorB = new JoystickButton(operatorController, RobotMap.operatorButtonBPort),
+			operatorX = new JoystickButton(operatorController, RobotMap.operatorButtonXPort),
+			operatorY = new JoystickButton(operatorController, RobotMap.operatorButtonYPort),
+			operatorLB = new JoystickButton(operatorController, RobotMap.operatorButtonLBPort),
+			operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
 	
 	public OI() {
 		operatorLB.whileHeld(new CollectorIntake());

@@ -22,7 +22,23 @@ public class RobotMap {
 
 	// Port of the rotation axis of the Logitech joystick
 	public static final int arcadeDriveRotationAxisPort = 2;
+	
+	// Operator controller button mapping
+	public static final int operatorButtonAPort = 1;
+	public static final int operatorButtonBPort = 2;
+	public static final int operatorButtonXPort = 3;
+	public static final int operatorButtonYPort = 4;
+	public static final int operatorButtonLBPort = 5;
+	public static final int operatorButtonRBPort = 6;
 
+	// Operator controller axis mapping
+	public static final int operatorLeftXPort = 0;
+	public static final int operatorLeftYPort = 1;
+	public static final int operatorLeftTriggerPort = 2;
+	public static final int operatorRightTriggerPort = 3;
+	public static final int operatoRightXPort = 4;
+	public static final int operatorRightYPort = 5;
+	
 	/** MOTOR MAPPING **/
 	public static final int drivebaseLeftMotorPort = 0;
 	public static final int drivebaseRightMotorPort = 1;
@@ -60,7 +76,8 @@ public class RobotMap {
 			"m:20:0",
 			"m:0:40 m:0:40"
 	};
-	// Accumulate error during autonomous
+
+	// Accumulated error during autonomous
 	public static double angleError = 0;
 	public static double distanceError = 0;
 	

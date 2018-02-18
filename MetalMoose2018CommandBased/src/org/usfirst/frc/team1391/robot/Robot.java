@@ -107,7 +107,6 @@ public class Robot extends TimedRobot {
 		
 		// Get DriveMode from SmartDashBoard
 		RobotMap.driveMode = driveModeChooser.getSelected();
-		
 	}
 
 	@Override
