@@ -21,6 +21,8 @@ public class OI {
 	/** DRIVE TEAM CONTROLLERS **/
 	public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort),
 			operatorController = new Joystick(RobotMap.operatorControllerPort);
+			
+	public static final Button driveButton = new JoystickButton(driveStick, RobotMap.arcadeDriveBackwardButtonPort);
 
 	public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),
 			operatorB = new JoystickButton(operatorController, RobotMap.operatorButtonBPort),

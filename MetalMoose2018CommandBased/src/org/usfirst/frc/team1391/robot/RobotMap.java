@@ -22,6 +22,8 @@ public class RobotMap {
 
 	// Port of the rotation axis of the Logitech joystick
 	public static final int arcadeDriveRotationAxisPort = 2;
+	public static final int arcadeDriveSpeedAxisPort = 3;
+	public static final int arcadeDriveBackwardButtonPort = 1;
 	
 	// Operator controller button mapping
 	public static final int operatorButtonAPort = 1;
