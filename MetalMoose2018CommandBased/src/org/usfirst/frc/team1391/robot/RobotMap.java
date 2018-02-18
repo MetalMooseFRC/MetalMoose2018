@@ -71,6 +71,6 @@ public class RobotMap {
 	
 	//setpoint values
 	public static double collectorIntakeSpeed = -1.0;
-	public static double collectorOuttakeSpeed = 1.0;
+	public static double collectorOuttakeSpeed = 0.6;
 	public static double collectorHoldSpeed = -0.1;
 }

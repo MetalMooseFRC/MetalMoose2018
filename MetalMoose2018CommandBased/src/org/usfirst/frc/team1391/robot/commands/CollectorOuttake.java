@@ -21,7 +21,7 @@ public class CollectorOuttake extends Command {
 	}
 
 	protected void execute() {
-		Robot.myCollector.setSpeed(RobotMap.collectorIntakeSpeed);
+		Robot.myCollector.setSpeed(RobotMap.collectorOuttakeSpeed);
 	}
 
 	protected boolean isFinished() {
