@@ -8,6 +8,8 @@
 package org.usfirst.frc.team1391.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * Connect physical operator interface to commands.
@@ -15,5 +17,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
 	/** DRIVE TEAM CONTROLLERS **/
 	public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort);
+	public static final Button driveButton = new JoystickButton(driveStick, RobotMap.arcadeDriveBackwardButtonPort);
+
 	public static final Joystick operatorStick = new Joystick(RobotMap.operatorControllerPort);
 }

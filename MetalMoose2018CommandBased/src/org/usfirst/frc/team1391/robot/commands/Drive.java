@@ -42,8 +42,16 @@ public class Drive extends Command {
 		// Arcade drive using the Y and the rotation (as X) axis of the Logitech
 		// joystick
 		case 2:
-			Robot.myDriveTrain.arcadeDrive(-OI.driveStick.getY(),
-					OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort));
+			// The '-' sign is because the value is reversed
+			double robotSpeed = 1.0 / 2.0 - OI.driveStick.getRawAxis(RobotMap.arcadeDriveSpeedAxisPort) / 2;
+
+			double forwardMotion = OI.driveStick.getY() * robotSpeed;
+			double turningMotion = OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort) * robotSpeed;
+
+			if (OI.driveButton.get())
+				Robot.myDriveTrain.arcadeDrive(forwardMotion, turningMotion);
+			else
+				Robot.myDriveTrain.arcadeDrive(-forwardMotion, turningMotion);
 			break;
 		}
 	}
