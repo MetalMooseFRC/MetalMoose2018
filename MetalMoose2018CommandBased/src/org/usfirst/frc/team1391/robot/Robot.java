@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		myAutonomousCommand.cancel();
+		if (myAutonomousCommand != null) myAutonomousCommand.cancel();
 		
 		Robot.myDriveTrain.myAHRS.reset();
 		Robot.myDriveTrain.myEncoder.reset();
