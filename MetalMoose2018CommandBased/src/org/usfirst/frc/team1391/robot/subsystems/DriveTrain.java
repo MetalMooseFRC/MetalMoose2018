@@ -52,7 +52,7 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		// Encoder PIDObject values
 		encoderController.setOutputRange(-RobotMap.autonSpeedLimit, RobotMap.autonSpeedLimit);
-		encoderController.setAbsoluteTolerance(0.5);
+		encoderController.setAbsoluteTolerance(3.0);
 
 		// Gyro PIDObject values
 		gyroController.setInputRange(-180.0, +180.0);

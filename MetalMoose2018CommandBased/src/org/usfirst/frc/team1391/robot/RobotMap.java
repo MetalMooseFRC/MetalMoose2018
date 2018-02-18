@@ -50,18 +50,21 @@ public class RobotMap {
 	public static double gyroD = 0.0;
 
 	public static double encoderP = 0.09;
-	public static double encoderI = 0.0;
+	public static double encoderI = 0.00001;
 	public static double encoderD = 0.0;
 
 	// Conversion factor for rotational units of encoder to inches of robot travel
 	public static double encoderCoefficient = 0.00618040;
 	
 	// Slows speed of the robot in autonomous to this value
-	public static double autonSpeedLimit = 0.66;
+	public static double autonSpeedLimit = 0.7;
 	
 	public static String[] chunks = {
 			"m:0:40",
 			"m:20:0",
 			"m:0:40 m:0:40"
 	};
+	// Accumulate error during autonomous
+	public static double angleError = 0;
+	public static double distanceError = 0;
 }

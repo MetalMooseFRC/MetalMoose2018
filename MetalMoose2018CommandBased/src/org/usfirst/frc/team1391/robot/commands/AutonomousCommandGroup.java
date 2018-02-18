@@ -26,9 +26,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 					int distance = Integer.parseInt(stepValues[1]);
 					int angle = ((reverseAngle) ? (-1) : (1)) * Integer.parseInt(stepValues[2]);
 					
-					System.out.println(angle);
-	
-					addSequential(new DriveAutonomous(distance, angle), 5);
+					addSequential(new DriveAutonomous(distance, angle));
 					break;
 				}
 	
