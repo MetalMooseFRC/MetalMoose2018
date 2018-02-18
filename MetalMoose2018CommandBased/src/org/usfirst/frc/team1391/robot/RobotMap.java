@@ -7,8 +7,6 @@
 
 package org.usfirst.frc.team1391.robot;
 
-import edu.wpi.first.wpilibj.Preferences;
-
 /**
  * Used for global variables and to reduce magic numbers in the code.
  */
@@ -29,6 +27,8 @@ public class RobotMap {
 	public static final int drivebaseLeftMotorPort = 0;
 	public static final int drivebaseRightMotorPort = 1;
 
+	public static final int collectorLeftMotorPort = 8;
+	public static final int collectorRightMotorPort = 9;
 	/** SENSOR MAPPING **/
 	public static final int encoderAPort = 0;
 	public static final int encoderBPort = 1;
@@ -62,4 +62,9 @@ public class RobotMap {
 	// Accumulate error during autonomous
 	public static double angleError = 0;
 	public static double distanceError = 0;
+	
+	//setpoint values
+	public static double collectorIntakeSpeed = -1.0;
+	public static double collectorOuttakeSpeed = 1.0;
+	public static double collectorHoldSpeed = -0.1;
 }

@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 	// Create subsystem objects
 	public static final DriveTrain myDriveTrain = new DriveTrain();
+	public static final Collector myCollector = new Collector();
 
 	// Create OI object
 	public static final OI myOI = new OI();
