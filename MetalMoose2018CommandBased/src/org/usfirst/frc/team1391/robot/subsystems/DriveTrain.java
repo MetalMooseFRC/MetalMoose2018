@@ -22,19 +22,19 @@ import edu.wpi.first.wpilibj.drive.*;
 public class DriveTrain extends Subsystem {
 
 	// Left motor speed controllers
-	VictorSP leftMotor1 = new VictorSP(RobotMap.drivebaseLeftMotor1Port);
-	VictorSP leftMotor2 = new VictorSP(RobotMap.drivebaseLeftMotor2Port);
-	VictorSP leftMotor3 = new VictorSP(RobotMap.drivebaseLeftMotor3Port);
-	SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftMotor1, leftMotor2, leftMotor3);
+	private VictorSP leftMotor1 = new VictorSP(RobotMap.drivebaseLeftMotor1Port);
+	private VictorSP leftMotor2 = new VictorSP(RobotMap.drivebaseLeftMotor2Port);
+	private VictorSP leftMotor3 = new VictorSP(RobotMap.drivebaseLeftMotor3Port);
+	private SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftMotor1, leftMotor2, leftMotor3);
 
 	// Right motor speed controllers
-	VictorSP rightMotor1 = new VictorSP(RobotMap.drivebaseRightMotor1Port);
-	VictorSP rightMotor2 = new VictorSP(RobotMap.drivebaseRightMotor2Port);
-	VictorSP rightMotor3 = new VictorSP(RobotMap.drivebaseRightMotor3Port);
-	SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
+	private VictorSP rightMotor1 = new VictorSP(RobotMap.drivebaseRightMotor1Port);
+	private VictorSP rightMotor2 = new VictorSP(RobotMap.drivebaseRightMotor2Port);
+	private VictorSP rightMotor3 = new VictorSP(RobotMap.drivebaseRightMotor3Port);
+	private SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
 
 	// DifferentialDrive object
-	DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
+	private DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
 
 	// Sensors (encoder, gyro)
 	public Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false,
