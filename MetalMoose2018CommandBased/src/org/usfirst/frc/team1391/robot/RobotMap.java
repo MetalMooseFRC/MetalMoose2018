@@ -70,7 +70,7 @@ public class RobotMap {
 	public static double distanceError = 0;
 	
 	//setpoint values
-	public static double collectorIntakeSpeed;
-	public static double collectorOuttakeSpeed;
-	public static double collectorHoldSpeed;
+	public static double collectorIntakeSpeed = -1.0;
+	public static double collectorOuttakeSpeed = 1.0;
+	public static double collectorHoldSpeed = -0.1;
 }

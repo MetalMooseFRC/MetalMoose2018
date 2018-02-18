@@ -24,9 +24,9 @@ public class CollectorManualControl extends Command {
 		if (OI.operatorController.getRawAxis(OI.operatorLeftTrigger) != 0)
 			Robot.myCollector.setSpeed(OI.operatorController.getRawAxis(OI.operatorLeftTrigger));
 		else if (OI.operatorController.getRawAxis(OI.operatorRightTrigger) != 0)
-			Robot.myCollector.setSpeed(OI.operatorController.getRawAxis(OI.operatorRightTrigger));
+			Robot.myCollector.setSpeed(-OI.operatorController.getRawAxis(OI.operatorRightTrigger));
 		else
-			Robot.myCollector.setSpeed(RobotMap.collectorHoldSpeed);
+			Robot.myCollector.setSpeed(-RobotMap.collectorHoldSpeed);
 	}
 
 	protected boolean isFinished() {
