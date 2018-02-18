@@ -60,8 +60,8 @@ public class RobotMap {
 
 	// Values for the PID objects (P, I, D)
 	public static double gyroP = 0.09;
-	public static double gyroI = 0.0;
-	public static double gyroD = 0.0;
+	public static double gyroI = 0.00001;
+	public static double gyroD = 0.01;
 
 	public static double encoderP = 0.09;
 	public static double encoderI = 0.00001;

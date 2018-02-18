@@ -10,13 +10,15 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class DriveAutonomous extends Command {
 	double distance, angle;
-	
+
 	int onTargetCounter = 0;
-	int onTargetCounterGoal = 10;
-	
+	int onTargetCounterGoal = 15;
+
 	public DriveAutonomous(double distance, double angle) {
-		this.distance = distance;
-		this.angle = angle;
+		// We can't do both the distance and the angle correction at the same time, due
+		// to the position of the encoder.
+		if (angle == 0) this.distance = distance + RobotMap.distanceError;
+		else this.angle = angle + RobotMap.angleError;
 	}
 
 	// Called just before this Command runs the first time
@@ -24,34 +26,34 @@ public class DriveAutonomous extends Command {
 		Robot.myDriveTrain.myEncoder.reset();
 		Robot.myDriveTrain.myAHRS.reset();
 
-		Robot.myDriveTrain.encoderController.setSetpoint(distance + RobotMap.distanceError);
-		Robot.myDriveTrain.encoderController.enable();
-		
-		Robot.myDriveTrain.gyroController.setSetpoint(angle + RobotMap.angleError);
+		// If the distance is 0, we don't want to interfere with the gyro.
+		Robot.myDriveTrain.encoderController.setSetpoint(distance);
+		if (distance != 0) Robot.myDriveTrain.encoderController.enable();
+
+		Robot.myDriveTrain.gyroController.setSetpoint(angle);
 		Robot.myDriveTrain.gyroController.enable();
 	}
-	
+
 	protected void execute() {
-		System.out.println(Robot.myDriveTrain.encoderOutput.getOutput() + " " + Robot.myDriveTrain.myEncoder.getDistance());
 		double pidEncoderOutput = Robot.myDriveTrain.encoderOutput.getOutput();
 		double pidGyroOutput = Robot.myDriveTrain.gyroOutput.getOutput();
-		
-		if (distance == 0) pidEncoderOutput = 0;
-		
+
 		Robot.myDriveTrain.arcadeDrive(pidEncoderOutput, pidGyroOutput);
 	}
 
 	protected boolean isFinished() {
-		if (Robot.myDriveTrain.gyroController.onTarget() && (Robot.myDriveTrain.encoderController.onTarget() || distance == 0)) onTargetCounter++;
+		if (Robot.myDriveTrain.gyroController.onTarget() && Robot.myDriveTrain.encoderController.onTarget()) onTargetCounter++;
 		else onTargetCounter = 0;
-		
-		if (onTargetCounter == onTargetCounterGoal) return true;
-		else {
-			RobotMap.angleError = Robot.myDriveTrain.gyroController.getError();
-			if (distance != 0) RobotMap.distanceError = Robot.myDriveTrain.encoderController.getError();
+
+		System.out.println(Robot.myDriveTrain.gyroController.getError());
+
+		if (onTargetCounter == onTargetCounterGoal) {
+			if (distance == 0) RobotMap.angleError += Robot.myDriveTrain.gyroController.getError();
+			if (angle == 0) RobotMap.distanceError += Robot.myDriveTrain.encoderController.getError();
 			
-			return false;
+			return true;
 		}
+		else return false;
 	}
 
 	protected void end() {
@@ -59,6 +61,6 @@ public class DriveAutonomous extends Command {
 	}
 
 	protected void interrupted() {
-		
+
 	}
 }

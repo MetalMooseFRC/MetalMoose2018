@@ -57,9 +57,6 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Encoder I", RobotMap.encoderI);
 		SmartDashboard.putNumber("Encoder D", RobotMap.encoderD);
 
-		SmartDashboard.putNumber("Distance", 0);
-		SmartDashboard.putNumber("Angle", 0);
-
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(myDriveTrain);
@@ -101,9 +98,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		if (myAutonomousCommand != null) myAutonomousCommand.cancel();
-		
-		Robot.myDriveTrain.myAHRS.reset();
-		Robot.myDriveTrain.myEncoder.reset();
 		
 		// Get DriveMode from SmartDashBoard
 		RobotMap.driveMode = driveModeChooser.getSelected();
