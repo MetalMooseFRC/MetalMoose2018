@@ -3,6 +3,7 @@ package org.usfirst.frc.team1391.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team1391.robot.Robot;
+import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
  * Drives the robot.
@@ -11,7 +12,7 @@ public class DriveAutonomous extends Command {
 	double distance, angle;
 	
 	int onTargetCounter = 0;
-	int onTargetCounterGoal = 3;
+	int onTargetCounterGoal = 10;
 	
 	public DriveAutonomous(double distance, double angle) {
 		this.distance = distance;
@@ -23,10 +24,10 @@ public class DriveAutonomous extends Command {
 		Robot.myDriveTrain.myEncoder.reset();
 		Robot.myDriveTrain.myAHRS.reset();
 
-		Robot.myDriveTrain.encoderController.setSetpoint(distance);
+		Robot.myDriveTrain.encoderController.setSetpoint(distance + RobotMap.distanceError);
 		Robot.myDriveTrain.encoderController.enable();
 		
-		Robot.myDriveTrain.gyroController.setSetpoint(angle);
+		Robot.myDriveTrain.gyroController.setSetpoint(angle + RobotMap.angleError);
 		Robot.myDriveTrain.gyroController.enable();
 	}
 	

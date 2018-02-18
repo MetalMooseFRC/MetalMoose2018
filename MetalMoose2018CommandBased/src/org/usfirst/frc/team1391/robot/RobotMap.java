@@ -64,4 +64,7 @@ public class RobotMap {
 			"m:20:0",
 			"m:0:40 m:0:40"
 	};
+	// Accumulate error during autonomous
+	public static double angleError = 0;
+	public static double distanceError = 0;
 }
