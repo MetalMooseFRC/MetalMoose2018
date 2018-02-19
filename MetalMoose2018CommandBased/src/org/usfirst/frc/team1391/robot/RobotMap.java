@@ -81,7 +81,6 @@ public class RobotMap {
 
 	// Accumulated error during autonomous
 	public static double angleError = 0;
-	public static double distanceError = 0;
 	
 	//setpoint values
 	public static double collectorIntakeSpeed = -1.0;

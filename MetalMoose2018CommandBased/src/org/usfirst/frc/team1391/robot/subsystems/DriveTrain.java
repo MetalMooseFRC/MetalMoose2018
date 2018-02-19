@@ -5,13 +5,11 @@ import org.usfirst.frc.team1391.robot.commands.Drive;
 import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team1391.robot.BlankPIDOutput;
-import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.*;
@@ -42,12 +40,12 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		// Encoder PIDObject values
 		encoderController.setOutputRange(-RobotMap.autonSpeedLimit, RobotMap.autonSpeedLimit);
-		encoderController.setAbsoluteTolerance(3.0);
+		encoderController.setAbsoluteTolerance(2.0);
 
 		// Gyro PIDObject values
 		gyroController.setInputRange(-180.0, +180.0);
 		gyroController.setOutputRange(-RobotMap.autonSpeedLimit, RobotMap.autonSpeedLimit);
-		gyroController.setAbsoluteTolerance(0.1);
+		gyroController.setAbsoluteTolerance(3.5);
 		gyroController.setContinuous(true);
 
 		// Sets myEncoder to output distance travelled in inches
