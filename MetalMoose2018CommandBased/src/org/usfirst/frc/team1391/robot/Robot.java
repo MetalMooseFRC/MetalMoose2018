@@ -41,9 +41,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		// Which DriveMode to use in the teleop
-		driveModeChooser.addDefault("Arcade Drive", 0);
+		driveModeChooser.addDefault("Joystick Arcade Drive", 2);
 		driveModeChooser.addObject("Tank Drive", 1);
-		driveModeChooser.addObject("Joystick Arcade Drive", 2);
+		driveModeChooser.addObject("Arcade Drive", 0);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
 		
 		SmartDashboard.putString("Custom Autonomous Command", "");
