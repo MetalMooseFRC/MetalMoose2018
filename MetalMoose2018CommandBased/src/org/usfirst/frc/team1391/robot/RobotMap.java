@@ -59,9 +59,9 @@ public class RobotMap {
 	public static int driveMode = 2;
 
 	// Values for the PID objects (P, I, D)
-	public static double gyroP = 0.09;
+	public static double gyroP = 0.055;
 	public static double gyroI = 0.00001;
-	public static double gyroD = 0.01;
+	public static double gyroD = 0.008;
 
 	public static double encoderP = 0.09;
 	public static double encoderI = 0.00001;
