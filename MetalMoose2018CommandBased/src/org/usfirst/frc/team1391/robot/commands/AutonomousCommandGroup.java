@@ -23,8 +23,8 @@ public class AutonomousCommandGroup extends CommandGroup {
 
 			switch (stepValues[0]) {
 				case "m": {
-					int distance = Integer.parseInt(stepValues[1]);
-					int angle = ((reverseAngle) ? (-1) : (1)) * Integer.parseInt(stepValues[2]);
+					double distance = Double.parseDouble(stepValues[1]);
+					double angle = ((reverseAngle) ? (-1) : (1)) * Double.parseDouble(stepValues[2]);
 					
 					addSequential(new DriveAutonomous(distance, angle));
 					break;
