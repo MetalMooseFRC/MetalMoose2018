@@ -25,8 +25,9 @@ public class AutonomousCommandGroup extends CommandGroup {
 				case "m": {
 					double distance = Double.parseDouble(stepValues[1]);
 					double angle = ((reverseAngle) ? (-1) : (1)) * Double.parseDouble(stepValues[2]);
-					
-					addSequential(new DriveAutonomous(distance, angle));
+
+					if (distance == 0) addSequential(new DriveAutonomous(distance, angle), 2);
+					else addSequential(new DriveAutonomous(distance, angle));
 					break;
 				}
 	
