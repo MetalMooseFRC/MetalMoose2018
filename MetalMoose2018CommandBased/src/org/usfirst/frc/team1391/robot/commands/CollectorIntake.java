@@ -6,7 +6,7 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Drives the robot.
+ * Intakes (either manually using a button, or through autonomous).
  */
 public class CollectorIntake extends Command {
 

@@ -8,7 +8,7 @@
 package org.usfirst.frc.team1391.robot;
 
 /**
- * Used for global variables and to reduce magic numbers in the code.
+ * Used for global variables (auton, driving) and constants (ports).
  */
 public class RobotMap {
 	/** CONTROLLER MAPPING **/
@@ -69,12 +69,28 @@ public class RobotMap {
 	// Multiplies the speed of the robot by this value (in autonomous)
 	public static double autonomousSpeedLimit = 0.7;
 	
-	// Chunks of movement that the autonomous sequences are made of
+	// Chunks of movement for the autonomous sequences
 	public static String[] chunks = {
-			"m:0:40",
-			"m:20:0",
-			"m:0:40 m:0:40"
+		// Start in the middle
+		"Move:140:0",
+		"Move:10:0 Move:0:45 Move:100:0 Move:0:45",
+		"Move:50:0",
+		
+		//Start on the right
+		"Move:x:0", //168-rl
+		"Move:0:-90 Elevate:1 Move:x:0 Outtake:1 Elevate:0 Move:0:90", //85.25-(29.69+1/2rw)
+		"Move:280.56:0",
+		"Move:0:-45 Elevate:2 Move:x:0 Outtake:1 Elevate:0", //How close to the scale do we have to move?
+		"Move:220.735:0",
+		"Move:0:-90 Move:x:0" //264-robot width
 	};
+	
+	// The absolute angle that the robot is currently in
+	public static double absoluteAngle = 0;
+	
+	// The absolute position of the robot in the field
+	public static double robotPositionX = 0;
+	public static double robotPositionY = 0;
 
 	/** MISCELLANEOUS **/
 	// Switching drive modes
@@ -82,11 +98,7 @@ public class RobotMap {
 	// 2 uses the Y axis and the rotation axis from the joystick controller
 	public static int driveMode = 2;
 
-	
-	
-	
-	
-	// Values for the collector
+	// Values for the collector speeds
 	public static double collectorIntakeSpeed = -1.0;
 	public static double collectorOuttakeSpeed = 0.6;
 	public static double collectorHoldSpeed = -0.1;

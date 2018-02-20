@@ -2,12 +2,11 @@ package org.usfirst.frc.team1391.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Drives the robot.
+ * Outtakes (either manually using a button, or through autonomous).
  */
 public class CollectorOuttake extends Command {
 
