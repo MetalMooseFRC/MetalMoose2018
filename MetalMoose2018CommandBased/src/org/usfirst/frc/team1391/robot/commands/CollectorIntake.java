@@ -10,20 +10,32 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class CollectorIntake extends Command {
 
+	// The time for the robot timeout
+	double time = -1;
+	
+	// Default constructor - for teleop
 	public CollectorIntake() {
 		requires(Robot.myCollector);
 	}
+	
+	// Constructor with time - for autonomous
+	public CollectorIntake(double time) {
+		requires(Robot.myCollector);
 
-	// Called just before this Command runs the first time
+		this.time = time;
+	}
+
 	protected void initialize() {
-
+		// Set a timeout only if the time was initialized to something
+		if (time > 0) setTimeout(time);
 	}
 
 	protected void execute() {
-		Robot.myCollector.setSpeed(RobotMap.collectorOuttakeSpeed);
+		Robot.myCollector.setSpeed(RobotMap.collectorIntakeSpeed);
 	}
 
 	protected boolean isFinished() {
+		if (time > 0) return isTimedOut();
 		return false;
 	}
 

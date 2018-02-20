@@ -11,13 +11,23 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class CollectorOuttake extends Command {
 
+	// The time for the robot timeout
+	double time = -1;
+	
 	public CollectorOuttake() {
 		requires(Robot.myCollector);
 	}
+	
+	// Constructor with time - for autonomous
+	public CollectorOuttake(double time) {
+		requires(Robot.myCollector);
 
-	// Called just before this Command runs the first time
+		this.time = time;
+	}
+
 	protected void initialize() {
-
+		// Set a timeout only if the time was initialized to something
+		if (time > 0) setTimeout(time);
 	}
 
 	protected void execute() {
@@ -25,6 +35,7 @@ public class CollectorOuttake extends Command {
 	}
 
 	protected boolean isFinished() {
+		if (time > 0) return isTimedOut();
 		return false;
 	}
 
