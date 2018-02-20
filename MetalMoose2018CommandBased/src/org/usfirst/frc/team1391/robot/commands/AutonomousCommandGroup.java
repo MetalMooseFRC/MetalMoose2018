@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * Takes a string consisting of g-code style command series and produces an
- * autonomous. Each command is separated by a space, and each argument is
- * separated by a colon. Example: "m:10 w:2 c:0"
+ * autonomous. Each command is separated by a space, and each argument of the
+ * command is separated by a colon.
  */
 public class AutonomousCommandGroup extends CommandGroup {
 

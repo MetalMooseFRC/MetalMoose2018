@@ -83,8 +83,8 @@ public class Robot extends TimedRobot {
 		RobotMap.encoderI = SmartDashboard.getNumber("Encoder I", 0);
 		RobotMap.encoderD = SmartDashboard.getNumber("Encoder D", 0);
 
-		Robot.myDriveTrain.gyroController.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
-		Robot.myDriveTrain.encoderController.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
+		Robot.myDriveTrain.gyroPID.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
+		Robot.myDriveTrain.encoderPID.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
 		
 		myAutonomousCommand = new AutonomousCommandGroup(SmartDashboard.getString("Custom Autonomous Command", ""));
 		myAutonomousCommand.start();

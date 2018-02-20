@@ -25,8 +25,7 @@ public class DriveTrain extends Subsystem {
 	private DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotor, rightMotor);
 
 	// Sensors (encoder, gyro)
-	public Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false,
-			Encoder.EncodingType.k4X);
+	public Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false, Encoder.EncodingType.k4X);
 	public AHRS myAHRS = new AHRS(SPI.Port.kMXP);
 
 	// PIDOutput objects
@@ -34,21 +33,21 @@ public class DriveTrain extends Subsystem {
 	public BlankPIDOutput gyroOutput = new BlankPIDOutput();
 
 	// PIDController objects
-	public PIDController encoderController = new PIDController(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD, 0, myEncoder, encoderOutput);
-	public PIDController gyroController = new PIDController(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD, 0, myAHRS, gyroOutput);
+	public PIDController encoderPID = new PIDController(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD, 0, myEncoder, encoderOutput);
+	public PIDController gyroPID = new PIDController(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD, 0, myAHRS, gyroOutput);
 
 	public DriveTrain() {
 		// Encoder PIDObject values
-		encoderController.setOutputRange(-RobotMap.autonSpeedLimit, RobotMap.autonSpeedLimit);
-		encoderController.setAbsoluteTolerance(2.0);
+		encoderPID.setOutputRange(-RobotMap.autonomousSpeedLimit, RobotMap.autonomousSpeedLimit);
+		encoderPID.setAbsoluteTolerance(2.0); //2 inches
 
 		// Gyro PIDObject values
-		gyroController.setInputRange(-180.0, +180.0);
-		gyroController.setOutputRange(-RobotMap.autonSpeedLimit, RobotMap.autonSpeedLimit);
-		gyroController.setAbsoluteTolerance(3.5);
-		gyroController.setContinuous(true);
+		gyroPID.setInputRange(-180.0, +180.0);
+		gyroPID.setOutputRange(-RobotMap.autonomousSpeedLimit, RobotMap.autonomousSpeedLimit);
+		gyroPID.setAbsoluteTolerance(3.5); //3.5 degrees
+		gyroPID.setContinuous(true); //loops around
 
-		// Sets myEncoder to output distance travelled in inches
+		// Sets myEncoder to output distance traveled in inches
 		myEncoder.setDistancePerPulse(RobotMap.encoderCoefficient);
 	}
 

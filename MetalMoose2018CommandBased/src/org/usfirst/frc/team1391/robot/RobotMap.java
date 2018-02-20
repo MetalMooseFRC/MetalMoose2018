@@ -51,6 +51,30 @@ public class RobotMap {
 	/** SENSOR MAPPING **/
 	public static final int encoderAPort = 0;
 	public static final int encoderBPort = 1;
+	
+	/** AUTONOMOUS, PID **/
+	// Values for the PID of gyro
+	public static double gyroP = 0.055;
+	public static double gyroI = 0.00001;
+	public static double gyroD = 0.008;
+
+	// Values for the PID of the encoder
+	public static double encoderP = 0.6;
+	public static double encoderI = 0.0001;
+	public static double encoderD = 0.025;
+
+	// Conversion factor for rotational units of encoder to inches of robot travel
+	public static double encoderCoefficient = 0.00618040;
+	
+	// Multiplies the speed of the robot by this value (in autonomous)
+	public static double autonomousSpeedLimit = 0.7;
+	
+	// Chunks of movement that the autonomous sequences are made of
+	public static String[] chunks = {
+			"m:0:40",
+			"m:20:0",
+			"m:0:40 m:0:40"
+	};
 
 	/** MISCELLANEOUS **/
 	// Switching drive modes
@@ -58,31 +82,11 @@ public class RobotMap {
 	// 2 uses the Y axis and the rotation axis from the joystick controller
 	public static int driveMode = 2;
 
-	// Values for the PID objects (P, I, D)
-	public static double gyroP = 0.055;
-	public static double gyroI = 0.00001;
-	public static double gyroD = 0.008;
-
-	public static double encoderP = 0.09;
-	public static double encoderI = 0.00001;
-	public static double encoderD = 0.0;
-
-	// Conversion factor for rotational units of encoder to inches of robot travel
-	public static double encoderCoefficient = 0.00618040;
 	
-	// Slows speed of the robot in autonomous to this value
-	public static double autonSpeedLimit = 0.7;
 	
-	public static String[] chunks = {
-			"m:0:40",
-			"m:20:0",
-			"m:0:40 m:0:40"
-	};
-
-	// Accumulated error during autonomous
-	public static double angleError = 0;
 	
-	//setpoint values
+	
+	// Values for the collector
 	public static double collectorIntakeSpeed = -1.0;
 	public static double collectorOuttakeSpeed = 0.6;
 	public static double collectorHoldSpeed = -0.1;
