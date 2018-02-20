@@ -8,7 +8,7 @@
 package org.usfirst.frc.team1391.robot;
 
 /**
- * Used for global variables and to reduce magic numbers in the code.
+ * Used for global variables (auton, driving) and constants (ports).
  */
 public class RobotMap {
 	/** CONTROLLER MAPPING **/
@@ -51,6 +51,46 @@ public class RobotMap {
 	/** SENSOR MAPPING **/
 	public static final int encoderAPort = 0;
 	public static final int encoderBPort = 1;
+	
+	/** AUTONOMOUS, PID **/
+	// Values for the PID of gyro
+	public static double gyroP = 0.055;
+	public static double gyroI = 0.00001;
+	public static double gyroD = 0.008;
+
+	// Values for the PID of the encoder
+	public static double encoderP = 0.6;
+	public static double encoderI = 0.0001;
+	public static double encoderD = 0.025;
+
+	// Conversion factor for rotational units of encoder to inches of robot travel
+	public static double encoderCoefficient = 0.00618040;
+	
+	// Multiplies the speed of the robot by this value (in autonomous)
+	public static double autonomousSpeedLimit = 0.7;
+	
+	// Chunks of movement for the autonomous sequences
+	public static String[] chunks = {
+		// Start in the middle
+		"Move:140:0",
+		"Move:10:0 Move:0:45 Move:100:0 Move:0:45",
+		"Move:50:0",
+		
+		//Start on the right
+		"Move:x:0", //168-rl
+		"Move:0:-90 Elevate:1 Move:x:0 Outtake:1 Elevate:0 Move:0:90", //85.25-(29.69+1/2rw)
+		"Move:280.56:0",
+		"Move:0:-45 Elevate:2 Move:x:0 Outtake:1 Elevate:0", //How close to the scale do we have to move?
+		"Move:220.735:0",
+		"Move:0:-90 Move:x:0" //264-robot width
+	};
+	
+	// The absolute angle that the robot is currently in
+	public static double absoluteAngle = 0;
+	
+	// The absolute position of the robot in the field
+	public static double robotPositionX = 0;
+	public static double robotPositionY = 0;
 
 	/** MISCELLANEOUS **/
 	// Switching drive modes
@@ -58,33 +98,8 @@ public class RobotMap {
 	// 2 uses the Y axis and the rotation axis from the joystick controller
 	public static int driveMode = 2;
 
-	// Values for the PID objects (P, I, D)
-	public static double gyroP = 0.09;
-	public static double gyroI = 0.0;
-	public static double gyroD = 0.0;
-
-	public static double encoderP = 0.09;
-	public static double encoderI = 0.00001;
-	public static double encoderD = 0.0;
-
-	// Conversion factor for rotational units of encoder to inches of robot travel
-	public static double encoderCoefficient = 0.00618040;
-	
-	// Slows speed of the robot in autonomous to this value
-	public static double autonSpeedLimit = 0.7;
-	
-	public static String[] chunks = {
-			"m:0:40",
-			"m:20:0",
-			"m:0:40 m:0:40"
-	};
-
-	// Accumulated error during autonomous
-	public static double angleError = 0;
-	public static double distanceError = 0;
-	
-	//setpoint values
+	// Values for the collector speeds
 	public static double collectorIntakeSpeed = -1.0;
-	public static double collectorOuttakeSpeed = 1.0;
+	public static double collectorOuttakeSpeed = 0.6;
 	public static double collectorHoldSpeed = -0.1;
 }

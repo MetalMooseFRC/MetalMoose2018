@@ -2,29 +2,39 @@ package org.usfirst.frc.team1391.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Drives the robot.
+ * Outtakes (either manually using a button, or through autonomous).
  */
 public class CollectorOuttake extends Command {
 
+	// The time for the robot timeout
+	double time = -1;
+	
 	public CollectorOuttake() {
 		requires(Robot.myCollector);
 	}
+	
+	// Constructor with time - for autonomous
+	public CollectorOuttake(double time) {
+		requires(Robot.myCollector);
 
-	// Called just before this Command runs the first time
+		this.time = time;
+	}
+
 	protected void initialize() {
-
+		// Set a timeout only if the time was initialized to something
+		if (time > 0) setTimeout(time);
 	}
 
 	protected void execute() {
-		Robot.myCollector.setSpeed(RobotMap.collectorIntakeSpeed);
+		Robot.myCollector.setSpeed(RobotMap.collectorOuttakeSpeed);
 	}
 
 	protected boolean isFinished() {
+		if (time > 0) return isTimedOut();
 		return false;
 	}
 

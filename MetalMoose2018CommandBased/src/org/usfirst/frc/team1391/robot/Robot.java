@@ -10,6 +10,7 @@ package org.usfirst.frc.team1391.robot;
 import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -30,22 +31,31 @@ public class Robot extends TimedRobot {
 	// Create OI object
 	public static final OI myOI = new OI();
 
-	// Create SmartDashboard objects
+	// Create SmartDashboard objects (drive mode selection, autonomous position selection)
 	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
+	SendableChooser<String> autonomousPositionChooser = new SendableChooser<>();
 	
+	// Declare the autonomous command group
 	AutonomousCommandGroup myAutonomousCommand;
 
 	/**
-	 * Initial setup of the robot (values on SmartDashboard)
+	 * Initial setup of the robot - puts values on SmartDashboard.
 	 */
 	@Override
 	public void robotInit() {
 		// Which DriveMode to use in the teleop
-		driveModeChooser.addDefault("Arcade Drive", 0);
+		driveModeChooser.addDefault("Joystick Arcade Drive", 2);
 		driveModeChooser.addObject("Tank Drive", 1);
-		driveModeChooser.addObject("Joystick Arcade Drive", 2);
+		driveModeChooser.addObject("Arcade Drive", 0);
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
-		
+
+		// Autonomous position chooser
+		autonomousPositionChooser.addObject("Left", "Left");
+		autonomousPositionChooser.addObject("Middle", "Middle");
+		autonomousPositionChooser.addObject("Right", "Right");
+		SmartDashboard.putData("Autonomous Position", autonomousPositionChooser);
+
+		/** Temp for testing autonomous **/
 		SmartDashboard.putString("Custom Autonomous Command", "");
 
 		/** Temp for PID tuning **/
@@ -56,9 +66,6 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Encoder P", RobotMap.encoderP);
 		SmartDashboard.putNumber("Encoder I", RobotMap.encoderI);
 		SmartDashboard.putNumber("Encoder D", RobotMap.encoderD);
-
-		SmartDashboard.putNumber("Distance", 0);
-		SmartDashboard.putNumber("Angle", 0);
 
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
@@ -75,6 +82,9 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 	}
 
+	/**
+	 * Get data from the DriverStation (layout) and SmartDashboard (robot position) and produce a command String.
+	 */
 	@Override
 	public void autonomousInit() {
 		/** Temp for PID tuning **/
@@ -85,11 +95,21 @@ public class Robot extends TimedRobot {
 		RobotMap.encoderP = SmartDashboard.getNumber("Encoder P", 0);
 		RobotMap.encoderI = SmartDashboard.getNumber("Encoder I", 0);
 		RobotMap.encoderD = SmartDashboard.getNumber("Encoder D", 0);
-
-		Robot.myDriveTrain.gyroController.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
-		Robot.myDriveTrain.encoderController.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
 		
-		myAutonomousCommand = new AutonomousCommandGroup(SmartDashboard.getString("Custom Autonomous Command", ""));
+		Robot.myDriveTrain.gyroPID.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
+		Robot.myDriveTrain.encoderPID.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
+
+		/** AUTONOMOUS **/
+		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
+		String robotPosition = autonomousPositionChooser.getSelected();
+
+		// CALL THE APPROPRIATE AUTONOMOUS COMMAND HERE
+		// REMEMBER TO ALSO SET ABSOLUTE ANGLE
+		
+		// THIS IS TO BE CHANGED TO THE SET OF CHUNKS THAT ARE PRODUCED BY THE PRE-SET-UP
+		String command = SmartDashboard.getString("Custom Autonomous Command", "");
+		
+		myAutonomousCommand = new AutonomousCommandGroup(command);
 		myAutonomousCommand.start();
 	}
 
@@ -98,12 +118,12 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 	}
 
+	/**
+	 * Cancel the autonomous command (if it's still going) and get the drivemode from the SmartDashboard
+	 */
 	@Override
 	public void teleopInit() {
 		if (myAutonomousCommand != null) myAutonomousCommand.cancel();
-		
-		Robot.myDriveTrain.myAHRS.reset();
-		Robot.myDriveTrain.myEncoder.reset();
 		
 		// Get DriveMode from SmartDashBoard
 		RobotMap.driveMode = driveModeChooser.getSelected();

@@ -21,9 +21,11 @@ public class OI {
 	/** DRIVE TEAM CONTROLLERS **/
 	public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort),
 			operatorController = new Joystick(RobotMap.operatorControllerPort);
-			
+		
+	// For going backwards in teleop (for the driver)
 	public static final Button driveButton = new JoystickButton(driveStick, RobotMap.arcadeDriveBackwardButtonPort);
 
+	// Control buttons for the operator
 	public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),
 			operatorB = new JoystickButton(operatorController, RobotMap.operatorButtonBPort),
 			operatorX = new JoystickButton(operatorController, RobotMap.operatorButtonXPort),
@@ -31,6 +33,7 @@ public class OI {
 			operatorLB = new JoystickButton(operatorController, RobotMap.operatorButtonLBPort),
 			operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
 	
+	// Map the intake and outtake of the cubes
 	public OI() {
 		operatorLB.whileHeld(new CollectorIntake());
 		operatorRB.whileHeld(new CollectorOuttake());
