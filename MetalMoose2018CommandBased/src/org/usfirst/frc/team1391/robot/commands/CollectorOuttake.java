@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1391.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
@@ -10,38 +9,38 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class CollectorOuttake extends Command {
 
-	// The time for the robot timeout
-	private double time = -1;
-	
-	public CollectorOuttake() {
-		requires(Robot.myCollector);
-	}
-	
-	// Constructor with time - for autonomous
-	CollectorOuttake(double time) {
-		requires(Robot.myCollector);
+    // The time for the robot timeout
+    private double time = -1;
 
-		this.time = time;
-	}
+    public CollectorOuttake() {
+        requires(Robot.myCollector);
+    }
 
-	protected void initialize() {
-		// Set a timeout only if the time was initialized to something
-		if (time > 0) setTimeout(time);
-	}
+    // Constructor with time - for autonomous
+    CollectorOuttake(double time) {
+        requires(Robot.myCollector);
 
-	protected void execute() {
-		Robot.myCollector.setSpeed(RobotMap.collectorOuttakeSpeed);
-	}
+        this.time = time;
+    }
 
-	protected boolean isFinished() {
-		return time > 0 && isTimedOut();
-	}
+    protected void initialize() {
+        // Set a timeout only if the time was initialized to something
+        if (time > 0) setTimeout(time);
+    }
 
-	protected void end() {
+    protected void execute() {
+        Robot.myCollector.setSpeed(RobotMap.collectorOuttakeSpeed);
+    }
 
-	}
+    protected boolean isFinished() {
+        return time > 0 && isTimedOut();
+    }
 
-	protected void interrupted() {
+    protected void end() {
 
-	}
+    }
+
+    protected void interrupted() {
+
+    }
 }

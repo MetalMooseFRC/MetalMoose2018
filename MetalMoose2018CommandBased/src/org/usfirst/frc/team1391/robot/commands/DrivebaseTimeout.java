@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1391.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team1391.robot.Robot;
 
 /**
@@ -9,33 +8,33 @@ import org.usfirst.frc.team1391.robot.Robot;
  */
 public class DrivebaseTimeout extends Command {
 
-	// The time for the robot timeout
-	private double time;
-	
-	// Constructor with time - for autonomous
-	DrivebaseTimeout(double time) {
-		requires(Robot.myCollector);
+    // The time for the robot timeout
+    private double time;
 
-		this.time = time;
-	}
+    // Constructor with time - for autonomous
+    DrivebaseTimeout(double time) {
+        requires(Robot.myCollector);
 
-	protected void initialize() {
-		setTimeout(time);
-	}
+        this.time = time;
+    }
 
-	protected void execute() {
+    protected void initialize() {
+        setTimeout(time);
+    }
 
-	}
+    protected void execute() {
 
-	protected boolean isFinished() {
-		return isTimedOut();
-	}
+    }
 
-	protected void end() {
+    protected boolean isFinished() {
+        return isTimedOut();
+    }
 
-	}
+    protected void end() {
 
-	protected void interrupted() {
+    }
 
-	}
+    protected void interrupted() {
+
+    }
 }
