@@ -4,6 +4,8 @@
 *.swp
 *~.nib
 *.class
+*.iml
+
 
 # Files
 .*
