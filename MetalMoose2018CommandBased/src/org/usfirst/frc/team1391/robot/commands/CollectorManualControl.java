@@ -7,7 +7,7 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Controlls the collector using axes.
+ * Controls the collector using axes.
  */
 public class CollectorManualControl extends Command {
 

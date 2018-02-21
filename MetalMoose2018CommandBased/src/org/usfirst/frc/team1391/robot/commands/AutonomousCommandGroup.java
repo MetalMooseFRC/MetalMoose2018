@@ -14,7 +14,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 	/**
 	 * Takes a String in the g-code style language and converts it into commands.
 	 * 
-	 * @param command 
+	 * @param command The command to be parsed.
 	 */
 	public AutonomousCommandGroup(String command) {
 		// Removes whitespace from both ends of the String and changes all upper case chars to lower case

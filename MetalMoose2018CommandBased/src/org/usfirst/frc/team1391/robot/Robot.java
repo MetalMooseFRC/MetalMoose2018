@@ -52,10 +52,10 @@ public class Robot extends TimedRobot {
 		autonomousPositionChooser.addObject("Right", "Right");
 		SmartDashboard.putData("Autonomous Position", autonomousPositionChooser);
 
-		/** Temp for testing autonomous **/
+		/* Temp for testing autonomous **/
 		SmartDashboard.putString("Custom Autonomous Command", "");
 
-		/** Temp for PID tuning **/
+		/* Temp for PID tuning **/
 		SmartDashboard.putNumber("Gyro P", RobotMap.gyroP);
 		SmartDashboard.putNumber("Gyro I", RobotMap.gyroI);
 		SmartDashboard.putNumber("Gyro D", RobotMap.gyroD);
@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		/** Temp for PID tuning **/
+		/* Temp for PID tuning **/
 		RobotMap.gyroP = SmartDashboard.getNumber("Gyro P", 0);
 		RobotMap.gyroI = SmartDashboard.getNumber("Gyro I", 0);
 		RobotMap.gyroD = SmartDashboard.getNumber("Gyro D", 0);
@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
 		Robot.myDriveTrain.gyroPID.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
 		Robot.myDriveTrain.encoderPID.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
 
-		/** AUTONOMOUS **/
+		/* AUTONOMOUS **/
 		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
 		String robotPosition = autonomousPositionChooser.getSelected();
 
