@@ -11,7 +11,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 public class CollectorIntake extends Command {
 
 	// The time for the robot timeout
-	double time = -1;
+	private double time = -1;
 	
 	// Default constructor - for teleop
 	public CollectorIntake() {
@@ -19,7 +19,7 @@ public class CollectorIntake extends Command {
 	}
 	
 	// Constructor with time - for autonomous
-	public CollectorIntake(double time) {
+	CollectorIntake(double time) {
 		requires(Robot.myCollector);
 
 		this.time = time;
@@ -35,8 +35,7 @@ public class CollectorIntake extends Command {
 	}
 
 	protected boolean isFinished() {
-		if (time > 0) return isTimedOut();
-		return false;
+		return time > 0 && isTimedOut();
 	}
 
 	protected void end() {

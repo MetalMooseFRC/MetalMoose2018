@@ -9,20 +9,20 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Drives the robot.
  */
 public class DriveAutonomous extends Command {
-	double distance, angle;
+	private double distance, angle;
 
 	// Counts repetitions of the goal value. 
-	int onTargetCounter = 0;
-	int onTargetCounterGoal = 15;
-	
+	private int onTargetCounter = 0;
+	private int onTargetCounterGoal = 15;
+
 	// Counts repetitions of the same value.
-	int repeatCounter = 0;
-	int repeatCounterGoal = 5;
-	double previousReading = 0;
+	private int repeatCounter = 0;
+	private int repeatCounterGoal = 5;
+	private double previousReading = 0;
 
 	// Drive the robot to distance (in inches), or angle (in degrees).
 	// Either of the values has to equal zero for the move to be executed properly.
-	public DriveAutonomous(double distance, double angle) {
+	DriveAutonomous(double distance, double angle) {
 		this.distance = distance;
 		this.angle = angle;
 	}
@@ -89,7 +89,7 @@ public class DriveAutonomous extends Command {
 			// Reading the distance as previous reading (angle is 0)
 			previousReading = Robot.myDriveTrain.myEncoder.getDistance();
 		}
-		
+
 		if (onTargetCounter == onTargetCounterGoal || repeatCounter == repeatCounterGoal) {
 			
 			// If we just turned, adjust the absolute angle of the robot

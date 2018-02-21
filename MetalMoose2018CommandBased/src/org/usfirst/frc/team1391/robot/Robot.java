@@ -28,15 +28,12 @@ public class Robot extends TimedRobot {
 	public static final DriveTrain myDriveTrain = new DriveTrain();
 	public static final Collector myCollector = new Collector();
 
-	// Create OI object
-	public static final OI myOI = new OI();
-
 	// Create SmartDashboard objects (drive mode selection, autonomous position selection)
-	SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
-	SendableChooser<String> autonomousPositionChooser = new SendableChooser<>();
+	private SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
+	private SendableChooser<String> autonomousPositionChooser = new SendableChooser<>();
 	
 	// Declare the autonomous command group
-	AutonomousCommandGroup myAutonomousCommand;
+	private AutonomousCommandGroup myAutonomousCommand;
 
 	/**
 	 * Initial setup of the robot - puts values on SmartDashboard.

@@ -10,10 +10,10 @@ import org.usfirst.frc.team1391.robot.Robot;
 public class DrivebaseTimeout extends Command {
 
 	// The time for the robot timeout
-	double time;
+	private double time;
 	
 	// Constructor with time - for autonomous
-	public DrivebaseTimeout(double time) {
+	DrivebaseTimeout(double time) {
 		requires(Robot.myCollector);
 
 		this.time = time;

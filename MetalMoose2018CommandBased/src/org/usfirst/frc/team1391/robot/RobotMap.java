@@ -13,8 +13,8 @@ package org.usfirst.frc.team1391.robot;
 public class RobotMap {
 	/** CONTROLLER MAPPING **/
 	// Default controller port
-	public static final int driverControllerPort = 0;
-	public static final int operatorControllerPort = 1;
+	static final int driverControllerPort = 0;
+	static final int operatorControllerPort = 1;
 
 	// Ports for the Y axes of the two joysticks of the Logitech controller
 	public static final int tankDriveLeftStickYAxisPort = 1;
@@ -23,15 +23,15 @@ public class RobotMap {
 	// Port of the rotation axis of the Logitech joystick
 	public static final int arcadeDriveRotationAxisPort = 2;
 	public static final int arcadeDriveSpeedAxisPort = 3;
-	public static final int arcadeDriveBackwardButtonPort = 1;
+	static final int arcadeDriveBackwardButtonPort = 1;
 	
 	// Operator controller button mapping
-	public static final int operatorButtonAPort = 1;
-	public static final int operatorButtonBPort = 2;
-	public static final int operatorButtonXPort = 3;
-	public static final int operatorButtonYPort = 4;
-	public static final int operatorButtonLBPort = 5;
-	public static final int operatorButtonRBPort = 6;
+	static final int operatorButtonAPort = 1;
+	static final int operatorButtonBPort = 2;
+	static final int operatorButtonXPort = 3;
+	static final int operatorButtonYPort = 4;
+	static final int operatorButtonLBPort = 5;
+	static final int operatorButtonRBPort = 6;
 
 	// Operator controller axis mapping
 	public static final int operatorLeftXPort = 0;
