@@ -106,8 +106,8 @@ public class AutonomousCommandGroup extends CommandGroup {
                     double relativeDistance = Math.sqrt(relativeX * relativeX + relativeY * relativeY);
 
                     // Create two move commands (first turn, then drive)
-                    addSequential(new DriveAutonomous(relativeDistance, 0));
                     addSequential(new DriveAutonomous(0, absoluteAngle));
+                    addSequential(new DriveAutonomous(relativeDistance, 0));
 
                     break;
                 }
