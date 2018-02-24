@@ -11,6 +11,3 @@
 * Remove ambiguity from angles
 * Figure out autonomous sequences
 * Figure out input from positions and field layout
-
-## Misc
-* Check, encoderOutput.getOutput() can be replaced with encoderPID.get() (then the Dummy PID objects could be replaced)

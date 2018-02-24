@@ -49,8 +49,8 @@ public class DriveAutonomous extends Command {
      * Keeps re-adjusting the motors, depending on the output of PID
      */
     protected void execute() {
-        double pidEncoderOutput = Robot.myDriveTrain.encoderOutput.getOutput();
-        double pidGyroOutput = Robot.myDriveTrain.gyroOutput.getOutput();
+        double pidEncoderOutput = Robot.myDriveTrain.encoderPID.get();
+        double pidGyroOutput = Robot.myDriveTrain.gyroPID.get();
 
         // If we are turning, disregard the encoder output
         if (distance == 0) pidEncoderOutput = 0;
