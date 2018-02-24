@@ -8,7 +8,13 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Drives the robot.
  */
 public class DriveAutonomous extends Command {
+	// The goals for the PID.
     private double distance, angle;
+    
+    // Information for the GOTO command to calculate the distance and the angle
+    // This needs to be calculated in the initialization of the command
+    private double x, y;
+    private boolean calculate, calculateAngle;
 
     // Counts repetitions of the goal value.
     private int onTargetCounter = 0;
@@ -25,11 +31,38 @@ public class DriveAutonomous extends Command {
         this.distance = distance;
         this.angle = angle;
     }
+    
+    // For GOTO command: it has to calculate when it arives at the command
+    DriveAutonomous(double x, double y, boolean calculateAngle) {
+    	this.x = x;
+    	this.y = y;
+    	this.calculateAngle = calculateAngle;
+    	this.calculate = true;
+    }
 
     /**
      * Reset encoder, set goals for PID, enables PID
      */
     protected void initialize() {
+    	if (calculate) {
+            double relativeX = x - RobotMap.robotPositionX;
+            double relativeY = y - RobotMap.robotPositionY;
+            
+            if (calculateAngle) {
+            	// The angle of the move that we need to make (from standard position)
+                double relativeAngle = Math.toDegrees(Math.atan(relativeY / relativeX));
+
+                // Arctan does not know the difference between the II and the IV quadrant, or the I and the III...
+                if (relativeX < 0 && relativeY < 0) relativeAngle -= 180.0;
+                else if (relativeX < 0) relativeAngle -= 90.0;
+                
+                // We have to calculate the angle from the position of the robot
+                double absoluteAngle = relativeAngle - RobotMap.absoluteAngle;
+                
+                angle = absoluteAngle;
+            } else distance = Math.sqrt(relativeX * relativeX + relativeY * relativeY);
+    	}
+    	
         // Reset the sensors
         Robot.myDriveTrain.myEncoder.reset();
         Robot.myDriveTrain.myAHRS.reset();

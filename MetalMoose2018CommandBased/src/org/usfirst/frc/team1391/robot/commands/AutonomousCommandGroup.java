@@ -93,26 +93,9 @@ public class AutonomousCommandGroup extends CommandGroup {
                     double x = Double.parseDouble(stepParameterValues[1]) * (reversed ? -1 : 1);
                     double y = Double.parseDouble(stepParameterValues[2]);
 
-                    double relativeX = x - RobotMap.robotPositionX;
-                    double relativeY = y - RobotMap.robotPositionY;
-                    
-                    // The angle of the move that we need to make (from standard position)
-                    double relativeAngle = Math.toDegrees(Math.atan(relativeY / relativeX));
-
-                    // We have to calculate the angle from the position of the robot
-                    double absoluteAngle = RobotMap.absoluteAngle + relativeAngle;
-
-                    // Arctan does not know the difference between the II and the IV quadrant, or the I and the III...
-                    if (relativeX < 0 && relativeY < 0) absoluteAngle -= 180.0;
-                    else if (relativeX < 0) absoluteAngle -= 90.0;
-                                        
-                    // Pythagorean on the triangle
-                    double relativeDistance = Math.sqrt(relativeX * relativeX + relativeY * relativeY);
-
-                    // Create two move commands (first turn, then drive)
-                    addSequential(new DriveAutonomous(0, absoluteAngle));
-                    addSequential(new DriveAutonomous(relativeDistance, 0));
-
+                	addSequential(new DriveAutonomous(x, y, true));
+                	addSequential(new DriveAutonomous(x, y, false));
+                	
                     break;
                 }
 

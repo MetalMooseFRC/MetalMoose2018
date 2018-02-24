@@ -6,6 +6,5 @@
 * For reference: getRaw() on the top is 29728, hard stops are 34.125 in 
 
 ## Fix the autonomous
-* Initialize values in the actual drive commands
 * Figure out autonomous sequences
 * Figure out input from positions and field layout
