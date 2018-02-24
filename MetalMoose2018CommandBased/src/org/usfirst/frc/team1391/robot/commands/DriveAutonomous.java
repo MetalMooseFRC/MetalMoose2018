@@ -92,12 +92,13 @@ public class DriveAutonomous extends Command {
         if (onTargetCounter == onTargetCounterGoal || repeatCounter == repeatCounterGoal) {
 
             // If we just turned, adjust the absolute angle of the robot
-            if (distance == 0) RobotMap.absoluteAngle += angle;
+        	// The '-' sign is there because the robot thinks turning to the right is positive (although it is negative)
+            if (distance == 0) RobotMap.absoluteAngle += Robot.myDriveTrain.myAHRS.getAngle();
 
-                // If we drove, adjust the X and Y coordinates accordingly
+            // If we drove, adjust the X and Y coordinates accordingly
             else {
-                RobotMap.robotPositionX += Math.sin(Math.toRadians(RobotMap.absoluteAngle)) * distance;
-                RobotMap.robotPositionY += Math.cos(Math.toRadians(RobotMap.absoluteAngle)) * distance;
+                RobotMap.robotPositionX += Math.sin(Math.toRadians(RobotMap.absoluteAngle)) * Robot.myDriveTrain.myEncoder.getDistance();
+                RobotMap.robotPositionY += Math.cos(Math.toRadians(RobotMap.absoluteAngle)) * Robot.myDriveTrain.myEncoder.getDistance();
             }
             return true;
         } else return false;

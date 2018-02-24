@@ -7,7 +7,5 @@
 
 ## Fix the autonomous
 * Initialize values in the actual drive commands
-* Correctly evaluate the position
-* Remove ambiguity from angles
 * Figure out autonomous sequences
 * Figure out input from positions and field layout
