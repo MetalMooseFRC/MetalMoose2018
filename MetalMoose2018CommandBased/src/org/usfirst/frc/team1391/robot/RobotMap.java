@@ -69,6 +69,10 @@ public class RobotMap {
 	// Multiplies the speed of the robot by this value (in autonomous)
 	public static double autonomousSpeedLimit = 0.7;
 	
+	// The allowed errors for the Gyro PID and the Encoder PID
+	public static double gyroPIDError = 3.5;
+	public static double encoderPIDError = 2.5;
+	
 	// Chunks of movement for the autonomous sequences
 	public static String[] chunks = {
 		// Start in the middle

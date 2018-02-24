@@ -32,12 +32,12 @@ public class DriveTrain extends Subsystem {
     public DriveTrain() {
         // Encoder PIDObject values
         encoderPID.setOutputRange(-RobotMap.autonomousSpeedLimit, RobotMap.autonomousSpeedLimit);
-        encoderPID.setAbsoluteTolerance(2.0); //2 inches
+        encoderPID.setAbsoluteTolerance(RobotMap.encoderPIDError); //inches
 
         // Gyro PIDObject values
         gyroPID.setInputRange(-180.0, +180.0);
         gyroPID.setOutputRange(-RobotMap.autonomousSpeedLimit, RobotMap.autonomousSpeedLimit);
-        gyroPID.setAbsoluteTolerance(3.5); //3.5 degrees
+        gyroPID.setAbsoluteTolerance(RobotMap.gyroPIDError); //degrees
         gyroPID.setContinuous(true); //loops around
 
         // Sets myEncoder to output distance traveled in inches
