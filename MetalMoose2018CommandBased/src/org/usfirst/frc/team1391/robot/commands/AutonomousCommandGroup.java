@@ -20,7 +20,7 @@ public class AutonomousCommandGroup extends CommandGroup {
         command = command.trim().toLowerCase();
 
         // The actual parsing of the command
-        parseCommand(command, false);
+        if (command.length() != 0) parseCommand(command, false);
     }
 
     /**
