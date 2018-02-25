@@ -57,8 +57,9 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case 'e': {
                     int elevatorPosition = Integer.parseInt(stepParameterValues[1]);
 
-                    //Uncomment this when we actually have a function that does this
+                    /*TODO - finish this command**/
                     //addParallel(new ElevatorMovement(elevatorPosition));
+
                     break;
                 }
 
@@ -78,7 +79,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Timeout:(time in seconds) - sequential - times out the robot
+                // Timeout:(time in seconds) - sequential timeout of the drivebase
                 case 't': {
                     double lengthOfDrivebaseTimeout = Double.parseDouble(stepParameterValues[1]);
 
@@ -86,35 +87,32 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Goto:(x coordinate):(y coordinate) - generates two moves (turn
-                // and movement) to move to a certain coordinate on the board.
+                // Goto:(x coordinate):(y coordinate) - generates two moves (turn, then drive) to move to the coordinate.
                 case 'g': {
                     // If reversed is true, then we need to reverse x (the board is mirrored)
                     double x = Double.parseDouble(stepParameterValues[1]) * (reversed ? -1 : 1);
                     double y = Double.parseDouble(stepParameterValues[2]);
 
-                	addSequential(new DriveAutonomous(x, y, true));
-                	addSequential(new DriveAutonomous(x, y, false));
-                	
+                    addSequential(new DriveAutonomous(x, y, true));
+                    addSequential(new DriveAutonomous(x, y, false));
+
                     break;
                 }
 
-                // -Chunk:(number of the chunk)
+                // -Chunk:(number of the chunk) - inverted chunk
                 case '-': {
                     int chunkNumber = Integer.parseInt(stepParameterValues[1]);
-                    String subcommand = RobotMap.chunks[chunkNumber];
+                    String chunk = RobotMap.chunks[chunkNumber];
 
-                    // Invert the reverse variable - this is an inverted chunk
-                    parseCommand(subcommand, !reversed);
+                    parseCommand(chunk, !reversed);
                 }
 
-                // Chunk:(number of the chunk) - recursively calls this function to process the chunk and issue the commands
+                // Chunk:(number of the chunk) - normal chunk
                 case 'c': {
                     int chunkNumber = Integer.parseInt(stepParameterValues[1]);
-                    String subcommand = RobotMap.chunks[chunkNumber];
+                    String chunk = RobotMap.chunks[chunkNumber];
 
-                    // Pass the reversed variable - we are not inverting
-                    parseCommand(subcommand, reversed);
+                    parseCommand(chunk, reversed);
                 }
             }
         }

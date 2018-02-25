@@ -17,9 +17,4 @@ public class BlankPIDOutput implements PIDOutput {
 	public void pidWrite(double output) {
 		this.output = output;
 	}
-
-	// Returns the current PID value
-	public double getOutput() {
-		return output;
-	}
 }

@@ -7,7 +7,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 import org.usfirst.frc.team1391.robot.commands.CollectorManualControl;
 
 /**
- * Controls the drivebase motors.
+ * Controls the collector motors.
  */
 public class Collector extends Subsystem {
     private VictorSP collectorLeftMotor = new VictorSP(RobotMap.collectorLeftMotorPort);

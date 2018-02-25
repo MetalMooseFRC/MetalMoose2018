@@ -31,13 +31,13 @@ public class DriveTrain extends Subsystem {
 
     public DriveTrain() {
         // Encoder PIDObject values
-        encoderPID.setOutputRange(-RobotMap.autonomousSpeedLimit, RobotMap.autonomousSpeedLimit);
-        encoderPID.setAbsoluteTolerance(RobotMap.encoderPIDError); //inches
+        encoderPID.setOutputRange(-RobotMap.autonomousDrivingSpeedLimit, RobotMap.autonomousDrivingSpeedLimit);
+        encoderPID.setAbsoluteTolerance(RobotMap.encoderPIDError); //in inches
 
         // Gyro PIDObject values
         gyroPID.setInputRange(-180.0, +180.0);
-        gyroPID.setOutputRange(-RobotMap.autonomousSpeedLimit, RobotMap.autonomousSpeedLimit);
-        gyroPID.setAbsoluteTolerance(RobotMap.gyroPIDError); //degrees
+        gyroPID.setOutputRange(-RobotMap.autonomousTurningSpeedLimit, RobotMap.autonomousTurningSpeedLimit);
+        gyroPID.setAbsoluteTolerance(RobotMap.gyroPIDError); //in degrees
         gyroPID.setContinuous(true); //loops around
 
         // Sets myEncoder to output distance traveled in inches
@@ -48,12 +48,23 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new Drive());
     }
 
-    public void arcadeDrive(double x, double y) {
-        myDifferentialDrive.arcadeDrive(x, y);
+    /**
+     * Updates differentialDrive using the arcadeDrive function.
+     *
+     * @param y Forward speed of the robot.
+     * @param x Turning speed of the robot.
+     */
+    public void arcadeDrive(double y, double x) {
+        myDifferentialDrive.arcadeDrive(y, x);
     }
 
+    /**
+     * Updates differentialDrive using the tankDrive function.
+     *
+     * @param left Speed of the left side of the robot.
+     * @param right Speed of the right side of the robot.
+     */
     public void tankDrive(double left, double right) {
         myDifferentialDrive.tankDrive(left, right);
     }
-
 }

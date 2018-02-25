@@ -6,7 +6,7 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Controls the collector using axes.
+ * Controls the collector manually using axes on the operator controller.
  */
 public class CollectorManualControl extends Command {
 
@@ -14,7 +14,6 @@ public class CollectorManualControl extends Command {
         requires(Robot.myCollector);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
 
     }
