@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
 		autonomousPositionChooser.addObject("Right", "Right");
 		SmartDashboard.putData("Autonomous Position", autonomousPositionChooser);
 
-		/* Temp for testing autonomous **/
+		// A custom autonomous command String that overrides everything
 		SmartDashboard.putString("Custom Autonomous Command", "");
 
 		/* Temp for PID tuning **/
@@ -99,14 +99,17 @@ public class Robot extends TimedRobot {
 		/* AUTONOMOUS **/
 		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
 		String robotPosition = autonomousPositionChooser.getSelected();
-
+		String commandString = "";
+		
 		// CALL THE APPROPRIATE AUTONOMOUS COMMAND HERE
-		// REMEMBER TO ALSO SET ABSOLUTE ANGLE
 		
-		// THIS IS TO BE CHANGED TO THE SET OF CHUNKS THAT ARE PRODUCED BY THE PRE-SET-UP
-		String command = SmartDashboard.getString("Custom Autonomous Command", "");
+		// If there is anything in the custom command String, it overrides the selected preferences
+		// The .trim and .replace are just cleaning up whitespace and newline characters from the String
+		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "").trim().replace("/n", "");
 		
-		myAutonomousCommand = new AutonomousCommandGroup(command);
+		if (customCommandString != "") commandString = customCommandString; 
+		
+		myAutonomousCommand = new AutonomousCommandGroup(commandString);
 		myAutonomousCommand.start();
 	}
 
