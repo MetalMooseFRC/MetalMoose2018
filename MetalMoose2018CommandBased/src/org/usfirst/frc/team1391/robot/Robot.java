@@ -47,11 +47,15 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Drive Mode", driveModeChooser);
 
 		// Autonomous position chooser
-		autonomousPositionChooser.addObject("Left", "Left");
+		autonomousPositionChooser.addDefault("Left", "Left");
 		autonomousPositionChooser.addObject("Middle", "Middle");
 		autonomousPositionChooser.addObject("Right", "Right");
 		SmartDashboard.putData("Autonomous Position", autonomousPositionChooser);
 
+		// Speed for Autonomous
+		SmartDashboard.putNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
+		SmartDashboard.putNumber("Autonomous Driving Speed Limit", RobotMap.autonomousDrivingSpeedLimit);
+		
 		// A custom autonomous command String that overrides everything
 		SmartDashboard.putString("Custom Autonomous Command", "");
 
@@ -67,6 +71,7 @@ public class Robot extends TimedRobot {
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(myDriveTrain);
+		SmartDashboard.putData(myCollector);
 	}
 
 	@Override
@@ -97,6 +102,9 @@ public class Robot extends TimedRobot {
 		Robot.myDriveTrain.encoderPID.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
 
 		/* AUTONOMOUS **/
+		RobotMap.autonomousTurningSpeedLimit = SmartDashboard.getNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
+		RobotMap.autonomousDrivingSpeedLimit = SmartDashboard.getNumber("Autonomous Driving Speed Limit", RobotMap.autonomousDrivingSpeedLimit);
+		
 		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
 		String robotPosition = autonomousPositionChooser.getSelected();
 		String commandString = "";
