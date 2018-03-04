@@ -51,6 +51,8 @@ public class RobotMap {
 
     public static final int collectorLeftMotorPort = 2;
     public static final int collectorRightMotorPort = 3;
+    
+    public static final int fourbarMotorPort = 6;
 
     /**
      * SENSOR MAPPING
@@ -117,4 +119,11 @@ public class RobotMap {
     public static double collectorIntakeSpeed = -1.0;
     public static double collectorOuttakeSpeed = 0.6;
     public static double collectorHoldSpeed = -0.1;
+    
+    // Values for fourbar
+    public static double fourbarRaiseLength = 1;
+    public static double fourbarRaiseSpeed = 0.8;
+    public static double fourbarLowerLength = 1;
+    public static double fourbarLowerSpeed = 0.8;
+    public static double fourbarHoldSpeed = 0.6;
 }
