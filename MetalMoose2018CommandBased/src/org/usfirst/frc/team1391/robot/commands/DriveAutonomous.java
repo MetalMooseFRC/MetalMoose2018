@@ -73,13 +73,19 @@ public class DriveAutonomous extends Command {
                 double relativeAngle = Math.toDegrees(Math.atan(relativeY / relativeX));
 
                 // Arctan does not know the difference between the II and the IV quadrant, or the I and the III...
-                if (relativeX < 0 && relativeY < 0) relativeAngle -= 180.0;
-                else if (relativeX < 0) relativeAngle -= 90.0;
+                if (relativeX < 0 && relativeY < 0) relativeAngle -= 180;
+                else if (relativeY < 0) relativeAngle += 180;
 
-                // We have to calculate the angle from the position of the robot
-                double absoluteAngle = relativeAngle - RobotMap.absoluteAngle;
-
+                // We have to calculate the angle from the position of the robot (and the robot can be in any angle)
+                double absoluteAngle = (relativeAngle - RobotMap.absoluteAngle) % 360;
+                
+                // To create the optimal turning, we have to optimize any angle above + or - 180 degrees
+                if (absoluteAngle > 180) absoluteAngle = -180 + (absoluteAngle % 180);
+                else if (absoluteAngle < -180) absoluteAngle = 180 - (absoluteAngle % 180);
+                
+                // Finally, set the angle to the angle calculated
                 angle = absoluteAngle;
+            
             } else distance = Math.sqrt(relativeX * relativeX + relativeY * relativeY);
         }
 
@@ -116,6 +122,8 @@ public class DriveAutonomous extends Command {
     }
 
     protected boolean isFinished() {
+    	if (Double.isNaN(distance) || Double.isNaN(angle)) return true;
+    	
         // Evaluating the angle
         if (distance == 0) {
             // If we are on target, add one
