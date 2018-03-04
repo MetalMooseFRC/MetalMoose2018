@@ -11,9 +11,7 @@ package org.usfirst.frc.team1391.robot;
  * Used for global variables (auton, driving) and constants (ports).
  */
 public class RobotMap {
-    /**
-     * CONTROLLER MAPPING
-     **/
+    /* CONTROLLER MAPPING */
     // Default controller port
     static final int driverControllerPort = 0;
     static final int operatorControllerPort = 1;
@@ -43,24 +41,24 @@ public class RobotMap {
     public static final int operatoRightXPort = 4;
     public static final int operatorRightYPort = 5;
 
-    /**
-     * MOTOR MAPPING
-     **/
+    /* MOTOR MAPPING */
     public static final int drivebaseLeftMotorPort = 0;
     public static final int drivebaseRightMotorPort = 1;
 
     public static final int collectorLeftMotorPort = 2;
     public static final int collectorRightMotorPort = 3;
 
-    /**
-     * SENSOR MAPPING
-     **/
+    public static final int elevatorLeftMotorPort = 4;
+    public static final int elevatorRightMotorPort = 5;
+
+    /* SENSOR MAPPING */
     public static final int encoderAPort = 0;
     public static final int encoderBPort = 1;
 
-    /**
-     * AUTONOMOUS, PID
-     **/
+    public static final int elevatorEncoderAPort = 2;
+    public static final int elevatorEncoderBPort = 3;
+
+    /* AUTONOMOUS, PID */
     // Values for the PID of gyro
     public static double gyroP = 0.055;
     public static double gyroI = 0.00001;
@@ -105,9 +103,7 @@ public class RobotMap {
     public static double robotPositionX = 0;
     public static double robotPositionY = 0;
 
-    /**
-     * MISCELLANEOUS
-     **/
+    /* MISCELLANEOUS */
     // Switching drive modes
     // 0 is tank drive and 1 is arcade drive with the Logitech controller
     // 2 uses the Y axis and the rotation axis from the joystick controller
@@ -117,4 +113,8 @@ public class RobotMap {
     public static double collectorIntakeSpeed = -1.0;
     public static double collectorOuttakeSpeed = 0.6;
     public static double collectorHoldSpeed = -0.1;
+
+    // Conversion factor for elevator (to distance in inches)
+    public static double elevatorEncoderCoefficient = 0.0014572;
+    public static double elevatorHoldSpeed = 0.3;
 }
