@@ -34,29 +34,32 @@ public class AutonomousCommandGroup extends CommandGroup {
         String[] commandList = commandString.split("\n");
 
         for (String command : commandList) {
-
             // Split to individual parameters (on any ", ", or on "(")
             String[] commandParts = command.replaceAll("\\)", "").split("\\(+|((,)[\\s]*)+");
 
+            // This array stores the values of the parameters of the command
+            // The -1 is because the first part of the command is the command itself
+            double[] commandParameterValues = new double[commandParts.length - 1];
+            for (int i = 1; i < commandParts.length; i++) commandParameterValues[i-1] = Double.parseDouble(commandParts[i]);
 
-            // Takes the first character of the first argument, so we can explicitly write out the commands
+            // Takes the first character of the first argument (all of the commands have differing first letters)
             switch (commandParts[0].charAt(0)) {
 
                 // Move(distance in ft, angle in degrees) - moves or turns the robot
                 case 'm': {
-                    double distance = Double.parseDouble(commandParts[1]);
+                    double distance = commandParameterValues[0];
 
                     // If reversed is true, we need to invert the angle
-                    double angle = Double.parseDouble(stepParameterValues[2]) * (reversed ? -1 : 1);
+                    double angle = commandParameterValues[1] * (reversed ? -1 : 1);
 
                     addSequential(new DriveAutonomous(distance, angle));
 
                     break;
                 }
 
-                // Elevate:(position - 0/1/2) - parallel - raises the elevator to a certain position
+                // Elevate(position - 0/1/2) - parallel - raises the elevator to ground/switch/scale
                 case 'e': {
-                    int elevatorPosition = Integer.parseInt(stepParameterValues[1]);
+                    int elevatorPosition = (int)commandParameterValues[0];
 
                     /*TODO - finish this command**/
                     //addParallel(new ElevatorMovement(elevatorPosition));
@@ -66,7 +69,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // Intake(time in seconds) - parallel - intakes the cube
                 case 'i': {
-                    double lengthOfIntake = Double.parseDouble(commandParts[1]);
+                    double lengthOfIntake =commandParameterValues[0];
 
                     addParallel(new CollectorIntake(lengthOfIntake));
                     break;
@@ -74,7 +77,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // Outtake(time in seconds) - sequential - outtakes the cube
                 case 'o': {
-                    double lengthOfOuttake = Double.parseDouble(commandParts[1]);
+                    double lengthOfOuttake = commandParameterValues[0];
 
                     addSequential(new CollectorOuttake(lengthOfOuttake));
                     break;
@@ -82,7 +85,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // Timeout(time in seconds) - sequential timeout of the drivebase
                 case 't': {
-                    double lengthOfDrivebaseTimeout = Double.parseDouble(commandParts[1]);
+                    double lengthOfDrivebaseTimeout = commandParameterValues[0];
 
                     addSequential(new DrivebaseTimeout(lengthOfDrivebaseTimeout));
                     break;
@@ -91,8 +94,8 @@ public class AutonomousCommandGroup extends CommandGroup {
                 // Goto(x, y) - generates two moves (turn, then drive) to move to the coordinate.
                 case 'g': {
                     // If reversed is true, then we need to reverse x (the board is mirrored)
-                    double x = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
-                    double y = Double.parseDouble(commandParts[2]);
+                    double x = commandParameterValues[0] * (reversed ? -1 : 1);
+                    double y = commandParameterValues[1];
 
                     addSequential(new DriveAutonomous(x, y, true));
                     addSequential(new DriveAutonomous(x, y, false));
@@ -102,7 +105,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // -Chunk(number of the chunk) - inverted chunk
                 case '-': {
-                    int chunkNumber = Integer.parseInt(commandParts[1]);
+                    int chunkNumber = (int)commandParameterValues[0];
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, !reversed);
@@ -110,7 +113,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // Chunk(number of the chunk) - normal chunk
                 case 'c': {
-                    int chunkNumber = Integer.parseInt(commandParts[1]);
+                    int chunkNumber = (int)commandParameterValues[0];
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, reversed);
