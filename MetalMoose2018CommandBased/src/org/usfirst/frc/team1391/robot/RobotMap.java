@@ -117,4 +117,7 @@ public class RobotMap {
     // Conversion factor for elevator (to distance in inches)
     public static double elevatorEncoderCoefficient = 0.0014572;
     public static double elevatorHoldSpeed = 0.3;
+    public static double elevatorMaximumDistance = 34;
+
+    public static double[] elevatorSetPoints = new double[]{0, 15, 34};
 }
