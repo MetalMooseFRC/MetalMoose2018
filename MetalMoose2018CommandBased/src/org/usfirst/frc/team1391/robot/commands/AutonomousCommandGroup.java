@@ -107,6 +107,8 @@ public class AutonomousCommandGroup extends CommandGroup {
                     double angle = commandParameterValues[0];
 
                     addSequential(new DriveAutonomous(angle));
+                    
+                    break;
                 }
 
                 // Chunk(number of the chunk) - normal chunk
@@ -115,6 +117,8 @@ public class AutonomousCommandGroup extends CommandGroup {
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, reversed);
+                    
+                    break;
                 }
 
                 // -Chunk(number of the chunk) - inverted chunk
@@ -123,6 +127,8 @@ public class AutonomousCommandGroup extends CommandGroup {
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, !reversed);
+                    
+                    break;
                 }
             }
         }
