@@ -23,9 +23,9 @@ public class ElevatorManualControl extends Command {
     protected void execute() {
         double joystickInput = OI.operatorController.getRawAxis(RobotMap.operatorRightYPort);
 
-        // If joystick is moved, move the elevator. If not, if the elevator is above a certain height, hold.
+        // If joystick is moved, move the elevator. If not, if the elevator is above a certain height, hold
         if (joystickInput != 0) Robot.myElevator.setThrottledSpeed(joystickInput);
-        else if (Robot.myElevator.elevatorEncoder.getDistance() > 2) Robot.myElevator.hold();
+        else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) Robot.myElevator.hold();
     }
 
     protected boolean isFinished() {

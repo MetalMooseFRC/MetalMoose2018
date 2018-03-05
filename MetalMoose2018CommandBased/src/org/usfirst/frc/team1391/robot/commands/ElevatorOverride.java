@@ -18,7 +18,6 @@ public class ElevatorOverride extends Command {
 
     /**
      * Repeatedly sets the absolute speed of the elevator.
-     * If there is no input in the joystick, holds the elevator in place.
      */
     protected void execute() {
         double joystickInput = OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);

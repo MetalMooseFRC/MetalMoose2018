@@ -116,8 +116,12 @@ public class RobotMap {
 
     // Conversion factor for elevator (to distance in inches)
     public static double elevatorEncoderCoefficient = 0.0014572;
-    public static double elevatorHoldSpeed = 0.3;
     public static double elevatorMaximumDistance = 34;
 
+    // Possible saved positions of the elevator
     public static double[] elevatorSetPoints = new double[]{0, 15, 34};
+
+    // Hold speed and the limit above which to hold the elevator
+    public static double elevatorHoldSpeed = 0.3;
+    public static double minimumElevatorHoldDistance = 2;
 }
