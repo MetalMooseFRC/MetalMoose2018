@@ -60,13 +60,13 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Custom Autonomous Command", "");
 
 		/* Temp for PID tuning **/
-		SmartDashboard.putNumber("Gyro P", RobotMap.gyroP);
-		SmartDashboard.putNumber("Gyro I", RobotMap.gyroI);
-		SmartDashboard.putNumber("Gyro D", RobotMap.gyroD);
+		SmartDashboard.putNumber("Gyro P", RobotMap.drivetrainGyroP);
+		SmartDashboard.putNumber("Gyro I", RobotMap.drivetrainGyroI);
+		SmartDashboard.putNumber("Gyro D", RobotMap.drivetrainGyroD);
 
-		SmartDashboard.putNumber("Encoder P", RobotMap.encoderP);
-		SmartDashboard.putNumber("Encoder I", RobotMap.encoderI);
-		SmartDashboard.putNumber("Encoder D", RobotMap.encoderD);
+		SmartDashboard.putNumber("Encoder P", RobotMap.drivetrainEncoderP);
+		SmartDashboard.putNumber("Encoder I", RobotMap.drivetrainEncoderI);
+		SmartDashboard.putNumber("Encoder D", RobotMap.drivetrainEncoderD);
 
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
@@ -90,16 +90,16 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		/* Temp for PID tuning **/
-		RobotMap.gyroP = SmartDashboard.getNumber("Gyro P", 0);
-		RobotMap.gyroI = SmartDashboard.getNumber("Gyro I", 0);
-		RobotMap.gyroD = SmartDashboard.getNumber("Gyro D", 0);
+		RobotMap.drivetrainGyroP = SmartDashboard.getNumber("Gyro P", 0);
+		RobotMap.drivetrainGyroI = SmartDashboard.getNumber("Gyro I", 0);
+		RobotMap.drivetrainGyroD = SmartDashboard.getNumber("Gyro D", 0);
 
-		RobotMap.encoderP = SmartDashboard.getNumber("Encoder P", 0);
-		RobotMap.encoderI = SmartDashboard.getNumber("Encoder I", 0);
-		RobotMap.encoderD = SmartDashboard.getNumber("Encoder D", 0);
+		RobotMap.drivetrainEncoderP = SmartDashboard.getNumber("Encoder P", 0);
+		RobotMap.drivetrainEncoderI = SmartDashboard.getNumber("Encoder I", 0);
+		RobotMap.drivetrainEncoderD = SmartDashboard.getNumber("Encoder D", 0);
 		
-		Robot.myDriveTrain.gyroPID.setPID(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD);
-		Robot.myDriveTrain.encoderPID.setPID(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD);
+		Robot.myDriveTrain.gyroPID.setPID(RobotMap.drivetrainGyroP, RobotMap.drivetrainGyroI, RobotMap.drivetrainGyroD);
+		Robot.myDriveTrain.encoderPID.setPID(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD);
 
 		/* AUTONOMOUS **/
 		RobotMap.autonomousTurningSpeedLimit = SmartDashboard.getNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);

@@ -55,32 +55,32 @@ public class RobotMap {
     /**
      * SENSOR MAPPING
      **/
-    public static final int encoderAPort = 0;
-    public static final int encoderBPort = 1;
+    public static final int drivetrainEncoderAPort = 0;
+    public static final int drivetrainEncoderBPort = 1;
 
     /**
      * AUTONOMOUS, PID
      **/
     // Values for the PID of gyro
-    public static double gyroP = 0.055;
-    public static double gyroI = 0.00001;
-    public static double gyroD = 0.008;
+    public static double drivetrainGyroP = 0.055;
+    public static double drivetrainGyroI = 0.00001;
+    public static double drivetrainGyroD = 0.008;
 
     // Values for the PID of the encoder
-    public static double encoderP = 0.6;
-    public static double encoderI = 0.0001;
-    public static double encoderD = 0.025;
+    public static double drivetrainEncoderP = 0.6;
+    public static double drivetrainEncoderI = 0.0001;
+    public static double drivetrainEncoderD = 0.025;
 
     // Conversion factor for rotational units of encoder to inches of robot travel
-    public static double encoderCoefficient = 0.00618040;
+    public static double drivetrainEncoderCoefficient = 0.00618040;
 
     // Multiplies the speed of the robot by this value (in autonomous)
     public static double autonomousTurningSpeedLimit = 0.7;
     public static double autonomousDrivingSpeedLimit = 0.7;
 
     // The allowed errors for the Gyro PID and the Encoder PID
-    public static double gyroPIDError = 3.5;
-    public static double encoderPIDError = 2.5;
+    public static double drivetrainGyroPIDError = 3.5;
+    public static double drivetrainEncoderPIDError = 2.5;
 
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {

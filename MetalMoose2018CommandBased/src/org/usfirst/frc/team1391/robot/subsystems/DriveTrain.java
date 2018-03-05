@@ -22,26 +22,26 @@ public class DriveTrain extends Subsystem {
     private DifferentialDrive myDifferentialDrive = new DifferentialDrive(leftMotor, rightMotor);
 
     // Sensors (encoder, gyro)
-    public Encoder myEncoder = new Encoder(RobotMap.encoderAPort, RobotMap.encoderBPort, false, Encoder.EncodingType.k4X);
+    public Encoder myEncoder = new Encoder(RobotMap.drivetrainEncoderAPort, RobotMap.drivetrainEncoderBPort, false, Encoder.EncodingType.k4X);
     public AHRS myAHRS = new AHRS(SPI.Port.kMXP);
 
     // PIDController objects
-    public PIDController encoderPID = new PIDController(RobotMap.encoderP, RobotMap.encoderI, RobotMap.encoderD, 0, myEncoder, new BlankPIDOutput());
-    public PIDController gyroPID = new PIDController(RobotMap.gyroP, RobotMap.gyroI, RobotMap.gyroD, 0, myAHRS, new BlankPIDOutput());
+    public PIDController encoderPID = new PIDController(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD, 0, myEncoder, new BlankPIDOutput());
+    public PIDController gyroPID = new PIDController(RobotMap.drivetrainGyroP, RobotMap.drivetrainGyroI, RobotMap.drivetrainGyroD, 0, myAHRS, new BlankPIDOutput());
 
     public DriveTrain() {
         // Encoder PIDObject values
         encoderPID.setOutputRange(-RobotMap.autonomousDrivingSpeedLimit, RobotMap.autonomousDrivingSpeedLimit);
-        encoderPID.setAbsoluteTolerance(RobotMap.encoderPIDError); //in inches
+        encoderPID.setAbsoluteTolerance(RobotMap.drivetrainEncoderPIDError); //in inches
 
         // Gyro PIDObject values
         gyroPID.setInputRange(-180.0, +180.0);
         gyroPID.setOutputRange(-RobotMap.autonomousTurningSpeedLimit, RobotMap.autonomousTurningSpeedLimit);
-        gyroPID.setAbsoluteTolerance(RobotMap.gyroPIDError); //in degrees
+        gyroPID.setAbsoluteTolerance(RobotMap.drivetrainGyroPIDError); //in degrees
         gyroPID.setContinuous(true); //loops around
 
         // Sets myEncoder to output distance traveled in inches
-        myEncoder.setDistancePerPulse(RobotMap.encoderCoefficient);
+        myEncoder.setDistancePerPulse(RobotMap.drivetrainEncoderCoefficient);
     }
 
     public void initDefaultCommand() {
