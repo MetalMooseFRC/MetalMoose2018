@@ -31,7 +31,7 @@ public class Elevator extends Subsystem {
     }
 
     /**
-     * Set elevator speed, multiplied by the throttle function depending on the position of the elevator.
+     * Set elevator speed, multiplied by the throttle function.
      *
      * @param speed Input form the joystick.
      */
@@ -43,7 +43,7 @@ public class Elevator extends Subsystem {
     }
 
     /**
-     * Get the y value at point x of the graph.
+     * Get the y value at point x of the graph of the throttle function.
      *
      * @param x The x of the graph.
      * @return The y of the graph.

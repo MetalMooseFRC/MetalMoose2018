@@ -5,31 +5,32 @@ import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
+/**
+ * Manually controls the elevator (with absolute values).
+ */
 public class ElevatorOverride extends Command {
 
     public ElevatorOverride() {
         requires(Robot.myElevator);
     }
 
-    protected void initialize() {
+    protected void initialize() {}
 
-    }
-
+    /**
+     * Repeatedly sets the absolute speed of the elevator.
+     * If there is no input in the joystick, holds the elevator in place.
+     */
     protected void execute() {
-        double stickInput = OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
+        double joystickInput = OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
 
-        Robot.myElevator.setAbsoluteSpeed(stickInput);
+        Robot.myElevator.setAbsoluteSpeed(joystickInput);
     }
 
     protected boolean isFinished() {
         return false;
     }
 
-    protected void end() {
+    protected void end() {}
 
-    }
-
-    protected void interrupted() {
-
-    }
+    protected void interrupted() {}
 }
