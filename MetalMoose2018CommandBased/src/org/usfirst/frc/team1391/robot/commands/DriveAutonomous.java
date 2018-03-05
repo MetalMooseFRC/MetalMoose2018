@@ -16,6 +16,10 @@ public class DriveAutonomous extends Command {
     private double x, y;
     private boolean gotoCalculation, calculateAngle;
 
+    // Information for the angle command.
+    private double unoptimizedAngle;
+    private boolean angleCalculation;
+
     // Counts repetitions of the goal value (to make sure it really stayed on the hit goal).
     private int onTargetCounter = 0;
     private int onTargetCounterGoal = 15;
@@ -38,6 +42,14 @@ public class DriveAutonomous extends Command {
     DriveAutonomous(double distance, double angle) {
         this.distance = distance;
         this.angle = angle;
+    }
+
+    /**
+     * Constructor for the A command.
+     */
+    DriveAutonomous(double unoptimizedAngle) {
+        this.unoptimizedAngle = unoptimizedAngle;
+        this.angleCalculation = true;
     }
 
     /**
@@ -87,6 +99,15 @@ public class DriveAutonomous extends Command {
                 angle = absoluteAngle;
             
             } else distance = Math.sqrt(relativeX * relativeX + relativeY * relativeY);
+        } else if (angleCalculation) {
+            // We have to calculate the angle from the position of the robot (and the robot can be in any angle)
+            double absoluteAngle = (unoptimizedAngle - RobotMap.absoluteAngle) % 360;
+
+            // To create the optimal turning, we have to optimize any angle above + or - 180 degrees
+            if (absoluteAngle > 180) absoluteAngle = -180 + (absoluteAngle % 180);
+            else if (absoluteAngle < -180) absoluteAngle = 180 - (absoluteAngle % 180);
+
+            angle = absoluteAngle;
         }
 
         // Reset the sensors
