@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(myDriveTrain);
 		SmartDashboard.putData(myCollector);
+		SmartDashboard.putData(myElevator);
 	}
 
 	@Override
