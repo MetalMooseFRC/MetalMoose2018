@@ -57,12 +57,11 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Elevate(position - 0/1/2) - parallel - raises the elevator to ground/switch/scale
+                // Elevate(position) - parallel - moves the elevator into a set position
                 case 'e': {
                     int elevatorPosition = (int)commandParameterValues[0];
 
-                    /*TODO - finish this command**/
-                    //addParallel(new ElevatorMovement(elevatorPosition));
+                    //addSequential(new ElevatorMovement(elevatorPosition));
 
                     break;
                 }
