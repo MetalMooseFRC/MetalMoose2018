@@ -21,11 +21,19 @@ public class ElevatorManualControl extends Command {
      * If there is no input in the joystick, holds the elevator in place.
      */
     protected void execute() {
-        double joystickInput = OI.operatorController.getRawAxis(RobotMap.operatorRightYPort);
+    	if (OI.operatorB.get()) {
+    		// The '-' sign is because the values of the axes are reversed (forward is -1)
+    		double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
+    		
+    		Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
+    	} else {
+    		// The '-' sign is because the values of the axes are reversed (forward is -1)
+    		double rightJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorRightYPort);
 
-        // If joystick is moved, move the elevator. If not, if the elevator is above a certain height, hold
-        if (joystickInput != 0) Robot.myElevator.setThrottledSpeed(joystickInput);
-        else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) Robot.myElevator.hold();
+            // If joystick is moved, move the elevator. If not, if the elevator is above a certain height, hold
+            if (Math.abs(rightJoystickInput) > 0.1) Robot.myElevator.setThrottledSpeed(rightJoystickInput);
+            else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) Robot.myElevator.hold();
+    	}
     }
 
     protected boolean isFinished() {

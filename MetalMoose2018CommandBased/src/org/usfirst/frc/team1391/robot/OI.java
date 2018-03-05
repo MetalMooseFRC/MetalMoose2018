@@ -13,7 +13,6 @@ import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team1391.robot.commands.ElevatorOverride;
 import org.usfirst.frc.team1391.robot.commands.ElevatorToHeight;
 
 /**
@@ -45,6 +44,5 @@ public class OI {
         operatorA.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[0]));
         operatorX.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[1]));
         operatorY.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[2]));
-		operatorB.whileHeld(new ElevatorOverride());
 	}
 }
