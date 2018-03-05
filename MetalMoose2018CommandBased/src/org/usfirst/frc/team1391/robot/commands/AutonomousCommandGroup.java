@@ -17,7 +17,7 @@ public class AutonomousCommandGroup extends CommandGroup {
     public AutonomousCommandGroup(String commandString) {
         // Removes whitespace from both ends of the String and changes all upper case chars to lower case
         // It also separates all individual commands with a newline symbol
-        commandString = commandString.trim().toLowerCase().replaceAll("\\)(\\s+)", ")\n");
+        commandString = commandString.trim().toLowerCase().replaceAll("\\)(\\s*)", ")\n");
 
         // The actual parsing of the command
         if (commandString.length() != 0) parseCommand(commandString, false);
