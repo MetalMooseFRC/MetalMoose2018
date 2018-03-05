@@ -13,6 +13,8 @@ import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team1391.robot.commands.ElevatorOverride;
+import org.usfirst.frc.team1391.robot.commands.ElevatorToHeight;
 
 /**
  * Connect physical operator interface to commands.
@@ -33,9 +35,16 @@ public class OI {
 			operatorLB = new JoystickButton(operatorController, RobotMap.operatorButtonLBPort),
 			operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
 	
-	// Map the intake and outtake of the cubes
+	// Map commands to operator stick
 	public OI() {
+	    // Control the collector
 		operatorLB.whileHeld(new CollectorIntake());
 		operatorRB.whileHeld(new CollectorOuttake());
+
+		//Control the elevator
+        operatorA.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[0]));
+        operatorX.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[1]));
+        operatorY.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[2]));
+		operatorB.whileHeld(new ElevatorOverride());
 	}
 }
