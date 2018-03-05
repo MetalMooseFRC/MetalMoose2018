@@ -41,8 +41,8 @@ public class OI {
 		operatorRB.whileHeld(new CollectorOuttake());
 
 		//Control the elevator
-        operatorA.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[0]));
-        operatorX.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[1]));
-        operatorY.whenPressed(new ElevatorToHeight(RobotMap.elevatorSetPoints[2]));
+        operatorA.whenPressed(new ElevatorToHeight(0));
+        operatorX.whenPressed(new ElevatorToHeight(1));
+        operatorY.whenPressed(new ElevatorToHeight(2));
 	}
 }

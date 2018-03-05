@@ -18,24 +18,26 @@ public class ElevatorToHeight extends Command {
     double shift;
     double coefficient;
 
-    public ElevatorToHeight(double endPosition) {
+    public ElevatorToHeight(int endPosition) {
         requires(Robot.myElevator);
 
-        this.endPosition = endPosition;
+        this.endPosition = RobotMap.elevatorSetPoints[endPosition];
     }
 
     protected void initialize() {
         startPosition = Robot.myElevator.elevatorEncoder.getDistance();
 
-        shift = (startPosition + endPosition) / 2 - RobotMap.elevatorMaximumDistance / 2;
-        coefficient = Math.abs(endPosition - startPosition) / RobotMap.elevatorMaximumDistance;
+        coefficient = RobotMap.elevatorMaximumDistance / (endPosition - startPosition);
+        shift = (startPosition * coefficient);
     }
 
     protected void execute() {
         double currentPosition = Robot.myElevator.elevatorEncoder.getDistance();
 
+        int direction = (int)Math.signum(endPosition - currentPosition);
+        
         // We are pretty much mapping the readings of the current position onto the full domain of the throttle function
-        Robot.myElevator.setAbsoluteSpeed(Robot.myElevator.getThrottledSpeed(currentPosition / coefficient - shift));
+        Robot.myElevator.setAbsoluteSpeed(direction * Robot.myElevator.getThrottledSpeed(currentPosition * coefficient - shift));
     }
 
     protected boolean isFinished() {

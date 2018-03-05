@@ -61,7 +61,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case 'e': {
                     int elevatorPosition = (int)commandParameterValues[0];
 
-                    //addSequential(new ElevatorMovement(elevatorPosition));
+                    addSequential(new ElevatorToHeight(elevatorPosition));
 
                     break;
                 }
