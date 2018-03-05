@@ -41,6 +41,11 @@ This part of the document goes over the specifics of the respective commands.
 **Syntax:** `Goto(x, y)`, where x is the decimal x coordinate and y is the decimal y coordinate. The point [0, 0] is mid of the field in the wall of the allied team. Going left, x is negative. Going right, x is positive. Parameter y is always positive, and measures the distance from the allied wall (if y is negative, something went terribly wrong).
 **Type:** sequential.
 
+### Angle
+**Functionality:** Turns the robot to (not by!) a certain angle.
+**Syntax:** `Angle(angle)`, where angle is the angle that the robot should turn to.
+**Type:** sequential.
+
 ### Elevate
 **Functionality:** Moves the elevator into one of the possible positions.
 **Syntax:** `Elevate(position)`, where position is an integral number describing the desired position of the elevator.
