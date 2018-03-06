@@ -8,7 +8,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 import org.usfirst.frc.team1391.robot.commands.ElevatorManualControl;
 
 /**
- * Controls the elevator.
+ * Controls the elevator motors and encoder.
  */
 public class Elevator extends Subsystem {
     // Speed controllers for the motors of the elevator
@@ -63,7 +63,7 @@ public class Elevator extends Subsystem {
     }
 
     /**
-     * Set speed of the elevator motors (absolute).
+     * Set the absolute speed of the elevator motors.
      *
      * @param speed Speed to set for the motors (-1 to 1).
      */

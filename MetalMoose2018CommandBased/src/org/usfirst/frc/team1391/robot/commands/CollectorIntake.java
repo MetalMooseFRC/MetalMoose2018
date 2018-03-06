@@ -42,7 +42,7 @@ public class CollectorIntake extends Command {
      * Sets speed, defined by the collectorIntakeSpeed constant.
      */
     protected void execute() {
-        Robot.myCollector.setSpeed(RobotMap.collectorIntakeSpeed);
+        Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorIntakeSpeed);
     }
 
     /**

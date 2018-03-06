@@ -20,11 +20,11 @@ public class CollectorManualControl extends Command {
 
     protected void execute() {
         if (OI.operatorController.getRawAxis(RobotMap.operatorLeftTriggerPort) != 0)
-            Robot.myCollector.setSpeed(OI.operatorController.getRawAxis(RobotMap.operatorLeftTriggerPort));
+            Robot.myCollector.setAbsoluteSpeed(OI.operatorController.getRawAxis(RobotMap.operatorLeftTriggerPort));
         else if (OI.operatorController.getRawAxis(RobotMap.operatorRightTriggerPort) != 0)
-            Robot.myCollector.setSpeed(-OI.operatorController.getRawAxis(RobotMap.operatorRightTriggerPort));
+            Robot.myCollector.setAbsoluteSpeed(-OI.operatorController.getRawAxis(RobotMap.operatorRightTriggerPort));
         else
-            Robot.myCollector.setSpeed(-RobotMap.collectorHoldSpeed);
+            Robot.myCollector.setAbsoluteSpeed(-RobotMap.collectorHoldSpeed);
     }
 
     protected boolean isFinished() {

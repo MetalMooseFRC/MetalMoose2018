@@ -44,7 +44,6 @@ public class AutonomousCommandGroup extends CommandGroup {
 
             // Takes the first character of the first argument (all of the commands have differing first letters)
             switch (commandParts[0].charAt(0)) {
-
                 // Move(distance in ft, angle in degrees) - moves or turns the robot
                 case 'm': {
                     double distance = commandParameterValues[0];
@@ -102,12 +101,12 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Turn to a certain angle
+                // Angle(angle in degrees) - turn to a certain angle
                 case 'a': {
                     double angle = commandParameterValues[0];
 
                     addSequential(new DriveAutonomous(angle));
-                    
+
                     break;
                 }
 
