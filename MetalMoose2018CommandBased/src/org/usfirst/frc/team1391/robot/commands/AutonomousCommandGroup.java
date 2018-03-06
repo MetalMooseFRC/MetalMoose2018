@@ -62,11 +62,11 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Intake(time in seconds) - parallel - intakes the cube
+                // Intake(mode - 1 is intake with speed = 1, 0 is intake with hold speed) - parallel - intakes 
                 case 'i': {
-                    double lengthOfIntake =commandParameterValues[0];
+                    int intakeMode = (int)commandParameterValues[0];
 
-                    addParallel(new CollectorIntake(lengthOfIntake));
+                    addParallel(new CollectorIntake(intakeMode));
                     break;
                 }
 
