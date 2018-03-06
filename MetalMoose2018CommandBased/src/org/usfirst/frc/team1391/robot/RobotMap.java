@@ -84,7 +84,10 @@ public class RobotMap {
     public static double drivetrainEncoderPIDError = 2.5;
 
     // Chunks of movement for the autonomous sequences
-    public static String[] chunks = {};
+    public static String[] chunks = {
+    		// Middle to switch
+    		"Move(36, 0) Goto(60, 125) Angle(0)",
+    };
     
     // Stores the starting positions of the robot (arr[0], arr[1] and arr[2] being left, middle and right)
     public static double[][] startingPositionCoordinates = new double[][]{{-115, 19.5}, {5, 19.5}, {115, 19.5}};

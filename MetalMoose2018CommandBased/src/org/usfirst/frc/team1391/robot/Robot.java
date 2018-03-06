@@ -81,10 +81,10 @@ public class Robot extends TimedRobot {
 		RobotMap.autonomousFromLayout.put("LeftLLL", "");
 		RobotMap.autonomousFromLayout.put("LeftRLR", "");
 		RobotMap.autonomousFromLayout.put("LeftRRR", "");
-		RobotMap.autonomousFromLayout.put("MiddleLRL", "");
-		RobotMap.autonomousFromLayout.put("MiddleLLL", "");
-		RobotMap.autonomousFromLayout.put("MiddleRLR", "");
-		RobotMap.autonomousFromLayout.put("MiddleRRR", "");
+		RobotMap.autonomousFromLayout.put("MiddleLRL", "-Chunk(0)");
+		RobotMap.autonomousFromLayout.put("MiddleLLL", "-Chunk(0)");
+		RobotMap.autonomousFromLayout.put("MiddleRLR", "Chunk(0)");
+		RobotMap.autonomousFromLayout.put("MiddleRRR", "Chunk(0)");
 		RobotMap.autonomousFromLayout.put("RightLRL", "");
 		RobotMap.autonomousFromLayout.put("RightLLL", "");
 		RobotMap.autonomousFromLayout.put("RightRLR", "");
