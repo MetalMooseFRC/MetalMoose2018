@@ -7,12 +7,11 @@
 
 package org.usfirst.frc.team1391.robot;
 
-import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
-import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
+import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
 import org.usfirst.frc.team1391.robot.commands.ElevatorToHeight;
 
 /**

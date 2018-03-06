@@ -7,14 +7,15 @@
 
 package org.usfirst.frc.team1391.robot;
 
-import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
-import org.usfirst.frc.team1391.robot.subsystems.*;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
+import org.usfirst.frc.team1391.robot.subsystems.Collector;
+import org.usfirst.frc.team1391.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team1391.robot.subsystems.Elevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
