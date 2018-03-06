@@ -86,13 +86,20 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Goto(x, y) - generates two moves (turn, then drive) to move to the coordinate.
+                // Goto(x, y, intake) - generates two moves (turn, then drive) to move to the coordinate.
+                // The intake is an optional parameter. If it is true, the robot will start intaking before moving
                 case 'g': {
                     // If reversed is true, then we need to reverse x (the board is mirrored)
                     double x = commandParameterValues[0] * (reversed ? -1 : 1);
                     double y = commandParameterValues[1];
 
                     addSequential(new DriveAutonomous(x, y, true));
+                    
+                    if (commandParameterValues.length == 2) {
+                    	int intakeMode = (int)commandParameterValues[2];
+                    	
+                    	addParallel(new CollectorIntake(intakeMode));
+                    }
                     addSequential(new DriveAutonomous(x, y, false));
 
                     break;
