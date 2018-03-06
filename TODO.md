@@ -1,8 +1,7 @@
 # High-priority
 
 ## Get the elevator to work and integrate into code
-* Polynomial function for throttling the movement.
-* Correct autonomous positions (max getRaw() is 29728, stops are 34.125 above).
+* Correct autonomous positions (max getRaw() is 29728).
 
 ## Autonomous
 * Figure out autonomous sequences.
