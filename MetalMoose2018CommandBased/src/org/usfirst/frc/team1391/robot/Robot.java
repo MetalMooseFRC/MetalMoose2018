@@ -127,8 +127,7 @@ public class Robot extends TimedRobot {
 		String commandString = RobotMap.autonomousFromLayout.get(robotPosition + fieldLayout);
 		
 		// If there is anything in the custom command String, it overrides the selected preferences
-		// The .trim and .replace are just cleaning up whitespace and newline characters from the String
-		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "").trim().replace("/n", "");
+		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "");
 		
 		if (customCommandString != "") commandString = customCommandString; 
 		
