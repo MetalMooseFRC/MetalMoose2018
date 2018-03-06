@@ -75,6 +75,20 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(myDriveTrain);
 		SmartDashboard.putData(myCollector);
 		SmartDashboard.putData(myElevator);
+
+		// Puts the chunks for each of the variants of the autonomous
+		RobotMap.autonomousFromLayout.put("LeftLRL", "");
+		RobotMap.autonomousFromLayout.put("LeftLLL", "");
+		RobotMap.autonomousFromLayout.put("LeftRLR", "");
+		RobotMap.autonomousFromLayout.put("LeftRRR", "");
+		RobotMap.autonomousFromLayout.put("MiddleLRL", "");
+		RobotMap.autonomousFromLayout.put("MiddleLLL", "");
+		RobotMap.autonomousFromLayout.put("MiddleRLR", "");
+		RobotMap.autonomousFromLayout.put("MiddleRRR", "");
+		RobotMap.autonomousFromLayout.put("RightLRL", "");
+		RobotMap.autonomousFromLayout.put("RightLLL", "");
+		RobotMap.autonomousFromLayout.put("RightRLR", "");
+		RobotMap.autonomousFromLayout.put("RightRRR", "");
 	}
 
 	@Override
@@ -108,15 +122,13 @@ public class Robot extends TimedRobot {
 		RobotMap.autonomousTurningSpeedLimit = SmartDashboard.getNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
 		RobotMap.autonomousDrivingSpeedLimit = SmartDashboard.getNumber("Autonomous Driving Speed Limit", RobotMap.autonomousDrivingSpeedLimit);
 		
-		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
 		String robotPosition = autonomousPositionChooser.getSelected();
-		String commandString = "";
-		
-		// CALL THE APPROPRIATE AUTONOMOUS COMMAND HERE
+		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
+
+		String commandString = RobotMap.autonomousFromLayout.get(robotPosition + fieldLayout);
 		
 		// If there is anything in the custom command String, it overrides the selected preferences
-		// The .trim and .replace are just cleaning up whitespace and newline characters from the String
-		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "").trim().replace("/n", "");
+		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "");
 		
 		if (customCommandString != "") commandString = customCommandString; 
 		

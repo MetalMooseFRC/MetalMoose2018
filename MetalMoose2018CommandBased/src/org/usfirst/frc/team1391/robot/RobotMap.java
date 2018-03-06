@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1391.robot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Used for global variables (auton, driving) and constants (ports).
  */
@@ -81,20 +84,10 @@ public class RobotMap {
     public static double drivetrainEncoderPIDError = 2.5;
 
     // Chunks of movement for the autonomous sequences
-    public static String[] chunks = {
-            // Start in the middle
-            "Move:140:0",
-            "Move:10:0 Move:0:45 Move:100:0 Move:0:45",
-            "Move:50:0",
+    public static String[] chunks = {};
 
-            //Start on the right
-            "Move:x:0", //168-rl
-            "Move:0:-90 Elevate:1 Move:x:0 Outtake:1 Elevate:0 Move:0:90", //85.25-(29.69+1/2rw)
-            "Move:280.56:0",
-            "Move:0:-45 Elevate:2 Move:x:0 Outtake:1 Elevate:0", //How close to the scale do we have to move?
-            "Move:220.735:0",
-            "Move:0:-90 Move:x:0" //264-robot width
-    };
+    // Stores the chunks that make up the autonomous sequences
+    public static Map<String, String> autonomousFromLayout = new HashMap<>();
 
     // The absolute angle that the robot is currently in
     public static double absoluteAngle = 0;
