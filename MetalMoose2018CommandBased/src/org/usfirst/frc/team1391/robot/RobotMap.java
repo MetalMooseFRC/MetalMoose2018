@@ -85,6 +85,9 @@ public class RobotMap {
 
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {};
+    
+    // Stores the starting positions of the robot (arr[0], arr[1] and arr[2] being left, middle and right)
+    public static double[][] startingPositionCoordinates = new double[][]{{-115, 19.5}, {5, 19.5}, {115, 19.5}};
 
     // Stores the chunks that make up the autonomous sequences
     public static Map<String, String> autonomousFromLayout = new HashMap<>();
