@@ -100,7 +100,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // Angle(angle in degrees) - turn to a certain angle
                 case 'a': {
-                    double angle = commandParameterValues[0];
+                    double angle = commandParameterValues[0] * (reversed ? -1 : 1);
 
                     addSequential(new DriveAutonomous(angle));
 
