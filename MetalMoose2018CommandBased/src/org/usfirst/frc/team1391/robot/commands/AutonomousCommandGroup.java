@@ -15,10 +15,6 @@ public class AutonomousCommandGroup extends CommandGroup {
      * @param commandString The command to be parsed.
      */
     public AutonomousCommandGroup(String commandString) {
-        // Removes whitespace from both ends of the String and changes all upper case chars to lower case
-        // It also separates all individual commands with a newline symbol
-        commandString = commandString.trim().toLowerCase().replaceAll("\\)(\\s*)", ")\n");
-
         // The actual parsing of the command
         if (commandString.length() != 0) parseCommand(commandString, false);
     }
@@ -30,8 +26,9 @@ public class AutonomousCommandGroup extends CommandGroup {
      * @param reversed Mirrors commands (reverses angles and x axes).
      */
     private void parseCommand(String commandString, boolean reversed) {
-        // Split the String into a list of commands
-        String[] commandList = commandString.split("\n");
+        // Removes whitespace from both ends of the String and changes all upper case chars to lower case
+        // the .replaceAll and .split are for splitting into separate commands
+        String[] commandList = commandString.trim().toLowerCase().replaceAll("\\)(\\s*)", ")\n").split("\n");
 
         for (String command : commandList) {
             // Split to individual parameters (on any ", ", or on "(")
