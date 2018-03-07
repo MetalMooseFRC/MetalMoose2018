@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team1391.robot.BlankPIDOutput;
 import org.usfirst.frc.team1391.robot.RobotMap;
-import org.usfirst.frc.team1391.robot.commands.Drive;
+import org.usfirst.frc.team1391.robot.commands.DrivetrainManualControl;
 
 /**
  * Controls the drivebase motors.
@@ -45,7 +45,7 @@ public class Drivetrain extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new Drive());
+        setDefaultCommand(new DrivetrainManualControl());
     }
 
     /**
