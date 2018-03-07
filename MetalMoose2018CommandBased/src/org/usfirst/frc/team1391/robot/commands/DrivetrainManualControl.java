@@ -8,10 +8,10 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 /**
  * Drives the robot in teleop.
  */
-public class Drive extends Command {
+public class DrivetrainManualControl extends Command {
 
-    public Drive() {
-        requires(Robot.myDriveTrain);
+    public DrivetrainManualControl() {
+        requires(Robot.myDrivetrain);
     }
 
     protected void initialize() {
@@ -33,7 +33,7 @@ public class Drive extends Command {
                 // The X axis is fine, since the rotation is clockwise and rightmost value of the x axis is +1
                 double xAxisReading = OI.driveStick.getX();
 
-                Robot.myDriveTrain.arcadeDrive(yAxisReading, xAxisReading);
+                Robot.myDrivetrain.arcadeDrive(yAxisReading, xAxisReading);
 
                 break;
             }
@@ -44,7 +44,7 @@ public class Drive extends Command {
                 double yAxisLeftStickReading = -OI.driveStick.getRawAxis(RobotMap.tankDriveLeftStickYAxisPort);
                 double yAxisRightStickReading = -OI.driveStick.getRawAxis(RobotMap.tankDriveRightStickYAxisPort);
 
-                Robot.myDriveTrain.tankDrive(yAxisLeftStickReading, yAxisRightStickReading);
+                Robot.myDrivetrain.tankDrive(yAxisLeftStickReading, yAxisRightStickReading);
 
                 break;
             }
@@ -58,8 +58,8 @@ public class Drive extends Command {
                 double forwardSpeed = OI.driveStick.getY() * robotSpeed;
                 double turningSpeed = OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort) * robotSpeed;
 
-                if (OI.driveButton.get()) Robot.myDriveTrain.arcadeDrive(forwardSpeed, turningSpeed);
-                else Robot.myDriveTrain.arcadeDrive(-forwardSpeed, turningSpeed);
+                if (OI.driveButton.get()) Robot.myDrivetrain.arcadeDrive(forwardSpeed, turningSpeed);
+                else Robot.myDrivetrain.arcadeDrive(-forwardSpeed, turningSpeed);
 
                 break;
             }

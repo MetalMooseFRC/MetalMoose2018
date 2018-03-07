@@ -6,13 +6,13 @@ import org.usfirst.frc.team1391.robot.Robot;
 /**
  * A simple class to time-out the drivebase.
  */
-public class DrivebaseTimeout extends Command {
+public class DrivetrainTimeout extends Command {
 
     // The time for the robot timeout
     private double time;
 
     // Constructor with time - for autonomous
-    DrivebaseTimeout(double time) {
+    DrivetrainTimeout(double time) {
         requires(Robot.myCollector);
 
         this.time = time;
