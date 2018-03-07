@@ -129,7 +129,7 @@ public class RobotMap {
     public static double collectorHoldSpeed = -0.1;
 
     // Conversion factor for elevator (to distance in inches)
-    public static double elevatorEncoderCoefficient = 0.0014572;
+    public static double elevatorEncoderCoefficient = 0.013428226131;
     public static double elevatorMaximumDistance = 34;
 
     // Possible saved positions of the elevator
