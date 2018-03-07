@@ -28,95 +28,109 @@ public class AutonomousCommandGroup extends CommandGroup {
     private void parseCommand(String commandString, boolean reversed) {
         // Removes whitespace from both ends of the String and changes all upper case chars to lower case
         // the .replaceAll and .split are for splitting into separate commands
-        String[] commandList = commandString.trim().toLowerCase().replaceAll("\\)(\\s*)", ")\n").split("\n");
+        String[] commandList = commandString.trim().replaceAll("\\) *", ")\n").replaceAll("[a-z]", "").split("\n");
 
         for (String command : commandList) {
-            // Split to individual parameters (on any ", ", or on "(")
-            String[] commandParts = command.replaceAll("\\)", "").split("\\(+|((,)[\\s]*)+");
-
-            // This array stores the values of the parameters of the command
-            // The -1 is because the first part of the command is the command itself
-            double[] commandParameterValues = new double[commandParts.length - 1];
-            for (int i = 1; i < commandParts.length; i++) commandParameterValues[i-1] = Double.parseDouble(commandParts[i]);
+            // Split to individual parameters (on any ",", or on "(")
+            String[] commandParts = command.replaceAll("\\)", "").trim().split("\\( *| *, *");
 
             // Takes the first character of the first argument (all of the commands have differing first letters)
-            switch (commandParts[0].charAt(0)) {
-                // Move(distance in ft, angle in degrees) - moves or turns the robot
-                case 'm': {
-                    double distance = commandParameterValues[0];
-
-                    // If reversed is true, we need to invert the angle
-                    double angle = commandParameterValues[1] * (reversed ? -1 : 1);
-
-                    addSequential(new DriveAutonomous(distance, angle));
-
-                    break;
-                }
-
+            switch (commandParts[0]) {
                 // Elevate(position) - parallel - moves the elevator into a set position
-                case 'e': {
-                    int elevatorPosition = (int)commandParameterValues[0];
+                case "E": {
+                    int elevatorPosition = Integer.parseInt(commandParts[1]);
 
                     addSequential(new ElevatorToHeight(elevatorPosition));
 
                     break;
                 }
 
-                // Intake(mode - 1 is intake with speed = 1, 0 is intake with hold speed) - parallel - intakes 
-                case 'i': {
-                    int intakeMode = (int)commandParameterValues[0];
+                // Intake(mode) - parallel - 1 is intake with speed set 1, 0 is intake with hold speed)
+                case "I": {
+                    int intakeMode = Integer.parseInt(commandParts[1]);
 
                     addParallel(new CollectorIntake(intakeMode));
                     break;
                 }
 
                 // Outtake(time in seconds) - sequential - outtakes the cube
-                case 'o': {
-                    double lengthOfOuttake = commandParameterValues[0];
+                case "O": {
+                    double lengthOfOuttake = Double.parseDouble(commandParts[1]);
 
                     addSequential(new CollectorOuttake(lengthOfOuttake));
                     break;
                 }
 
-                // Timeout(time in seconds) - sequential timeout of the drivebase
-                case 't': {
-                    double lengthOfDrivebaseTimeout = commandParameterValues[0];
+                // Timeout(time in seconds) - sequential - timeout of the drivetrain
+                case "T": {
+                    double lengthOfDrivebaseTimeout = Double.parseDouble(commandParts[1]);
 
                     addSequential(new DrivebaseTimeout(lengthOfDrivebaseTimeout));
                     break;
                 }
 
-                // Goto(x, y, intake) - generates two moves (turn, then drive) to move to the coordinate.
-                // The intake is an optional parameter. If it is true, the robot will start intaking before moving
-                case 'g': {
+                // Goto(x, y, intake=mode, stopFromGoal=distance) - generates two moves (turnby, then drive) to move to the coordinate.
+                // intake is an optional parameter. If it is true, the robot will start intaking when it starts driving to the coordinates
+                // stopFromGoal is an optional parameter. If it is true, the robot will start intaking before moving
+                case "G": {
                     // If reversed is true, then we need to reverse x (the board is mirrored)
-                    double x = commandParameterValues[0] * (reversed ? -1 : 1);
-                    double y = commandParameterValues[1];
+                    double x = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
+                    double y = Double.parseDouble(commandParts[2]);
 
-                    addSequential(new DriveAutonomous(x, y, true));
-                    
-                    if (commandParameterValues.length == 2) {
-                    	int intakeMode = (int)commandParameterValues[2];
-                    	
-                    	addParallel(new CollectorIntake(intakeMode));
+                    double stopFromGoalDistance;
+
+                    // If the command has optional parameters
+                    for (int i = 3; i < commandParts.length; i++) {
+                        String[] optionalCommandParts = commandParts[i].split(" *= *");
+
+                        switch (optionalCommandParts[0]) {
+                            case "intake":
+                                addParallel(new CollectorIntake(Integer.parseInt(optionalCommandParts[1])));
+                                break;
+
+                            case "stopFromGoal":
+                                stopFromGoalDistance = Integer.parseInt(optionalCommandParts[1]);
+                                break;
+                        }
                     }
-                    addSequential(new DriveAutonomous(x, y, false));
+
+                    //addSequential(new DriveAutonomous(x, y, true));
+                    //addSequential(new DriveAutonomous(x, y, false));
 
                     break;
                 }
 
-                // Angle(angle in degrees) - turn to a certain angle
-                case 'a': {
-                    double angle = commandParameterValues[0] * (reversed ? -1 : 1);
+                // TurnTo(angle in degrees) - sequential - turn to an angle
+                case "TT": {
+                    double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
 
-                    addSequential(new DriveAutonomous(angle));
+                    // addSequential(new DriveAutonomous(angle));
+
+                    break;
+                }
+
+                // TurnBy(angle in degrees) - sequential - turn by an angle
+                case "TB": {
+                    // If reversed is true, we need to invert the angle
+                    double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
+
+                    // addSequential(new DriveAutonomous(distance, angle));
+
+                    break;
+                }
+
+                // Drive(distance in in) - sequential - drive
+                case "D": {
+                    double distance = Double.parseDouble(commandParts[1]);
+
+                    // addSequential(new DriveAutonomous(distance, angle));
 
                     break;
                 }
 
                 // Chunk(number of the chunk) - normal chunk
-                case 'c': {
-                    int chunkNumber = (int)commandParameterValues[0];
+                case "C": {
+                    int chunkNumber = Integer.parseInt(commandParts[1]);
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, reversed);
@@ -125,8 +139,8 @@ public class AutonomousCommandGroup extends CommandGroup {
                 }
 
                 // -Chunk(number of the chunk) - inverted chunk
-                case '-': {
-                    int chunkNumber = (int)commandParameterValues[0];
+                case "-C": {
+                    int chunkNumber = Integer.parseInt(commandParts[1]);
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, !reversed);
