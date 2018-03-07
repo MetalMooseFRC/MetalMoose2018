@@ -20,7 +20,7 @@ public class Elevator extends Subsystem {
 
     public Elevator() {
         // The motors have to run in the opposite directions
-        elevatorLeftMotor.setInverted(true);
+        elevatorRightMotor.setInverted(true);
 
         // Change the coefficient of the elevator to match the distance travelled in inches
         elevatorEncoder.setDistancePerPulse(RobotMap.elevatorEncoderCoefficient);
