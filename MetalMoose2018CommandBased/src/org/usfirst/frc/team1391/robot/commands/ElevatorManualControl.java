@@ -28,10 +28,12 @@ public class ElevatorManualControl extends Command {
     		Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
     	} else {
     		// The '-' sign is because the values of the axes are reversed (forward is -1)
-    		double rightJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorRightYPort);
+    		double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
 
+    		if (leftJoystickInput < 0) leftJoystickInput /= 3;
+    			
             // If joystick is moved, move the elevator. If not, if the elevator is above a certain height, hold
-            if (Math.abs(rightJoystickInput) > 0.1) Robot.myElevator.setThrottledSpeed(rightJoystickInput);
+            if (Math.abs(leftJoystickInput) > 0.1) Robot.myElevator.setThrottledSpeed(leftJoystickInput);
             else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) Robot.myElevator.hold();
     	}
     }
