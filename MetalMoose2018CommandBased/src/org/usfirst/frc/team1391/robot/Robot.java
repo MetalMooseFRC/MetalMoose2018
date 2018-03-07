@@ -78,17 +78,17 @@ public class Robot extends TimedRobot {
 
 		// Puts the chunks for each of the variants of the autonomous
 		RobotMap.autonomousFromLayout.put("LeftLRL", "");
-		RobotMap.autonomousFromLayout.put("LeftLLL", "");
-		RobotMap.autonomousFromLayout.put("LeftRLR", "");
+		RobotMap.autonomousFromLayout.put("LeftLLL", "-Chunk(1) -Chunk(2) -Chunk(3)");
+		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(1) -Chunk(2) -Chunk(4)");
 		RobotMap.autonomousFromLayout.put("LeftRRR", "");
 		RobotMap.autonomousFromLayout.put("MiddleLRL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleLLL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRLR", "Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRRR", "Chunk(0)");
-		RobotMap.autonomousFromLayout.put("RightLRL", "");
+		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(1) Chunk(2) Chunk(4)");
 		RobotMap.autonomousFromLayout.put("RightLLL", "");
 		RobotMap.autonomousFromLayout.put("RightRLR", "");
-		RobotMap.autonomousFromLayout.put("RightRRR", "");
+		RobotMap.autonomousFromLayout.put("RightRRR", "Chunk(1) Chunk(2) Chunk(3)");
 	}
 
 	@Override
