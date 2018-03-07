@@ -65,7 +65,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "T": {
                     double lengthOfDrivebaseTimeout = Double.parseDouble(commandParts[1]);
 
-                    addSequential(new DrivebaseTimeout(lengthOfDrivebaseTimeout));
+                    addSequential(new DrivetrainTimeout(lengthOfDrivebaseTimeout));
                     break;
                 }
 
@@ -77,7 +77,9 @@ public class AutonomousCommandGroup extends CommandGroup {
                     double x = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
                     double y = Double.parseDouble(commandParts[2]);
 
-                    double stopFromGoalDistance;
+                    // The values here are arbitrary - just to check whether they changed later
+                    double stopFromGoalDistance = 0;
+                    int intakeMode = -1;
 
                     // If the command has optional parameters
                     for (int i = 3; i < commandParts.length; i++) {
@@ -85,17 +87,23 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                         switch (optionalCommandParts[0]) {
                             case "intake":
-                                addParallel(new CollectorIntake(Integer.parseInt(optionalCommandParts[1])));
+                                intakeMode = Integer.parseInt(optionalCommandParts[1]);
                                 break;
 
                             case "stopFromGoal":
-                                stopFromGoalDistance = Integer.parseInt(optionalCommandParts[1]);
+                                stopFromGoalDistance = Double.parseDouble(optionalCommandParts[1]);
                                 break;
                         }
                     }
 
-                    //addSequential(new DriveAutonomous(x, y, true));
-                    //addSequential(new DriveAutonomous(x, y, false));
+                    // The turning part of the goto
+                    addSequential(new DrivetrainTurnToCoordinates(x, y));
+
+                    if (intakeMode != -1) addParallel(new CollectorIntake(intakeMode));
+
+                    // The moving part of the goto
+                    if (stopFromGoalDistance != 0) addSequential(new DrivetrainDriveToCoordinates(x, y, stopFromGoalDistance));
+                    else addSequential(new DrivetrainDriveToCoordinates(x, y));
 
                     break;
                 }
@@ -104,7 +112,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "TT": {
                     double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
 
-                    // addSequential(new DriveAutonomous(angle));
+                    addSequential(new DrivetrainTurnToAngle(angle));
 
                     break;
                 }
@@ -114,7 +122,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                     // If reversed is true, we need to invert the angle
                     double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
 
-                    // addSequential(new DriveAutonomous(distance, angle));
+                    addSequential(new DrivetrainTurnByAngle(angle));
 
                     break;
                 }
@@ -123,7 +131,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "D": {
                     double distance = Double.parseDouble(commandParts[1]);
 
-                    // addSequential(new DriveAutonomous(distance, angle));
+                    addSequential(new DrivetrainDrive(distance));
 
                     break;
                 }

@@ -95,6 +95,9 @@ public class RobotMap {
     // Stores the chunks that make up the autonomous sequences
     public static Map<String, String> autonomousFromLayout = new HashMap<>();
 
+    // If a reading of a position or an angle repeats this many times, robot stopped moving
+    public static double repeatCounterGoal = 15;
+
     // The absolute angle that the robot is currently in
     public static double absoluteAngle = 0;
 

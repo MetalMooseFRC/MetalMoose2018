@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.subsystems.Collector;
-import org.usfirst.frc.team1391.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team1391.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1391.robot.subsystems.Elevator;
 
 /**
@@ -26,7 +26,7 @@ import org.usfirst.frc.team1391.robot.subsystems.Elevator;
  */
 public class Robot extends TimedRobot {
 	// Create subsystem objects
-	public static final DriveTrain myDriveTrain = new DriveTrain();
+	public static final Drivetrain myDrivetrain = new Drivetrain();
 	public static final Collector myCollector = new Collector();
 	public static final Elevator myElevator = new Elevator();
 
@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
 
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
-		SmartDashboard.putData(myDriveTrain);
+		SmartDashboard.putData(myDrivetrain);
 		SmartDashboard.putData(myCollector);
 		SmartDashboard.putData(myElevator);
 
@@ -115,8 +115,8 @@ public class Robot extends TimedRobot {
 		RobotMap.drivetrainEncoderI = SmartDashboard.getNumber("Encoder I", 0);
 		RobotMap.drivetrainEncoderD = SmartDashboard.getNumber("Encoder D", 0);
 		
-		Robot.myDriveTrain.gyroPID.setPID(RobotMap.drivetrainGyroP, RobotMap.drivetrainGyroI, RobotMap.drivetrainGyroD);
-		Robot.myDriveTrain.encoderPID.setPID(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD);
+		Robot.myDrivetrain.gyroPID.setPID(RobotMap.drivetrainGyroP, RobotMap.drivetrainGyroI, RobotMap.drivetrainGyroD);
+		Robot.myDrivetrain.encoderPID.setPID(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD);
 
 		/* AUTONOMOUS **/
 		RobotMap.autonomousTurningSpeedLimit = SmartDashboard.getNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
