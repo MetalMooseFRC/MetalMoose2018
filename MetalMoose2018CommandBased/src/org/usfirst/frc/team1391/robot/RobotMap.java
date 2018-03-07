@@ -50,6 +50,8 @@ public class RobotMap {
 
     public static final int collectorLeftMotorPort = 2;
     public static final int collectorRightMotorPort = 3;
+    
+    public static final int fourbarMotorPort = 6;
 
     public static final int elevatorLeftMotorPort = 4;
     public static final int elevatorRightMotorPort = 5;
@@ -138,4 +140,11 @@ public class RobotMap {
     // Hold speed and the limit above which to hold the elevator
     public static double elevatorHoldSpeed = 0.3;
     public static double minimumElevatorHoldDistance = 2;
+    
+    // Values for fourbar
+    public static double fourbarRaiseLength = 1;
+    public static double fourbarRaiseSpeed = 0.8;
+    public static double fourbarLowerLength = 1;
+    public static double fourbarLowerSpeed = 0.8;
+    public static double fourbarHoldSpeed = 0.6;
 }

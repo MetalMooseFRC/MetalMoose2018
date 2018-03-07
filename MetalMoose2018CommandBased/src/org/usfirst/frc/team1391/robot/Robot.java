@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
 	public static final Drivetrain myDrivetrain = new Drivetrain();
 	public static final Collector myCollector = new Collector();
 	public static final Elevator myElevator = new Elevator();
+	public static final Fourbar myFourbar = new Fourbar();
 
 	// Create SmartDashboard objects (drive mode selection, autonomous position selection)
 	private SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
