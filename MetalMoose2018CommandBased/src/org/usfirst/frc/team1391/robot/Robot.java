@@ -82,17 +82,17 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(myElevator);
 
 		// Puts the chunks for each of the variants of the autonomous
-		RobotMap.autonomousFromLayout.put("LeftLRL", "");
+		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(6)");
 		RobotMap.autonomousFromLayout.put("LeftLLL", "-Chunk(1) -Chunk(2) -Chunk(3)");
-		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(1) -Chunk(2) -Chunk(4)");
-		RobotMap.autonomousFromLayout.put("LeftRRR", "");
+		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(1) -Chunk(2) -Chunk(4) -Chunk(5)");
+		RobotMap.autonomousFromLayout.put("LeftRRR", "-Chunk(6)");
 		RobotMap.autonomousFromLayout.put("MiddleLRL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleLLL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRLR", "Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRRR", "Chunk(0)");
-		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(1) Chunk(2) Chunk(4)");
-		RobotMap.autonomousFromLayout.put("RightLLL", "");
-		RobotMap.autonomousFromLayout.put("RightRLR", "");
+		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(1) Chunk(2) Chunk(4) Chunk(5)");
+		RobotMap.autonomousFromLayout.put("RightLLL", "Chunk(6)");
+		RobotMap.autonomousFromLayout.put("RightRLR", "Chunk(6)");
 		RobotMap.autonomousFromLayout.put("RightRRR", "Chunk(1) Chunk(2) Chunk(3)");
 	}
 
