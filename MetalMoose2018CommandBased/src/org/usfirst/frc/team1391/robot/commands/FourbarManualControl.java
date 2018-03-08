@@ -39,6 +39,7 @@ public class FourbarManualControl extends Command {
 
         // If no inputs from the axis, just hold (if we want to)
         else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldSpeed);
+        else Robot.myFourbar.setSpeed(0);
     }
 
     protected boolean isFinished() {
