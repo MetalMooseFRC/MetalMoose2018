@@ -126,9 +126,9 @@ public class RobotMap {
     public static int driveMode = 2;
 
     // Values for the collector speeds
-    public static double collectorIntakeSpeed = -1.0;
-    public static double collectorOuttakeSpeed = 0.6;
-    public static double collectorHoldSpeed = -0.1;
+    public static double collectorIntakeSpeed = 1.0;
+    public static double collectorOuttakeSpeed = -1.0;
+    public static double collectorHoldSpeed = -0.3;
 
     // Conversion factor for elevator (to distance in inches)
     public static double elevatorEncoderCoefficient = 0.013428226131;
@@ -142,9 +142,12 @@ public class RobotMap {
     public static double minimumElevatorHoldDistance = 2;
     
     // Values for fourbar
-    public static double fourbarRaiseLength = 1;
-    public static double fourbarRaiseSpeed = 0.8;
-    public static double fourbarLowerLength = 1;
-    public static double fourbarLowerSpeed = 0.8;
-    public static double fourbarHoldSpeed = 0.6;
+    public static double fourbarLowerLength = 0.1;
+    public static double fourbarLowerSpeed = -0.1;
+    
+    public static double fourbarHoldSpeed = 0.2;
+    
+    public static boolean holdFourbar = false;
+    
+    public static boolean holdCollector = false;
 }

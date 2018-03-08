@@ -3,7 +3,7 @@ package org.usfirst.frc.team1391.robot.subsystems;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team1391.robot.RobotMap;
-import org.usfirst.frc.team1391.robot.commands.FourbarHold;
+import org.usfirst.frc.team1391.robot.commands.FourbarManualControl;
 
 /**
  * Controls the drivebase motors.
@@ -18,7 +18,7 @@ public class Fourbar extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new FourbarHold());
+        setDefaultCommand(new FourbarManualControl());
     }
     
     public void setSpeed(double speed) {

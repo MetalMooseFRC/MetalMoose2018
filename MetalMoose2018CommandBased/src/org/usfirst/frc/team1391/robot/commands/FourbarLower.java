@@ -11,8 +11,12 @@ public class FourbarLower extends Command {
     public FourbarLower() {
         requires(Robot.myFourbar);
     }
-    
+
+    /**
+     * Stop holding the fourbar, set the FourbarLower timeout
+     */
     protected void initialize() {
+        RobotMap.holdFourbar = false;
         setTimeout(RobotMap.fourbarLowerLength);
     }
 
@@ -20,15 +24,14 @@ public class FourbarLower extends Command {
         Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
     }
 
+    /**
+     * Returns when timed out
+     */
     protected boolean isFinished() {
         return isTimedOut();
     }
 
-    protected void end() {
+    protected void end() {}
 
-    }
-
-    protected void interrupted() {
-
-    }
+    protected void interrupted() {}
 }
