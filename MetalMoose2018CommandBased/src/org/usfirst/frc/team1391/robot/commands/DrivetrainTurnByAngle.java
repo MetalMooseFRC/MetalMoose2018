@@ -5,15 +5,11 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Drives the robot in autonomous.
+ * Turns the robot in autonomous (by an angle).
  */
 public class DrivetrainTurnByAngle extends Command {
     // The goals for the PID.
     private double angle;
-
-    // Counts repetitions of the same value (to see if we are not stuck).
-    private int repeatCounter = 0;
-    private double previousReading = 0;
 
     /**
      * Turn the robot by angle (in degrees).
@@ -47,13 +43,8 @@ public class DrivetrainTurnByAngle extends Command {
     }
 
     protected boolean isFinished() {
-        if (previousReading == Robot.myDrivetrain.myAHRS.getAngle()) repeatCounter++;
-        else repeatCounter = 0;
-
-        previousReading = Robot.myDrivetrain.myAHRS.getAngle();
-
-        // If we are stuck in the position
-        if (repeatCounter == RobotMap.repeatCounterGoal) {
+        // If we are under gyroStopAtError
+        if (Robot.myDrivetrain.gyroPID.onTarget()) {
             // Update the absolute angle of the robot
             RobotMap.absoluteAngle += Robot.myDrivetrain.myAHRS.getAngle();
 

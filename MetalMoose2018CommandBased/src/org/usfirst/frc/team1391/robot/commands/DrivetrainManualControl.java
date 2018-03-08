@@ -70,11 +70,7 @@ public class DrivetrainManualControl extends Command {
         return false;
     }
 
-    protected void end() {
+    protected void end() {}
 
-    }
-
-    protected void interrupted() {
-
-    }
+    protected void interrupted() {}
 }

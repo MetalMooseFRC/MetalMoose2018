@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1391.robot.Robot;
 
 /**
- * A simple class to time-out the drivebase.
+ * A command to time-out the drivebase.
  */
 public class DrivetrainTimeout extends Command {
 
@@ -22,17 +22,13 @@ public class DrivetrainTimeout extends Command {
         setTimeout(time);
     }
 
-    protected void execute() {
-
-    }
+    protected void execute() {}
 
     protected boolean isFinished() {
         return isTimedOut();
     }
 
-    protected void end() {
-
-    }
+    protected void end() {}
 
     protected void interrupted() {
 

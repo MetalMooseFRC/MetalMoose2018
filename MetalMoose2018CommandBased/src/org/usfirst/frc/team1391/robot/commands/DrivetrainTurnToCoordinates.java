@@ -5,7 +5,7 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Drives the robot in autonomous.
+ * Turns the robot in autonomous (to a pair of coordinates).
  */
 public class DrivetrainTurnToCoordinates extends Command {
     // The goals for the PID.
@@ -14,17 +14,11 @@ public class DrivetrainTurnToCoordinates extends Command {
     // The angle is calculated at the beginning of the initialization command.
     private double x, y;
 
-    // Counts repetitions of the same value (to see if we are not stuck).
-    private int repeatCounter = 0;
-    private double previousReading = 0;
-
     /**
-     * Constructor for the G command.
+     * Turn the robot to a certain coordinate pair.
      *
-     * Saves the absolute values of where the robot should be and does the calculation when this command is initialized.
-     *
-     * @param x The goal x coordinate of the robot.
-     * @param y The goal y coordinate of the robot.
+     * @param x The x value of the coordinate that we want to turn to.
+     * @param y The y value of the coordinate that we want to turn to.
      */
     DrivetrainTurnToCoordinates(double x, double y) {
         this.x = x;
@@ -34,7 +28,8 @@ public class DrivetrainTurnToCoordinates extends Command {
     /**
      * Reset encoder, set goals for PID, enables PID.
      *
-     * If the doGotoCalculation is true, calculate the distance from the absolute x and y coordinates.
+     * Calculate the coordinate pair using an arctan function.
+     * To make sure that the angle is optimal, same trick as in DrivetrainTurnToAngle is used.
      */
     protected void initialize() {
         double relativeX = x - RobotMap.robotPositionX;
@@ -78,15 +73,8 @@ public class DrivetrainTurnToCoordinates extends Command {
     protected boolean isFinished() {
     	if (Double.isNaN(angle)) return true;
 
-        // If we are reading the same PID value as before, add one to repeat counter
-        if (previousReading == Robot.myDrivetrain.myAHRS.getAngle()) repeatCounter++;
-        else repeatCounter = 0;
-
-        // Saving the angle as a previous reading
-        previousReading = Robot.myDrivetrain.myAHRS.getAngle();
-
-        // If we are either on-target or stuck in the position
-        if ( repeatCounter == RobotMap.repeatCounterGoal) {
+        // If we are under gyroStopAtError
+        if (Robot.myDrivetrain.gyroPID.onTarget()) {
             // Update the absolute angle of the robot
             RobotMap.absoluteAngle += Robot.myDrivetrain.myAHRS.getAngle();
 
@@ -94,11 +82,7 @@ public class DrivetrainTurnToCoordinates extends Command {
         } else return false;
     }
 
-    protected void end() {
+    protected void end() {}
 
-    }
-
-    protected void interrupted() {
-
-    }
+    protected void interrupted() {}
 }
