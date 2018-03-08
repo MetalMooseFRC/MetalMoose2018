@@ -50,7 +50,7 @@ public class Elevator extends Subsystem {
      */
     public double getThrottledSpeed(double x) {
         // The coefficients of the polynomial
-        double[] coefficients = new double[]{-0.0000001517266603, 0.0000303453320656, -0.0021565832540997, 0.0639316650819559, 0.35};
+        double[] coefficients = new double[]{-0.0000001233779715, 0.000024675594291, -0.0017622246431853, 0.052844492636667, 0.45};
 
         // Calculate the y value at point x of the polynomial
         // Example for 4th degree polynomial: ax^3 + bx^2 + cx + d = x(x(x(a) + b) + c) + d... this simplifies the calculation
