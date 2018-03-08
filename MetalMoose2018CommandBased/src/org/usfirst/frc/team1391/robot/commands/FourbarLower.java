@@ -26,7 +26,8 @@ public class FourbarLower extends Command {
     }
 
     protected void execute() {
-        Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
+        if (RobotMap.fourbarLowerPowerLength > timeSinceInitialized()) Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
+        else System.out.println( timeSinceInitialized());
     }
 
     /**
