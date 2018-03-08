@@ -50,11 +50,11 @@ public class RobotMap {
 
     public static final int collectorLeftMotorPort = 2;
     public static final int collectorRightMotorPort = 3;
-    
-    public static final int fourbarMotorPort = 6;
 
     public static final int elevatorLeftMotorPort = 4;
     public static final int elevatorRightMotorPort = 5;
+    
+    public static final int fourbarMotorPort = 6;
 
     /* SENSOR MAPPING */
     public static final int drivetrainEncoderBPort = 1;
@@ -132,10 +132,10 @@ public class RobotMap {
 
     // Conversion factor for elevator (to distance in inches)
     public static double elevatorEncoderCoefficient = 0.013428226131;
-    public static double elevatorMaximumDistance = 34;
+    public static double elevatorMaximumDistance = 100;
 
     // Possible saved positions of the elevator
-    public static double[] elevatorSetPoints = new double[]{0, 15, 34};
+    public static double[] elevatorSetPoints = new double[]{0, 15, 80};
 
     // Hold speed and the limit above which to hold the elevator
     public static double elevatorHoldSpeed = 0.3;
