@@ -61,6 +61,18 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
+                // FourbarUp() - parallel - moves the fourbar up
+                case "FU": {
+                    addParallel(new FourbarRaise(RobotMap.fourbarRaiseLength));
+                    break;
+                }
+
+                // FourbarDown() - parallel - moves the fourbar down
+                case "FD": {
+                    addParallel(new FourbarLower(RobotMap.fourbarLowerLength));
+                    break;
+                }
+
                 // Timeout(time in seconds) - sequential - timeout of the drivetrain
                 case "T": {
                     double lengthOfDrivebaseTimeout = Double.parseDouble(commandParts[1]);
@@ -99,6 +111,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                     // The turning part of the goto
                     addSequential(new DrivetrainTurnToCoordinates(x, y));
 
+                    // If we do intake during the goto
                     if (intakeMode != -1) addParallel(new CollectorIntake(intakeMode));
 
                     // The moving part of the goto
