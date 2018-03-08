@@ -126,6 +126,10 @@ public class Robot extends TimedRobot {
 		/* AUTONOMOUS **/
 		RobotMap.autonomousTurningSpeedLimit = SmartDashboard.getNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
 		RobotMap.autonomousDrivingSpeedLimit = SmartDashboard.getNumber("Autonomous Driving Speed Limit", RobotMap.autonomousDrivingSpeedLimit);
+
+		// Start of with both intaking a cube and holding the fourbar
+		RobotMap.holdFourbar = true;
+		RobotMap.intakeWithCollector = true;
 		
 		String robotPosition = autonomousPositionChooser.getSelected();
 		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
