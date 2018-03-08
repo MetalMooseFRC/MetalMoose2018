@@ -30,7 +30,7 @@ public class CollectorIntake extends Command {
     
     protected void initialize() {
         // Hold the cube after this command is over
-    	RobotMap.holdCollector = true;
+    	RobotMap.intakeWithCollector = true;
     }
 
     /**

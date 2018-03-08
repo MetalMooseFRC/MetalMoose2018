@@ -24,18 +24,18 @@ public class CollectorManualControl extends Command {
 
         // Outtakes the cube (the 0.1 is just an arbitrary threshold)
         if (leftTriggerSpeed > 0.1) {
-        	RobotMap.holdCollector = false;
+        	RobotMap.intakeWithCollector = false;
             Robot.myCollector.setAbsoluteSpeed(leftTriggerSpeed);
         }
 
         // Intakes the cube (the 0.1 is just an arbitrary threshold)
         else if (rightTriggerSpeed > 0.1) {
-        	RobotMap.holdCollector = true;
+        	RobotMap.intakeWithCollector = true;
         	Robot.myCollector.setAbsoluteSpeed(-rightTriggerSpeed);
         }
 
         // If we want to hold the cube
-        else if (RobotMap.holdCollector) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
+        else if (RobotMap.intakeWithCollector) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
     }
 
     protected boolean isFinished() {

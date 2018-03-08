@@ -33,7 +33,7 @@ public class CollectorOuttake extends Command {
      * If the command is autonomous, sets timeout.
      */
     protected void initialize() {
-    	RobotMap.holdCollector = false;
+    	RobotMap.intakeWithCollector = false;
     	
         //  Set a timeout only if the time was initialized to something
         if (time > 0) setTimeout(time);
