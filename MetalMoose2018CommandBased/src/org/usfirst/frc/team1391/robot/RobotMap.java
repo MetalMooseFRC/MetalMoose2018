@@ -124,8 +124,8 @@ public class RobotMap {
 
     /* COLLECTOR */
     // Values for the collector speeds
-    public static double collectorIntakeSpeed = 1.0;
-    public static double collectorOuttakeSpeed = -1.0;
+    public static double collectorIntakeSpeed = -1.0;
+    public static double collectorOuttakeSpeed = 1.0;
     public static double collectorHoldSpeed = -0.3;
 
     // Should the collector be intaking?
