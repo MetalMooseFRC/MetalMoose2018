@@ -94,7 +94,7 @@ public class RobotMap {
             "Drive(261.47) TurnTo(-30) Elevate(2) Outtake(0.5) Elevate(0)",
 
             // Get the cube right after scoring on the scale (for RRR, LRL)
-            "FourbarDown() Goto(91.75, 202.5, intake=1 stopFromGoal=17) Intake(0) FourbarUp()",
+            "FourbarDown() Goto(91.75, 202.5, intake=true, stopFromGoal=17) FourbarUp()",
 
             // Score on the switch when the switch is on the same side as was the scale (for RRR)
             "Elevate(1) Outtake(0.5)",

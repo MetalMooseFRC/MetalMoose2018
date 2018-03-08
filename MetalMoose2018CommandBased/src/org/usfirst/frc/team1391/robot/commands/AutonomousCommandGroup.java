@@ -49,7 +49,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "I": {
                     int intakeMode = Integer.parseInt(commandParts[1]);
 
-                    addParallel(new CollectorIntake(intakeMode));
+                    addParallel(new CollectorIntake());
                     break;
                 }
 
@@ -91,7 +91,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                     // The values here are arbitrary - just to check whether they changed later
                     double stopFromGoalDistance = 0;
-                    int intakeMode = -1;
+                    boolean intakeMode = false;
 
                     // If the command has optional parameters
                     for (int i = 3; i < commandParts.length; i++) {
@@ -99,7 +99,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                         switch (optionalCommandParts[0]) {
                             case "intake":
-                                intakeMode = Integer.parseInt(optionalCommandParts[1]);
+                                intakeMode = Boolean.parseBoolean(optionalCommandParts[1]);
                                 break;
 
                             case "stopFromGoal":
@@ -112,7 +112,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                     addSequential(new DrivetrainTurnToCoordinates(x, y));
 
                     // If we do intake during the goto
-                    if (intakeMode != -1) addParallel(new CollectorIntake(intakeMode));
+                    if (intakeMode) addParallel(new CollectorIntake());
 
                     // The moving part of the goto
                     if (stopFromGoalDistance != 0) addSequential(new DrivetrainDriveToCoordinates(x, y, stopFromGoalDistance));
