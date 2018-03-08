@@ -31,6 +31,9 @@ public class Robot extends TimedRobot {
 	public static final Elevator myElevator = new Elevator();
 	public static final Fourbar myFourbar = new Fourbar();
 
+	// Create the OI 
+	public static final OI myOI = new OI();
+	
 	// Create SmartDashboard objects (drive mode selection, autonomous position selection)
 	private SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 	private SendableChooser<String> autonomousPositionChooser = new SendableChooser<>();
