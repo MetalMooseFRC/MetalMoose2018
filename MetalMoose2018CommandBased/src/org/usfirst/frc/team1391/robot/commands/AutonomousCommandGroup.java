@@ -63,13 +63,13 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // FourbarUp() - parallel - moves the fourbar up
                 case "FU": {
-                    addParallel(new FourbarRaise(RobotMap.fourbarRaiseLength));
+                    addSequential(new FourbarRaise(RobotMap.fourbarRaiseLength));
                     break;
                 }
 
                 // FourbarDown() - parallel - moves the fourbar down
                 case "FD": {
-                    addParallel(new FourbarLower(RobotMap.fourbarLowerLength));
+                    addSequential(new FourbarLower(RobotMap.fourbarLowerLength));
                     break;
                 }
 
