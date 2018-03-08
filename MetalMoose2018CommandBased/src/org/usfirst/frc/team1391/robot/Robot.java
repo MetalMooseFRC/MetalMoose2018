@@ -16,6 +16,7 @@ import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.subsystems.Collector;
 import org.usfirst.frc.team1391.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1391.robot.subsystems.Elevator;
+import org.usfirst.frc.team1391.robot.subsystems.Fourbar;
 
 /**
  * The VM is configured to automatically run this class, and to call the
