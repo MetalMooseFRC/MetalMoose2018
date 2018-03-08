@@ -8,6 +8,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Intakes (either manually using a button, or through autonomous).
  */
 public class CollectorIntake extends Command {
+    // Speed during autonomous. If it changes to something else than 0, do
 	double autonomousSpeed = 0;
 	
     /**
@@ -28,14 +29,15 @@ public class CollectorIntake extends Command {
     }    
     
     protected void initialize() {
-
+        // Hold the cube after this command is over
+    	RobotMap.holdCollector = true;
     }
 
     /**
      * Sets speed, defined by the collectorIntakeSpeed constant.
      */
     protected void execute() {
-    	// If speed is zero, this is not called by autonomous
+    	// If autonomousSpeed is zero, this is not called by autonomous, so we will control using collectorIntakeSpeed
         if (autonomousSpeed == 0) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorIntakeSpeed);
         else Robot.myCollector.setAbsoluteSpeed(autonomousSpeed);
     }
@@ -44,11 +46,7 @@ public class CollectorIntake extends Command {
         return false;
     }
 
-    protected void end() {
+    protected void end() {}
 
-    }
-
-    protected void interrupted() {
-
-    }
+    protected void interrupted() {}
 }
