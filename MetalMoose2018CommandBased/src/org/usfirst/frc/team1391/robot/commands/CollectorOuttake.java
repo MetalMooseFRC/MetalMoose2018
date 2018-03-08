@@ -8,9 +8,8 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Outtakes (either manually using a button, or through autonomous).
  */
 public class CollectorOuttake extends Command {
-
     // Length of the autonomous command
-    private double time = -1;
+    private double time = 0;
 
     /**
      * Constructor for teleop.
@@ -34,6 +33,8 @@ public class CollectorOuttake extends Command {
      * If the command is autonomous, sets timeout.
      */
     protected void initialize() {
+    	RobotMap.intakeWithCollector = false;
+    	
         //  Set a timeout only if the time was initialized to something
         if (time > 0) setTimeout(time);
     }
@@ -46,17 +47,13 @@ public class CollectorOuttake extends Command {
     }
 
     /**
-     * Returns true, only if the time is non-zero and isTimedOut() is true.
+     * Returns true if isTimedOut() is true.
      */
     protected boolean isFinished() {
-        return time > 0 && isTimedOut();
+        return isTimedOut();
     }
 
-    protected void end() {
+    protected void end() {}
 
-    }
-
-    protected void interrupted() {
-
-    }
+    protected void interrupted() {}
 }

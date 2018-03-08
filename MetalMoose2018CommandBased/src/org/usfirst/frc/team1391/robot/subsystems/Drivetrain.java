@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team1391.robot.BlankPIDOutput;
 import org.usfirst.frc.team1391.robot.RobotMap;
-import org.usfirst.frc.team1391.robot.commands.Drive;
+import org.usfirst.frc.team1391.robot.commands.DrivetrainManualControl;
 
 /**
  * Controls the drivebase motors.
  */
-public class DriveTrain extends Subsystem {
+public class Drivetrain extends Subsystem {
 
     // Objects that control the driving of the drivebase
     private VictorSP leftMotor = new VictorSP(RobotMap.drivebaseLeftMotorPort);
@@ -29,7 +29,7 @@ public class DriveTrain extends Subsystem {
     public PIDController encoderPID = new PIDController(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD, 0, myEncoder, new BlankPIDOutput());
     public PIDController gyroPID = new PIDController(RobotMap.drivetrainGyroP, RobotMap.drivetrainGyroI, RobotMap.drivetrainGyroD, 0, myAHRS, new BlankPIDOutput());
 
-    public DriveTrain() {
+    public Drivetrain() {
         // Encoder PIDObject values
         encoderPID.setOutputRange(-RobotMap.autonomousDrivingSpeedLimit, RobotMap.autonomousDrivingSpeedLimit);
         encoderPID.setAbsoluteTolerance(RobotMap.drivetrainEncoderPIDError); //in inches
@@ -45,7 +45,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new Drive());
+        setDefaultCommand(new DrivetrainManualControl());
     }
 
     /**

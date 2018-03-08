@@ -16,7 +16,7 @@ public class Collector extends Subsystem {
     private SpeedControllerGroup collectorMotors = new SpeedControllerGroup(collectorLeftMotor, collectorRightMotor);
 
     public Collector() {
-        collectorLeftMotor.setInverted(true);
+        collectorRightMotor.setInverted(true);
     }
 
     public void setAbsoluteSpeed(double speed) {

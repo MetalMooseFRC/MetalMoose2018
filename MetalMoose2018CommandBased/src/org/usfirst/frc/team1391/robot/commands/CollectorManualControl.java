@@ -19,23 +19,30 @@ public class CollectorManualControl extends Command {
     }
 
     protected void execute() {
-        if (OI.operatorController.getRawAxis(RobotMap.operatorLeftTriggerPort) != 0)
-            Robot.myCollector.setAbsoluteSpeed(OI.operatorController.getRawAxis(RobotMap.operatorLeftTriggerPort));
-        else if (OI.operatorController.getRawAxis(RobotMap.operatorRightTriggerPort) != 0)
-            Robot.myCollector.setAbsoluteSpeed(-OI.operatorController.getRawAxis(RobotMap.operatorRightTriggerPort));
-        else
-            Robot.myCollector.setAbsoluteSpeed(-RobotMap.collectorHoldSpeed);
+        double leftTriggerSpeed = OI.operatorController.getRawAxis(RobotMap.operatorLeftTriggerPort);
+        double rightTriggerSpeed = OI.operatorController.getRawAxis(RobotMap.operatorRightTriggerPort);
+
+        // Outtakes the cube (the 0.1 is just an arbitrary threshold)
+        if (leftTriggerSpeed > 0.1) {
+        	RobotMap.intakeWithCollector = false;
+            Robot.myCollector.setAbsoluteSpeed(leftTriggerSpeed);
+        }
+
+        // Intakes the cube (the 0.1 is just an arbitrary threshold)
+        else if (rightTriggerSpeed > 0.1) {
+        	RobotMap.intakeWithCollector = true;
+        	Robot.myCollector.setAbsoluteSpeed(-rightTriggerSpeed);
+        }
+
+        // If we want to hold the cube
+        else if (RobotMap.intakeWithCollector) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
     }
 
     protected boolean isFinished() {
         return false;
     }
 
-    protected void end() {
+    protected void end() {}
 
-    }
-
-    protected void interrupted() {
-
-    }
+    protected void interrupted() {}
 }

@@ -18,20 +18,24 @@ public class ElevatorManualControl extends Command {
 
     /**
      * Repeatedly sets the speed of the elevator (through the setThrottle function).
+     * If the B button is pressed, override to absolute speed (unthrottled).
      * If there is no input in the joystick, holds the elevator in place.
      */
     protected void execute() {
+        // The stick that controls the elevator ('-' is because the axes are reversed - forward is -1...)
+        double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
+
+        // If 'overriden' by pressing B on the operator joystick
     	if (OI.operatorB.get()) {
-    		// The '-' sign is because the values of the axes are reversed (forward is -1)
-    		double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
-    		
     		Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
     	} else {
-    		// The '-' sign is because the values of the axes are reversed (forward is -1)
-    		double rightJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorRightYPort);
-
-            // If joystick is moved, move the elevator. If not, if the elevator is above a certain height, hold
-            if (Math.abs(rightJoystickInput) > 0.1) Robot.myElevator.setThrottledSpeed(rightJoystickInput);
+    	    // When going down, we want to be way slower than when going up
+            // This will be added to the RobotMap in the future (RobotMap needs to be refactored before that)
+    		if (leftJoystickInput < 0) leftJoystickInput /= 3;
+    			
+            // If joystick is set to a value over the hold threshold, move the elevator.
+            // If not and the elevator is above a certain height, hold (we don't want to toast the motors)
+            if (Math.abs(leftJoystickInput) > 0.1) Robot.myElevator.setThrottledSpeed(leftJoystickInput);
             else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) Robot.myElevator.hold();
     	}
     }

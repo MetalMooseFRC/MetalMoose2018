@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
 import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
-import org.usfirst.frc.team1391.robot.commands.ElevatorToHeight;
+import org.usfirst.frc.team1391.robot.commands.FourbarLower;
 
 /**
  * Connect physical operator interface to commands.
@@ -39,9 +39,7 @@ public class OI {
 		operatorLB.whileHeld(new CollectorIntake());
 		operatorRB.whileHeld(new CollectorOuttake());
 
-		//Control the elevator
-        operatorA.whenPressed(new ElevatorToHeight(0));
-        operatorX.whenPressed(new ElevatorToHeight(1));
-        operatorY.whenPressed(new ElevatorToHeight(2));
+		// Control the elevator
+        operatorA.whenPressed(new FourbarLower(RobotMap.fourbarLowerLength));
 	}
 }

@@ -14,8 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.subsystems.Collector;
-import org.usfirst.frc.team1391.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team1391.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1391.robot.subsystems.Elevator;
+import org.usfirst.frc.team1391.robot.subsystems.Fourbar;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,10 +27,14 @@ import org.usfirst.frc.team1391.robot.subsystems.Elevator;
  */
 public class Robot extends TimedRobot {
 	// Create subsystem objects
-	public static final DriveTrain myDriveTrain = new DriveTrain();
+	public static final Drivetrain myDrivetrain = new Drivetrain();
 	public static final Collector myCollector = new Collector();
 	public static final Elevator myElevator = new Elevator();
+	public static final Fourbar myFourbar = new Fourbar();
 
+	// Create the OI 
+	public static final OI myOI = new OI();
+	
 	// Create SmartDashboard objects (drive mode selection, autonomous position selection)
 	private SendableChooser<Integer> driveModeChooser = new SendableChooser<>();
 	private SendableChooser<String> autonomousPositionChooser = new SendableChooser<>();
@@ -72,9 +77,23 @@ public class Robot extends TimedRobot {
 
 		// Status of the scheduler and the subsystems
 		SmartDashboard.putData(Scheduler.getInstance());
-		SmartDashboard.putData(myDriveTrain);
+		SmartDashboard.putData(myDrivetrain);
 		SmartDashboard.putData(myCollector);
 		SmartDashboard.putData(myElevator);
+
+		// Puts the chunks for each of the variants of the autonomous
+		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(6)");
+		RobotMap.autonomousFromLayout.put("LeftLLL", "-Chunk(1) -Chunk(2) -Chunk(3)");
+		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(1) -Chunk(2) -Chunk(4) -Chunk(5)");
+		RobotMap.autonomousFromLayout.put("LeftRRR", "-Chunk(6)");
+		RobotMap.autonomousFromLayout.put("MiddleLRL", "-Chunk(0)");
+		RobotMap.autonomousFromLayout.put("MiddleLLL", "-Chunk(0)");
+		RobotMap.autonomousFromLayout.put("MiddleRLR", "Chunk(0)");
+		RobotMap.autonomousFromLayout.put("MiddleRRR", "Chunk(0)");
+		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(1) Chunk(2) Chunk(4) Chunk(5)");
+		RobotMap.autonomousFromLayout.put("RightLLL", "Chunk(6)");
+		RobotMap.autonomousFromLayout.put("RightRLR", "Chunk(6)");
+		RobotMap.autonomousFromLayout.put("RightRRR", "Chunk(1) Chunk(2) Chunk(3)");
 	}
 
 	@Override
@@ -101,24 +120,51 @@ public class Robot extends TimedRobot {
 		RobotMap.drivetrainEncoderI = SmartDashboard.getNumber("Encoder I", 0);
 		RobotMap.drivetrainEncoderD = SmartDashboard.getNumber("Encoder D", 0);
 		
-		Robot.myDriveTrain.gyroPID.setPID(RobotMap.drivetrainGyroP, RobotMap.drivetrainGyroI, RobotMap.drivetrainGyroD);
-		Robot.myDriveTrain.encoderPID.setPID(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD);
+		Robot.myDrivetrain.gyroPID.setPID(RobotMap.drivetrainGyroP, RobotMap.drivetrainGyroI, RobotMap.drivetrainGyroD);
+		Robot.myDrivetrain.encoderPID.setPID(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD);
 
 		/* AUTONOMOUS **/
 		RobotMap.autonomousTurningSpeedLimit = SmartDashboard.getNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
 		RobotMap.autonomousDrivingSpeedLimit = SmartDashboard.getNumber("Autonomous Driving Speed Limit", RobotMap.autonomousDrivingSpeedLimit);
+
+		// Start of with both intaking a cube and holding the fourbar
+		RobotMap.holdFourbar = true;
+		RobotMap.intakeWithCollector = true;
 		
-		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
 		String robotPosition = autonomousPositionChooser.getSelected();
-		String commandString = "";
+		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
+
+		String commandString = RobotMap.autonomousFromLayout.get(robotPosition + fieldLayout);
 		
-		// CALL THE APPROPRIATE AUTONOMOUS COMMAND HERE
+		// We have to adjust the robot X and Y accordingly, depending on where they are
+		switch(robotPosition) {
+			case "Left": {
+				RobotMap.robotPositionX = RobotMap.startingPositionCoordinates[0][0];
+				RobotMap.robotPositionY = RobotMap.startingPositionCoordinates[0][1];
+				break;
+			}
+			
+			case "Middle": {
+				RobotMap.robotPositionX = RobotMap.startingPositionCoordinates[1][0];
+				RobotMap.robotPositionY = RobotMap.startingPositionCoordinates[1][1];
+				break;
+			}
+			
+			case "Right": {
+				RobotMap.robotPositionX = RobotMap.startingPositionCoordinates[2][0];
+				RobotMap.robotPositionY = RobotMap.startingPositionCoordinates[2][1];
+				break;
+			}
+		}
+		
 		
 		// If there is anything in the custom command String, it overrides the selected preferences
-		// The .trim and .replace are just cleaning up whitespace and newline characters from the String
-		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "").trim().replace("/n", "");
+		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "");
 		
-		if (customCommandString != "") commandString = customCommandString; 
+		if (!customCommandString.equals("") && customCommandString != null) commandString = customCommandString; 
+
+		System.out.println(commandString);
+		
 		
 		myAutonomousCommand = new AutonomousCommandGroup(commandString);
 		myAutonomousCommand.start();

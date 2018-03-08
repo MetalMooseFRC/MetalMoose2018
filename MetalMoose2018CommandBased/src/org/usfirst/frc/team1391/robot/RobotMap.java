@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1391.robot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Used for global variables (auton, driving) and constants (ports).
  */
@@ -50,6 +53,8 @@ public class RobotMap {
 
     public static final int elevatorLeftMotorPort = 4;
     public static final int elevatorRightMotorPort = 5;
+    
+    public static final int fourbarMotorPort = 6;
 
     /* SENSOR MAPPING */
     public static final int drivetrainEncoderBPort = 1;
@@ -82,19 +87,33 @@ public class RobotMap {
 
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
-            // Start in the middle
-            "Move:140:0",
-            "Move:10:0 Move:0:45 Move:100:0 Move:0:45",
-            "Move:50:0",
+            // Middle to switch (for RRR and RLR)
+    		"Drive(36) Goto(55, 105) TurnTo(0) Outtake(0.5)",
 
-            //Start on the right
-            "Move:x:0", //168-rl
-            "Move:0:-90 Elevate:1 Move:x:0 Outtake:1 Elevate:0 Move:0:90", //85.25-(29.69+1/2rw)
-            "Move:280.56:0",
-            "Move:0:-45 Elevate:2 Move:x:0 Outtake:1 Elevate:0", //How close to the scale do we have to move?
-            "Move:220.735:0",
-            "Move:0:-90 Move:x:0" //264-robot width
+            // Right to scale (for RRR and LRL)
+            "Drive(261.47) TurnTo(-30) Elevate(2) Outtake(0.5) Elevate(0)",
+
+            // Get the cube right after scoring on the scale (for RRR, LRL)
+            "FourbarDown() Goto(91.75, 202.5, intake=true, stopFromGoal=17) FourbarUp()",
+
+            // Score on the switch when the switch is on the same side as was the scale (for RRR)
+            "Elevate(1) Outtake(0.5)",
+
+            // Back off from scoring on the switch (for RRR)
+            "Drive(-20)",
+
+            // Score on the switch when the switch is on the opposite side as was the scale (for LRL, LLL)
+            "Goto(-91.75, 235.235) TurnTo(-180) Elevate(1) Outtake(0.5)",
+
+            // Move to position to be prepared to go to the opposite side of the field for a scale
+            "Drive(235.235) TurnTo(-90) Goto(-91.75, 235.235) TurnTo(20) Elevator(2) Outtake(0.5)"
     };
+    
+    // Stores the starting positions of the robot (arr[0], arr[1] and arr[2] being left, middle and right)
+    public static double[][] startingPositionCoordinates = new double[][]{{-115, 19.5}, {5, 19.5}, {115, 19.5}};
+
+    // Stores the chunks that make up the autonomous sequences
+    public static Map<String, String> autonomousFromLayout = new HashMap<>();
 
     // The absolute angle that the robot is currently in
     public static double absoluteAngle = 0;
@@ -103,25 +122,49 @@ public class RobotMap {
     public static double robotPositionX = 0;
     public static double robotPositionY = 0;
 
+    /* COLLECTOR */
+    // Values for the collector speeds
+    public static double collectorIntakeSpeed = 1.0;
+    public static double collectorOuttakeSpeed = -1.0;
+    public static double collectorHoldSpeed = -0.3;
+
+    // Should the collector be intaking?
+    public static boolean intakeWithCollector = false;
+
+    /* ELEVATOR */
+    // Conversion factor for elevator (to distance in inches)
+    public static double elevatorEncoderCoefficient = 0.013428226131;
+
+    // The maximum height of the elevator
+    public static double elevatorMaximumDistance = 100;
+
+    // Possible saved positions of the elevator
+    public static double[] elevatorSetPoints = new double[]{0, 15, 80};
+
+    // Hold speed and the limit above which to hold the elevator (in elevatorMaximumDistance units)
+    public static double elevatorHoldSpeed = 0.3;
+    public static double minimumElevatorHoldDistance = 2;
+
+    /* FOURBAR */
+    // Values for Lowering the fourbar
+    // This is basically just an impulse, it will go down thanks to gravity
+    public static double fourbarLowerLength = 0.1;
+    public static double fourbarLowerSpeed = -0.1;
+
+    // Values for raising the fourbar
+    public static double fourbarRaiseLength = 0.8;
+    public static double fourbarRaiseSpeed = 0.6;
+
+    // Hold speed of the fourbar
+    public static double fourbarHoldSpeed = 0.2;
+
+    // Should the fourbar be held in place now?
+    public static boolean holdFourbar = false;
+
+
     /* MISCELLANEOUS */
     // Switching drive modes
     // 0 is tank drive and 1 is arcade drive with the Logitech controller
     // 2 uses the Y axis and the rotation axis from the joystick controller
     public static int driveMode = 2;
-
-    // Values for the collector speeds
-    public static double collectorIntakeSpeed = -1.0;
-    public static double collectorOuttakeSpeed = 0.6;
-    public static double collectorHoldSpeed = -0.1;
-
-    // Conversion factor for elevator (to distance in inches)
-    public static double elevatorEncoderCoefficient = 0.0014572;
-    public static double elevatorMaximumDistance = 34;
-
-    // Possible saved positions of the elevator
-    public static double[] elevatorSetPoints = new double[]{0, 15, 34};
-
-    // Hold speed and the limit above which to hold the elevator
-    public static double elevatorHoldSpeed = 0.3;
-    public static double minimumElevatorHoldDistance = 2;
 }

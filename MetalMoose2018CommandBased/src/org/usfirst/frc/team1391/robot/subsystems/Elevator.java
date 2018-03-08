@@ -16,13 +16,14 @@ public class Elevator extends Subsystem {
     private Spark elevatorRightMotor = new Spark(RobotMap.elevatorRightMotorPort);
     private SpeedControllerGroup elevatorMotors = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
 
+    // Elevator encoder.
     public Encoder elevatorEncoder = new Encoder(RobotMap.elevatorEncoderAPort, RobotMap.elevatorEncoderBPort, false, Encoder.EncodingType.k4X);
 
     public Elevator() {
         // The motors have to run in the opposite directions
-        elevatorLeftMotor.setInverted(true);
+        elevatorRightMotor.setInverted(true);
 
-        // Change the coefficient of the elevator to match the distance travelled in inches
+        // Change the coefficient of the elevator to match the distance travelled in percent of total height (100 is max)
         elevatorEncoder.setDistancePerPulse(RobotMap.elevatorEncoderCoefficient);
     }
 
@@ -50,7 +51,7 @@ public class Elevator extends Subsystem {
      */
     public double getThrottledSpeed(double x) {
         // The coefficients of the polynomial
-        double[] coefficients = new double[]{-0.0000071507642949, 0.0004862519720525, -0.0117169374510997, 0.1173222334909840, 0.6};
+        double[] coefficients = new double[]{-0.0000001233779715, 0.000024675594291, -0.0017622246431853, 0.052844492636667, 0.45};
 
         // Calculate the y value at point x of the polynomial
         // Example for 4th degree polynomial: ax^3 + bx^2 + cx + d = x(x(x(a) + b) + c) + d... this simplifies the calculation
@@ -63,9 +64,9 @@ public class Elevator extends Subsystem {
     }
 
     /**
-     * Set the absolute speed of the elevator motors.
+     * Sets the absolute speed of the elevator motors.
      *
-     * @param speed Speed to set for the motors (-1 to 1).
+     * @param speed Speed to set for the motors (1 to 1-).
      */
     public void setAbsoluteSpeed(double speed) {
         elevatorMotors.set(speed);
