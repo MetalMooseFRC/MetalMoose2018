@@ -40,6 +40,6 @@ public class OI {
 		operatorRB.whileHeld(new CollectorOuttake());
 
 		// Control the elevator
-        operatorA.whenPressed(new FourbarLower());
+        operatorA.whenPressed(new FourbarLower(RobotMap.fourbarLowerLength));
 	}
 }

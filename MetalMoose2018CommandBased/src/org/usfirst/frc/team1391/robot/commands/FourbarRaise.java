@@ -7,26 +7,26 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 /**
  * Intakes (either manually using a button, or through autonomous).
  */
-public class FourbarLower extends Command {
+public class FourbarRaise extends Command {
     // Length for the fourbar to do its movement.
     double timeoutLength = 0;
 
-    public FourbarLower(double timeoutLength) {
+    public FourbarRaise(double timeoutLength) {
         requires(Robot.myFourbar);
 
         this.timeoutLength = timeoutLength;
     }
 
     /**
-     * Stop holding the fourbar, set the timeout
+     * Start holding the fourbar, set the timeout
      */
     protected void initialize() {
-        RobotMap.holdFourbar = false;
+        RobotMap.holdFourbar = true;
         setTimeout(timeoutLength);
     }
 
     protected void execute() {
-        Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
+        Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
     }
 
     /**
