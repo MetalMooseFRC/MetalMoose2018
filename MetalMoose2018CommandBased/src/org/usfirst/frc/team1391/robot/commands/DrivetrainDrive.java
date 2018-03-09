@@ -10,6 +10,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 public class DrivetrainDrive extends Command {
     // The goals for the PID.
     private double distance;
+    private double speed = 0;
 
     /**
      * Drive the robot to distance (in inches).
@@ -19,6 +20,16 @@ public class DrivetrainDrive extends Command {
     DrivetrainDrive(double distance) {
         this.distance = distance;
     }
+    
+    /**
+     * Drive the robot for a certain amount of time (in seconds).
+     */
+    DrivetrainDrive(double time, double speed) {
+        this.speed = speed;
+        
+        setTimeout(time);
+    }
+
 
     /**
      * Resets encoder, set goals for PID, enables PID.
@@ -46,11 +57,14 @@ public class DrivetrainDrive extends Command {
     protected void execute() {
         double pidEncoderOutput = Robot.myDrivetrain.encoderPID.get();
         double pidGyroOutput = Robot.myDrivetrain.gyroPID.get();
-
-        Robot.myDrivetrain.arcadeDrive(pidEncoderOutput, pidGyroOutput);
+        
+        if (speed != 0) Robot.myDrivetrain.arcadeDrive(speed, pidGyroOutput);
+        else Robot.myDrivetrain.arcadeDrive(pidEncoderOutput, pidGyroOutput);
     }
-
+    
     protected boolean isFinished() {
+    	if (isTimedOut()) return true;
+    		
         // If we are under encoderStopAtError
         if (Robot.myDrivetrain.encoderPID.onTarget()) {
             // Adjust the robot X and Y coordinates accordingly
