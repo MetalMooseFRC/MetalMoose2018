@@ -83,18 +83,18 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(myFourbar);
 
 		// Puts the chunks for each of the variants of the autonomous
-		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(6)");
-		RobotMap.autonomousFromLayout.put("LeftLLL", "-Chunk(1) -Chunk(2) -Chunk(3)");
-		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(1) -Chunk(2) -Chunk(4) -Chunk(5)");
-		RobotMap.autonomousFromLayout.put("LeftRRR", "-Chunk(6)");
+		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(1) -Chunk(2)");
+		RobotMap.autonomousFromLayout.put("LeftLLL", "-Chunk(3)");
+		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(3)");
+		RobotMap.autonomousFromLayout.put("LeftRRR", "-Chunk(1)");
 		RobotMap.autonomousFromLayout.put("MiddleLRL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleLLL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRLR", "Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRRR", "Chunk(0)");
-		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(1) Chunk(2) Chunk(4) Chunk(5)");
-		RobotMap.autonomousFromLayout.put("RightLLL", "Chunk(6)");
-		RobotMap.autonomousFromLayout.put("RightRLR", "Chunk(6)");
-		RobotMap.autonomousFromLayout.put("RightRRR", "Chunk(1) Chunk(2) Chunk(3)");
+		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(3)");
+		RobotMap.autonomousFromLayout.put("RightLLL", "Chunk(1)");
+		RobotMap.autonomousFromLayout.put("RightRLR", "Chunk(1) Chunk(2)");
+		RobotMap.autonomousFromLayout.put("RightRRR", "Chunk(3)");
 	}
 
 	@Override
@@ -161,12 +161,14 @@ public class Robot extends TimedRobot {
 		
 		// If there is anything in the custom command String, it overrides the selected preferences
 		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "");
-		
-		if (!customCommandString.equals("") && customCommandString != null) commandString = customCommandString; 
 
-		System.out.println(commandString);
-		
-		
+		// Custom String always overrides any autonomous problems that we had
+		if (!customCommandString.equals("")) commandString = customCommandString;
+
+		// If we are sending nothing to the robot as autonomous, that would be a problem.
+		// This at least moves past the line
+		if (commandString == null || commandString.length() == 0) commandString = RobotMap.chunks[1];
+
 		myAutonomousCommand = new AutonomousCommandGroup(commandString);
 		myAutonomousCommand.start();
 	}

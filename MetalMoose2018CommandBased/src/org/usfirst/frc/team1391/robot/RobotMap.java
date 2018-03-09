@@ -90,11 +90,14 @@ public class RobotMap {
             // Middle to switch (for RRR and RLR)
     		"Drive(36) TurnBy(45) Drive(70) TurnBy(-45) DriveTime(2, 0.35) Outtake(0.5)",
 
-            // Right to the switch
-    		"Drive(130) TurnBy(-90) DriveTime(2, 0.35) Outtake(0.5)",
+            // Drive right to the switch (pass the line)
+            "Drive(130)",
+
+            // Turn and place on the switch
+    		"TurnBy(-90) DriveTime(2, 0.35) Outtake(0.5)",
 
             // Right to the scale
-    		"D(240) TB(-45) Elevate(2) Outtake(0.5) Elevate(0)"
+    		"Drive(240) TurnBy(-45) Elevate(2) Outtake(0.5) Elevate(0)"
     };
     
     // Stores the starting positions of the robot (arr[0], arr[1] and arr[2] being left, middle and right)
