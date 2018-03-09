@@ -80,6 +80,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(myDrivetrain);
 		SmartDashboard.putData(myCollector);
 		SmartDashboard.putData(myElevator);
+		SmartDashboard.putData(myFourbar);
 
 		// Puts the chunks for each of the variants of the autonomous
 		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(6)");
