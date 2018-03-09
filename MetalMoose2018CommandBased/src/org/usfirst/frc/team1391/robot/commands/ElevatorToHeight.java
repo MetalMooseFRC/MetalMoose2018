@@ -50,9 +50,15 @@ public class ElevatorToHeight extends Command {
 
         // Where do we want to go (if positive, go up; if negative, go down)
         int direction = (int)Math.signum(endPosition - currentPosition);
+
+        // The speed of the encoder (from the throttle function)
+        double speed = direction * Robot.myElevator.getThrottledSpeed(currentPosition * coefficient - shift);
+
+        // We want to slow the elevator by a factor when we go down (gravity)
+        if (direction < 0) speed *= RobotMap.elevatorSlowCoefficient;
         
         // Get the value after shift and direction alteration and set it to absolute speed
-        Robot.myElevator.setAbsoluteSpeed(direction * Robot.myElevator.getThrottledSpeed(currentPosition * coefficient - shift));
+        Robot.myElevator.setAbsoluteSpeed(speed);
     }
 
     // Only once we hit the target do we stop

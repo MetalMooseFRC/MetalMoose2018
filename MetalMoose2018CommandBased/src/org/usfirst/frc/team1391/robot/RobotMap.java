@@ -145,6 +145,9 @@ public class RobotMap {
     public static double elevatorHoldSpeed = 0.3;
     public static double minimumElevatorHoldDistance = 2;
 
+    // Slow down the elevator by this factor when going down
+    public static double elevatorSlowCoefficient = 0.3;
+
     /* FOURBAR */
     // Values for Lowering the fourbar
     // This is basically just an impulse, it will go down thanks to gravity
