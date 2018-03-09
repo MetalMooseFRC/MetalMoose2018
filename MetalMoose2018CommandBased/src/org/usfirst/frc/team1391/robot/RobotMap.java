@@ -88,25 +88,13 @@ public class RobotMap {
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
             // Middle to switch (for RRR and RLR)
-    		"Drive(36) Goto(55, 105) TurnTo(0) Outtake(0.5)",
+    		"Drive(36) TurnBy(45) Drive(70) TurnBy(-45) DriveTime(2, 0.35) Outtake(0.5)",
 
-            // Right to scale (for RRR and LRL)
-            "Drive(261.47) TurnTo(-30) Elevate(2) Outtake(0.5) Elevate(0)",
+            // Right to the switch
+    		"Drive(130) TurnBy(-90) DriveTime(2, 0.35) Outtake(0.5)",
 
-            // Get the cube right after scoring on the scale (for RRR, LRL)
-            "FourbarDown() Goto(91.75, 202.5, intake=true, stopFromGoal=17) FourbarUp()",
-
-            // Score on the switch when the switch is on the same side as was the scale (for RRR)
-            "Elevate(1) Outtake(0.5)",
-
-            // Back off from scoring on the switch (for RRR)
-            "Drive(-20)",
-
-            // Score on the switch when the switch is on the opposite side as was the scale (for LRL, LLL)
-            "Goto(-91.75, 235.235) TurnTo(-180) Elevate(1) Outtake(0.5)",
-
-            // Move to position to be prepared to go to the opposite side of the field for a scale
-            "Drive(235.235) TurnTo(-90) Goto(-91.75, 235.235) TurnTo(20) Elevator(2) Outtake(0.5)"
+            // Right to the scale
+    		"D(240) TB(-45) Elevate(2) Outtake(0.5) Elevate(0)"
     };
     
     // Stores the starting positions of the robot (arr[0], arr[1] and arr[2] being left, middle and right)
