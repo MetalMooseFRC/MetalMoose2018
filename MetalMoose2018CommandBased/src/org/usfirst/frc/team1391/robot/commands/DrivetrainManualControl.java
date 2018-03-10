@@ -51,12 +51,12 @@ public class DrivetrainManualControl extends Command {
 
             // Arcade drive using the Y and the rotation (as X) axis of the Logitech joystick
             case 2: {
-                // This is the axis that adjusts the speed of the entire robot
+                // This is the axis that adjusts the speed of the turning of the robot
                 // The arithmetic changes are made so that it goes from 0 to 1, instead of from -1 to 1
-                double robotSpeed = (1.0 - OI.driveStick.getRawAxis(RobotMap.arcadeDriveSpeedAxisPort)) / 2.0;
+                double turnSpeed = (1.0 - OI.driveStick.getRawAxis(RobotMap.arcadeDriveSpeedAxisPort)) / 2.0;
 
-                double forwardSpeed = OI.driveStick.getY() * robotSpeed;
-                double turningSpeed = OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort) * robotSpeed;
+                double forwardSpeed = OI.driveStick.getY();
+                double turningSpeed = OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort) * turnSpeed;
 
                 if (OI.driveButton.get()) Robot.myDrivetrain.arcadeDrive(forwardSpeed, turningSpeed);
                 else Robot.myDrivetrain.arcadeDrive(-forwardSpeed, turningSpeed);
