@@ -17,6 +17,7 @@ import org.usfirst.frc.team1391.robot.subsystems.Collector;
 import org.usfirst.frc.team1391.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1391.robot.subsystems.Elevator;
 import org.usfirst.frc.team1391.robot.subsystems.Fourbar;
+import org.usfirst.frc.team1391.robot.subsystems.Hanger;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
 	public static final Collector myCollector = new Collector();
 	public static final Elevator myElevator = new Elevator();
 	public static final Fourbar myFourbar = new Fourbar();
+	public static final Hanger myHanger = new Hanger();
 
 	// Create the OI 
 	public static final OI myOI = new OI();
@@ -81,6 +83,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(myCollector);
 		SmartDashboard.putData(myElevator);
 		SmartDashboard.putData(myFourbar);
+		SmartDashboard.putData(myHanger);
 
 		// Puts the chunks for each of the variants of the autonomous
 		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(1) -Chunk(2)");
