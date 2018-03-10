@@ -160,16 +160,15 @@ public class Robot extends TimedRobot {
 				break;
 			}
 		}
-		
-		
-		// If there is anything in the custom command String, it overrides the selected preferences
+
+		// The custom robot String from the SmartDashboard
 		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "");
 
 		// Custom String always overrides any autonomous problems that we had
 		if (!customCommandString.equals("")) commandString = customCommandString;
 
 		// If we are sending nothing to the robot as autonomous, that would be a problem.
-		// This at least moves past the line
+		// This at least moves past the line (moves forward for a while)
 		if (commandString == null || commandString.length() == 0) commandString = RobotMap.chunks[1];
 
 		myAutonomousCommand = new AutonomousCommandGroup(commandString);

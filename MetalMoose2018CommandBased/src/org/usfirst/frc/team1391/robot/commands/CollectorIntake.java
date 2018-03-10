@@ -24,7 +24,6 @@ public class CollectorIntake extends Command {
      * Sets speed, defined by the collectorIntakeSpeed constant.
      */
     protected void execute() {
-    	// If autonomousSpeed is zero, this is not called by autonomous, so we will control using collectorIntakeSpeed
         Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorIntakeSpeed);
     }
 

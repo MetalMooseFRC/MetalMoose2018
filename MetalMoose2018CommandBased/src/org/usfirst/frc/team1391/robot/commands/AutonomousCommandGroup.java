@@ -47,8 +47,6 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // Intake(mode) - parallel - 1 is intake with speed set 1, 0 is intake with hold speed)
                 case "I": {
-                    int intakeMode = Integer.parseInt(commandParts[1]);
-
                     addParallel(new CollectorIntake());
                     break;
                 }
