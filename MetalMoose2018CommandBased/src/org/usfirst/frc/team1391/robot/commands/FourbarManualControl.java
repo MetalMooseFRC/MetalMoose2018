@@ -29,7 +29,7 @@ public class FourbarManualControl extends Command {
         double yAxisSpeed = -OI.operatorController.getRawAxis(RobotMap.operatorRightYPort);
 
         // Either set the fourbar to the axis value (if it is above the hold threshold, or just hold
-        if (Math.abs(yAxisSpeed) > RobotMap.fourbarHoldSpeed) {
+        if (Math.abs(yAxisSpeed) > RobotMap.fourbarHoldUpSpeed && OI.operatorB.get()) {
             // If it is smaller than zero, it just went down, so we don't want to hold it anymore
             if (yAxisSpeed < 0) RobotMap.holdFourbar = false;
 
@@ -40,10 +40,8 @@ public class FourbarManualControl extends Command {
         }
 
         // If no inputs from the axis, just hold (if we want to)
-        else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldSpeed);
-
-        // Else stay down
-        else Robot.myFourbar.setSpeed(0);
+        else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
+        else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
     }
 
     protected boolean isFinished() {

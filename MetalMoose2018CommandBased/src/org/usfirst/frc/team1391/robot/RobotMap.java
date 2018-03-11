@@ -151,15 +151,15 @@ public class RobotMap {
     // Values for Lowering the fourbar
     // This is basically just an impulse, it will go down thanks to gravity
     public static double fourbarLowerLength = 0.8;
-    public static double fourbarLowerPowerLength = 0.25;
     public static double fourbarLowerSpeed = -0.3;
 
     // Values for raising the fourbar
     public static double fourbarRaiseLength = 0.8;
-    public static double fourbarRaiseSpeed = 0.6;
+    public static double fourbarRaiseSpeed = 0.8;
 
     // Hold speed of the fourbar
-    public static double fourbarHoldSpeed = 0.2;
+    public static double fourbarHoldUpSpeed = 0.2;
+    public static double fourbarHoldDownSpeed = -0.1;
 
     // Should the fourbar be held in place now?
     public static boolean holdFourbar = false;

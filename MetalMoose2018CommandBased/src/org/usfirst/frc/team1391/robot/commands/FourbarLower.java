@@ -9,7 +9,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class FourbarLower extends Command {
     // Length for the fourbar to do its movement.
-    double timeoutLength = 0;
+    double timeoutLength;
 
     public FourbarLower(double timeoutLength) {
         requires(Robot.myFourbar);
@@ -18,7 +18,7 @@ public class FourbarLower extends Command {
     }
 
     /**
-     * Stop holding the fourbar (this will coome into effect after the command ends), set the timeout
+     * Stop holding the fourbar (this will come into effect after the command ends), set the timeout
      */
     protected void initialize() {
         RobotMap.holdFourbar = false;
@@ -26,8 +26,7 @@ public class FourbarLower extends Command {
     }
 
     protected void execute() {
-        // We want to initially move down (until time is over fourbarLowerPowerLength), and then let gravity do its thing
-        if (RobotMap.fourbarLowerPowerLength > timeSinceInitialized()) Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
+        Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
     }
 
     /**
