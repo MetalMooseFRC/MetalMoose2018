@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
 import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
 import org.usfirst.frc.team1391.robot.commands.FourbarLower;
+import org.usfirst.frc.team1391.robot.commands.FourbarRaise;
 
 /**
  * Connect physical operator interface to commands.
@@ -41,5 +42,6 @@ public class OI {
 
 		// Control the elevator
         operatorA.whenPressed(new FourbarLower(RobotMap.fourbarLowerLength));
+        operatorY.whenPressed(new FourbarRaise(RobotMap.fourbarRaiseLength));
 	}
 }
