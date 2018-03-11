@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team1391.robot.BlankPIDOutput;
+import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 import org.usfirst.frc.team1391.robot.commands.DrivetrainManualControl;
 
@@ -66,5 +67,31 @@ public class Drivetrain extends Subsystem {
      */
     public void tankDrive(double left, double right) {
         myDifferentialDrive.tankDrive(left, right);
+    }
+
+    /**
+     * Set speed of the elevator motors (throttled).
+     */
+    public void throttledArcadeDrive(double y, double x) {
+        double elevatorPosition = Robot.myElevator.elevatorEncoder.getDistance();
+
+        // If the encoder somehow messes up and counts the value on top above 100, we would be in trouble (the values of the polynomial start increasing)
+        if (elevatorPosition > 100) elevatorPosition = 100;
+
+        // The coefficients of the polynomial
+        double[] coefficients = new double[]{0.0000000019097222, -0.000000763888889, 0.000135486111110, -0.01181944444404, 1};
+
+        // Calculate the y value at point x of the polynomial
+        // Example for 4th degree polynomial: ax^3 + bx^2 + cx + d = x(x(x(a) + b) + c) + d... this simplifies the calculation
+        double value = 0;
+        for (double coefficient : coefficients) value = value * elevatorPosition + coefficient;
+
+        // Restrict from 1 to 0.2
+        if (value > 1) value = 1;
+        
+        x *= value;
+        y *= value;
+
+        myDifferentialDrive.arcadeDrive(y, x);
     }
 }

@@ -23,8 +23,9 @@ public class OI {
 	public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort),
 			operatorController = new Joystick(RobotMap.operatorControllerPort);
 		
-	// For going backwards in teleop (for the driver)
-	public static final Button driveButton = new JoystickButton(driveStick, RobotMap.arcadeDriveBackwardButtonPort);
+	// For going backwards in teleop (for the driver) and overriding the throttled drivebase
+	public static final Button reverseDriveButton = new JoystickButton(driveStick, RobotMap.reverseDriveButtonPort),
+			throttleDriveButton = new JoystickButton(driveStick, RobotMap.throttleDriveButtonPort);
 
 	// Control buttons for the operator
 	public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),

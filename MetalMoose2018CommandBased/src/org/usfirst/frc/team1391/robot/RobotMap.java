@@ -23,10 +23,12 @@ public class RobotMap {
     public static final int tankDriveLeftStickYAxisPort = 1;
     public static final int tankDriveRightStickYAxisPort = 5;
 
-    // Port of the rotation axis of the Logitech joystick
+    // Port of the axes for driving of the Logitech joystick
     public static final int arcadeDriveRotationAxisPort = 2;
-    public static final int arcadeDriveSpeedAxisPort = 3;
-    static final int arcadeDriveBackwardButtonPort = 1;
+
+    // Port of the buttons for the driving of the Logitech joystick
+    public static final int reverseDriveButtonPort = 1;
+    public static final int throttleDriveButtonPort = 4;
 
     // Operator controller button mapping
     static final int operatorButtonAPort = 1;
