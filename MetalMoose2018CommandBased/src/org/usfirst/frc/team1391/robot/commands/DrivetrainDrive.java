@@ -11,6 +11,7 @@ public class DrivetrainDrive extends Command {
     // The goals for the PID.
     private double distance;
     private double speed = 0;
+    private double time = 0;
 
     /**
      * Drive the robot to distance (in inches).
@@ -26,8 +27,7 @@ public class DrivetrainDrive extends Command {
      */
     DrivetrainDrive(double time, double speed) {
         this.speed = speed;
-        
-        setTimeout(time);
+        this.time = time;
     }
 
 
@@ -49,6 +49,8 @@ public class DrivetrainDrive extends Command {
         Robot.myDrivetrain.gyroPID.setSetpoint(0);
         Robot.myDrivetrain.gyroPID.reset();
         Robot.myDrivetrain.gyroPID.enable();
+
+        if (time != 0) setTimeout(time);
     }
 
     /**
@@ -62,17 +64,16 @@ public class DrivetrainDrive extends Command {
         else Robot.myDrivetrain.arcadeDrive(pidEncoderOutput, pidGyroOutput);
     }
     
-    protected boolean isFinished() {
-    	if (isTimedOut()) return true;
-    		
+    protected boolean isFinished() {	
         // If we are under encoderStopAtError
-        if (Robot.myDrivetrain.encoderPID.onTarget()) {
+    	if (Robot.myDrivetrain.encoderPID.onTarget() && time == 0) {
+    		
             // Adjust the robot X and Y coordinates accordingly
             RobotMap.robotPositionX += Math.sin(Math.toRadians(RobotMap.absoluteAngle)) * Robot.myDrivetrain.myEncoder.getDistance();
             RobotMap.robotPositionY += Math.cos(Math.toRadians(RobotMap.absoluteAngle)) * Robot.myDrivetrain.myEncoder.getDistance();
 
             return true;
-        } else return false;
+        } else return isTimedOut();
     }
 
     protected void end() {}
