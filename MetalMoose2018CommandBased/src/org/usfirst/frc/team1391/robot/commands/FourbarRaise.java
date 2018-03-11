@@ -5,11 +5,11 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Intakes (either manually using a button, or through autonomous).
+ * Raises the elevator.
  */
 public class FourbarRaise extends Command {
     // Length for the fourbar to do its movement.
-    double timeoutLength = 0;
+    double timeoutLength;
 
     public FourbarRaise(double timeoutLength) {
         requires(Robot.myFourbar);
@@ -18,7 +18,7 @@ public class FourbarRaise extends Command {
     }
 
     /**
-     * Start holding the fourbar, set the timeout
+     * Start holding the fourbar (after the command is done), set the timeout
      */
     protected void initialize() {
         RobotMap.holdFourbar = true;

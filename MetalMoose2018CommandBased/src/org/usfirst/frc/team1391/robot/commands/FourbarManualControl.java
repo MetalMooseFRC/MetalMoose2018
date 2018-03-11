@@ -7,7 +7,7 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Intakes (either manually using a button, or through autonomous).
+ * Manually control the fourbar.
  */
 public class FourbarManualControl extends Command {
     /**
@@ -20,7 +20,9 @@ public class FourbarManualControl extends Command {
     protected void initialize() {}
 
     /**
+     * Manually control the fourbar (move up/down/hold)
      *
+     * If we just moved up, then hold. If we just moved down, stop holding
      */
     protected void execute() {
         // The '-' sign is there because the controller axes are reversed (forward is -1)
@@ -39,6 +41,8 @@ public class FourbarManualControl extends Command {
 
         // If no inputs from the axis, just hold (if we want to)
         else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldSpeed);
+
+        // Else stay down
         else Robot.myFourbar.setSpeed(0);
     }
 

@@ -14,7 +14,7 @@ public class HangerManualControl extends Command {
     protected void initialize() {}
 
     protected void execute() {
-	    // Controlled using the POV - if up (0), go up. If down (180), go down
+	    // Controlled using the POV - if down (180), go up. If up (0), go down
     	if (OI.operatorController.getPOV() == 180) Robot.myHanger.setSpeed(1);
     	else if (OI.operatorController.getPOV() == 0) Robot.myHanger.setSpeed(-1);
     	else Robot.myHanger.setSpeed(0);

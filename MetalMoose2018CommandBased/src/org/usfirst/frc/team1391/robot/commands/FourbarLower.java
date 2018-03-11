@@ -5,7 +5,7 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Intakes (either manually using a button, or through autonomous).
+ * Lower the fourbar and disable fourbar hold.
  */
 public class FourbarLower extends Command {
     // Length for the fourbar to do its movement.
@@ -18,7 +18,7 @@ public class FourbarLower extends Command {
     }
 
     /**
-     * Stop holding the fourbar, set the timeout
+     * Stop holding the fourbar (this will coome into effect after the command ends), set the timeout
      */
     protected void initialize() {
         RobotMap.holdFourbar = false;
@@ -26,8 +26,8 @@ public class FourbarLower extends Command {
     }
 
     protected void execute() {
+        // We want to initially move down (until time is over fourbarLowerPowerLength), and then let gravity do its thing
         if (RobotMap.fourbarLowerPowerLength > timeSinceInitialized()) Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
-        else System.out.println( timeSinceInitialized());
     }
 
     /**

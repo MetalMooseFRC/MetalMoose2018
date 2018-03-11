@@ -6,16 +6,14 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 import org.usfirst.frc.team1391.robot.commands.FourbarManualControl;
 
 /**
- * Controls the drivebase motors.
+ * Controls the fourbar.
  */
 public class Fourbar extends Subsystem {
 
     // Speed controller controlling the fourbar
 	private Spark motor = new Spark(RobotMap.fourbarMotorPort);
 
-    public Fourbar() {
-
-    }
+    public Fourbar() {}
 
     public void initDefaultCommand() {
         setDefaultCommand(new FourbarManualControl());

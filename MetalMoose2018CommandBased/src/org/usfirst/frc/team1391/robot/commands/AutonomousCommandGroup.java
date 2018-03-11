@@ -149,10 +149,10 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // DriveTime(time, speed) - sequential - drive for a certain period of time at a certain speed
                 case "DT": {
-                    double distance = Double.parseDouble(commandParts[1]);
+                    double time = Double.parseDouble(commandParts[1]);
                     double speed = Double.parseDouble(commandParts[2]);
 
-                    addSequential(new DrivetrainDrive(distance, speed));
+                    addSequential(new DrivetrainDrive(time, speed));
 
                     break;
                 }

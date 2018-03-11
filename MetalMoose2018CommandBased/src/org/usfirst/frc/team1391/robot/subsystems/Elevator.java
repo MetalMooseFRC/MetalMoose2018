@@ -56,7 +56,7 @@ public class Elevator extends Subsystem {
         // Calculate the y value at point x of the polynomial
         // Example for 4th degree polynomial: ax^3 + bx^2 + cx + d = x(x(x(a) + b) + c) + d... this simplifies the calculation
         double value = 0;
-        for (int i = 0; i < coefficients.length; i++) value = value * x + coefficients[i];
+        for (double coefficient : coefficients) value = value * x + coefficient;
 
         // The maximum motor speed is 1 (or -1, for that matter)... it does not make sense to have more than that.
         if (value > 1) return 1;

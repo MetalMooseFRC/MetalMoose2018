@@ -11,12 +11,10 @@ import org.usfirst.frc.team1391.robot.commands.HangerManualControl;
  */
 public class Hanger extends Subsystem {
 
-    // Speed controller controlling the fourbar
+    // Speed controller controlling the hanger
 	private Spark motor = new Spark(RobotMap.hangerMotorPort);
 
-    public Hanger() {
-
-    }
+    public Hanger() {}
 
     public void initDefaultCommand() {
         setDefaultCommand(new HangerManualControl());
