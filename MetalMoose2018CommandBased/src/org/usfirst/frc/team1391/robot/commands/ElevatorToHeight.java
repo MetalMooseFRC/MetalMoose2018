@@ -64,8 +64,7 @@ public class ElevatorToHeight extends Command {
     // Only once we hit the target do we stop
     protected boolean isFinished() {
         // If we are close to the target
-        if (Math.abs(Robot.myElevator.elevatorEncoder.getDistance() - endPosition) < 0.1) return true;
-        else return false;
+        return Math.abs(Robot.myElevator.elevatorEncoder.getDistance() - endPosition) < RobotMap.elevatorToHeightTolerance;
     }
 
     protected void end() {}

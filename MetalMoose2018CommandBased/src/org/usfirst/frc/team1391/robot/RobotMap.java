@@ -144,6 +144,9 @@ public class RobotMap {
     // Slow down the elevator by this factor when going down
     public static double elevatorSlowCoefficient = 0.3;
 
+    // This is the error tolerated by the ElevatorToHeight command
+    public static double elevatorToHeightTolerance = 4;
+
     /* FOURBAR */
     // Values for Lowering the fourbar
     // This is basically just an impulse, it will go down thanks to gravity
