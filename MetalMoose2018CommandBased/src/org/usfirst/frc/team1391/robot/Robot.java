@@ -89,13 +89,13 @@ public class Robot extends TimedRobot {
 		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(1) -Chunk(2)");
 		RobotMap.autonomousFromLayout.put("LeftLLL", "-Chunk(3)");
 		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(3)");
-		RobotMap.autonomousFromLayout.put("LeftRRR", "-Chunk(1)");
+		RobotMap.autonomousFromLayout.put("LeftRRR", "-Chunk(4)");
 		RobotMap.autonomousFromLayout.put("MiddleLRL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleLLL", "-Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRLR", "Chunk(0)");
 		RobotMap.autonomousFromLayout.put("MiddleRRR", "Chunk(0)");
 		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(3)");
-		RobotMap.autonomousFromLayout.put("RightLLL", "Chunk(1)");
+		RobotMap.autonomousFromLayout.put("RightLLL", "Chunk(4)");
 		RobotMap.autonomousFromLayout.put("RightRLR", "Chunk(1) Chunk(2)");
 		RobotMap.autonomousFromLayout.put("RightRRR", "Chunk(3)");
 	}
@@ -170,7 +170,7 @@ public class Robot extends TimedRobot {
 		// If we are sending nothing to the robot as autonomous, that would be a problem.
 		// This at least moves past the line (moves forward for a while)
 		if (commandString == null || commandString.length() == 0) commandString = RobotMap.chunks[1];
-
+		
 		myAutonomousCommand = new AutonomousCommandGroup(commandString);
 		myAutonomousCommand.start();
 	}
