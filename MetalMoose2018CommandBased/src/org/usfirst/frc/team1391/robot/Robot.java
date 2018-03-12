@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(myHanger);
 
 		// Puts the chunks for each of the variants of the autonomous
-		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(1) -Chunk(2)");
+		RobotMap.autonomousFromLayout.put("LeftLRL", "-Chunk(4)");
 		RobotMap.autonomousFromLayout.put("LeftLLL", "-Chunk(3)");
 		RobotMap.autonomousFromLayout.put("LeftRLR", "-Chunk(3)");
 		RobotMap.autonomousFromLayout.put("LeftRRR", "-Chunk(4)");
@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
 		RobotMap.autonomousFromLayout.put("MiddleRRR", "Chunk(0)");
 		RobotMap.autonomousFromLayout.put("RightLRL", "Chunk(3)");
 		RobotMap.autonomousFromLayout.put("RightLLL", "Chunk(4)");
-		RobotMap.autonomousFromLayout.put("RightRLR", "Chunk(1) Chunk(2)");
+		RobotMap.autonomousFromLayout.put("RightRLR", "Chunk(4)");
 		RobotMap.autonomousFromLayout.put("RightRRR", "Chunk(3)");
 	}
 
