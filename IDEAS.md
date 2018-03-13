@@ -14,7 +14,6 @@
 	- Optional parameters will have upper + lower case too - same with commands
 - Make autonomodes on the left easily reverted
 - Stop resetting the angle that the robot is in after each command... it only makes it inaccurate
-- Ditch the coordinate system
 - Scale control: drive all the way to the right of the scale, elevate, turn, spit, elevate down, then get a cube and do it from the side - either scale or switch
 - Fudge constant to alter robot speed during autonomous
 - More autonomous modes to choose from

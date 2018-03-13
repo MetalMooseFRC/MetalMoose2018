@@ -79,46 +79,6 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Goto(x, y, intake=mode, stopFromGoal=distance) - generates two moves (turnby, then drive) to move to the coordinate.
-                // intake is an optional parameter. If it is true, the robot will start intaking when it starts driving to the coordinates
-                // stopFromGoal is an optional parameter. If it is true, the robot will start intaking before moving
-                case "G": {
-                    // If reversed is true, then we need to reverse x (the board is mirrored)
-                    double x = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
-                    double y = Double.parseDouble(commandParts[2]);
-
-                    // The values here are arbitrary - just to check whether they changed later
-                    double stopFromGoalDistance = 0;
-                    boolean intakeMode = false;
-
-                    // If the command has optional parameters
-                    for (int i = 3; i < commandParts.length; i++) {
-                        String[] optionalCommandParts = commandParts[i].split(" *= *");
-
-                        switch (optionalCommandParts[0]) {
-                            case "intake":
-                                intakeMode = Boolean.parseBoolean(optionalCommandParts[1]);
-                                break;
-
-                            case "stopFromGoal":
-                                stopFromGoalDistance = Double.parseDouble(optionalCommandParts[1]);
-                                break;
-                        }
-                    }
-
-                    // The turning part of the goto
-                    addSequential(new DrivetrainTurnToCoordinates(x, y));
-
-                    // If we do intake during the goto
-                    if (intakeMode) addParallel(new CollectorIntake());
-
-                    // The moving part of the goto
-                    if (stopFromGoalDistance != 0) addSequential(new DrivetrainDriveToCoordinates(x, y, stopFromGoalDistance));
-                    else addSequential(new DrivetrainDriveToCoordinates(x, y));
-
-                    break;
-                }
-
                 // TurnTo(angle in degrees) - sequential - turn to an angle
                 case "TT": {
                     double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);

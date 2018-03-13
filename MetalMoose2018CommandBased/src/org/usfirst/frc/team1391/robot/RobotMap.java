@@ -106,19 +106,12 @@ public class RobotMap {
     		// Right to scale on the opposite side
     		"Drive(212) TurnBy(-90) Drive(228) TurnBy(90) Drive(20) TurnBy(30) Elevate(2) DriveTime(1, 0.3) Output(0.5) Elevate(0)"
     };
-    
-    // Stores the starting positions of the robot (arr[0], arr[1] and arr[2] being left, middle and right)
-    public static double[][] startingPositionCoordinates = new double[][]{{-115, 19.5}, {5, 19.5}, {115, 19.5}};
 
     // Stores the chunks that make up the autonomous sequences
     public static Map<String, String> autonomousFromLayout = new HashMap<>();
 
     // The absolute angle that the robot is currently in
     public static double absoluteAngle = 0;
-
-    // The absolute position of the robot in the field
-    public static double robotPositionX = 0;
-    public static double robotPositionY = 0;
 
     /* COLLECTOR */
     // Values for the collector speeds

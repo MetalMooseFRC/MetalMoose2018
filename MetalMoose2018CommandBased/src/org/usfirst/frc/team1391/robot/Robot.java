@@ -139,27 +139,6 @@ public class Robot extends TimedRobot {
 		String fieldLayout = DriverStation.getInstance().getGameSpecificMessage();
 
 		String commandString = RobotMap.autonomousFromLayout.get(robotPosition + fieldLayout);
-		
-		// We have to adjust the robot X and Y accordingly, depending on where they are
-		switch(robotPosition) {
-			case "Left": {
-				RobotMap.robotPositionX = RobotMap.startingPositionCoordinates[0][0];
-				RobotMap.robotPositionY = RobotMap.startingPositionCoordinates[0][1];
-				break;
-			}
-			
-			case "Middle": {
-				RobotMap.robotPositionX = RobotMap.startingPositionCoordinates[1][0];
-				RobotMap.robotPositionY = RobotMap.startingPositionCoordinates[1][1];
-				break;
-			}
-			
-			case "Right": {
-				RobotMap.robotPositionX = RobotMap.startingPositionCoordinates[2][0];
-				RobotMap.robotPositionY = RobotMap.startingPositionCoordinates[2][1];
-				break;
-			}
-		}
 
 		// The custom robot String from the SmartDashboard
 		String customCommandString = SmartDashboard.getString("Custom Autonomous Command", "");
