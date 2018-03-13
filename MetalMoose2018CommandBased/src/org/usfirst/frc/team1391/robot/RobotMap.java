@@ -143,18 +143,9 @@ public class RobotMap {
     public static double elevatorToHeightTolerance = 4;
 
     /* FOURBAR */
-    // Values for Lowering the fourbar
-    // This is basically just an impulse, it will go down thanks to gravity
-    public static double fourbarLowerLength = 0.8;
-    public static double fourbarLowerSpeed = -0.3;
-
-    // Values for raising the fourbar
-    public static double fourbarRaiseLength = 0.8;
-    public static double fourbarRaiseSpeed = 0.8;
-
-    // Hold speed of the fourbar
-    public static double fourbarHoldUpSpeed = 0.2;
-    public static double fourbarHoldDownSpeed = -0.1;
+    // Hold the fourbar either up or down
+    public static double fourbarHoldUpSpeed = 0.8;
+    public static double fourbarHoldDownSpeed = -0.3;
 
     // Should the fourbar be held in place now?
     public static boolean holdFourbar = false;

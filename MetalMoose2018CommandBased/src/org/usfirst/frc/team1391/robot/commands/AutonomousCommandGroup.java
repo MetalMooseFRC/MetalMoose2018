@@ -59,18 +59,6 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // FourbarUp() - parallel - moves the fourbar up
-                case "FU": {
-                    addSequential(new FourbarRaise(RobotMap.fourbarRaiseLength));
-                    break;
-                }
-
-                // FourbarDown() - parallel - moves the fourbar down
-                case "FD": {
-                    addSequential(new FourbarLower(RobotMap.fourbarLowerLength));
-                    break;
-                }
-
                 // Timeout(time in seconds) - sequential - timeout of the drivetrain
                 case "T": {
                     double lengthOfDrivebaseTimeout = Double.parseDouble(commandParts[1]);

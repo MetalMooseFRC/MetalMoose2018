@@ -3,7 +3,6 @@ package org.usfirst.frc.team1391.robot.subsystems;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team1391.robot.RobotMap;
-import org.usfirst.frc.team1391.robot.commands.FourbarManualControl;
 import org.usfirst.frc.team1391.robot.commands.HangerManualControl;
 
 /**

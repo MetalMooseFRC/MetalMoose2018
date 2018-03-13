@@ -1,12 +1,13 @@
 # Robotics TO-DO
+- On the top are the easier/higher priory ones
 
 ## Drive Station
-- Synchronization
-- Installing putty
+- Install PuTTY
 - Install 7-Zip
-- RGB + RPi stripes, depending on a variable (sound?)
-- Correctly velcro the drive station laptops, controllers
+- Synchronization
 - Fix the wiring inside
+- Correctly velcro the drive station laptops, controllers
+- RGB + RPi stripes, depending on a variable (sound?)
 	
 ## Autonomous
 - Command for driving and turning
@@ -20,6 +21,7 @@
 - Put them on the SmartDashboard!
 - Speed up autonomous driving!
 - Split drive command
+- Fix the Intake command
 
 ## Gameplay
 - Drive full-on into the null zone
@@ -27,7 +29,6 @@
 - Better communication - figure out calls between me, Daelan and Larry
 
 ## Robot Control
-- Disable fourbar control by the user (elevator up - fourbar up. Elevator down - fourbar down only if on the ground
 - Elevator - add the slow-down of the function only one way (up when going up, down when going down)
 - Elevator - make the function that controls the elevator faster
 - Slower the turning speed of the robot, so I have more control
