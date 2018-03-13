@@ -14,9 +14,7 @@ public class CollectorManualControl extends Command {
         requires(Robot.myCollector);
     }
 
-    protected void initialize() {
-
-    }
+    protected void initialize() {}
 
     protected void execute() {
         double leftTriggerSpeed = OI.operatorController.getRawAxis(RobotMap.operatorLeftTriggerPort);
@@ -35,7 +33,7 @@ public class CollectorManualControl extends Command {
         	Robot.myCollector.setAbsoluteSpeed(-rightTriggerSpeed);
         }
 
-        // If we want to hold the cube
+        // If we want to hold the cube (after intaking)
         else if (RobotMap.intakeWithCollector) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
 
         // If nothing gives input, set speed to zero

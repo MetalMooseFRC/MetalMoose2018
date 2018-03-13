@@ -26,9 +26,8 @@ public class ElevatorManualControl extends Command {
         double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
 
         // If 'overriden' by pressing B on the operator joystick
-    	if (OI.operatorB.get()) {
-    		Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
-    	} else {
+    	if (OI.operatorB.get()) Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
+    	else {
     	    // When going down, we want to go more slowly (than going up - gravity)
     		if (leftJoystickInput < 0) leftJoystickInput *= RobotMap.elevatorSlowCoefficient;
     			

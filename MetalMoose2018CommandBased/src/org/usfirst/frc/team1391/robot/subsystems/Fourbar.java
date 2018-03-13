@@ -19,6 +19,12 @@ public class Fourbar extends Subsystem {
         setDefaultCommand(new FourbarManualControl());
     }
     
+
+    /**
+     * Sets the speed of the fourbar motor.
+     *
+     * @param speed The speed to set the fourbar motor to (1 being up, -1 being down).
+     */
     public void setSpeed(double speed) {
     	motor.set(speed);
     }

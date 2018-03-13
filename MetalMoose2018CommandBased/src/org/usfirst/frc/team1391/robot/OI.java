@@ -36,7 +36,7 @@ public class OI {
 			operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
 	
 	// Map commands to operator stick
-	public OI() {
+	OI() {
 	    // Control the collector
 		operatorLB.whileHeld(new CollectorIntake());
 		operatorRB.whileHeld(new CollectorOuttake());

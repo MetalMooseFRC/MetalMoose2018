@@ -19,7 +19,12 @@ public class Hanger extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new HangerManualControl());
     }
-    
+
+    /**
+     * Sets the speed of the collector motors.
+     *
+     * @param speed The speed to set the collector motors to.
+     */
     public void setSpeed(double speed) {
     	motor.set(speed);
     }

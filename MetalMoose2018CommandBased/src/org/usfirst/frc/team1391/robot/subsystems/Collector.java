@@ -16,9 +16,15 @@ public class Collector extends Subsystem {
     private SpeedControllerGroup collectorMotors = new SpeedControllerGroup(collectorLeftMotor, collectorRightMotor);
 
     public Collector() {
+        // They should turn in the opposite directions to intake / outtake
         collectorRightMotor.setInverted(true);
     }
 
+    /**
+     * Sets the speed of the collector motors.
+     *
+     * @param speed The speed to set the collector motors to (1 being intake, -1 being outtake).
+     */
     public void setAbsoluteSpeed(double speed) {
         collectorMotors.set(speed);
     }

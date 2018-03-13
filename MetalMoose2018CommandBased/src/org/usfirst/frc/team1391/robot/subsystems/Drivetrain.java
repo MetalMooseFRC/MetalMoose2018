@@ -70,13 +70,19 @@ public class Drivetrain extends Subsystem {
     }
 
     /**
-     * Set speed of the elevator motors (throttled).
+     * Updates differentialDrive using the arcadeDrive function throttled by a polynomial function dependent on the position of the elevator.
+     *
+     * The further the elevator is, the slower the drivebase moves.
+     *
+     * @param y Forward speed of the robot.
+     * @param x Turning speed of the robot.
      */
     public void throttledArcadeDrive(double y, double x) {
         double elevatorPosition = Robot.myElevator.elevatorEncoder.getDistance();
 
-        // If the encoder somehow messes up and counts the value on top above 100, we would be in trouble (the values of the polynomial start increasing)
+        // If the encoder somehow messes up, we will simply ignore it (the error accumulation throughout the match is not that huge
         if (elevatorPosition > 100) elevatorPosition = 100;
+        else if (elevatorPosition < 0) elevatorPosition = 0;
 
         // The coefficients of the polynomial
         double[] coefficients = new double[]{0.0000000019097222, -0.000000763888889, 0.000135486111110, -0.01181944444404, 1};
@@ -86,12 +92,6 @@ public class Drivetrain extends Subsystem {
         double value = 0;
         for (double coefficient : coefficients) value = value * elevatorPosition + coefficient;
 
-        // Restrict from 1 to 0.2
-        if (value > 1) value = 1;
-        
-        x *= value;
-        y *= value;
-
-        myDifferentialDrive.arcadeDrive(y, x);
+        myDifferentialDrive.arcadeDrive(y * value, x * value);
     }
 }
