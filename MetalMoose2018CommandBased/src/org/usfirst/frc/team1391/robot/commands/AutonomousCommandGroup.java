@@ -28,14 +28,13 @@ public class AutonomousCommandGroup extends CommandGroup {
     private void parseCommand(String commandString, boolean reversed) {
         // Removes whitespace from both ends of the String and changes all upper case chars to lower case
         // the .replaceAll and .split are for splitting into separate commands
-        String[] commandList = commandString.trim().replaceAll("\\) *", ")\n").split("\n");
+        String[] commandList = commandString.trim().replaceAll("[a-z]", "").split("\\) *");
 
         for (String command : commandList) {
             // Split to individual parameters (on any ",", or on "(")
-            String[] commandParts = command.replaceAll("\\)", "").trim().split("\\( *| *, *");
+            String[] commandParts = command.trim().split(" *\\( *| *, *");
 
-            // Takes the first character of the first argument (all of the commands have differing first letters)
-            switch (commandParts[0].replaceAll("[a-z]", "")) {
+            switch (commandParts[0]) {
                 // Elevate(position) - parallel - moves the elevator into a set position
                 case "E": {
                     int elevatorPosition = Integer.parseInt(commandParts[1]);
