@@ -64,16 +64,9 @@ public class DrivetrainDrive extends Command {
         else Robot.myDrivetrain.arcadeDrive(pidEncoderOutput, pidGyroOutput);
     }
     
-    protected boolean isFinished() {	
+    protected boolean isFinished() {
         // If we are under encoderStopAtError
-    	if (Robot.myDrivetrain.encoderPID.onTarget() && time == 0) {
-    		
-            // Adjust the robot X and Y coordinates accordingly
-            RobotMap.robotPositionX += Math.sin(Math.toRadians(RobotMap.absoluteAngle)) * Robot.myDrivetrain.myEncoder.getDistance();
-            RobotMap.robotPositionY += Math.cos(Math.toRadians(RobotMap.absoluteAngle)) * Robot.myDrivetrain.myEncoder.getDistance();
-
-            return true;
-        } else return isTimedOut();
+        return Robot.myDrivetrain.encoderPID.onTarget() && time == 0 || isTimedOut();
     }
 
     protected void end() {}
