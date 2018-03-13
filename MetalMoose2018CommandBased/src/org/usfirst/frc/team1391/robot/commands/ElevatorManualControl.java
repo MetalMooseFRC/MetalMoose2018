@@ -25,15 +25,15 @@ public class ElevatorManualControl extends Command {
         // The stick that controls the elevator ('-' is because the axes are reversed - forward is -1...)
         double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
 
-        // If 'overriden' by pressing B on the operator joystick
+        // If 'overriden,' get absolute control
     	if (OI.operatorB.get()) Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
     	else {
-    	    // When going down, we want to go more slowly (than going up - gravity)
+    	    // When going down, we want to go more slowly (than going up... gravity)
     		if (leftJoystickInput < 0) leftJoystickInput *= RobotMap.elevatorSlowCoefficient;
     			
-            // If joystick is set to a value over the hold threshold, move the elevator.
+            // If joystick is set to a value over a certain threshold, move the elevator.
             // If not and the elevator is above a certain height, hold (we don't want to toast the motors)
-            if (Math.abs(leftJoystickInput) > 0.1) Robot.myElevator.setThrottledSpeed(leftJoystickInput);
+            if (Math.abs(leftJoystickInput) > RobotMap.minimalJoystickAxisInput) Robot.myElevator.setThrottledSpeed(leftJoystickInput,0, RobotMap.elevatorMaximumDistance);
             else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) Robot.myElevator.hold();
     	}
     }

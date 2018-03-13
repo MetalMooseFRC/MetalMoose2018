@@ -34,11 +34,28 @@ public class Elevator extends Subsystem {
     /**
      * Set speed of the elevator motors (throttled).
      *
+     * If start and end are left as default values (0 and RobotMap.elevatorMaximumDistance, respectively),
+     * teleop is using the function. If, however, we want to go from a point on the elevator to another point
+     * on the elevator, we will set starting and ending values to shift the function to reflect these points.
+     *
      * @param speed Input form the joystick.
+     * @param start Where is the start of the elevator movement.
+     * @param end Where is the end of the elevator movement.
      */
-    public void setThrottledSpeed(double speed) {
-        double elevatorPosition = elevatorEncoder.getDistance();
-        double throttledSpeed = speed * getThrottledSpeed(elevatorPosition);
+    public void setThrottledSpeed(double speed, double start, double end) {
+        // We sometimes want to go from somewhere on the elevator to somewhere else
+        // That is why we have to first squish, and then shift the function
+        double coefficient = RobotMap.elevatorMaximumDistance / (end - start);
+        double shift = (start * coefficient);
+
+        // The x of the function
+        double x = (elevatorEncoder.getDistance() * coefficient) - shift;
+
+        // The actual speed (multiplying the y of the function with the input speed)
+        double throttledSpeed = speed * getThrottledSpeed(x);
+
+        // Going down, we want to slow down the elevator (gravity...)
+        if (throttledSpeed < 0) throttledSpeed *= RobotMap.elevatorSlowCoefficient;
 
         elevatorMotors.set(throttledSpeed);
     }
@@ -49,12 +66,11 @@ public class Elevator extends Subsystem {
      * @param x The x of the graph.
      * @return The y of the graph.
      */
-    public double getThrottledSpeed(double x) {
+    private double getThrottledSpeed(double x) {
         // The coefficients of the polynomial
         double[] coefficients = new double[]{-0.0000001233779715, 0.000024675594291, -0.0017622246431853, 0.052844492636667, 0.45};
 
-        // Calculate the y value at point x of the polynomial
-        // Example for 4th degree polynomial: ax^3 + bx^2 + cx + d = x(x(x(a) + b) + c) + d... this simplifies the calculation
+        // Calculate the y value of the graph
         double value = 0;
         for (double coefficient : coefficients) value = value * x + coefficient;
 
@@ -66,7 +82,7 @@ public class Elevator extends Subsystem {
     /**
      * Sets the absolute speed of the elevator motors.
      *
-     * @param speed Speed to set for the motors (1 to 1-).
+     * @param speed Speed to set for the motors (1 to -1).
      */
     public void setAbsoluteSpeed(double speed) {
         elevatorMotors.set(speed);

@@ -166,10 +166,13 @@ public class RobotMap {
     // Should the fourbar be held in place now?
     public static boolean holdFourbar = false;
 
-
     /* MISCELLANEOUS */
     // Switching drive modes
     // 0 is tank drive and 1 is arcade drive with the Logitech controller
     // 2 uses the Y axis and the rotation axis from the joystick controller
     public static int driveMode = 2;
+
+    // Minimal input from the joystick axes (when in default position, they are not always zero
+    public static double minimalJoystickAxisInput = 0.1;
+
 }

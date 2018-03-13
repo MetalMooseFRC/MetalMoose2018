@@ -8,12 +8,9 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Moves the elevator to a certain position.
  */
 public class ElevatorToHeight extends Command {
-    // The ending position of the elevator (if it needs to go to a certain point)
+    // The starting and ending position of the elevator (if it needs to go to a certain point)
+    private double startPosition;
     private double endPosition;
-
-    // The shift and the coefficient to properly squish and move the function (if it needs to go to a certain point)
-    private double shift;
-    private double coefficient;
 
     /**
      * Go to the elevatorSetPoints[endPosition] height.
@@ -31,34 +28,21 @@ public class ElevatorToHeight extends Command {
      * Set the coefficient and shift.
      */
     protected void initialize() {
-        // We are starting where the elevator currently is
-        double startPosition = Robot.myElevator.elevatorEncoder.getDistance();
-
-        // We want to basically map the values of the elevatorEncoder from startPosition to endPosition onto the main function
-        // That is why the coefficient is going to be bigger than one (total length / fraction length)
-        coefficient = RobotMap.elevatorMaximumDistance / (endPosition - startPosition);
-
-        // After squishing by the coefficient, shift so it matches the midpoint between start and end
-        shift = (startPosition * coefficient);
+        // We are starting where the elevator currently is (at the initialization of this command)
+        startPosition = Robot.myElevator.elevatorEncoder.getDistance();
     }
 
     /**
-     * Keep moving towards the endPosition
+     * Keep moving towards the endPosition (using the throttled function)
      */
     protected void execute() {
         double currentPosition = Robot.myElevator.elevatorEncoder.getDistance();
 
         // Where do we want to go (if positive, go up; if negative, go down)
-        int direction = (int)Math.signum(endPosition - currentPosition);
+        // Signum returns either +1 or -1 (that is what we want the speed to be
+        double speed = Math.signum(endPosition - currentPosition);
 
-        // The speed of the encoder (from the throttle function)
-        double speed = direction * Robot.myElevator.getThrottledSpeed(currentPosition * coefficient - shift);
-
-        // We want to slow the elevator by a factor when we go down (gravity)
-        if (direction < 0) speed *= RobotMap.elevatorSlowCoefficient;
-        
-        // Get the value after shift and direction alteration and set it to absolute speed
-        Robot.myElevator.setAbsoluteSpeed(speed);
+        Robot.myElevator.setThrottledSpeed(speed, startPosition, endPosition);
     }
 
     // Only once we hit the target do we stop
