@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
 import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
+import org.usfirst.frc.team1391.robot.commands.FourbarLower;
+import org.usfirst.frc.team1391.robot.commands.FourbarRaise;
 
 /**
  * Connect physical operator interface to commands.
@@ -38,5 +40,9 @@ public class OI {
 	    // Control the collector
 		operatorLB.whileHeld(new CollectorIntake());
 		operatorRB.whileHeld(new CollectorOuttake());
+
+		// Control the fourbar
+		operatorA.whenPressed(new FourbarLower());
+        operatorY.whenPressed(new FourbarRaise());
 	}
 }

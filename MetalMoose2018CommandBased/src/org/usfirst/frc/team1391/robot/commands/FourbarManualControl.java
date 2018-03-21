@@ -20,21 +20,17 @@ public class FourbarManualControl extends Command {
     protected void initialize() {}
 
     /**
-     * Manually control the fourbar (move up/down/hold)
-     *
-     * If we just moved up, then hold. If we just moved down, stop holding
+     * Manually controls the fourbar (either on override, or just hold either up or down)
      */
     protected void execute() {
         // The '-' sign is there because the controller axes are reversed (forward is -1)
         double yAxisSpeed = -OI.operatorController.getRawAxis(RobotMap.operatorRightYPort);
 
-        if (Robot.myElevator.elevatorEncoder.get() > RobotMap.minimumElevatorHoldDistance) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
-        else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
-
+        // Override
         if (OI.operatorB.get()) {
-            // Either set the fourbar to the axis value (if it is above the hold threshold, or just hold
-            if (Math.abs(yAxisSpeed) > RobotMap.fourbarHoldUpSpeed) {
-                // If it is smaller than zero, it just went down, so we don't want to hold it anymore
+            // Either set the fourbar to the axis value (if it is above the hold threshold, or just hold)
+            if (Math.abs(yAxisSpeed) > RobotMap.elevatorHoldSpeed) {
+                // If it is smaller than zero (it just went down) so we don't want to hold it anymore
                 if (yAxisSpeed < 0) RobotMap.holdFourbar = false;
 
                     // If we just went up with the fourbar, we want to start holding it
@@ -42,11 +38,11 @@ public class FourbarManualControl extends Command {
 
                 Robot.myFourbar.setSpeed(yAxisSpeed);
             }
-
-            // If no inputs from the axis, just hold (if we want to)
-            else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
-            else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
         }
+
+        // Hold
+        else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
+        else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
     }
 
     protected boolean isFinished() {
