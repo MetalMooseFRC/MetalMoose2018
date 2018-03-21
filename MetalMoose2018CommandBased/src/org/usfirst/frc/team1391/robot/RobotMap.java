@@ -82,8 +82,8 @@ public class RobotMap {
     public static double drivetrainEncoderCoefficient = 0.00618040;
 
     // Multiplies the speed of the robot by this value (in autonomous)
-    public static double autonomousTurningSpeedLimit = 0.7;
-    public static double autonomousDrivingSpeedLimit = 0.7;
+    public static double autonomousDefaultTurningSpeed = 0.7;
+    public static double autonomousDefaultDrivingSpeed = 0.7;
 
     // The allowed errors for the Gyro PID and the Encoder PID
     public static double drivetrainGyroPIDError = 3.5;
@@ -109,9 +109,6 @@ public class RobotMap {
 
     // Stores the chunks that make up the autonomous sequences
     public static Map<String, String> autonomousFromLayout = new HashMap<>();
-
-    // The absolute angle that the robot is currently in
-    public static double absoluteAngle = 0;
 
     /* COLLECTOR */
     // Values for the collector speeds

@@ -37,7 +37,7 @@ public class Drivetrain extends Subsystem {
 
         // Gyro PIDObject values
         gyroPID.setInputRange(-180.0, +180.0);
-        gyroPID.setOutputRange(-RobotMap.autonomousTurningSpeedLimit, RobotMap.autonomousTurningSpeedLimit);
+        gyroPID.setOutputRange(-RobotMap.autonomousDefaultTurningSpeed, RobotMap.autonomousDefaultTurningSpeed);
         gyroPID.setAbsoluteTolerance(RobotMap.drivetrainGyroPIDError); //in degrees
         gyroPID.setContinuous(true); //loops around
 

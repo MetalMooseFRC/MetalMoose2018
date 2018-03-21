@@ -7,32 +7,35 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 /**
  * Drives the robot in autonomous (by certain amount of inches).
  */
-public class DrivetrainDrive extends Command {
-    // The goals for the PID.
+public class DrivetrainDriveDistance extends Command {
+    // The goal for the PID.
     private double distance;
+
+    // Optional speed (if set to anything but zero)
     private double speed = 0;
-    private double time = 0;
 
     /**
      * Drive the robot to distance (in inches).
      *
      * @param distance Distance to be driven (in inches).
      */
-    DrivetrainDrive(double distance) {
+    DrivetrainDriveDistance(double distance) {
         this.distance = distance;
     }
-    
+
     /**
-     * Drive the robot for a certain amount of time (in seconds).
+     * Drive the robot to distance (in inches) at a certain speed.
+     *
+     * @param distance Distance to be driven (in inches).
+     * @param speed The speed at which to drive the distance.
      */
-    DrivetrainDrive(double time, double speed) {
+    DrivetrainDriveDistance(double distance, double speed) {
+        this.distance = distance;
         this.speed = speed;
-        this.time = time;
     }
 
-
     /**
-     * Resets encoder, set goals for PID, enables PID.
+     * Resets encoder and gyro, set goals for PID, enables PID.
      */
     protected void initialize() {
         // Reset the sensors
@@ -49,24 +52,28 @@ public class DrivetrainDrive extends Command {
         Robot.myDrivetrain.gyroPID.setSetpoint(0);
         Robot.myDrivetrain.gyroPID.reset();
         Robot.myDrivetrain.gyroPID.enable();
-
-        if (time != 0) setTimeout(time);
     }
 
     /**
      * Keeps re-adjusting the motors, depending on the output of PID.
      */
     protected void execute() {
-        double pidEncoderOutput = Robot.myDrivetrain.encoderPID.get();
-        double pidGyroOutput = Robot.myDrivetrain.gyroPID.get();
+        double ySpeed = Robot.myDrivetrain.encoderPID.get();
+        double xSpeed = Robot.myDrivetrain.gyroPID.get();
         
-        if (speed != 0) Robot.myDrivetrain.arcadeDrive(speed, pidGyroOutput);
-        else Robot.myDrivetrain.arcadeDrive(pidEncoderOutput, pidGyroOutput);
+        if (speed != 0 ) {
+        	ySpeed = (ySpeed / RobotMap.autonomousDefaultDrivingSpeed) * speed;
+        	xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
+        }
+        
+        Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);
     }
-    
+
+    /**
+     * Finished when it hits the encoderPID target
+     */
     protected boolean isFinished() {
-        // If we are under encoderStopAtError
-        return Robot.myDrivetrain.encoderPID.onTarget() && time == 0 || isTimedOut();
+        return Robot.myDrivetrain.encoderPID.onTarget();
     }
 
     protected void end() {}
