@@ -45,9 +45,9 @@ public class DrivetrainSkootch extends Command {
     		else Robot.myDrivetrain.tankDrive(0, turnSpeed);
     	}
     	else if (timeSinceInitialized() < secondTurnStop) {
-    		if (direction == 1) Robot.myDrivetrain.tankDrive(0, turnSpeed);
+    		if (direction == 0) Robot.myDrivetrain.tankDrive(0, turnSpeed);
     		else Robot.myDrivetrain.tankDrive(turnSpeed, 0);
-    	} else Robot.myDrivetrain.arcadeDrive(0, driveForwardSpeed);
+    	} else Robot.myDrivetrain.tankDrive(driveForwardSpeed, driveForwardSpeed);
     }
 
     /**
