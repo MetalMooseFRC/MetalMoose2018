@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
 import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
+import org.usfirst.frc.team1391.robot.commands.FourbarLower;
+import org.usfirst.frc.team1391.robot.commands.FourbarRaise;
 import org.usfirst.frc.team1391.robot.commands.DrivetrainSkootch;
 
 /**
@@ -35,15 +37,19 @@ public class OI {
             operatorY = new JoystickButton(operatorController, RobotMap.operatorButtonYPort),
             operatorLB = new JoystickButton(operatorController, RobotMap.operatorButtonLBPort),
             operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
+	
+	// Map commands to operator stick
+	OI() {
+	    // Control the collector
+		operatorLB.whileHeld(new CollectorIntake());
+		operatorRB.whileHeld(new CollectorOuttake());
 
-    // Map commands to operator stick
-    OI() {
-        // Control the collector
-        operatorLB.whileHeld(new CollectorIntake());
-        operatorRB.whileHeld(new CollectorOuttake());
+		// Control the fourbar
+		operatorA.whenPressed(new FourbarLower());
+    operatorY.whenPressed(new FourbarRaise());
 
-        // Skootching buttons
-        skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
-        skootchRightButton.whenPressed(new DrivetrainSkootch(1));
-    }
+    // Skootching buttons
+    skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
+    skootchRightButton.whenPressed(new DrivetrainSkootch(1));
+	}
 }
