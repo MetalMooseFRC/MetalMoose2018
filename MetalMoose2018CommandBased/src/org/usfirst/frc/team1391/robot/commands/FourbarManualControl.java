@@ -42,19 +42,25 @@ public class FourbarManualControl extends Command {
             }
         }
 
-        else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) {
+        else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance && !RobotMap.holdFourbar) {
         	Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
-        	RobotMap.holdFourbar = true;
         	if (!wasTimeoutSet) setTimeout(RobotMap.fourbarRaiseLength);
         }
         
         // Hold
-        else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
+        else if (RobotMap.holdFourbar) {
+        	Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
+        	System.out.println("Holding");
+        }
         else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
     }
 
     protected boolean isFinished() {
-        return isTimedOut();
+        if (isTimedOut()) {
+        	RobotMap.holdFourbar = true;
+        	return true;
+        }
+    	return false;
     }
 
     protected void end() {}
