@@ -10,6 +10,8 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Manually control the fourbar.
  */
 public class FourbarManualControl extends Command {
+	boolean wasTimeoutSet = false;
+	
     /**
      * Teleop constructor.
      */
@@ -40,13 +42,18 @@ public class FourbarManualControl extends Command {
             }
         }
 
+        else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance && !RobotMap.holdFourbar) {
+        	Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
+        	if (!wasTimeoutSet) setTimeout(RobotMap.fourbarRaiseLength);
+        }
+        
         // Hold
         else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
         else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
     }
 
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     protected void end() {}
