@@ -42,8 +42,9 @@ public class FourbarManualControl extends Command {
             }
         }
 
-        else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance && !RobotMap.holdFourbar) {
+        else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) {
         	Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
+        	RobotMap.holdFourbar = true;
         	if (!wasTimeoutSet) setTimeout(RobotMap.fourbarRaiseLength);
         }
         
