@@ -15,6 +15,7 @@ import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
 import org.usfirst.frc.team1391.robot.commands.FourbarLower;
 import org.usfirst.frc.team1391.robot.commands.FourbarRaise;
 import org.usfirst.frc.team1391.robot.commands.DrivetrainSkootch;
+import org.usfirst.frc.team1391.robot.commands.ElevatorToHeight;
 
 /**
  * Connect physical operator interface to commands.
@@ -46,10 +47,13 @@ public class OI {
 
 		// Control the fourbar
 		operatorA.whenPressed(new FourbarLower());
-    operatorY.whenPressed(new FourbarRaise());
+		operatorY.whenPressed(new FourbarRaise());
 
-    // Skootching buttons
-    skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
-    skootchRightButton.whenPressed(new DrivetrainSkootch(1));
+    	// Skootching buttons
+    	skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
+    	skootchRightButton.whenPressed(new DrivetrainSkootch(1));
+    	
+    	// Go to hanging position with the elevator
+    	operatorX.whenPressed(new ElevatorToHeight(3));
 	}
 }

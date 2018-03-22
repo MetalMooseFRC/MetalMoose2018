@@ -132,7 +132,7 @@ public class RobotMap {
     public static double elevatorMaximumDistance = 100;
 
     // Possible saved positions of the elevator
-    public static double[] elevatorSetPoints = new double[]{0, 15, 80};
+    public static double[] elevatorSetPoints = new double[]{0, 15, 80, 87};
 
     // Hold speed and the limit above which to hold the elevator (in elevatorMaximumDistance units)
     public static double elevatorHoldSpeed = 0.3;
