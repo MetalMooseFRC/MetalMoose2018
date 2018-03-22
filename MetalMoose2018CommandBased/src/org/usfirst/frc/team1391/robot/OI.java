@@ -12,31 +12,38 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
 import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
+import org.usfirst.frc.team1391.robot.commands.DrivetrainSkootch;
 
 /**
  * Connect physical operator interface to commands.
  */
 public class OI {
-	/** DRIVE TEAM CONTROLLERS **/
-	public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort),
-			operatorController = new Joystick(RobotMap.operatorControllerPort);
-		
-	// For going backwards in teleop (for the driver) and overriding the throttled drivebase
-	public static final Button reverseDriveButton = new JoystickButton(driveStick, RobotMap.reverseDriveButtonPort),
-			throttleDriveButton = new JoystickButton(driveStick, RobotMap.throttleDriveButtonPort);
+    /* DRIVE TEAM CONTROLLERS */
+    public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort),
+            operatorController = new Joystick(RobotMap.operatorControllerPort);
 
-	// Control buttons for the operator
-	public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),
-			operatorB = new JoystickButton(operatorController, RobotMap.operatorButtonBPort),
-			operatorX = new JoystickButton(operatorController, RobotMap.operatorButtonXPort),
-			operatorY = new JoystickButton(operatorController, RobotMap.operatorButtonYPort),
-			operatorLB = new JoystickButton(operatorController, RobotMap.operatorButtonLBPort),
-			operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
-	
-	// Map commands to operator stick
-	OI() {
-	    // Control the collector
-		operatorLB.whileHeld(new CollectorIntake());
-		operatorRB.whileHeld(new CollectorOuttake());
-	}
+    // For going backwards in teleop (for the driver), overriding the throttled drivebase, and skootching the robot
+    public static final Button reverseDriveButton = new JoystickButton(driveStick, RobotMap.reverseDriveButtonPort),
+            throttleDriveButton = new JoystickButton(driveStick, RobotMap.throttleDriveButtonPort),
+            skootchRightButton = new JoystickButton(driveStick, RobotMap.skootchLeftButtonPort),
+            skootchLeftButton = new JoystickButton(driveStick, RobotMap.skootchRightButtonPort);
+
+    // Control buttons for the operator
+    public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),
+            operatorB = new JoystickButton(operatorController, RobotMap.operatorButtonBPort),
+            operatorX = new JoystickButton(operatorController, RobotMap.operatorButtonXPort),
+            operatorY = new JoystickButton(operatorController, RobotMap.operatorButtonYPort),
+            operatorLB = new JoystickButton(operatorController, RobotMap.operatorButtonLBPort),
+            operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
+
+    // Map commands to operator stick
+    OI() {
+        // Control the collector
+        operatorLB.whileHeld(new CollectorIntake());
+        operatorRB.whileHeld(new CollectorOuttake());
+
+        // Skootching buttons
+        skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
+        skootchRightButton.whenPressed(new DrivetrainSkootch(1));
+    }
 }
