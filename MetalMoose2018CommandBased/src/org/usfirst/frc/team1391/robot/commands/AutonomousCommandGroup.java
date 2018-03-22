@@ -72,8 +72,8 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "O": {
                     double lengthOfOuttake = Double.parseDouble(commandParts[1]);
 
-                    if (speed != 0) addSequential(new CollectorOuttake(lengthOfOuttake));
-                    else addSequential(new CollectorOuttake(lengthOfOuttake, speed));
+                    if (speed == 0) addSequential(new CollectorOuttake(lengthOfOuttake));
+                    else addSequential(new CollectorOuttake(lengthOfOuttake, -speed));
 
                     break;
                 }
