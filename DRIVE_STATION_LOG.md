@@ -29,3 +29,6 @@
 
 ## 14/02/18 (Tom)
 * Install FRC Radio Configuration Utility 
+
+## 21/03/18 (Tom)
+* Install PuTTY
