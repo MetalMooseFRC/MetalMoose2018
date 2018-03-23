@@ -1,17 +1,15 @@
 package org.usfirst.frc.team1391.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * A command to time-out the drivebase.
+ * Manually controls the hanger arm.
  */
 public class HangerArmManualControl extends Command {
 
-    // Constructor with time - for autonomous
     public HangerArmManualControl() {
         requires(Robot.myHangerArm);
     }
@@ -19,26 +17,29 @@ public class HangerArmManualControl extends Command {
     protected void initialize() {
     }
 
+    /**
+     * If we are moving the hanger with either of the buttons, move the hanger.
+     * If it was just moved up, hold it there
+     */
     protected void execute() {
-    	if (OI.operatorStart.get()) {
-    		Robot.myHangerArm.setSpeed(0.5 * RobotMap.armOrientation);
-    		RobotMap.holdHangerArm = true;
-    	}
-    	else if (OI.operatorBack.get()) {
-    		Robot.myHangerArm.setSpeed(-0.5 * RobotMap.armOrientation);
-    		RobotMap.holdHangerArm = false;
-    	}
-    	else if (RobotMap.holdHangerArm) Robot.myHangerArm.setSpeed(0.2 * RobotMap.armOrientation);
-    	else Robot.myHangerArm.setSpeed(0);
+        if (OI.operatorStart.get()) {
+            Robot.myHangerArm.setSpeed(RobotMap.hangerMoveSpeed * RobotMap.hangerArmOrientation);
+            RobotMap.holdHangerArm = true;
+        } else if (OI.operatorBack.get()) {
+            Robot.myHangerArm.setSpeed(-RobotMap.hangerMoveSpeed * RobotMap.hangerArmOrientation);
+            RobotMap.holdHangerArm = false;
+        } else if (RobotMap.holdHangerArm)
+            Robot.myHangerArm.setSpeed(RobotMap.hangerHoldSpeed * RobotMap.hangerArmOrientation);
+        else Robot.myHangerArm.setSpeed(0);
     }
 
     protected boolean isFinished() {
         return false;
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
     protected void interrupted() {
-
     }
 }

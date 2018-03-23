@@ -62,6 +62,8 @@ public class RobotMap {
 
     public static final int hangerMotorPort = 7;
 
+    public static final int hangerArmMotorPort = 8;
+
     /* SENSOR MAPPING */
     public static final int drivetrainEncoderBPort = 1;
     public static final int drivetrainEncoderAPort = 0;
@@ -152,9 +154,14 @@ public class RobotMap {
     public static double fourbarRaiseLength = 2;
     public static double fourbarLowerLength = 0.5;
 
-
     // Should the fourbar be held in place now?
     public static boolean holdFourbar = true;
+
+    /* HANGER */
+    public static boolean holdHangerArm = false;
+    public static int hangerArmOrientation = 1;
+    public static double hangerMoveSpeed = 0.5;
+    public static double hangerHoldSpeed = 0.2;
 
     /* MISCELLANEOUS */
     // Switching drive modes
@@ -164,7 +171,4 @@ public class RobotMap {
 
     // Minimal input from the joystick axes (when in default position, they are not always zero
     public static double minimalJoystickAxisInput = 0.1;
-
-    public static boolean holdHangerArm = false;
-    public static int armOrientation = 1;
 }

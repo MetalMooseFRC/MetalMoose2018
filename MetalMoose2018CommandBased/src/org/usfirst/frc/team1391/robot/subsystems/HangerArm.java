@@ -1,27 +1,30 @@
 package org.usfirst.frc.team1391.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team1391.robot.RobotMap;
-import org.usfirst.frc.team1391.robot.commands.CollectorManualControl;
 import org.usfirst.frc.team1391.robot.commands.HangerArmManualControl;
 
 /**
- * Controls the collector motors.
+ * Controls the hanger arm motor.
  */
 public class HangerArm extends Subsystem {
-    private Spark motor = new Spark(8);
+    // The motor
+    private Spark motor = new Spark(RobotMap.hangerArmMotorPort);
 
     public HangerArm() {
     }
 
-    public void setSpeed(double speed) {
-    	motor.set(speed);
+    public void initDefaultCommand() {
+        setDefaultCommand(new HangerArmManualControl());
     }
 
-    public void initDefaultCommand() {
-    	setDefaultCommand(new HangerArmManualControl());
+    /**
+     * Sets speed of the hanger motor.
+     *
+     * @param speed The speed for the motor to be set to.
+     */
+    public void setSpeed(double speed) {
+        motor.set(speed);
     }
 }
