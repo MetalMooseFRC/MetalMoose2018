@@ -178,6 +178,9 @@ public class Robot extends TimedRobot {
 
         // Get DriveMode from SmartDashBoard
         RobotMap.driveMode = driveModeChooser.getSelected();
+
+        // Get the orientation of the arm
+        RobotMap.hangerArmOrientation = (int)SmartDashboard.getNumber("Hanger Arm Orientation", RobotMap.hangerArmOrientation);
     }
 
     @Override
