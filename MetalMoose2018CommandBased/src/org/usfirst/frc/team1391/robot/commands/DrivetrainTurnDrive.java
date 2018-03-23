@@ -55,7 +55,6 @@ public class DrivetrainTurnDrive extends Command {
         
         if (speed != 0 ) {
         	xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
-        	ySpeed = speed;
         }
         
         Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);

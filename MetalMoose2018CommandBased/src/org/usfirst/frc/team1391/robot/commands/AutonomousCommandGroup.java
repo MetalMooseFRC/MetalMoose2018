@@ -28,7 +28,7 @@ public class AutonomousCommandGroup extends CommandGroup {
     private void parseCommand(String commandString, boolean reversed) {
         // Removes whitespace from both ends of the String and changes all upper case chars to lower case
         // the .replaceAll and .split are for splitting into separate commands
-        String[] commandList = commandString.trim().replaceAll("[a-z°]", "").split("\\) *");
+        String[] commandList = commandString.trim().replaceAll("[a-z]", "").split("\\) *");
 
         for (String command : commandList) {
             // Split to individual parameters (on any ",", or on "(")
