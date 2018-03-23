@@ -11,6 +11,9 @@ public class CollectorOuttake extends Command {
     // Length of the autonomous command
     private double time = 0;
 
+    // Speed of the outtake (to be set by an optional parameter)
+    private double speed = 0;
+
     /**
      * Constructor for teleop.
      */
@@ -30,6 +33,19 @@ public class CollectorOuttake extends Command {
     }
 
     /**
+     * Constructor for autonomous with speed as an optional parameter.
+     *
+     * @param time The length of the CollectorIntake command.
+     * @param speed The speed at which to outtake.
+     */
+    CollectorOuttake(double time, double speed) {
+        requires(Robot.myCollector);
+
+        this.time = time;
+        this.speed = speed;
+    }
+
+    /**
      * If the command is autonomous, sets timeout.
      */
     protected void initialize() {
@@ -43,7 +59,8 @@ public class CollectorOuttake extends Command {
      * Sets speed, defined by the collectorIntakeSpeed constant.
      */
     protected void execute() {
-        Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorOuttakeSpeed);
+        if (speed == 0) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorOuttakeSpeed);
+        else Robot.myCollector.setAbsoluteSpeed(speed);
     }
 
     /**

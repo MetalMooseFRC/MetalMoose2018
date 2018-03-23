@@ -13,7 +13,7 @@ public class DrivetrainTimeout extends Command {
 
     // Constructor with time - for autonomous
     DrivetrainTimeout(double time) {
-        requires(Robot.myCollector);
+        requires(Robot.myDrivetrain);
 
         this.time = time;
     }

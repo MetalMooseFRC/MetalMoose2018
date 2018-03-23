@@ -5,9 +5,9 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Turns the robot in autonomous (by an angle).
+ * Turns the robot in autonomous (by an angle) and simultaneously drives.
  */
-public class DrivetrainTurnByAngle extends Command {
+public class DrivetrainTurnDrive extends Command {
     // The goal for the PID.
     private double angle;
 
@@ -15,21 +15,21 @@ public class DrivetrainTurnByAngle extends Command {
     private double speed = 0;
 
     /**
-     * Turn the robot by angle (in degrees).
+     * Turn the robot by angle (in degrees) while driving at a certain speed.
      *
      * @param angle Angle to be turned by (in degrees).
      */
-    DrivetrainTurnByAngle(double angle) {
+    DrivetrainTurnDrive(double angle) {
         this.angle = angle;
     }
 
     /**
-     * Turn the robot by angle (in degrees) at a certain speed.
+     * Turn the robot by angle (in degrees) at a certain speed while driving at a certain speed.
      *
      * @param angle Angle to be turned by (in degrees).
-     * @param speed The speed at which to turn.
+     * @param speed The speed at which to turn and drive.
      */
-    DrivetrainTurnByAngle(double angle, double speed) {
+    DrivetrainTurnDrive(double angle, double speed) {
         this.angle = angle;
         this.speed = speed;
     }
@@ -38,7 +38,7 @@ public class DrivetrainTurnByAngle extends Command {
      * Resets encoder and gyro, set goals for PID, enables PID.
      */
     protected void initialize() {
-        Robot.myDrivetrain.myAHRS.reset();    	
+    	Robot.myDrivetrain.myAHRS.reset();
 
         // Set point, enable gyro PID
         Robot.myDrivetrain.gyroPID.setSetpoint(angle);
@@ -51,10 +51,13 @@ public class DrivetrainTurnByAngle extends Command {
      */
     protected void execute() {
         double xSpeed = Robot.myDrivetrain.gyroPID.get();
+        double ySpeed = RobotMap.autonomousDefaultDrivingSpeed;
         
-        if (speed != 0 ) xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
-
-        Robot.myDrivetrain.arcadeDrive(0, xSpeed);
+        if (speed != 0 ) {
+        	xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
+        }
+        
+        Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);
     }
 
     /**
@@ -64,7 +67,11 @@ public class DrivetrainTurnByAngle extends Command {
         return Robot.myDrivetrain.gyroPID.onTarget();
     }
 
-    protected void end() {}
+    protected void end() {
 
-    protected void interrupted() {}
+    }
+
+    protected void interrupted() {
+
+    }
 }

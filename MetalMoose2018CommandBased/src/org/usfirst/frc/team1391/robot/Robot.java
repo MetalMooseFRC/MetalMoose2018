@@ -64,8 +64,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Autonomous Position", autonomousPositionChooser);
 
 		// Speed for Autonomous
-		SmartDashboard.putNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
-		SmartDashboard.putNumber("Autonomous Driving Speed Limit", RobotMap.autonomousDrivingSpeedLimit);
+		SmartDashboard.putNumber("Autonomous Default Turning Speed", RobotMap.autonomousDefaultTurningSpeed);
+		SmartDashboard.putNumber("Autonomous Default Driving Speed", RobotMap.autonomousDefaultDrivingSpeed);
 		
 		// A custom autonomous command String that overrides everything
 		SmartDashboard.putString("Custom Autonomous Command", "");
@@ -130,9 +130,12 @@ public class Robot extends TimedRobot {
 		Robot.myDrivetrain.encoderPID.setPID(RobotMap.drivetrainEncoderP, RobotMap.drivetrainEncoderI, RobotMap.drivetrainEncoderD);
 
 		/* AUTONOMOUS **/
-		RobotMap.autonomousTurningSpeedLimit = SmartDashboard.getNumber("Autonomous Turning Speed Limit", RobotMap.autonomousTurningSpeedLimit);
-		RobotMap.autonomousDrivingSpeedLimit = SmartDashboard.getNumber("Autonomous Driving Speed Limit", RobotMap.autonomousDrivingSpeedLimit);
+		RobotMap.autonomousDefaultTurningSpeed = SmartDashboard.getNumber("Autonomous Default Turning Speed", RobotMap.autonomousDefaultTurningSpeed);
+		RobotMap.autonomousDefaultDrivingSpeed = SmartDashboard.getNumber("Autonomous Default Driving Speed", RobotMap.autonomousDefaultDrivingSpeed);
 
+		myDrivetrain.encoderPID.setOutputRange(-RobotMap.autonomousDefaultDrivingSpeed, RobotMap.autonomousDefaultDrivingSpeed);
+		myDrivetrain.gyroPID.setOutputRange(-RobotMap.autonomousDefaultTurningSpeed, RobotMap.autonomousDefaultTurningSpeed);
+        
 		// Start of with both intaking a cube and holding the fourbar
 		RobotMap.holdFourbar = true;
 		RobotMap.intakeWithCollector = true;

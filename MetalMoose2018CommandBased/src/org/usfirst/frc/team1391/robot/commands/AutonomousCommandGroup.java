@@ -34,19 +34,37 @@ public class AutonomousCommandGroup extends CommandGroup {
             // Split to individual parameters (on any ",", or on "(")
             String[] commandParts = command.trim().split(" *\\( *| *, *");
 
+            // Optional parameter variables
+            double speed = 0;
+            String mode = "S";
+
+            // Get the values of all optional parameters
+            for (int i = 1; i < commandParts.length; i++) {
+                if (commandParts[i].contains("=")) {
+                    String[] optionalCommandParts = commandParts[i].split(" *= *");
+
+                    // Which optional parameter is it?
+                    switch (optionalCommandParts[0]) {
+                        case "S": {
+                            speed = Double.parseDouble(optionalCommandParts[1]);
+                            break;
+                        }
+                        case "M": {
+                            mode = optionalCommandParts[1];
+                            break;
+                        }
+                    }
+                }
+            }
+
             switch (commandParts[0]) {
                 // Elevate(position) - parallel - moves the elevator into a set position
                 case "E": {
                     int elevatorPosition = Integer.parseInt(commandParts[1]);
 
-                    addSequential(new ElevatorToHeight(elevatorPosition));
+                    if (mode.equals("S")) addSequential(new ElevatorToHeight(elevatorPosition));
+                    else if (mode.equals("P")) addParallel(new ElevatorToHeight(elevatorPosition));
 
-                    break;
-                }
-
-                // Intake(mode) - parallel - 1 is intake with speed set 1, 0 is intake with hold speed)
-                case "I": {
-                    addParallel(new CollectorIntake());
                     break;
                 }
 
@@ -54,7 +72,9 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "O": {
                     double lengthOfOuttake = Double.parseDouble(commandParts[1]);
 
-                    addSequential(new CollectorOuttake(lengthOfOuttake));
+                    if (speed == 0) addSequential(new CollectorOuttake(lengthOfOuttake));
+                    else addSequential(new CollectorOuttake(lengthOfOuttake, -speed));
+
                     break;
                 }
 
@@ -66,11 +86,17 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // TurnTo(angle in degrees) - sequential - turn to an angle
-                case "TT": {
+                // TurnDrive(angle in degrees) - sequential - turn and drive at the same time
+                case "TD": {
                     double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
 
-                    addSequential(new DrivetrainTurnToAngle(angle));
+                    if (speed != 0) {
+                        if (mode.equals("S")) addSequential(new DrivetrainTurnDrive(angle, speed));
+                        else if (mode.equals("P")) addParallel(new DrivetrainTurnDrive(angle, speed));
+                    } else {
+                        if (mode.equals("S")) addSequential(new DrivetrainTurnDrive(angle));
+                        else if (mode.equals("P")) addParallel(new DrivetrainTurnDrive(angle));
+                    }
 
                     break;
                 }
@@ -80,16 +106,28 @@ public class AutonomousCommandGroup extends CommandGroup {
                     // If reversed is true, we need to invert the angle
                     double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
 
-                    addSequential(new DrivetrainTurnByAngle(angle));
+                    if (speed != 0) {
+                        if (mode.equals("S")) addSequential(new DrivetrainTurnByAngle(angle, speed));
+                        else if (mode.equals("P")) addParallel(new DrivetrainTurnByAngle(angle, speed));
+                    } else {
+                        if (mode.equals("S")) addSequential(new DrivetrainTurnByAngle(angle));
+                        else if (mode.equals("P")) addParallel(new DrivetrainTurnByAngle(angle));
+                    }
 
                     break;
                 }
 
                 // Drive(distance in in) - sequential - drive
-                case "D": {
+                case "DD": {
                     double distance = Double.parseDouble(commandParts[1]);
 
-                    addSequential(new DrivetrainDrive(distance));
+                    if (speed != 0) {
+                        if (mode.equals("S")) addSequential(new DrivetrainDriveDistance(distance, speed));
+                        else if (mode.equals("P")) addParallel(new DrivetrainDriveDistance(distance, speed));
+                    } else {
+                        if (mode.equals("S")) addSequential(new DrivetrainDriveDistance(distance));
+                        else if (mode.equals("P")) addParallel(new DrivetrainDriveDistance(distance));
+                    }
 
                     break;
                 }
@@ -97,9 +135,14 @@ public class AutonomousCommandGroup extends CommandGroup {
                 // DriveTime(time, speed) - sequential - drive for a certain period of time at a certain speed
                 case "DT": {
                     double time = Double.parseDouble(commandParts[1]);
-                    double speed = Double.parseDouble(commandParts[2]);
 
-                    addSequential(new DrivetrainDrive(time, speed));
+                    if (speed != 0) {
+                        if (mode.equals("S")) addSequential(new DrivetrainDriveTime(time, speed));
+                        else if (mode.equals("P")) addParallel(new DrivetrainDriveTime(time, speed));
+                    } else {
+                        if (mode.equals("S")) addSequential(new DrivetrainDriveTime(time));
+                        else if (mode.equals("P")) addParallel(new DrivetrainDriveTime(time));
+                    }
 
                     break;
                 }
