@@ -14,7 +14,8 @@ public class ElevatorManualControl extends Command {
         requires(Robot.myElevator);
     }
 
-    protected void initialize() {}
+    protected void initialize() {
+    }
 
     /**
      * Repeatedly sets the speed of the elevator (through the setThrottle function).
@@ -26,23 +27,29 @@ public class ElevatorManualControl extends Command {
         double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
 
         // If 'overriden,' get absolute control
-    	if (OI.operatorB.get()) Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
-    	else {
-    	    // When going down, we want to go more slowly (than going up... gravity)
-    		if (leftJoystickInput < 0) leftJoystickInput *= RobotMap.elevatorSlowCoefficient;
-    			
+        if (OI.operatorB.get()) {
+            Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
+        } else {
+            // When going down, we want to go more slowly (than going up... gravity)
+            if (leftJoystickInput < 0) leftJoystickInput *= RobotMap.elevatorSlowCoefficient;
+
             // If joystick is set to a value over a certain threshold, move the elevator.
             // If not and the elevator is above a certain height, hold (we don't want to toast the motors)
-            if (Math.abs(leftJoystickInput) > RobotMap.minimalJoystickAxisInput) Robot.myElevator.setThrottledSpeed(leftJoystickInput,0, RobotMap.elevatorMaximumDistance);
-            else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance) Robot.myElevator.hold();
-    	}
+            if (Math.abs(leftJoystickInput) > RobotMap.minimalJoystickAxisInput)
+                Robot.myElevator.setThrottledSpeed(leftJoystickInput, 0, RobotMap.elevatorMaximumDistance);
+        }
+
+        if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance)
+            Robot.myElevator.hold();
     }
 
     protected boolean isFinished() {
         return false;
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

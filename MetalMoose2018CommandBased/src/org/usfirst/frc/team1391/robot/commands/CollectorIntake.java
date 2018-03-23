@@ -5,19 +5,21 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Intakes (either manually using a button, or through autonomous).
+ * Intakes (either manually using a button).
  */
 public class CollectorIntake extends Command {
+
     /**
-     * Constructor for teleop.
      */
     public CollectorIntake() {
         requires(Robot.myCollector);
     }
-    
+
+    /**
+     * Sets intakeWithCollector to true (we want to hold the cube after intaking).
+     */
     protected void initialize() {
-        // Hold the cube after this command is over
-    	RobotMap.intakeWithCollector = true;
+        RobotMap.intakeWithCollector = true;
     }
 
     /**
@@ -31,7 +33,9 @@ public class CollectorIntake extends Command {
         return false;
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

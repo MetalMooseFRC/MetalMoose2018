@@ -11,7 +11,7 @@ public class CollectorOuttake extends Command {
     // Length of the autonomous command
     private double time = 0;
 
-    // Speed of the outtake (to be set by an optional parameter)
+    // Speed of the outtake (for autonomous)
     private double speed = 0;
 
     /**
@@ -35,7 +35,7 @@ public class CollectorOuttake extends Command {
     /**
      * Constructor for autonomous with speed as an optional parameter.
      *
-     * @param time The length of the CollectorIntake command.
+     * @param time  The length of the CollectorIntake command.
      * @param speed The speed at which to outtake.
      */
     CollectorOuttake(double time, double speed) {
@@ -47,16 +47,17 @@ public class CollectorOuttake extends Command {
 
     /**
      * If the command is autonomous, sets timeout.
+     * Also sets the intakeWithCollector boolean to false - we just spat out the cube, we don't need to hold it
      */
     protected void initialize() {
-    	RobotMap.intakeWithCollector = false;
-    	
-        //  Set a timeout only if the time was initialized to something
+        RobotMap.intakeWithCollector = false;
+
+        //  Set a timeout only if the time was initialized
         if (time > 0) setTimeout(time);
     }
 
     /**
-     * Sets speed, defined by the collectorIntakeSpeed constant.
+     * Sets speed, defined either by the collectorIntakeSpeed constant or by the speed variable.
      */
     protected void execute() {
         if (speed == 0) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorOuttakeSpeed);
@@ -64,13 +65,15 @@ public class CollectorOuttake extends Command {
     }
 
     /**
-     * Returns true if isTimedOut() is true.
+     * Finishes when isTimedOut() is true.
      */
     protected boolean isFinished() {
         return isTimedOut();
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

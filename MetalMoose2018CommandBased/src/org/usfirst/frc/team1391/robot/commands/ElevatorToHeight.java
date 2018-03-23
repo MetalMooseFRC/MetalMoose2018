@@ -25,7 +25,7 @@ public class ElevatorToHeight extends Command {
     }
 
     /**
-     * Set the coefficient and shift.
+     * Set the starting position.
      */
     protected void initialize() {
         // We are starting where the elevator currently is (at the initialization of this command)
@@ -51,7 +51,9 @@ public class ElevatorToHeight extends Command {
         return Math.abs(Robot.myElevator.elevatorEncoder.getDistance() - endPosition) < RobotMap.elevatorToHeightTolerance;
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

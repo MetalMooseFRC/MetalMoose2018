@@ -15,7 +15,7 @@ public class DrivetrainDriveDistance extends Command {
     private double speed = 0;
 
     /**
-     * Drive the robot to distance (in inches).
+     * Drive the robot to a distance (in inches).
      *
      * @param distance Distance to be driven (in inches).
      */
@@ -24,10 +24,10 @@ public class DrivetrainDriveDistance extends Command {
     }
 
     /**
-     * Drive the robot to distance (in inches) at a certain speed.
+     * Drive the robot to a distance (in inches) at a certain speed.
      *
      * @param distance Distance to be driven (in inches).
-     * @param speed The speed at which to drive the distance.
+     * @param speed    The speed at which to drive the distance.
      */
     DrivetrainDriveDistance(double distance, double speed) {
         this.distance = distance;
@@ -60,23 +60,27 @@ public class DrivetrainDriveDistance extends Command {
     protected void execute() {
         double ySpeed = Robot.myDrivetrain.encoderPID.get();
         double xSpeed = Robot.myDrivetrain.gyroPID.get();
-        
-        if (speed != 0 ) {
-        	ySpeed = (ySpeed / RobotMap.autonomousDefaultDrivingSpeed) * speed;
-        	xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
+
+        // The weird divisions are there because both of the PIDs' output range is set as the default autonomous driving and turning speed
+        // The division resets them to the normal scale (0-1), multiplying by speed then adjusts correctly to the new speed
+        if (speed != 0) {
+            ySpeed = (ySpeed / RobotMap.autonomousDefaultDrivingSpeed) * speed;
+            xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
         }
-        
+
         Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);
     }
 
     /**
-     * Finished when it hits the encoderPID target
+     * Finished when it hits the encoderPID target.
      */
     protected boolean isFinished() {
         return Robot.myDrivetrain.encoderPID.onTarget();
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

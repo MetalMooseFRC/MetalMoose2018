@@ -38,7 +38,7 @@ public class DrivetrainTurnDrive extends Command {
      * Resets encoder and gyro, set goals for PID, enables PID.
      */
     protected void initialize() {
-    	Robot.myDrivetrain.myAHRS.reset();
+        Robot.myDrivetrain.myAHRS.reset();
 
         // Set point, enable gyro PID
         Robot.myDrivetrain.gyroPID.setSetpoint(angle);
@@ -52,26 +52,22 @@ public class DrivetrainTurnDrive extends Command {
     protected void execute() {
         double xSpeed = Robot.myDrivetrain.gyroPID.get();
         double ySpeed = RobotMap.autonomousDefaultDrivingSpeed;
-        
-        if (speed != 0 ) {
-        	xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
-        }
-        
+
+        if (speed != 0) xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
+
         Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);
     }
 
     /**
-     * Finished when it hits the gyroPID target
+     * Finished when it hits the gyroPID target.
      */
     protected boolean isFinished() {
         return Robot.myDrivetrain.gyroPID.onTarget();
     }
 
     protected void end() {
-
     }
 
     protected void interrupted() {
-
     }
 }

@@ -23,7 +23,7 @@ public class Collector extends Subsystem {
     /**
      * Sets the speed of the collector motors.
      *
-     * @param speed The speed to set the collector motors to (1 being intake, -1 being outtake).
+     * @param speed The speed to set the collector motors to.
      */
     public void setAbsoluteSpeed(double speed) {
         collectorMotors.set(speed);

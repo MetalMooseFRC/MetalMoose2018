@@ -11,9 +11,10 @@ import org.usfirst.frc.team1391.robot.commands.HangerManualControl;
 public class Hanger extends Subsystem {
 
     // Speed controller controlling the hanger
-	private Spark motor = new Spark(RobotMap.hangerMotorPort);
+    private Spark motor = new Spark(RobotMap.hangerMotorPort);
 
-    public Hanger() {}
+    public Hanger() {
+    }
 
     public void initDefaultCommand() {
         setDefaultCommand(new HangerManualControl());
@@ -25,6 +26,6 @@ public class Hanger extends Subsystem {
      * @param speed The speed to set the collector motors to.
      */
     public void setSpeed(double speed) {
-    	motor.set(speed);
+        motor.set(speed);
     }
 }

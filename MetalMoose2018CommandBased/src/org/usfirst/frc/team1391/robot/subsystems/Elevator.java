@@ -33,14 +33,13 @@ public class Elevator extends Subsystem {
 
     /**
      * Set speed of the elevator motors (throttled).
-     *
      * If start and end are left as default values (0 and RobotMap.elevatorMaximumDistance, respectively),
      * teleop is using the function. If, however, we want to go from a point on the elevator to another point
      * on the elevator, we will set starting and ending values to shift the function to reflect these points.
      *
      * @param speed Input form the joystick.
      * @param start Where is the start of the elevator movement.
-     * @param end Where is the end of the elevator movement.
+     * @param end   Where is the end of the elevator movement.
      */
     public void setThrottledSpeed(double speed, double start, double end) {
         // We sometimes want to go from somewhere on the elevator to somewhere else

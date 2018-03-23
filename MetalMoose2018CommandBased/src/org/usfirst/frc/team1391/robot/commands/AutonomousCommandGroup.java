@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Takes a string consisting of g-code style command series and produces an
- * autonomous. See the markdown documentation for more details.
+ * Takes an autonomous command String and produces an autonomous
+ * robot sequence. See the markdown documentation for more details.
  */
 public class AutonomousCommandGroup extends CommandGroup {
 
@@ -22,12 +22,12 @@ public class AutonomousCommandGroup extends CommandGroup {
     /**
      * Parses the command String.
      *
-     * @param commandString  The String to be parsed.
-     * @param reversed Mirrors commands (reverses angles and x axes).
+     * @param commandString The String to be parsed.
+     * @param reversed      Mirrors commands (inverts angles).
      */
     private void parseCommand(String commandString, boolean reversed) {
-        // Removes whitespace from both ends of the String and changes all upper case chars to lower case
-        // the .replaceAll and .split are for splitting into separate commands
+        // Removes whitespace from both ends of the String, removes all lower case alphabetical characters
+        // After that, splits into different commands
         String[] commandList = commandString.trim().replaceAll("[a-z]", "").split("\\) *");
 
         for (String command : commandList) {
@@ -40,6 +40,8 @@ public class AutonomousCommandGroup extends CommandGroup {
 
             // Get the values of all optional parameters
             for (int i = 1; i < commandParts.length; i++) {
+
+                // If it contains a "=", it has to be an optional parameter
                 if (commandParts[i].contains("=")) {
                     String[] optionalCommandParts = commandParts[i].split(" *= *");
 
@@ -72,6 +74,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "O": {
                     double lengthOfOuttake = Double.parseDouble(commandParts[1]);
 
+                    // The '-' symbol is because intake is actually negative value for the collector
                     if (speed == 0) addSequential(new CollectorOuttake(lengthOfOuttake));
                     else addSequential(new CollectorOuttake(lengthOfOuttake, -speed));
 
@@ -83,6 +86,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                     double lengthOfDrivebaseTimeout = Double.parseDouble(commandParts[1]);
 
                     addSequential(new DrivetrainTimeout(lengthOfDrivebaseTimeout));
+
                     break;
                 }
 
@@ -147,13 +151,13 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // Chunk(number of the chunk) - normal chunk
+                // Chunk(number of the chunk)
                 case "C": {
                     int chunkNumber = Integer.parseInt(commandParts[1]);
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, reversed);
-                    
+
                     break;
                 }
 
@@ -163,7 +167,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                     String chunk = RobotMap.chunks[chunkNumber];
 
                     parseCommand(chunk, !reversed);
-                    
+
                     break;
                 }
             }

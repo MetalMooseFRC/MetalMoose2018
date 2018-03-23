@@ -15,22 +15,20 @@ public class DrivetrainManualControl extends Command {
     }
 
     protected void initialize() {
-
     }
 
     /**
-     * Repeatedly adjust the speed of the drive train from the reading of the joystick axes
+     * Repeatedly adjust the speed of the drive train from the reading of the joystick axes.
      */
     protected void execute() {
         switch (RobotMap.driveMode) {
 
-            // Arcade drive using the reading from the main joystick of the Logitech
-            // controller
+            // Arcade drive using the reading from the main joystick of the Logitech controller
             case 0: {
                 // The '-' is because pulling the joystick forward is -1 and we want it to be +1 (and vice versa)
                 double yAxisReading = -OI.driveStick.getY();
 
-                // The X axis is fine, since the rotation is clockwise and rightmost value of the x axis is +1
+                // The x axis is fine, since the rotation is clockwise and rightmost value of the x axis is +1
                 double xAxisReading = OI.driveStick.getX();
 
                 Robot.myDrivetrain.arcadeDrive(yAxisReading, xAxisReading);
@@ -49,7 +47,7 @@ public class DrivetrainManualControl extends Command {
                 break;
             }
 
-            // Arcade drive using the Y and the rotation (as X) axis of the Logitech joystick
+            // Arcade drive using the y and the rotation (as x) axis of the Logitech joystick
             case 2: {
                 double forwardSpeed = -OI.driveStick.getY();
                 double turningSpeed = OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort);
@@ -70,7 +68,9 @@ public class DrivetrainManualControl extends Command {
         return false;
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

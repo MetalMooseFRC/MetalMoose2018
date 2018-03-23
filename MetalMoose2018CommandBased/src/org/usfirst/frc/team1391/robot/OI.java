@@ -10,12 +10,7 @@ package org.usfirst.frc.team1391.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team1391.robot.commands.CollectorIntake;
-import org.usfirst.frc.team1391.robot.commands.CollectorOuttake;
-import org.usfirst.frc.team1391.robot.commands.FourbarLower;
-import org.usfirst.frc.team1391.robot.commands.FourbarRaise;
-import org.usfirst.frc.team1391.robot.commands.DrivetrainSkootch;
-import org.usfirst.frc.team1391.robot.commands.ElevatorToHeight;
+import org.usfirst.frc.team1391.robot.commands.*;
 
 /**
  * Connect physical operator interface to commands.
@@ -40,22 +35,22 @@ public class OI {
             operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort),
             operatorBack = new JoystickButton(operatorController, 7),
             operatorStart = new JoystickButton(operatorController, 8);
-	
-	// Map commands to operator stick
-	OI() {
-	    // Control the collector
-		operatorLB.whileHeld(new CollectorIntake());
-		operatorRB.whileHeld(new CollectorOuttake());
 
-		// Control the fourbar
-		operatorA.whenPressed(new FourbarLower());
-		operatorY.whenPressed(new FourbarRaise());
+    // Map commands to operator stick
+    OI() {
+        // Control the collector
+        operatorLB.whileHeld(new CollectorIntake());
+        operatorRB.whileHeld(new CollectorOuttake());
 
-    	// Skootching buttons
-    	skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
-    	skootchRightButton.whenPressed(new DrivetrainSkootch(1));
-    	
-    	// Go to hanging position with the elevator
-    	operatorX.whenPressed(new ElevatorToHeight(3));
-	}
+        // Control the fourbar
+        operatorA.whenPressed(new FourbarLower());
+        operatorY.whenPressed(new FourbarRaise());
+
+        // Skootching buttons
+        skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
+        skootchRightButton.whenPressed(new DrivetrainSkootch(1));
+
+        // Go to hanging position with the elevator
+        operatorX.whenPressed(new ElevatorToHeight(3));
+    }
 }

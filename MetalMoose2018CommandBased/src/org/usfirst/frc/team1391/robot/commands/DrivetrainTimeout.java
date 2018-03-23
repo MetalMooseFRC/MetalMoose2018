@@ -7,11 +7,14 @@ import org.usfirst.frc.team1391.robot.Robot;
  * A command to time-out the drivebase.
  */
 public class DrivetrainTimeout extends Command {
-
-    // The time for the robot timeout
+    // The length for the robot timeout
     private double time;
 
-    // Constructor with time - for autonomous
+    /**
+     * Constructor for autonomous.
+     *
+     * @param time How long should the drivebase timeout for?
+     */
     DrivetrainTimeout(double time) {
         requires(Robot.myDrivetrain);
 
@@ -22,15 +25,16 @@ public class DrivetrainTimeout extends Command {
         setTimeout(time);
     }
 
-    protected void execute() {}
+    protected void execute() {
+    }
 
     protected boolean isFinished() {
         return isTimedOut();
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
     protected void interrupted() {
-
     }
 }

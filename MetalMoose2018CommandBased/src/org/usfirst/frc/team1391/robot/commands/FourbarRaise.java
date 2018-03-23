@@ -9,18 +9,23 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class FourbarRaise extends Command {
 
-	public FourbarRaise() {
+    public FourbarRaise() {
         requires(Robot.myFourbar);
     }
-    
+
+    /**
+     * Initializes the command only when the elevator is down.
+     */
     protected void initialize() {
-        // Activate only when elevator is down
         if (Robot.myElevator.elevatorEncoder.getDistance() < RobotMap.minimumElevatorHoldDistance) {
             setTimeout(RobotMap.fourbarRaiseLength);
             RobotMap.holdFourbar = true;
         } else setTimeout(0);
     }
 
+    /**
+     * Keeps raising the fourbar.
+     */
     protected void execute() {
         Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
     }
@@ -29,7 +34,9 @@ public class FourbarRaise extends Command {
         return isTimedOut();
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

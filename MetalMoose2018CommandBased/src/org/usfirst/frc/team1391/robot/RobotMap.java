@@ -93,22 +93,38 @@ public class RobotMap {
     public static double drivetrainGyroPIDError = 3.5;
     public static double drivetrainEncoderPIDError = 2.5;
 
+    // Data for the autonomous (layouts)
+    public static String[][] chunkLayout = new String[][]{
+            {"LeftLRL", "-Chunk(4)"},
+            {"LeftLLL", "-Chunk(3)"},
+            {"LeftRLR", "-Chunk(3)"},
+            {"LeftRRR", "-Chunk(4)"},
+            {"MiddleLRL", "-Chunk(0)"},
+            {"MiddleLLL", "-Chunk(0)"},
+            {"MiddleRLR", "Chunk(0)"},
+            {"MiddleRRR", "Chunk(0)"},
+            {"RightLRL", "Chunk(3)"},
+            {"RightLLL", "Chunk(4)"},
+            {"RightRLR", "Chunk(4)"},
+            {"RightRRR", "Chunk(3)"}
+    };
+
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
             // Middle to switch (for RRR and RLR)
-    		"Drive(20) TurnBy(45) Drive(70) TurnBy(-45) DriveTime(2, 0.6) Outtake(0.5)",
+            "Drive(20) TurnBy(45) Drive(70) TurnBy(-45) DriveTime(2, 0.6) Outtake(0.5)",
 
             // Drive right to the switch (pass the line)
             "Drive(130)",
 
             // Turn and place on the switch
-    		"TurnBy(-90) DriveTime(1.5, 0.6) Outtake(0.5)",
+            "TurnBy(-90) DriveTime(1.5, 0.6) Outtake(0.5)",
 
             // Right to the scale
-    		"Drive(255) TurnBy(-50) Elevate(2) DriveTime(1, 0.3) Outtake(0.5) Elevate(0)",
-    		
-    		// Right to scale on the opposite side
-    		"Drive(212) TurnBy(-90) Drive(228) TurnBy(90) Drive(20) TurnBy(30) Elevate(2) DriveTime(1, 0.3) Output(0.5) Elevate(0)"
+            "Drive(255) TurnBy(-50) Elevate(2) DriveTime(1, 0.3) Outtake(0.5) Elevate(0)",
+
+            // Right to scale on the opposite side
+            "Drive(212) TurnBy(-90) Drive(228) TurnBy(90) Drive(20) TurnBy(30) Elevate(2) DriveTime(1, 0.3) Output(0.5) Elevate(0)"
     };
 
     // Stores the chunks that make up the autonomous sequences

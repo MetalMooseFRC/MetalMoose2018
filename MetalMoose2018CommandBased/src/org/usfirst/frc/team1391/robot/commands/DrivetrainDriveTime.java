@@ -55,7 +55,9 @@ public class DrivetrainDriveTime extends Command {
     protected void execute() {
         double xSpeed = Robot.myDrivetrain.gyroPID.get();
         double ySpeed = RobotMap.autonomousDefaultDrivingSpeed;
-        
+
+        // The weird divisions are there because both of the PIDs' output range is set as the default autonomous driving and turning speed
+        // The division resets them to the normal scale (0-1), multiplying by speed then adjusts correctly to the new speed
         if (speed != 0 ) {
         	xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
         	ySpeed = speed;
@@ -65,7 +67,7 @@ public class DrivetrainDriveTime extends Command {
     }
 
     /**
-     * Finished when it times out
+     * Finished when isTimedOut() is true.
      */
     protected boolean isFinished() {
         return isTimedOut();

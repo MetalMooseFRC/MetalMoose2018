@@ -5,11 +5,11 @@ import org.usfirst.frc.team1391.robot.Robot;
 
 /**
  * A command that shifts the robot ever so slightly to the left or the right.
- *
+ * <p>
  * The command has three parts: go back with one side, go back with the other side, and drive backward (to hit the wall again).
  */
 public class DrivetrainSkootch extends Command {
-    // The direction of the skootch
+    // The direction of the skootch (left is 0, right is 1)
     private int direction;
 
     // These variables are the timing for the individual parts of the skootch command.
@@ -17,7 +17,7 @@ public class DrivetrainSkootch extends Command {
     private double secondTurnStop = 0.3;
     private double driveForwardStop = 0.7;
 
-    // The speeds of the turning and driving backward
+    // The speeds of the turning and driving
     private double turnSpeed = 0.6;
     private double driveForwardSpeed = -0.45;
 
@@ -39,25 +39,25 @@ public class DrivetrainSkootch extends Command {
      * Turns the robot, depending on the phase that the command is in.
      */
     protected void execute() {
-    	if (timeSinceInitialized() < firstTurnStop) {
-    	    // if we are going left, move the
-    		if (direction == 0) Robot.myDrivetrain.tankDrive(turnSpeed, 0);
-    		else Robot.myDrivetrain.tankDrive(0, turnSpeed);
-    	}
-    	else if (timeSinceInitialized() < secondTurnStop) {
-    		if (direction == 0) Robot.myDrivetrain.tankDrive(0, turnSpeed);
-    		else Robot.myDrivetrain.tankDrive(turnSpeed, 0);
-    	} else Robot.myDrivetrain.tankDrive(driveForwardSpeed, driveForwardSpeed);
+        if (timeSinceInitialized() < firstTurnStop) {
+            if (direction == 0) Robot.myDrivetrain.tankDrive(turnSpeed, 0);
+            else Robot.myDrivetrain.tankDrive(0, turnSpeed);
+        } else if (timeSinceInitialized() < secondTurnStop) {
+            if (direction == 0) Robot.myDrivetrain.tankDrive(0, turnSpeed);
+            else Robot.myDrivetrain.tankDrive(turnSpeed, 0);
+        } else Robot.myDrivetrain.tankDrive(driveForwardSpeed, driveForwardSpeed);
     }
 
     /**
-     * Return when the command is timed out.
+     * Finishes when isTimedOut() is true.
      */
     protected boolean isFinished() {
         return isTimedOut();
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }
