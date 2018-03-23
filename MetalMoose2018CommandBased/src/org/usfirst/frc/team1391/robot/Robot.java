@@ -18,6 +18,7 @@ import org.usfirst.frc.team1391.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1391.robot.subsystems.Elevator;
 import org.usfirst.frc.team1391.robot.subsystems.Fourbar;
 import org.usfirst.frc.team1391.robot.subsystems.Hanger;
+import org.usfirst.frc.team1391.robot.subsystems.HangerArm;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
 	public static final Elevator myElevator = new Elevator();
 	public static final Fourbar myFourbar = new Fourbar();
 	public static final Hanger myHanger = new Hanger();
+	public static final HangerArm myHangerArm = new HangerArm();
 
 	// Create the OI 
 	public static final OI myOI = new OI();

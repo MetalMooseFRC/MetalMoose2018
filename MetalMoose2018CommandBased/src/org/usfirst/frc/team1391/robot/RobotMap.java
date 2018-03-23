@@ -168,4 +168,6 @@ public class RobotMap {
     // Minimal input from the joystick axes (when in default position, they are not always zero
     public static double minimalJoystickAxisInput = 0.1;
 
+    public static boolean holdHangerArm = false;
+    public static int armOrientation = 1;
 }

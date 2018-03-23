@@ -37,7 +37,9 @@ public class OI {
             operatorX = new JoystickButton(operatorController, RobotMap.operatorButtonXPort),
             operatorY = new JoystickButton(operatorController, RobotMap.operatorButtonYPort),
             operatorLB = new JoystickButton(operatorController, RobotMap.operatorButtonLBPort),
-            operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort);
+            operatorRB = new JoystickButton(operatorController, RobotMap.operatorButtonRBPort),
+            operatorBack = new JoystickButton(operatorController, 7),
+            operatorStart = new JoystickButton(operatorController, 8);
 	
 	// Map commands to operator stick
 	OI() {
