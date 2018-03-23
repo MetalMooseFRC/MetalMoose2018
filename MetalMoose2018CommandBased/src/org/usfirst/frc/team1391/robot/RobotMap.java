@@ -112,19 +112,19 @@ public class RobotMap {
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
             // Middle to switch (for RRR and RLR)
-            "Drive(20) TurnBy(45) Drive(70) TurnBy(-45) DriveTime(2, 0.6) Outtake(0.5)",
+            "TurnDrive(-45) DriveDistance(25) TurnDrive(45) DriveTime(1) Outttake(0.5)",
 
-            // Drive right to the switch (pass the line)
-            "Drive(130)",
+            // Drive right to the switch (and pass the line in the process)
+            "DriveDistance(120)",
 
             // Turn and place on the switch
-            "TurnBy(-90) DriveTime(1.5, 0.6) Outtake(0.5)",
+            "TurnDrive(-90) DriveTime(1) Outtake(0.5)",
 
             // Right to the scale
-            "Drive(255) TurnBy(-50) Elevate(2) DriveTime(1, 0.3) Outtake(0.5) Elevate(0)",
+            "Drive(280) TurnBy(-90) DriveDistance(-20) Elevate(2) Outtake(0.5, Speed=1) Elevate(0)",
 
             // Right to scale on the opposite side
-            "Drive(212) TurnBy(-90) Drive(228) TurnBy(90) Drive(20) TurnBy(30) Elevate(2) DriveTime(1, 0.3) Output(0.5) Elevate(0)"
+            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(50) TurnBy(90) DriveDistance(-20) Elevate(2) Output(0.5, S=1) Elevate(0)"
     };
 
     // Stores the chunks that make up the autonomous sequences
@@ -147,7 +147,7 @@ public class RobotMap {
     public static double elevatorMaximumDistance = 100;
 
     // Possible saved positions of the elevator
-    public static double[] elevatorSetPoints = new double[]{0, 15, 80, 87};
+    public static double[] elevatorSetPoints = new double[]{0, 15, 100, 87};
 
     // Hold speed and the limit above which to hold the elevator (in elevatorMaximumDistance units)
     public static double elevatorHoldSpeed = 0.3;
