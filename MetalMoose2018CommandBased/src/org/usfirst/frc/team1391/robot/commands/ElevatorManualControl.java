@@ -37,10 +37,9 @@ public class ElevatorManualControl extends Command {
             // If not and the elevator is above a certain height, hold (we don't want to toast the motors)
             if (Math.abs(leftJoystickInput) > RobotMap.minimalJoystickAxisInput)
                 Robot.myElevator.setThrottledSpeed(leftJoystickInput, 0, RobotMap.elevatorMaximumDistance);
+            else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance)
+                    Robot.myElevator.hold();
         }
-
-        if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance)
-            Robot.myElevator.hold();
     }
 
     protected boolean isFinished() {
