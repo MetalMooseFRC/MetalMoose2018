@@ -12,7 +12,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class FourbarManualControl extends Command {
     // If the elevator goes up, did we set a timeout for the command.
-    boolean wasTimeoutSet = false;
+    private boolean wasTimeoutSet = false;
 
     /**
      * Teleop constructor.
@@ -22,6 +22,8 @@ public class FourbarManualControl extends Command {
     }
 
     protected void initialize() {
+    	setTimeout(5000);
+        wasTimeoutSet = false;
     }
 
     /**
@@ -43,10 +45,10 @@ public class FourbarManualControl extends Command {
 
                 Robot.myFourbar.setSpeed(yAxisSpeed);
             }
-        } else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance && (!RobotMap.holdFourbar || wasTimeoutSet)) {
+        } else if (wasTimeoutSet || (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance && !RobotMap.holdFourbar)) {
             // If the elevator is up, and the fourbar is either down or we are just raising it
             Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
-
+            
             // The first time that this is triggered sets the timeout and holdFourbar
             if (!wasTimeoutSet) {
                 setTimeout(RobotMap.fourbarRaiseLength);
@@ -58,18 +60,10 @@ public class FourbarManualControl extends Command {
         // Hold
         else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
         else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
-
-
-        System.out.println(RobotMap.holdFourbar);
     }
 
     protected boolean isFinished() {
-        if (isTimedOut()) {
-            wasTimeoutSet = false;
-            RobotMap.holdFourbar = true;
-            setTimeout(5000); // Please don't judge me it works ok
-            return true;
-        }
+        if (isTimedOut()) return true;
         return false;
     }
 
