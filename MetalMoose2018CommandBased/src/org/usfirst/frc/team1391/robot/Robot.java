@@ -84,6 +84,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData(myElevator);
         SmartDashboard.putData(myFourbar);
         SmartDashboard.putData(myHanger);
+        SmartDashboard.putData(myHangerArm);
 
         // The chunks
         for (int i = 0; i < RobotMap.chunks.length; i++) SmartDashboard.putString("Chunk " + i, RobotMap.chunks[i]);
