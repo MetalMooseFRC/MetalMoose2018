@@ -112,19 +112,19 @@ public class RobotMap {
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
             // Middle to switch (for RRR and RLR)
-            "TurnDrive(-45) DriveDistance(25) TurnDrive(45) DriveTime(1) Outttake(0.5)",
+            "TurnDrive(45) DriveDistance(25) TurnDrive(-45) DriveTime(1) Outttake(0.5)",
 
             // Drive right to the switch (and pass the line in the process)
-            "DriveDistance(120)",
+            "DriveDistance(125)",
 
             // Turn and place on the switch
-            "TurnDrive(-90) DriveTime(1) Outtake(0.5)",
+            "TurnBy(-90) DriveTime(1) Outtake(0.5)",
 
             // Right to the scale
-            "Drive(280) TurnBy(-90) DriveDistance(-20) Elevate(2) Outtake(0.5, Speed=1) Elevate(0)",
+            "DriveDistance(280) TurnBy(-90) Elevate(2) Outtake(0.5) Elevate(0)",
 
             // Right to scale on the opposite side
-            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(50) TurnBy(90) DriveDistance(-20) Elevate(2) Output(0.5, S=1) Elevate(0)"
+            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(50) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)"
     };
 
     // Stores the chunks that make up the autonomous sequences
