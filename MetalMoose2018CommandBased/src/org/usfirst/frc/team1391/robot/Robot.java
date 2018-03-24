@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1391.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team1391.robot.subsystems.*;
-import sun.text.resources.cldr.ia.FormatData_ia;
 
 /**
  * The VM is configured to automatically run this class, and to call the

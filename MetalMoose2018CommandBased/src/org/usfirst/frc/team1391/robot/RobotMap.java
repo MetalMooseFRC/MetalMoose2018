@@ -65,8 +65,8 @@ public class RobotMap {
     public static final int hangerArmMotorPort = 8;
 
     /* SENSOR MAPPING */
-    public static final int drivetrainEncoderBPort = 1;
     public static final int drivetrainEncoderAPort = 0;
+    public static final int drivetrainEncoderBPort = 1;
 
     public static final int elevatorEncoderAPort = 2;
     public static final int elevatorEncoderBPort = 3;

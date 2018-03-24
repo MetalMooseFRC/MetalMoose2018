@@ -25,7 +25,6 @@ public class CollectorManualControl extends Command {
         if (leftTriggerSpeed > 0.1) {
             RobotMap.intakeWithCollector = true;
             Robot.myCollector.setAbsoluteSpeed(leftTriggerSpeed);
-            System.out.println(leftTriggerSpeed);
         }
 
         // Outtakes the cube (the 0.1 is just an arbitrary threshold, because the joysticks' position is not 0)
