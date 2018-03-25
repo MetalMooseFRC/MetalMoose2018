@@ -86,8 +86,8 @@ public class RobotMap {
     public static double drivetrainEncoderCoefficient = 0.00618040;
 
     // Multiplies the speed of the robot by this value (in autonomous)
-    public static double autonomousDefaultTurningSpeed = 0.7;
-    public static double autonomousDefaultDrivingSpeed = 0.7;
+    public static double autonomousDefaultTurningSpeed = 0.75;
+    public static double autonomousDefaultDrivingSpeed = 0.75;
 
     // The allowed errors for the Gyro PID and the Encoder PID
     public static double drivetrainGyroPIDError = 3.5;
@@ -95,36 +95,36 @@ public class RobotMap {
 
     // Data for the autonomous (layouts)
     public static String[][] chunkLayout = new String[][]{
-            {"LeftLRL", "-Chunk(4)"},
+            {"LeftLRL", "-Chunk(1) -Chunk(2)"},
             {"LeftLLL", "-Chunk(3)"},
             {"LeftRLR", "-Chunk(3)"},
-            {"LeftRRR", "-Chunk(4)"},
+            {"LeftRRR", "-Chunk(1)"},
             {"MiddleLRL", "-Chunk(0)"},
             {"MiddleLLL", "-Chunk(0)"},
             {"MiddleRLR", "Chunk(0)"},
             {"MiddleRRR", "Chunk(0)"},
             {"RightLRL", "Chunk(3)"},
-            {"RightLLL", "Chunk(4)"},
-            {"RightRLR", "Chunk(4)"},
+            {"RightLLL", "Chunk(1)"},
+            {"RightRLR", "Chunk(1) Chunk(2)"},
             {"RightRRR", "Chunk(3)"}
     };
 
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
             // Middle to switch (for RRR and RLR)
-            "TurnDrive(45) DriveDistance(25) TurnDrive(-45) DriveTime(1) Outttake(0.5)",
+            "TurnDrive(45) DriveDistance(43) TurnDrive(-45) DriveTime(2) Outttake(0.5, S=0.8)",
 
             // Drive right to the switch (and pass the line in the process)
-            "DriveDistance(125)",
+            "DriveDistance(130)",
 
             // Turn and place on the switch
-            "TurnBy(-90) DriveTime(1) Outtake(0.5)",
+            "TurnBy(-90) DriveTime(1.5) Outtake(0.5, S=0.8)",
 
             // Right to the scale
-            "DriveDistance(280) TurnBy(-90) Elevate(2) Outtake(0.5) Elevate(0)",
+            "DriveDistance(280) TurnBy(-90) Elevate(2) Outtake(0.5, S=0.8) Elevate(0)",
 
             // Right to scale on the opposite side
-            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(50) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)"
+            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(15) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)"
     };
 
     // Stores the chunks that make up the autonomous sequences
@@ -147,7 +147,7 @@ public class RobotMap {
     public static double elevatorMaximumDistance = 100;
 
     // Possible saved positions of the elevator
-    public static double[] elevatorSetPoints = new double[]{0, 15, 100, 87};
+    public static double[] elevatorSetPoints = new double[]{0, 20, 100, 87};
 
     // Hold speed and the limit above which to hold the elevator (in elevatorMaximumDistance units)
     public static double elevatorHoldSpeed = 0.3;
