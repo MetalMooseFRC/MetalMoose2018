@@ -161,6 +161,20 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
+                case "FR":
+                case "FU": {
+                    addSequential(new FourbarRaise());
+
+                    break;
+                }
+
+                case "FL":
+                case "FD": {
+                    addSequential(new FourbarLower());
+
+                    break;
+                }
+
                 // Chunk(number of the chunk)
                 case "C": {
                     int chunkNumber = Integer.parseInt(commandParts[1]);
