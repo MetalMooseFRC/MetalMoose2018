@@ -124,7 +124,13 @@ public class RobotMap {
             "DriveDistance(280) TurnBy(-90) Elevate(2) Outtake(0.5, S=0.8) Elevate(0)",
 
             // Right to scale on the opposite side
-            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(15) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)"
+            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(15) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)",
+
+            // Back off from the middle, grab another cube from the pyramid
+            "DD(-30) TD(45, S=-0.75) DD(-43) TD(-45, S=-0.75) FD() DT(1.5) I(1.5) FU() DD(-80) TD(45) DD(43) TD(-45) E(1) O(0.5, S=0.8)",
+
+            // Score another cube on the scale
+            "TB(-75) FD() DT(3) I(3) FU() DD(-30) TB(75) E(2) O(0.5, S=1) E(0)"
     };
 
     // Stores the chunks that make up the autonomous sequences
