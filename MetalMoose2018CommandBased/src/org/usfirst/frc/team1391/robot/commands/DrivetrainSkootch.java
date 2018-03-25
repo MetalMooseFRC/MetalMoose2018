@@ -13,13 +13,13 @@ public class DrivetrainSkootch extends Command {
     private int direction;
 
     // These variables are the timing for the individual parts of the skootch command.
-    private double firstTurnStop = 0.15;
-    private double secondTurnStop = 0.3;
-    private double driveForwardStop = 0.7;
+    private double firstTurnStop = 0.25;
+    private double secondTurnStop = 0.5;
+    private double driveForwardStop = 1.2;
 
     // The speeds of the turning and driving
-    private double turnSpeed = 0.6;
-    private double driveForwardSpeed = -0.45;
+    private double turnSpeed = 0.7;
+    private double driveForwardSpeed = -0.7;
 
     /**
      * Default constructor with skootch direction.
