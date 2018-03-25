@@ -8,11 +8,41 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Intakes (either manually using a button).
  */
 public class CollectorIntake extends Command {
+	// Length of the timeout from an autonomous constructor
+	double time = 0;
+
+	// Speed of the intake
+    double speed = 0;
 
     /**
+     * Constructor for teleop.
      */
     public CollectorIntake() {
         requires(Robot.myCollector);
+    }
+
+    /**
+     * Constructor for autonomous.
+     *
+     * @param time The length of the CollectorIntake command.
+     */
+    CollectorIntake(double time) {
+        requires(Robot.myCollector);
+
+        this.time = time;
+    }
+
+    /**
+     * Constructor for autonomous with speed as an optional parameter.
+     *
+     * @param time  The length of the CollectorIntake command.
+     * @param speed The speed at which to outtake.
+     */
+    CollectorIntake(double time, double speed) {
+        requires(Robot.myCollector);
+
+        this.time = time;
+        this.speed = speed;
     }
 
     /**
@@ -20,17 +50,20 @@ public class CollectorIntake extends Command {
      */
     protected void initialize() {
         RobotMap.intakeWithCollector = true;
+        
+        if (time != 0) setTimeout(time);
     }
 
     /**
      * Sets speed, defined by the collectorIntakeSpeed constant.
      */
     protected void execute() {
-        Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorIntakeSpeed);
+        if (speed == 0) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorIntakeSpeed);
+        else Robot.myCollector.setAbsoluteSpeed(speed);
     }
 
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     protected void end() {

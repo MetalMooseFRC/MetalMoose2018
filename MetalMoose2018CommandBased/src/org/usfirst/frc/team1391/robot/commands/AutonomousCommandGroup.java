@@ -81,6 +81,16 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
+                // Intake(time in seconds) - parallel - intakes the cube
+                case "I": {
+                    double lengthOfIntake = Double.parseDouble(commandParts[1]);
+
+                    if (speed == 0) addParallel(new CollectorIntake(lengthOfIntake));
+                    else addParallel(new CollectorIntake(lengthOfIntake, speed));
+
+                    break;
+                }
+
                 // Timeout(time in seconds) - sequential - timeout of the drivetrain
                 case "T": {
                     double lengthOfDrivebaseTimeout = Double.parseDouble(commandParts[1]);
