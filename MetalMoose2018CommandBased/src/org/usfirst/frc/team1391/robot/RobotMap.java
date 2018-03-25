@@ -163,7 +163,7 @@ public class RobotMap {
     public static double elevatorSlowCoefficient = 0.55;
 
     // This is the error tolerated by the ElevatorToHeight command
-    public static double elevatorToHeightTolerance = 4;
+    public static double elevatorToHeightTolerance = 2;
 
     /* FOURBAR */
     // Hold the fourbar either up or down
