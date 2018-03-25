@@ -44,6 +44,9 @@ public class DrivetrainTurnByAngle extends Command {
         Robot.myDrivetrain.gyroPID.setSetpoint(angle);
         Robot.myDrivetrain.gyroPID.reset();
         Robot.myDrivetrain.gyroPID.enable();
+
+        // If we are turning for more than 4 seconds, go to the next command
+        setTimeout(4);
     }
 
     /**
@@ -61,7 +64,7 @@ public class DrivetrainTurnByAngle extends Command {
      * Finished when it hits the gyroPID target
      */
     protected boolean isFinished() {
-        return Robot.myDrivetrain.gyroPID.onTarget();
+        return Robot.myDrivetrain.gyroPID.onTarget() || isTimedOut();
     }
 
     protected void end() {
