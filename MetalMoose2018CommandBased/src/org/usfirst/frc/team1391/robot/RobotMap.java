@@ -151,7 +151,7 @@ public class RobotMap {
 
     // Hold speed and the limit above which to hold the elevator (in elevatorMaximumDistance units)
     public static double elevatorHoldSpeed = 0.3;
-    public static double minimumElevatorHoldDistance = 2;
+    public static double minimumElevatorHoldDistance = 3;
 
     // Slow down the elevator by this factor when going down
     public static double elevatorSlowCoefficient = 0.55;
