@@ -6,32 +6,32 @@
 	</widget>
 	<widget field="LeftLLL" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="32" y="560"/>
-		<width>112</width>
+		<width>272</width>
 	</widget>
 	<widget field="MiddleRRR" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="176" y="656"/>
-		<width>128</width>
+		<location x="336" y="656"/>
+		<width>256</width>
 	</widget>
 	<widget field="RightLLL" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="336" y="560"/>
-		<width>128</width>
+		<location x="624" y="560"/>
+		<width>272</width>
 	</widget>
 	<widget field="LeftLRL" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="32" y="592"/>
-		<width>112</width>
+		<width>272</width>
 		<height>22</height>
 	</widget>
 	<widget field="MiddleLLL" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="176" y="560"/>
-		<width>128</width>
+		<location x="336" y="560"/>
+		<width>256</width>
 	</widget>
 	<widget field="RightLRL" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="336" y="592"/>
-		<width>128</width>
+		<location x="624" y="592"/>
+		<width>272</width>
 	</widget>
 	<widget field="LeftRLR" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="33" y="624"/>
-		<width>111</width>
+		<width>271</width>
 	</widget>
 	<widget field="Chunk 4" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="32" y="512"/>
@@ -54,29 +54,30 @@
 		<width>865</width>
 	</widget>
 	<widget field="MiddleLRL" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="176" y="592"/>
-		<width>128</width>
+		<location x="336" y="592"/>
+		<width>256</width>
 		<height>22</height>
 	</widget>
 	<widget field="RightRLR" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="336" y="624"/>
-		<width>128</width>
+		<location x="624" y="624"/>
+		<width>272</width>
 	</widget>
 	<widget field="LeftRRR" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="32" y="656"/>
-		<width>112</width>
+		<width>272</width>
 	</widget>
 	<widget field="Hanger Arm Orientation" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="656" y="314"/>
 		<width>240</width>
 	</widget>
 	<widget field="MiddleRLR" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="177" y="624"/>
-		<width>127</width>
+		<location x="336" y="624"/>
+		<width>256</width>
+		<height>22</height>
 	</widget>
 	<widget field="RightRRR" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="336" y="656"/>
-		<width>128</width>
+		<location x="624" y="656"/>
+		<width>272</width>
 	</widget>
 	<widget field="Hanger" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="32" y="304"/>
@@ -205,22 +206,22 @@
 		<location x="0" y="0"/>
 	</widget>
 	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Spark[6]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+		<widget field="SpeedControllerGroup[1]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
 			<location x="0" y="0"/>
 			<height>0</height>
 			<width>0</width>
 		</widget>
-		<widget field="Spark[6]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+		<widget field="SpeedControllerGroup[1]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
 			<location x="0" y="0"/>
 			<height>0</height>
 			<width>0</width>
 		</widget>
-		<widget field="Spark[7]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+		<widget field="Spark[6]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
 			<location x="0" y="0"/>
 			<height>0</height>
 			<width>0</width>
 		</widget>
-		<widget field="Spark[7]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+		<widget field="Spark[6]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
 			<location x="0" y="0"/>
 			<height>0</height>
 			<width>0</width>
@@ -245,7 +246,7 @@
 			<height>51</height>
 			<width>309</width>
 		</widget>
-		<widget field="SpeedControllerGroup[1]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+		<widget field="Spark[7]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
 			<location x="6" y="332"/>
 			<height>51</height>
 			<width>309</width>
