@@ -41,7 +41,7 @@ public class OI {
         operatorLB.whileHeld(new CollectorIntake());
         operatorRB.whileHeld(new CollectorOuttake());
         
-        fourbarButton.whileHeld(new FourbarLower());
+        fourbarButton.whenPressed(new FourbarLower());
         fourbarButton.whenReleased(new FourbarRaise());
     }
 }

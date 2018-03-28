@@ -17,17 +17,15 @@ public class FourbarRaise extends Command {
      * Initializes the command only when the elevator is down.
      */
     protected void initialize() {
-        if (Robot.myElevator.elevatorEncoder.getDistance() < RobotMap.minimumElevatorHoldDistance) {
-            setTimeout(RobotMap.fourbarRaiseLength);
-            RobotMap.holdFourbar = true;
-        } else setTimeout(0);
+		setTimeout(RobotMap.fourbarRaiseLength);
+		RobotMap.holdFourbar = true;
     }
 
     /**
      * Keeps raising the fourbar.
      */
     protected void execute() {
-        Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
+    	Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
     }
 
     protected boolean isFinished() {
