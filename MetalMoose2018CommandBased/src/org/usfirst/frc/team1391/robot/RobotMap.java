@@ -29,6 +29,7 @@ public class RobotMap {
     // Port of the buttons for the driving of the Logitech joystick
     public static final int reverseDriveButtonPort = 1;
     public static final int throttleDriveButtonPort = 5;
+    public static final int fourbarButtonPort = 2;
 
     // Operator controller button mapping
     static final int operatorButtonAPort = 1;

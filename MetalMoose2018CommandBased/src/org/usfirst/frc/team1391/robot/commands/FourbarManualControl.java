@@ -11,8 +11,6 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * If the elevator goes up and the fourbar is down, forces the fourbar to go up and times out the command.
  */
 public class FourbarManualControl extends Command {
-    // If the elevator goes up, did we set a timeout for the command.
-    private boolean wasTimeoutSet = false;
 
     /**
      * Teleop constructor.
@@ -22,8 +20,6 @@ public class FourbarManualControl extends Command {
     }
 
     protected void initialize() {
-    	setTimeout(5000);
-        wasTimeoutSet = false;
     }
 
     /**
@@ -36,34 +32,17 @@ public class FourbarManualControl extends Command {
 
         // Override
         if (OI.operatorB.get()) {
-            // Either set the fourbar to the axis value (if it is above the hold threshold), or just hold
-            if (Math.abs(yAxisSpeed) > RobotMap.elevatorHoldSpeed) {
-                // If it is smaller than zero (it just went down) so we don't want to hold it anymore
-                // If we just went up with the fourbar, we want to start holding it
-                if (yAxisSpeed < 0) RobotMap.holdFourbar = false;
-                else if (yAxisSpeed > 0) RobotMap.holdFourbar = true;
-
-                Robot.myFourbar.setSpeed(yAxisSpeed);
-            }
-        } else if (wasTimeoutSet || (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance && !RobotMap.holdFourbar)) {
-            // If the elevator is up, and the fourbar is either down or we are just raising it
-            Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
+        	Robot.myFourbar.setSpeed(yAxisSpeed);
             
-            // The first time that this is triggered sets the timeout and holdFourbar
-            if (!wasTimeoutSet) {
-                setTimeout(RobotMap.fourbarRaiseLength);
-                wasTimeoutSet = true;
-                RobotMap.holdFourbar = true;
-            }
+            return;
         }
-
-        // Hold
-        else if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
+        
+        // Else just hold (either up or down)
+        if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
         else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
     }
 
     protected boolean isFinished() {
-        if (isTimedOut()) return true;
         return false;
     }
 
