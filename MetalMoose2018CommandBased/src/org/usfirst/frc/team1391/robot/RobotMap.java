@@ -95,17 +95,17 @@ public class RobotMap {
 
     // Data for the autonomous (layouts)
     public static String[][] chunkLayout = new String[][]{
-            {"LeftLRL", "-Chunk(1) -Chunk(2)"},
+            {"LeftLRL", "-Chunk(4)"},
             {"LeftLLL", "-Chunk(3)"},
             {"LeftRLR", "-Chunk(3)"},
-            {"LeftRRR", "-Chunk(1)"},
+            {"LeftRRR", "-Chunk(4)"},
             {"MiddleLRL", "-Chunk(0)"},
             {"MiddleLLL", "-Chunk(0)"},
             {"MiddleRLR", "Chunk(0)"},
             {"MiddleRRR", "Chunk(0)"},
             {"RightLRL", "Chunk(3)"},
-            {"RightLLL", "Chunk(1)"},
-            {"RightRLR", "Chunk(1) Chunk(2)"},
+            {"RightLLL", "Chunk(4)"},
+            {"RightRLR", "Chunk(4)"},
             {"RightRRR", "Chunk(3)"}
     };
 
@@ -121,10 +121,10 @@ public class RobotMap {
             "TurnBy(-90) DriveTime(1.5) Outtake(0.5, S=0.8)",
 
             // Right to the scale
-            "DriveDistance(280) TurnBy(-90) Elevate(2) Outtake(0.5, S=0.8) Elevate(0)",
+            "DriveDistance(290) TurnBy(-90) Elevate(2) Outtake(0.5, S=0.8) Elevate(0)",
 
             // Right to scale on the opposite side
-            "DriveD(180) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(15) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)",
+            "DriveD(190) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(30) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)",
 
             // Back off from the middle, grab another cube from the pyramid
             "DD(-30) TD(45, S=-0.75) DD(-43) TD(-45, S=-0.75) FD() DT(1.5) I(1.5) FU() DD(-80) TD(45) DD(43) TD(-45) E(1) O(0.5, S=0.8)",
