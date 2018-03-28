@@ -22,9 +22,7 @@ public class OI {
 
     // For going backwards in teleop (for the driver), overriding the throttled drivebase, and skootching the robot
     public static final Button reverseDriveButton = new JoystickButton(driveStick, RobotMap.reverseDriveButtonPort),
-            throttleDriveButton = new JoystickButton(driveStick, RobotMap.throttleDriveButtonPort),
-            skootchRightButton = new JoystickButton(driveStick, RobotMap.skootchLeftButtonPort),
-            skootchLeftButton = new JoystickButton(driveStick, RobotMap.skootchRightButtonPort);
+            throttleDriveButton = new JoystickButton(driveStick, RobotMap.throttleDriveButtonPort);
 
     // Control buttons for the operator
     public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),
@@ -45,12 +43,5 @@ public class OI {
         // Control the fourbar
         operatorA.whenPressed(new FourbarLower());
         operatorY.whenPressed(new FourbarRaise());
-
-        // Skootching buttons
-        skootchLeftButton.whenPressed(new DrivetrainSkootch(0));
-        skootchRightButton.whenPressed(new DrivetrainSkootch(1));
-
-        // Go to hanging position with the elevator
-        operatorX.whenPressed(new ElevatorToHeight(3));
     }
 }
