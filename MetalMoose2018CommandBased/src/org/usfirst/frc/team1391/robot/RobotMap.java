@@ -47,6 +47,9 @@ public class RobotMap {
     public static final int operatorRightTriggerPort = 3;
     public static final int operatoRightXPort = 4;
     public static final int operatorRightYPort = 5;
+    
+    public static final int operatorButtonEndPort = 7;
+    public static final int operatorButtonStartPort = 8;
 
     /* MOTOR MAPPING */
     public static final int drivebaseLeftMotorPort = 0;
