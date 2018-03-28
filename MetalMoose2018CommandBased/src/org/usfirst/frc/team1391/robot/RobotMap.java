@@ -161,9 +161,6 @@ public class RobotMap {
     public static double elevatorHoldSpeed = 0.3;
     public static double minimumElevatorHoldDistance = 3;
 
-    // Slow down the elevator by this factor when going down
-    public static double elevatorSlowCoefficient = 0.55;
-
     // This is the error tolerated by the ElevatorToHeight command
     public static double elevatorToHeightTolerance = 2;
 

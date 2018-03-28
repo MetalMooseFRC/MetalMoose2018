@@ -30,9 +30,6 @@ public class ElevatorManualControl extends Command {
         if (OI.operatorB.get()) {
             Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
         } else {
-            // When going down, we want to go more slowly (than going up... gravity)
-            if (leftJoystickInput < 0) leftJoystickInput *= RobotMap.elevatorSlowCoefficient;
-
             // If joystick is set to a value over a certain threshold, move the elevator.
             // If not and the elevator is above a certain height, hold (we don't want to toast the motors)
             if (Math.abs(leftJoystickInput) > RobotMap.minimalJoystickAxisInput)

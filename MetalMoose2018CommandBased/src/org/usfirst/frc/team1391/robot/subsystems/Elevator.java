@@ -48,15 +48,14 @@ public class Elevator extends Subsystem {
         double shift = (start * coefficient);
 
         // The x of the function
-        double x = (elevatorEncoder.getDistance() * coefficient) - shift;
+        double x = Math.abs((elevatorEncoder.getDistance() * coefficient) - shift);
 
         // The actual speed (multiplying the y of the function with the input speed)
-        double throttledSpeed = speed * getThrottledSpeed(x);
-
-        // Going down, we want to slow down the elevator (gravity...)
-        if (throttledSpeed < 0) throttledSpeed *= RobotMap.elevatorSlowCoefficient;
+        double throttledSpeed = speed * getThrottledSpeed(x, Math.signum(speed));
 
         elevatorMotors.set(throttledSpeed);
+        
+        System.out.print("\tElevator: " + throttledSpeed + "\tElevator Encoder: " + elevatorEncoder.getDistance());
     }
 
     /**
@@ -65,16 +64,29 @@ public class Elevator extends Subsystem {
      * @param x The x of the graph.
      * @return The y of the graph.
      */
-    private double getThrottledSpeed(double x) {
-        // The coefficients of the polynomial
-        double[] coefficients = new double[]{-0.0000001233779715, 0.000024675594291, -0.0017622246431853, 0.052844492636667, 0.45};
-
+    private double getThrottledSpeed(double x, double direction) {
+    	// Restrict the x values
+    	if (x < 0) x = 0;
+    	else if (x > RobotMap.elevatorMaximumDistance) x = RobotMap.elevatorMaximumDistance;
+    	
+        // Two sets of coefficients for the elevator going up and down
+    	final double[] upCoefficients = new double[]{-0.0000001233779715, 0.000024675594291, - 0.0017622246431853, 0.052844492636667, 0.45};
+        final double[] downCoefficients = new double[]{-0.000000138666666, 0.000027733333333, - 0.002073333333333, 0.068666666666669, 0.15};
+    	
+        double[] coefficients;
+        
+        // Pick the right one for the direction that we are going
+        // Also, if going up, we go full speed (similar to going down)
+        if (direction == 1) coefficients = upCoefficients;
+        else coefficients = downCoefficients;
+    	
         // Calculate the y value of the graph
         double value = 0;
         for (double coefficient : coefficients) value = value * x + coefficient;
-
+        
         // The maximum motor speed is 1 (or -1, for that matter)... it does not make sense to have more than that.
         if (value > 1) return 1;
+        else if (value < -1) return -1;
         else return value;
     }
 
