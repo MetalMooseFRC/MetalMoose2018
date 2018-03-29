@@ -18,6 +18,9 @@ public class ClampIn extends Command {
     	setTimeout(RobotMap.clampInLength);
     }
 
+    /**
+     * Repeatedly set the clamp motor to the clamp in speed
+     */
     protected void execute() {
     	Robot.myClamp.setSpeed(RobotMap.clampInSpeed);
     }

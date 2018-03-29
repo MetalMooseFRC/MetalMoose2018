@@ -20,6 +20,10 @@ public class Collector extends Subsystem {
         collectorRightMotor.setInverted(true);
     }
 
+    public void initDefaultCommand() {
+        setDefaultCommand(new CollectorManualControl());
+    }
+
     /**
      * Sets the speed of the collector motors.
      *
@@ -27,9 +31,5 @@ public class Collector extends Subsystem {
      */
     public void setAbsoluteSpeed(double speed) {
         collectorMotors.set(speed);
-    }
-
-    public void initDefaultCommand() {
-        setDefaultCommand(new CollectorManualControl());
     }
 }

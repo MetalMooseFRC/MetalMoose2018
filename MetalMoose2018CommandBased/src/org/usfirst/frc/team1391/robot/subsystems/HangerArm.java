@@ -9,7 +9,8 @@ import org.usfirst.frc.team1391.robot.commands.HangerArmManualControl;
  * Controls the hanger arm motor.
  */
 public class HangerArm extends Subsystem {
-    // The motor
+    
+	// The speed controller controlling the hanger arm
     private Spark motor = new Spark(RobotMap.hangerArmMotorPort);
 
     public HangerArm() {
@@ -20,7 +21,7 @@ public class HangerArm extends Subsystem {
     }
 
     /**
-     * Sets speed of the hanger motor.
+     * Sets speed of the hanger arm motor.
      *
      * @param speed The speed for the motor to be set to.
      */
