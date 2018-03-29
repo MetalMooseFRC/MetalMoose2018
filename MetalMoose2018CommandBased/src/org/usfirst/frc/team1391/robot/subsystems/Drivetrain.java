@@ -89,9 +89,14 @@ public class Drivetrain extends Subsystem {
 
         // Calculate the y value at point x of the polynomial
         // Example for 4th degree polynomial: ax^3 + bx^2 + cx + d = x(x(x(a) + b) + c) + d... this simplifies the calculation
-        double value = 0;
-        for (double coefficient : coefficients) value = value * elevatorPosition + coefficient;
+        double functionValue = 0;
+        for (double coefficient : coefficients) functionValue = functionValue * elevatorPosition + coefficient;
 
-        myDifferentialDrive.arcadeDrive(y * value, x * value);
+        double alteredX = x * functionValue;
+        double alteredY = y * functionValue;
+        
+        myDifferentialDrive.arcadeDrive(alteredY, alteredX);
+        
+        System.out.println("\tDrivetrain: " + alteredY + " " + alteredX + "\tPIDs: " + encoderPID.getError() + " " + gyroPID.getError());
     }
 }
