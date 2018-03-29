@@ -78,16 +78,6 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Encoder I", RobotMap.drivetrainEncoderI);
         SmartDashboard.putNumber("Encoder D", RobotMap.drivetrainEncoderD);
 
-        // Status of the scheduler and the subsystems
-        SmartDashboard.putData(Scheduler.getInstance());
-        SmartDashboard.putData(myDrivetrain);
-        SmartDashboard.putData(myCollector);
-        SmartDashboard.putData(myElevator);
-        SmartDashboard.putData(myFourbar);
-        SmartDashboard.putData(myHanger);
-        SmartDashboard.putData(myHangerArm);
-        SmartDashboard.putData(myClamp);
-
         // The chunks
         for (int i = 0; i < RobotMap.chunks.length; i++) SmartDashboard.putString("Chunk " + i, RobotMap.chunks[i]);
 
