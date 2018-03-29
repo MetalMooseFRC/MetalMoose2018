@@ -49,8 +49,6 @@ public class CollectorIntake extends Command {
      * Sets intakeWithCollector to true (we want to hold the cube after intaking).
      */
     protected void initialize() {
-        RobotMap.intakeWithCollector = true;
-        
         if (time != 0) setTimeout(time);
     }
 
@@ -67,8 +65,10 @@ public class CollectorIntake extends Command {
     }
 
     protected void end() {
+        RobotMap.intakeWithCollector = true;
     }
 
     protected void interrupted() {
+        RobotMap.intakeWithCollector = true;
     }
 }

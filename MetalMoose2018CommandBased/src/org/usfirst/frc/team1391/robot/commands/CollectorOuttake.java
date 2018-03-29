@@ -50,8 +50,6 @@ public class CollectorOuttake extends Command {
      * Also sets the intakeWithCollector boolean to false - we just spat out the cube, we don't need to hold it
      */
     protected void initialize() {
-        RobotMap.intakeWithCollector = false;
-
         //  Set a timeout only if the time was initialized
         if (time > 0) setTimeout(time);
     }
@@ -72,8 +70,10 @@ public class CollectorOuttake extends Command {
     }
 
     protected void end() {
+        RobotMap.intakeWithCollector = false;
     }
 
     protected void interrupted() {
+        RobotMap.intakeWithCollector = false;
     }
 }
