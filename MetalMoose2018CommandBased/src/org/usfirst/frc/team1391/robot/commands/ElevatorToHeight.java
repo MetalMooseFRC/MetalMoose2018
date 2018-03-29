@@ -9,7 +9,6 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class ElevatorToHeight extends Command {
     // The starting and ending position of the elevator (if it needs to go to a certain point)
-    private double startPosition;
     private double endPosition;
 
     /**
@@ -24,12 +23,7 @@ public class ElevatorToHeight extends Command {
         this.endPosition = RobotMap.elevatorSetPoints[endPosition];
     }
 
-    /**
-     * Set the starting position.
-     */
     protected void initialize() {
-        // We are starting where the elevator currently is (at the initialization of this command)
-        startPosition = Robot.myElevator.elevatorEncoder.getDistance();
     }
 
     /**
@@ -42,12 +36,11 @@ public class ElevatorToHeight extends Command {
         // Signum returns either +1 or -1 (that is what we want the speed to be
         double speed = Math.signum(endPosition - currentPosition);
 
-        Robot.myElevator.setThrottledSpeed(speed, startPosition, endPosition);
+        Robot.myElevator.setThrottledSpeed(speed);
     }
 
-    // Only once we hit the target do we stop
+    // Only once we are close to the target do we stop
     protected boolean isFinished() {
-        // If we are close to the target
         return Math.abs(Robot.myElevator.elevatorEncoder.getDistance() - endPosition) < RobotMap.elevatorToHeightTolerance;
     }
 

@@ -9,6 +9,9 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Manually controls the elevator (using throttling).
  */
 public class ElevatorManualControl extends Command {
+	// These variables are for detecting repeated readings from the encoder and resetting it...
+	double lastElevatorValue = 0;
+	double repeatCounter = 0;
 
     public ElevatorManualControl() {
         requires(Robot.myElevator);
@@ -27,16 +30,28 @@ public class ElevatorManualControl extends Command {
         double leftJoystickInput = -OI.operatorController.getRawAxis(RobotMap.operatorLeftYPort);
 
         // If 'overriden,' get absolute control
-        if (OI.operatorB.get()) {
-            Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
-        } else {
+        if (OI.operatorB.get()) Robot.myElevator.setAbsoluteSpeed(leftJoystickInput);
+        else {
             // If joystick is set to a value over a certain threshold, move the elevator.
             // If not and the elevator is above a certain height, hold (we don't want to toast the motors)
             if (Math.abs(leftJoystickInput) > RobotMap.minimalJoystickAxisInput)
-                Robot.myElevator.setThrottledSpeed(leftJoystickInput, 0, RobotMap.elevatorMaximumDistance);
+            	Robot.myElevator.setThrottledSpeed(leftJoystickInput);
             else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance)
                     Robot.myElevator.hold();
         }
+        
+        // If we are down and the value of the encoder is the same as it was before
+        // If not, reset the counter
+        // We are doing this, because every time the elevator goes up and down, there is a ~0.5 deviation...
+        // We would idealy want to reset the elevator encoder every time it is down
+        if (Robot.myElevator.elevatorEncoder.getDistance() < RobotMap.minimumElevatorHoldDistance && lastElevatorValue == Robot.myElevator.elevatorEncoder.getDistance())  repeatCounter++;
+        else repeatCounter = 0;
+        
+        // If we repeated repetitionCounter number of times, reset the elevator encoder
+        if (repeatCounter > RobotMap.elevatorValueRepetitionCounter) Robot.myElevator.elevatorEncoder.reset();
+        
+        // Save the last value of the encoder
+        lastElevatorValue = Robot.myElevator.elevatorEncoder.getDistance();
     }
 
     protected boolean isFinished() {

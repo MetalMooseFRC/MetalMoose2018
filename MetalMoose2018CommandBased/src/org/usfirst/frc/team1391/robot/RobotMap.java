@@ -163,6 +163,9 @@ public class RobotMap {
 
     // This is the error tolerated by the ElevatorToHeight command
     public static double elevatorToHeightTolerance = 2;
+    
+    // How many times does the elevator reading have to repeat to reset the encoder
+    public static int elevatorValueRepetitionCounter = 30;
 
     /* FOURBAR */
     // Hold the fourbar either up or down

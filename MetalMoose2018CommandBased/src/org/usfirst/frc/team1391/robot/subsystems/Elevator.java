@@ -41,21 +41,14 @@ public class Elevator extends Subsystem {
      * @param start Where is the start of the elevator movement.
      * @param end   Where is the end of the elevator movement.
      */
-    public void setThrottledSpeed(double speed, double start, double end) {
-        // We sometimes want to go from somewhere on the elevator to somewhere else
-        // That is why we have to first squish, and then shift the function
-        double coefficient = RobotMap.elevatorMaximumDistance / (end - start);
-        double shift = (start * coefficient);
-
+    public void setThrottledSpeed(double speed) {    	
         // The x of the function
-        double x = Math.abs((elevatorEncoder.getDistance() * coefficient) - shift);
+        double x = elevatorEncoder.getDistance();
 
         // The actual speed (multiplying the y of the function with the input speed)
         double throttledSpeed = speed * getThrottledSpeed(x, Math.signum(speed));
 
         elevatorMotors.set(throttledSpeed);
-        
-        System.out.print("\tElevator: " + throttledSpeed + "\tElevator Encoder: " + elevatorEncoder.getDistance());
     }
 
     /**
@@ -71,14 +64,20 @@ public class Elevator extends Subsystem {
     	
         // Two sets of coefficients for the elevator going up and down
     	final double[] upCoefficients = new double[]{-0.0000001233779715, 0.000024675594291, - 0.0017622246431853, 0.052844492636667, 0.45};
-        final double[] downCoefficients = new double[]{-0.000000138666666, 0.000027733333333, - 0.002073333333333, 0.068666666666669, 0.15};
+        final double[] downCoefficients = new double[]{-0.0000000957264957, 0.0000191452991454, - 0.0016365811965889, 0.0679316239315355, - 0.1};
     	
         double[] coefficients;
         
         // Pick the right one for the direction that we are going
-        // Also, if going up, we go full speed (similar to going down)
-        if (direction == 1) coefficients = upCoefficients;
-        else coefficients = downCoefficients;
+        // Also, if going up, we go full speed (similar to going down) - that is why we set x to half of the polynomial max
+        if (direction == 1) {
+        	coefficients = upCoefficients;
+        	if (x < RobotMap.elevatorMaximumDistance / 2) x = RobotMap.elevatorMaximumDistance / 2;
+        }
+        else {
+        	coefficients = downCoefficients;
+        	if (x > RobotMap.elevatorMaximumDistance / 2) x = RobotMap.elevatorMaximumDistance / 2;
+        }
     	
         // Calculate the y value of the graph
         double value = 0;
