@@ -23,13 +23,13 @@ public class HangerArmManualControl extends Command {
      */
     protected void execute() {
         if (OI.operatorStart.get()) {
-            Robot.myHangerArm.setSpeed(RobotMap.hangerMoveSpeed * RobotMap.hangerArmOrientation);
+            Robot.myHangerArm.setSpeed(-RobotMap.hangerMoveSpeed * RobotMap.hangerArmOrientation);
             RobotMap.holdHangerArm = true;
         } else if (OI.operatorBack.get()) {
-            Robot.myHangerArm.setSpeed(-RobotMap.hangerMoveSpeed * RobotMap.hangerArmOrientation);
+            Robot.myHangerArm.setSpeed(RobotMap.hangerMoveSpeed * RobotMap.hangerArmOrientation);
             RobotMap.holdHangerArm = false;
         } else if (RobotMap.holdHangerArm)
-            Robot.myHangerArm.setSpeed(RobotMap.hangerHoldSpeed * RobotMap.hangerArmOrientation);
+            Robot.myHangerArm.setSpeed(-RobotMap.hangerHoldSpeed * RobotMap.hangerArmOrientation);
         else Robot.myHangerArm.setSpeed(0);
     }
 
