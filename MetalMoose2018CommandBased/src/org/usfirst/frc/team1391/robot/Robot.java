@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
     public static final Fourbar myFourbar = new Fourbar();
     public static final Hanger myHanger = new Hanger();
     public static final HangerArm myHangerArm = new HangerArm();
+    public static final Clamp myClamp = new Clamp();
 
     // Create the OI
     public static final OI myOI = new OI();
@@ -85,6 +86,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData(myFourbar);
         SmartDashboard.putData(myHanger);
         SmartDashboard.putData(myHangerArm);
+        SmartDashboard.putData(myClamp);
 
         // The chunks
         for (int i = 0; i < RobotMap.chunks.length; i++) SmartDashboard.putString("Chunk " + i, RobotMap.chunks[i]);
