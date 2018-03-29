@@ -18,4 +18,8 @@ public class Clamp extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new ClampManualControl());
     }
+    
+    public void setSpeed(double speed) {
+    	motor.setSpeed(speed);
+    }
 }

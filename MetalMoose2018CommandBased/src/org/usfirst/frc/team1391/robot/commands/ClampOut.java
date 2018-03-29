@@ -8,28 +8,22 @@ import org.usfirst.frc.team1391.robot.RobotMap;
 /**
  * Controls the clamp.
  */
-public class ClampManualControl extends Command {
+public class ClampOut extends Command {
 
-    public ClampManualControl() {
+    public ClampOut() {
         requires(Robot.myClamp);
     }
 
     protected void initialize() {
+    	setTimeout(RobotMap.clampOutLength);
     }
 
     protected void execute() {
-    	if (RobotMap.intakeWithCollector && !RobotMap.clamped) {
-    		RobotMap.clamped = true;
-    		new ClampIn().start();
-    	}
-    	else if (!RobotMap.intakeWithCollector && RobotMap.clamped) {
-    		RobotMap.clamped = false;
-    		new ClampOut().start();
-    	}
+    	Robot.myClamp.setSpeed(RobotMap.clampOutSpeed);
     }
 
     protected boolean isFinished() {
-    	return false;
+        return isTimedOut();
     }
 
     protected void end() {
