@@ -183,10 +183,10 @@ public class RobotMap {
     // Should the fourbar be held in place now?
     public static boolean holdFourbar = true;
 
-    /* HANGER */
+    /* HANGER ARM */
     public static boolean holdHangerArm = false;
     public static int hangerArmOrientation = 1;
-    public static double hangerMoveSpeed = 0.5;
+    public static double hangerMoveSpeed = 1;
     public static double hangerHoldSpeed = 0.2;
     
     /* COLLECTOR CLAMP */
