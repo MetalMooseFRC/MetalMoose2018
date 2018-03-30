@@ -171,14 +171,14 @@ public class RobotMap {
 
     /* FOURBAR */
     // Hold the fourbar either up or down
-    public static double fourbarHoldUpSpeed = 0.35;
-    public static double fourbarHoldDownSpeed = -0.35;
+    public static double fourbarHoldUpSpeed = 0.25;
+    public static double fourbarHoldDownSpeed = -0.15;
 
     // The length and speed of the FourbarRaise and FourbarLower commands
     public static double fourbarRaiseSpeed = 0.85;
     public static double fourbarLowerSpeed = -0.4;
-    public static double fourbarRaiseLength =1.5;
-    public static double fourbarLowerLength = 1;
+    public static double fourbarRaiseLength = 1.5;
+    public static double fourbarLowerLength = 0.8;
 
     // Should the fourbar be held in place now?
     public static boolean holdFourbar = true;
