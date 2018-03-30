@@ -194,10 +194,13 @@ public class RobotMap {
     public static boolean clamped = true;
 
     // The lengths and speeds for the ClampIn and ClampOut command
-    public static double clampInLength = 0.5;
-    public static double clampOutLength = 0.5;
-    public static double clampInSpeed = 0.3;
-    public static double clampOutSpeed = -0.3;
+    public static double clampInLength = 1;
+    public static double clampOutLength = 1;
+    public static double clampInSpeed = 0.5;
+    public static double clampOutSpeed = -0.5;
+    
+    // The speed at which to hold the clamp
+    public static double clampHoldSpeed = 0.2;
     
     /* MISCELLANEOUS */
     // Switching drive modes

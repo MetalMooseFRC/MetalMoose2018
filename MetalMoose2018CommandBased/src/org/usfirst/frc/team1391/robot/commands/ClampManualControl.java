@@ -25,7 +25,7 @@ public class ClampManualControl extends Command {
     	else if (!RobotMap.intakeWithCollector && RobotMap.clamped) {
     		RobotMap.clamped = false;
     		new ClampOut().start();
-    	}
+    	} else if (RobotMap.clamped) Robot.myClamp.setSpeed(RobotMap.clampHoldSpeed);
     }
 
     protected boolean isFinished() {
