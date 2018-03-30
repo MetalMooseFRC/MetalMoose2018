@@ -47,6 +47,15 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+    	// Put all the subsystems on SmartDashboard
+    	SmartDashboard.putData(myDrivetrain);
+    	SmartDashboard.putData(myCollector);
+    	SmartDashboard.putData(myElevator);
+    	SmartDashboard.putData(myFourbar);
+    	SmartDashboard.putData(myHanger);
+    	SmartDashboard.putData(myHangerArm);
+    	SmartDashboard.putData(myClamp);
+    	
         // Which DriveMode to use in the teleop
         driveModeChooser.addDefault("Joystick Arcade Drive", 2);
         driveModeChooser.addObject("Tank Drive", 1);
