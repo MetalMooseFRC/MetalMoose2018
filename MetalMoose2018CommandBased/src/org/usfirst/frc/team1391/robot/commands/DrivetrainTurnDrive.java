@@ -53,7 +53,7 @@ public class DrivetrainTurnDrive extends Command {
         double xSpeed = Robot.myDrivetrain.gyroPID.get();
         double ySpeed = RobotMap.autonomousDefaultDrivingSpeed;
 
-        if (speed != 0) xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
+        if (speed != 0) ySpeed = speed;
 
         Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);
     }
