@@ -77,9 +77,9 @@ public class RobotMap {
 
     /* AUTONOMOUS, PID */
     // Values for the PID of gyro
-    public static double drivetrainGyroP = 0.055;
+    public static double drivetrainGyroP = 0.1;
     public static double drivetrainGyroI = 0.00001;
-    public static double drivetrainGyroD = 0.008;
+    public static double drivetrainGyroD = 0;
 
     // Values for the PID of the encoder
     public static double drivetrainEncoderP = 0.6;
