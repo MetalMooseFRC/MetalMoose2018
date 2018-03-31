@@ -17,17 +17,16 @@ public class FourbarLower extends Command {
      * Initializes the command only when the elevator is down.
      */
     protected void initialize() {
-    	if (Robot.myElevator.elevatorEncoder.getDistance() < RobotMap.minimumElevatorHoldDistance) {
-    		setTimeout(RobotMap.fourbarLowerLength);
-    		RobotMap.holdFourbar = false;
-    	}
+		setTimeout(RobotMap.fourbarLowerLength);
+		RobotMap.holdFourbar = false;
+    	
     }
 
     /**
      * Keeps lowering the fourbar.
      */
     protected void execute() {
-    	if (Robot.myElevator.elevatorEncoder.getDistance() < RobotMap.minimumElevatorHoldDistance) Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
+    	Robot.myFourbar.setSpeed(RobotMap.fourbarLowerSpeed);
     }
 
     protected boolean isFinished() {
