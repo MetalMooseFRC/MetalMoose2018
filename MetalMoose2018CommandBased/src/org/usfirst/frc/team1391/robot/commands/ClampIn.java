@@ -30,8 +30,10 @@ public class ClampIn extends Command {
     }
 
     protected void end() {
+    	Robot.myClamp.setSpeed(0);
     }
 
     protected void interrupted() {
+    	Robot.myClamp.setSpeed(0);
     }
 }
