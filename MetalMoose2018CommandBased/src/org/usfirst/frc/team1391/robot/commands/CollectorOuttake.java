@@ -71,9 +71,11 @@ public class CollectorOuttake extends Command {
 
     protected void end() {
         RobotMap.intakeWithCollector = false;
+        Robot.myCollector.setAbsoluteSpeed(0);
     }
 
     protected void interrupted() {
         RobotMap.intakeWithCollector = false;
+        Robot.myCollector.setAbsoluteSpeed(0);
     }
 }

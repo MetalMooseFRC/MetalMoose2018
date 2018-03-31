@@ -66,9 +66,11 @@ public class CollectorIntake extends Command {
 
     protected void end() {
         RobotMap.intakeWithCollector = true;
+        Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
     }
 
     protected void interrupted() {
         RobotMap.intakeWithCollector = true;
+        Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
     }
 }
