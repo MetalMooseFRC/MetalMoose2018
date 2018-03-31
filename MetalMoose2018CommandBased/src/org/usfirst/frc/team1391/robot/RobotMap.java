@@ -99,42 +99,42 @@ public class RobotMap {
 
     // Data for the autonomous (layouts)
     public static String[][] chunkLayout = new String[][]{
-            {"LeftLRL", "-Chunk(4)"},
-            {"LeftLLL", "-Chunk(3)"},
-            {"LeftRLR", "-Chunk(3)"},
-            {"LeftRRR", "-Chunk(4)"},
-            {"MiddleLRL", "-Chunk(0)"},
-            {"MiddleLLL", "-Chunk(0)"},
-            {"MiddleRLR", "Chunk(0)"},
-            {"MiddleRRR", "Chunk(0)"},
-            {"RightLRL", "Chunk(3)"},
-            {"RightLLL", "Chunk(4)"},
-            {"RightRLR", "Chunk(4)"},
-            {"RightRRR", "Chunk(3)"}
+            {"LeftLRL", "-C(4)"},
+            {"LeftLLL", "-C(3)"},
+            {"LeftRLR", "-C(3)"},
+            {"LeftRRR", "-C(4)"},
+            {"MiddleLRL", "-C(0)"},
+            {"MiddleLLL", "-C(0)"},
+            {"MiddleRLR", "C(0)"},
+            {"MiddleRRR", "C(0)"},
+            {"RightLRL", "C(3)"},
+            {"RightLLL", "C(4)"},
+            {"RightRLR", "C(4)"},
+            {"RightRRR", "C(3)"}
     };
 
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
             // Middle to switch (for RRR and RLR)
-            "TurnDrive(45) DriveDistance(43) TurnDrive(-45) DriveTime(2) Outttake(0.5, S=0.8)",
+            "TD(45, S=0.78) DD(44) TD(-45, S=0.78) DT(1.5) O(0.5, S=0.8)",
 
             // Drive right to the switch (and pass the line in the process)
-            "DriveDistance(130)",
+            "DD(130)",
 
             // Turn and place on the switch
-            "TurnBy(-90) DriveTime(1.5) Outtake(0.5, S=0.8)",
+            "TB(-90) DT(1.5) O(0.8, S=0.8)",
 
             // Right to the scale
-            "DriveDistance(290) TurnBy(-90) Elevate(2) Outtake(0.5, S=0.8) Elevate(0)",
+            "DD(290) TB(-90) E(2) O(0.5, S=0.6) E(0)",
 
             // Right to scale on the opposite side
-            "DriveD(190) TurnDrive(-90) DriveDistance(180) TurnDrive(90) DriveDistance(30) TurnBy(90) Elevate(2) Output(0.5, S=1) Elevate(0)",
+            "DD(185) TD(-90) DD(195) TD(90) DD(50) TB(90) E(2) O(0.5, S=0.6) E(0)",
 
             // Back off from the middle, grab another cube from the pyramid
-            "DD(-30) TD(45, S=-0.75) DD(-43) TD(-45, S=-0.75) FD() DT(1.5) I(1.5) FU() DD(-80) TD(45) DD(43) TD(-45) E(1) O(0.5, S=0.8)",
+            "",
 
-            // Score another cube on the scale
-            "TB(-75) FD() DT(3) I(3) FU() DD(-30) TB(75) E(2) O(0.5, S=1) E(0)"
+            // Get another cube after scoring on the scale on our
+            "TB(-55) FD() DD(70) I(2, M=P) DT(2, S=0.5) DD(-20) FU()"
     };
 
     // Stores the chunks that make up the autonomous sequences
@@ -157,7 +157,7 @@ public class RobotMap {
     public static double elevatorMaximumDistance = 100;
 
     // Possible saved positions of the elevator
-    public static double[] elevatorSetPoints = new double[]{0, 20, 100};
+    public static double[] elevatorSetPoints = new double[]{0, 11, 85};
 
     // Hold speed and the limit above which to hold the elevator (in elevatorMaximumDistance units)
     public static double elevatorHoldSpeed = 0.3;
