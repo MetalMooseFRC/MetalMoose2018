@@ -178,7 +178,7 @@ public class RobotMap {
     public static double fourbarRaiseSpeed = 0.85;
     public static double fourbarLowerSpeed = -0.4;
     public static double fourbarRaiseLength = 1.5;
-    public static double fourbarLowerLength = 0.8;
+    public static double fourbarLowerLength = 0.4;
 
     // Should the fourbar be held in place now?
     public static boolean holdFourbar = true;
@@ -194,13 +194,13 @@ public class RobotMap {
     public static boolean clamped = true;
 
     // The lengths and speeds for the ClampIn and ClampOut command
-    public static double clampInLength = 1;
-    public static double clampOutLength = 1;
-    public static double clampInSpeed = 0.5;
-    public static double clampOutSpeed = -0.5;
+    public static double clampInLength = 0.15;
+    public static double clampOutLength = 0.15;
+    public static double clampInSpeed = 0.8;
+    public static double clampOutSpeed = -0.8;
     
     // The speed at which to hold the clamp
-    public static double clampHoldSpeed = 0.2;
+    public static double clampHoldSpeed = 0.1;
     
     /* MISCELLANEOUS */
     // Switching drive modes
