@@ -22,11 +22,11 @@ public class DrivetrainDriveTime extends Command {
     DrivetrainDriveTime(double time) {
         this.time = time;
     }
-    
+
     /**
      * Drive the robot for a certain amount of time (in seconds) at a certain speed.
      *
-     * @param time Time for the robot to drive.
+     * @param time  Time for the robot to drive.
      * @param speed Speed at which to drive for the certain amount of time.
      */
     DrivetrainDriveTime(double time, double speed) {
@@ -58,12 +58,12 @@ public class DrivetrainDriveTime extends Command {
 
         // The weird divisions are there because both of the PIDs' output range is set as the default autonomous driving and turning speed
         // The division resets them to the normal scale (0-1), multiplying by speed then adjusts correctly to the new speed
-        if (speed != 0 ) {
-        	xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
-        	ySpeed = speed;
+        if (speed != 0) {
+            xSpeed = (xSpeed / RobotMap.autonomousDefaultTurningSpeed) * speed;
+            ySpeed = speed;
         }
-        
-        Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);        
+
+        Robot.myDrivetrain.arcadeDrive(ySpeed, xSpeed);
     }
 
     /**
@@ -73,7 +73,9 @@ public class DrivetrainDriveTime extends Command {
         return isTimedOut();
     }
 
-    protected void end() {}
+    protected void end() {
+    }
 
-    protected void interrupted() {}
+    protected void interrupted() {
+    }
 }

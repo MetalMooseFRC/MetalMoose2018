@@ -5,13 +5,13 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Intakes (either manually using a button).
+ * Intakes (either manually using a button, or during autonomous).
  */
 public class CollectorIntake extends Command {
-	// Length of the timeout from an autonomous constructor
-	double time = 0;
+    // Length of the timeout, set by the autonomous constructor
+    double time = 0;
 
-	// Speed of the intake
+    // Speed of the intake, set by the autonomous constructor
     double speed = 0;
 
     /**
@@ -46,31 +46,39 @@ public class CollectorIntake extends Command {
     }
 
     /**
-     * Sets intakeWithCollector to true (we want to hold the cube after intaking).
+     * If time is set to anything, set timeout.
      */
     protected void initialize() {
         if (time != 0) setTimeout(time);
     }
 
     /**
-     * Sets speed, defined by the collectorIntakeSpeed constant.
+     * Repeatedly sets speed, defined by the collectorIntakeSpeed constant.
+     * <p>
+     * Alternatively, if the autonomous constructor set speed to anything, set motor to that.
      */
     protected void execute() {
         if (speed == 0) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorIntakeSpeed);
         else Robot.myCollector.setAbsoluteSpeed(speed);
     }
 
+    /**
+     * Returns true when the command times out.
+     */
     protected boolean isFinished() {
         return isTimedOut();
     }
 
+    /**
+     * If ends, start holding with the collector.
+     */
     protected void end() {
-        RobotMap.intakeWithCollector = true;
-        Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
+        RobotMap.collectorHold = true;
+        Robot.myCollector.hold();
     }
 
     protected void interrupted() {
-        RobotMap.intakeWithCollector = true;
-        Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
+        RobotMap.collectorHold = true;
+        Robot.myCollector.hold();
     }
 }

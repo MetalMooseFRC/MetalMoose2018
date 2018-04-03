@@ -5,14 +5,14 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Outtakes (either manually using a button, or through autonomous).
+ * Outtakes (either manually using a button, or during autonomous).
  */
 public class CollectorOuttake extends Command {
-    // Length of the autonomous command
-    private double time = 0;
+    // Length of the timeout, set by the autonomous constructor
+    double time = 0;
 
-    // Speed of the outtake (for autonomous)
-    private double speed = 0;
+    // Speed of the outtake, set by the autonomous constructor
+    double speed = 0;
 
     /**
      * Constructor for teleop.
@@ -24,7 +24,7 @@ public class CollectorOuttake extends Command {
     /**
      * Constructor for autonomous.
      *
-     * @param time The length of the CollectorIntake command.
+     * @param time The length of the CollectorOuttake command.
      */
     CollectorOuttake(double time) {
         requires(Robot.myCollector);
@@ -46,16 +46,16 @@ public class CollectorOuttake extends Command {
     }
 
     /**
-     * If the command is autonomous, sets timeout.
-     * Also sets the intakeWithCollector boolean to false - we just spat out the cube, we don't need to hold it
+     * If time is set to anything, set timeout.
      */
     protected void initialize() {
-        //  Set a timeout only if the time was initialized
-        if (time > 0) setTimeout(time);
+        if (time != 0) setTimeout(time);
     }
 
     /**
-     * Sets speed, defined either by the collectorIntakeSpeed constant or by the speed variable.
+     * Repeatedly sets speed, defined by the collectorOuttakeSpeed constant.
+     * <p>
+     * Alternatively, if the autonomous constructor set speed to anything, set motor to that.
      */
     protected void execute() {
         if (speed == 0) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorOuttakeSpeed);
@@ -63,19 +63,22 @@ public class CollectorOuttake extends Command {
     }
 
     /**
-     * Finishes when isTimedOut() is true.
+     * Returns true when the command times out.
      */
     protected boolean isFinished() {
         return isTimedOut();
     }
 
+    /**
+     * If ends, stop holding with the collector.
+     */
     protected void end() {
-        RobotMap.intakeWithCollector = false;
+        RobotMap.collectorHold = false;
         Robot.myCollector.setAbsoluteSpeed(0);
     }
 
     protected void interrupted() {
-        RobotMap.intakeWithCollector = false;
+        RobotMap.collectorHold = false;
         Robot.myCollector.setAbsoluteSpeed(0);
     }
 }

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
  * Interface between the PIDController object and the other robot code.
  */
 public class BlankPIDOutput implements PIDOutput {
+
     // Saves the output of the PIDController
     private double output;
 

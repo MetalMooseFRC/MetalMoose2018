@@ -11,7 +11,7 @@ import org.usfirst.frc.team1391.robot.commands.FourbarManualControl;
 public class Fourbar extends Subsystem {
 
     // Speed controller controlling the fourbar
-    private Spark motor = new Spark(RobotMap.fourbarMotorPort);
+    private Spark fourbarMotor = new Spark(RobotMap.fourbarMotorPort);
 
     public Fourbar() {
     }
@@ -26,6 +26,20 @@ public class Fourbar extends Subsystem {
      * @param speed The speed to set the fourbar motor to.
      */
     public void setSpeed(double speed) {
-        motor.set(speed);
+        fourbarMotor.set(speed);
+    }
+
+    /**
+     * Sets the motor to the holdUp speed.
+     */
+    public void holdUp() {
+        fourbarMotor.set(RobotMap.fourbarHoldUpSpeed);
+    }
+
+    /**
+     * Sets the motor to the holdDown speed.
+     */
+    public void holdDown() {
+        fourbarMotor.set(RobotMap.fourbarHoldDownSpeed);
     }
 }

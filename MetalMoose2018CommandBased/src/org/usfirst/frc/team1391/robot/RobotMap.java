@@ -14,6 +14,7 @@ import java.util.Map;
  * Used for global variables (auton, driving) and constants (ports).
  */
 public class RobotMap {
+
     /* CONTROLLER MAPPING */
     // Default controller port
     static final int driverControllerPort = 0;
@@ -46,7 +47,7 @@ public class RobotMap {
     public static final int operatorRightTriggerPort = 3;
     public static final int operatoRightXPort = 4;
     public static final int operatorRightYPort = 5;
-    
+
     public static final int operatorButtonEndPort = 7;
     public static final int operatorButtonStartPort = 8;
 
@@ -59,13 +60,13 @@ public class RobotMap {
 
     public static final int elevatorLeftMotorPort = 4;
     public static final int elevatorRightMotorPort = 5;
-    
+
     public static final int fourbarMotorPort = 6;
 
     public static final int hangerMotorPort = 7;
 
     public static final int hangerArmMotorPort = 8;
-    
+
     public static final int clampMotorPort = 9;
 
     /* SENSOR MAPPING */
@@ -147,7 +148,7 @@ public class RobotMap {
     public static double collectorHoldSpeed = 0.3;
 
     // Should the collector be intaking?
-    public static boolean intakeWithCollector = false;
+    public static boolean collectorHold = false;
 
     /* ELEVATOR */
     // Conversion factor for elevator (to distance in inches)
@@ -165,7 +166,7 @@ public class RobotMap {
 
     // This is the error tolerated by the ElevatorToHeight command
     public static double elevatorToHeightTolerance = 2;
-    
+
     // How many times does the elevator reading have to repeat to reset the encoder
     public static int elevatorValueRepetitionCounter = 30;
 
@@ -185,10 +186,9 @@ public class RobotMap {
 
     /* HANGER ARM */
     public static boolean holdHangerArm = false;
-    public static int hangerArmOrientation = 1;
     public static double hangerMoveSpeed = 1;
     public static double hangerHoldSpeed = 0.2;
-    
+
     /* COLLECTOR CLAMP */
     // Is true when set to clamped, and false if unclamped
     public static boolean clamped = true;
@@ -198,10 +198,10 @@ public class RobotMap {
     public static double clampOutLength = 0.15;
     public static double clampInSpeed = 0.8;
     public static double clampOutSpeed = -0.8;
-    
+
     // The speed at which to hold the clamp
     public static double clampHoldSpeed = 0.1;
-    
+
     /* MISCELLANEOUS */
     // Switching drive modes
     // 0 is tank drive and 1 is arcade drive with the Logitech controller

@@ -10,6 +10,7 @@ import org.usfirst.frc.team1391.robot.commands.CollectorManualControl;
  * Controls the collector motors.
  */
 public class Collector extends Subsystem {
+
     // Speed controllers for the motors of the collector
     private VictorSP collectorLeftMotor = new VictorSP(RobotMap.collectorLeftMotorPort);
     private VictorSP collectorRightMotor = new VictorSP(RobotMap.collectorRightMotorPort);
@@ -31,5 +32,12 @@ public class Collector extends Subsystem {
      */
     public void setAbsoluteSpeed(double speed) {
         collectorMotors.set(speed);
+    }
+
+    /**
+     * Sets the collector to the hold speed.
+     */
+    public void hold() {
+        collectorMotors.set(RobotMap.collectorHoldSpeed);
     }
 }

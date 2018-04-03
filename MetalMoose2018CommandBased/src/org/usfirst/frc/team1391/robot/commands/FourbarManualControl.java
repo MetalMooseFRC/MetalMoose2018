@@ -38,8 +38,8 @@ public class FourbarManualControl extends Command {
         }
         
         // Else just hold (either up or down)
-        if (RobotMap.holdFourbar) Robot.myFourbar.setSpeed(RobotMap.fourbarHoldUpSpeed);
-        else Robot.myFourbar.setSpeed(RobotMap.fourbarHoldDownSpeed);
+        if (RobotMap.holdFourbar) Robot.myFourbar.holdUp();
+        else Robot.myFourbar.holdDown();
     }
 
     protected boolean isFinished() {

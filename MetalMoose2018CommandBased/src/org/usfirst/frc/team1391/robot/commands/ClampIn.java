@@ -1,12 +1,11 @@
 package org.usfirst.frc.team1391.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team1391.robot.OI;
 import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Controls the clamp.
+ * Clamps in using the collector motor.
  */
 public class ClampIn extends Command {
 
@@ -14,26 +13,30 @@ public class ClampIn extends Command {
         requires(Robot.myClamp);
     }
 
+    /**
+     * Sets timeout for clamp in length.
+     */
     protected void initialize() {
-    	setTimeout(RobotMap.clampInLength);
+        setTimeout(RobotMap.clampInLength);
     }
 
     /**
-     * Repeatedly set the clamp motor to the clamp in speed
+     * Repeatedly set the clamp motor to the clamp in speed.
      */
     protected void execute() {
-    	Robot.myClamp.setSpeed(RobotMap.clampInSpeed);
+        Robot.myClamp.setSpeed(RobotMap.clampInSpeed);
     }
 
+    /**
+     * Returns true when the command times out.
+     */
     protected boolean isFinished() {
         return isTimedOut();
     }
 
     protected void end() {
-    	Robot.myClamp.setSpeed(0);
     }
 
     protected void interrupted() {
-    	Robot.myClamp.setSpeed(0);
     }
 }

@@ -23,6 +23,7 @@ import org.usfirst.frc.team1391.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
+
     // Create subsystem objects
     public static final Drivetrain myDrivetrain = new Drivetrain();
     public static final Collector myCollector = new Collector();
@@ -47,15 +48,15 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-    	// Put all the subsystems on SmartDashboard
-    	SmartDashboard.putData(myDrivetrain);
-    	SmartDashboard.putData(myCollector);
-    	SmartDashboard.putData(myElevator);
-    	SmartDashboard.putData(myFourbar);
-    	SmartDashboard.putData(myHanger);
-    	SmartDashboard.putData(myHangerArm);
-    	SmartDashboard.putData(myClamp);
-    	
+        // Put all the subsystems on SmartDashboard
+        SmartDashboard.putData(myDrivetrain);
+        SmartDashboard.putData(myCollector);
+        SmartDashboard.putData(myElevator);
+        SmartDashboard.putData(myFourbar);
+        SmartDashboard.putData(myHanger);
+        SmartDashboard.putData(myHangerArm);
+        SmartDashboard.putData(myClamp);
+
         // Which DriveMode to use in the teleop
         driveModeChooser.addDefault("Joystick Arcade Drive", 2);
         driveModeChooser.addObject("Tank Drive", 1);
@@ -91,7 +92,8 @@ public class Robot extends TimedRobot {
         for (int i = 0; i < RobotMap.chunks.length; i++) SmartDashboard.putString("Chunk " + i, RobotMap.chunks[i]);
 
         // The chunk layouts
-        for (int i = 0; i < RobotMap.chunkLayout.length; i++) SmartDashboard.putString(RobotMap.chunkLayout[i][0], RobotMap.chunkLayout[i][1]);
+        for (int i = 0; i < RobotMap.chunkLayout.length; i++)
+            SmartDashboard.putString(RobotMap.chunkLayout[i][0], RobotMap.chunkLayout[i][1]);
     }
 
     @Override
@@ -123,13 +125,16 @@ public class Robot extends TimedRobot {
 
         /* AUTONOMOUS **/
         // Update chunks
-        for (int i = 0; i < RobotMap.chunks.length; i++) RobotMap.chunks[i] = SmartDashboard.getString("Chunk " + i, RobotMap.chunks[i]);
+        for (int i = 0; i < RobotMap.chunks.length; i++)
+            RobotMap.chunks[i] = SmartDashboard.getString("Chunk " + i, RobotMap.chunks[i]);
 
         // Update chunk layouts
-        for (int i = 0; i < RobotMap.chunkLayout.length; i++) RobotMap.chunkLayout[i][1] = SmartDashboard.getString(RobotMap.chunkLayout[i][0], RobotMap.chunkLayout[i][1]);
+        for (int i = 0; i < RobotMap.chunkLayout.length; i++)
+            RobotMap.chunkLayout[i][1] = SmartDashboard.getString(RobotMap.chunkLayout[i][0], RobotMap.chunkLayout[i][1]);
 
         //Get the chunk layouts
-        for (int i = 0; i < RobotMap.chunkLayout.length; i++) RobotMap.autonomousFromLayout.put(RobotMap.chunkLayout[i][0], RobotMap.chunkLayout[i][1]);
+        for (int i = 0; i < RobotMap.chunkLayout.length; i++)
+            RobotMap.autonomousFromLayout.put(RobotMap.chunkLayout[i][0], RobotMap.chunkLayout[i][1]);
 
         // Get the autonomous speeds
         RobotMap.autonomousDefaultTurningSpeed = SmartDashboard.getNumber("Autonomous Default Turning Speed", RobotMap.autonomousDefaultTurningSpeed);
@@ -141,7 +146,7 @@ public class Robot extends TimedRobot {
 
         // Start of with both intaking a cube and holding the fourbar
         RobotMap.holdFourbar = true;
-        RobotMap.intakeWithCollector = true;
+        RobotMap.collectorHold = true;
 
         // Position of the robot from smartDashboard and the field layout from the driverstation
         String robotPosition = autonomousPositionChooser.getSelected();
@@ -181,7 +186,7 @@ public class Robot extends TimedRobot {
         RobotMap.driveMode = driveModeChooser.getSelected();
 
         // Get the orientation of the arm
-        RobotMap.hangerArmOrientation = (int)SmartDashboard.getNumber("Hanger Arm Orientation", RobotMap.hangerArmOrientation);
+        RobotMap.hangerArmOrientation = (int) SmartDashboard.getNumber("Hanger Arm Orientation", RobotMap.hangerArmOrientation);
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Drives the robot in autonomous (by certain amount of inches).
  */
 public class DrivetrainDriveDistance extends Command {
-    // The goal for the PID.
+    // The goal for the PID
     private double distance;
 
     // Optional speed (if set to anything but zero)

@@ -16,6 +16,7 @@ import org.usfirst.frc.team1391.robot.commands.*;
  * Connect physical operator interface to commands.
  */
 public class OI {
+
     // Drive team controllers
     public static final Joystick driveStick = new Joystick(RobotMap.driverControllerPort),
             operatorController = new Joystick(RobotMap.operatorControllerPort);
@@ -37,10 +38,11 @@ public class OI {
 
     // Map commands to sticks stick
     OI() {
-        // Control the collector
+        // Controls the collector
         operatorLB.whileHeld(new CollectorIntake());
         operatorRB.whileHeld(new CollectorOuttake());
-        
+
+        // Controls the fourbar
         fourbarButton.whenPressed(new FourbarLower());
         fourbarButton.whenReleased(new FourbarRaise());
     }

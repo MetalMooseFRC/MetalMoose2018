@@ -5,7 +5,7 @@ import org.usfirst.frc.team1391.robot.Robot;
 import org.usfirst.frc.team1391.robot.RobotMap;
 
 /**
- * Raise the fourbar.
+ * Raises the fourbar.
  */
 public class FourbarRaise extends Command {
 
@@ -14,7 +14,7 @@ public class FourbarRaise extends Command {
     }
 
     /**
-     * Initializes the command only when the elevator is down.
+     * Sets timeout and starts holding the fourbar.
      */
     protected void initialize() {
 		setTimeout(RobotMap.fourbarRaiseLength);
@@ -28,6 +28,9 @@ public class FourbarRaise extends Command {
     	Robot.myFourbar.setSpeed(RobotMap.fourbarRaiseSpeed);
     }
 
+    /**
+     * Returns true when the command times out.
+     */
     protected boolean isFinished() {
         return isTimedOut();
     }

@@ -11,19 +11,22 @@ import org.usfirst.frc.team1391.robot.commands.ElevatorManualControl;
  * Controls the elevator motors and encoder.
  */
 public class Elevator extends Subsystem {
+
     // Speed controllers for the motors of the elevator
     private Spark elevatorLeftMotor = new Spark(RobotMap.elevatorLeftMotorPort);
     private Spark elevatorRightMotor = new Spark(RobotMap.elevatorRightMotorPort);
+
+    // Speed group for the elevator
     private SpeedControllerGroup elevatorMotors = new SpeedControllerGroup(elevatorLeftMotor, elevatorRightMotor);
 
-    // Elevator encoder.
+    // Elevator encoder
     public Encoder elevatorEncoder = new Encoder(RobotMap.elevatorEncoderAPort, RobotMap.elevatorEncoderBPort, false, Encoder.EncodingType.k4X);
 
     public Elevator() {
         // The motors have to run in the opposite directions
         elevatorRightMotor.setInverted(true);
 
-        // Change the coefficient of the elevator to match the distance travelled in percent of total height (100 is max)
+        // Change the coefficient of the elevator to match the distance travelled in percent of total height
         elevatorEncoder.setDistancePerPulse(RobotMap.elevatorEncoderCoefficient);
     }
 
@@ -32,16 +35,11 @@ public class Elevator extends Subsystem {
     }
 
     /**
-     * Set speed of the elevator motors (throttled).
-     * If start and end are left as default values (0 and RobotMap.elevatorMaximumDistance, respectively),
-     * teleop is using the function. If, however, we want to go from a point on the elevator to another point
-     * on the elevator, we will set starting and ending values to shift the function to reflect these points.
+     * Set throttled speed of the elevator motors
      *
-     * @param speed Input form the joystick.
-     * @param start Where is the start of the elevator movement.
-     * @param end   Where is the end of the elevator movement.
+     * @param speed Speed to which to set the motor to (this will be throttled).
      */
-    public void setThrottledSpeed(double speed) {    	
+    public void setThrottledSpeed(double speed) {
         // The x of the function
         double x = elevatorEncoder.getDistance();
 
@@ -54,36 +52,38 @@ public class Elevator extends Subsystem {
     /**
      * Get the y value at point x of the graph of the throttle function.
      *
-     * @param x The x of the graph.
-     * @return The y of the graph.
+     * @param x         The x value of the graph.
+     * @param direction The direction that the elevator is going (the functions are different when going up and down)
+     * @return The y value of the graph.
      */
     private double getThrottledSpeed(double x, double direction) {
-    	// Restrict the x values
-    	if (x < 0) x = 0;
-    	else if (x > RobotMap.elevatorMaximumDistance) x = RobotMap.elevatorMaximumDistance;
-    	
+        // Restrict the x values (from 0 to maximum), to remove any unpredictable behavior
+        if (x < 0) x = 0;
+        else if (x > RobotMap.elevatorMaximumDistance) x = RobotMap.elevatorMaximumDistance;
+
         // Two sets of coefficients for the elevator going up and down
-    	final double[] upCoefficients = new double[]{-0.0000001233779715, 0.000024675594291, - 0.0017622246431853, 0.052844492636667, 0.45};
-        final double[] downCoefficients = new double[]{-0.0000000957264957, 0.0000191452991454, - 0.0016365811965889, 0.0679316239315355, - 0.1};
-    	
+        final double[] upCoefficients = new double[]{-0.0000001233779715, 0.000024675594291, -0.0017622246431853, 0.052844492636667, 0.45};
+        final double[] downCoefficients = new double[]{-0.0000000957264957, 0.0000191452991454, -0.0016365811965889, 0.0679316239315355, -0.1};
+
+        // This variable will just take one of the previous two arrays as a reference
         double[] coefficients;
-        
-        // Pick the right one for the direction that we are going
+
+        // Pick the right equation from the direction that teh elevator wants to go
         // Also, if going up, we go full speed (similar to going down) - that is why we set x to half of the polynomial max
         if (direction == 1) {
-        	coefficients = upCoefficients;
-        	if (x < RobotMap.elevatorMaximumDistance / 2) x = RobotMap.elevatorMaximumDistance / 2;
+            coefficients = upCoefficients;
+            if (x < RobotMap.elevatorMaximumDistance / 2) x = RobotMap.elevatorMaximumDistance / 2;
+        } else {
+            coefficients = downCoefficients;
+            if (x > RobotMap.elevatorMaximumDistance / 2) x = RobotMap.elevatorMaximumDistance / 2;
         }
-        else {
-        	coefficients = downCoefficients;
-        	if (x > RobotMap.elevatorMaximumDistance / 2) x = RobotMap.elevatorMaximumDistance / 2;
-        }
-    	
+
         // Calculate the y value of the graph
         double value = 0;
         for (double coefficient : coefficients) value = value * x + coefficient;
-        
-        // The maximum motor speed is 1 (or -1, for that matter)... it does not make sense to have more than that.
+
+        // The maximum motor speed is 1 (or -1, for that matter)
+        // Since one of the functions gies slightly above 1
         if (value > 1) return 1;
         else if (value < -1) return -1;
         else return value;
@@ -92,7 +92,7 @@ public class Elevator extends Subsystem {
     /**
      * Sets the absolute speed of the elevator motors.
      *
-     * @param speed Speed to set for the motors (1 to -1).
+     * @param speed Speed to set the motors to (1 to -1).
      */
     public void setAbsoluteSpeed(double speed) {
         elevatorMotors.set(speed);
