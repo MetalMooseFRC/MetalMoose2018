@@ -27,8 +27,7 @@ public class UDPServer {
 		DatagramPacket packet = new DatagramPacket(buf, buf.length);
 		try {
 			socket.receive(packet);
-			String received = new String(packet.getData(), 0, packet.getLength());
-			return received;
+			return new String(packet.getData(), 0, packet.getLength());
 		} catch (Exception e) {
 			return "timeout";
 		}

@@ -4,12 +4,8 @@ package org.usfirst.frc.team1391.robot;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketException;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 
 public class UDPClient {
 
@@ -40,8 +36,7 @@ public class UDPClient {
 		DatagramPacket packet = new DatagramPacket(receiveData, receiveData.length);
 		try {
 			socket.receive(packet);
-			String received = new String(packet.getData(), 0, packet.getLength());
-			return received;
+			return new String(packet.getData(), 0, packet.getLength());
 		} catch (Exception e) {
 			System.out.println("failure recieving data from raspberry pi!!");
 			System.out.println(e);

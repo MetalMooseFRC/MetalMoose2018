@@ -12,7 +12,7 @@ import org.usfirst.frc.team1391.robot.commands.VisionMonitor;
 public class VisionSystem extends Subsystem {
 	private UDPServer myUDPServer;
 	private boolean isVisionConnected = false;
-	private boolean isVisionTargetted = false;
+	private boolean isVisionTargeted = false;
 	private double visionAngle = 0;
 
 	public VisionSystem() {
@@ -23,25 +23,28 @@ public class VisionSystem extends Subsystem {
 	 */
 	public void updateVision() {
 		String visionString = myUDPServer.listen();
-		if (visionString == "null") {
-			isVisionTargetted = false;
-			visionAngle = 0;
-		} else if (visionString == "timeout") { 
-			myUDPServer.close();
-			myUDPServer = new UDPServer(RobotMap.visionPort);
-			isVisionConnected = false;
-		} else {
-			isVisionConnected = true;
-			visionAngle = Double.parseDouble(visionString);
+
+		switch (visionString) {
+			case "null":
+				isVisionTargeted = false;
+				visionAngle = 0;
+				break;
+			case "timeout":
+				myUDPServer.close();
+				myUDPServer = new UDPServer(RobotMap.visionPort);
+				isVisionConnected = false;
+				break;
+			default:
+				isVisionConnected = true;
+				visionAngle = Double.parseDouble(visionString);
+				break;
 		}
 	}
 	
 	public void initVision() {
 		boolean isSuccess = false;
 		isVisionConnected = false;
-		while (isSuccess == false) {
-			isSuccess = myUDPServer.initSocket();
-		}
+		while (!isSuccess) isSuccess = myUDPServer.initSocket();
 	}
 	
 	public void initDefaultCommand() {
@@ -49,7 +52,7 @@ public class VisionSystem extends Subsystem {
 	}
 	
 	public boolean getIsVisionTargetted() {
-		return isVisionTargetted;
+		return isVisionTargeted;
 	}
 	
 	public double getVisionAngle() {

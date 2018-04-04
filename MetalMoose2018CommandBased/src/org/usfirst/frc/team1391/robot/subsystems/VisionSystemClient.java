@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class VisionSystemClient extends Subsystem{
 	private UDPClient myUDPClient;
 	private boolean isVisionConnected = false;
-	private boolean isVisionTargetted = false;
+	private boolean isVisionTargeted = false;
 	private double visionAngle = 0;
 
 	public VisionSystemClient() {
@@ -23,7 +23,7 @@ public class VisionSystemClient extends Subsystem{
 	public void updateVision() {
 		myUDPClient.query("q");
 		String visionString = myUDPClient.listen();
-		if (visionString == "timeout") { 
+		if (visionString.equals("timeout")) {
 			System.out.println("timeout");
 			isVisionConnected = false;
 		} else {
@@ -31,7 +31,7 @@ public class VisionSystemClient extends Subsystem{
 			try {
 				visionAngle = Double.parseDouble(visionString);
 			} catch (Exception e) {
-				isVisionTargetted = false;
+				isVisionTargeted = false;
 				visionAngle = 0;
 				System.out.println(visionAngle);
 				System.out.println(e);
@@ -43,14 +43,14 @@ public class VisionSystemClient extends Subsystem{
 	public void initVision() {
 		boolean isSuccess = false;
 		isVisionConnected = false;
-		while (isSuccess == false) {
+		while (!isSuccess) {
 			isSuccess = myUDPClient.initSocket();
 		}
 	}
 
 	
 	public boolean getIsVisionTargetted() {
-		return isVisionTargetted;
+		return isVisionTargeted;
 	}
 	
 	public double getVisionAngle() {
