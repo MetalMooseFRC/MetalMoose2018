@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1391.robot.subsystems;
 
 import org.usfirst.frc.team1391.robot.UDPClient;
-import org.usfirst.frc.team1391.robot.commands.VisionMonitor;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -39,7 +38,7 @@ public class VisionSystemClient extends Subsystem{
 			}
 		}
 	}
-	
+
 	public void initVision() {
 		boolean isSuccess = false;
 		isVisionConnected = false;
@@ -48,27 +47,26 @@ public class VisionSystemClient extends Subsystem{
 		}
 	}
 
-	
+
 	public boolean getIsVisionTargetted() {
 		return isVisionTargeted;
 	}
-	
+
 	public double getVisionAngle() {
 		return visionAngle;
 	}
-	
+
 	public boolean getIsVisionConnected() {
 		return isVisionConnected;
 	}
-	
+
 	public void reset() {
 		myUDPClient.close();
 		myUDPClient = new UDPClient();
 		initVision();
 	}
-	
+
 	public void initDefaultCommand() {
-		setDefaultCommand(new VisionMonitor());
 	}
 }
 

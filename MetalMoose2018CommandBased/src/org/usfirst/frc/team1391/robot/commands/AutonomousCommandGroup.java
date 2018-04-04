@@ -131,6 +131,20 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
+                // TurnToCube() - sequential - turn to the nearset cube
+                case "TTC": {
+
+                    if (speed != 0) {
+                        if (mode.equals("S")) addSequential(new DrivetrainTurnToCube(speed));
+                        else if (mode.equals("P")) addParallel(new DrivetrainTurnToCube(speed));
+                    } else {
+                        if (mode.equals("S")) addSequential(new DrivetrainTurnToCube());
+                        else if (mode.equals("P")) addParallel(new DrivetrainTurnToCube());
+                    }
+
+                    break;
+                }
+
                 // Drive(distance in in) - sequential - drive
                 case "DD": {
                     double distance = Double.parseDouble(commandParts[1]);
