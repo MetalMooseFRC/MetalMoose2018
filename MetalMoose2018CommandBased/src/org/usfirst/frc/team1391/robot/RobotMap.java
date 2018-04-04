@@ -104,10 +104,10 @@ public class RobotMap {
             {"LeftLLL", "-C(3)"},
             {"LeftRLR", "-C(3)"},
             {"LeftRRR", "-C(4)"},
-            {"MiddleLRL", "-C(0)"},
-            {"MiddleLLL", "-C(0)"},
-            {"MiddleRLR", "C(0)"},
-            {"MiddleRRR", "C(0)"},
+            {"MiddleLRL", "-C(0) -C(5)"},
+            {"MiddleLLL", "-C(0) -C(5)"},
+            {"MiddleRLR", "C(0) C(5)"},
+            {"MiddleRRR", "C(0) C(5)"},
             {"RightLRL", "C(3)"},
             {"RightLLL", "C(4)"},
             {"RightRLR", "C(4)"},
@@ -126,16 +126,16 @@ public class RobotMap {
             "TB(-90) DT(1.5) O(0.8, S=0.8)",
 
             // Right to the scale
-            "DD(290) TB(-90) E(2) O(0.5, S=0.6) E(0)",
+            "DD(290) TB(-90) E(2) O(0.5, S=0.9) E(0)",
 
             // Right to scale on the opposite side
-            "DD(185) TD(-90) DD(195) TD(90) DD(50) TB(90) E(2) O(0.5, S=0.6) E(0)",
+            "DD(185) TD(-90) DD(160) TB(90) E(2) DT(2.2, S=0.5) O(1, S=0.25) DT(2.2, S=-0.5) E(0)",
 
             // Back off from the middle, grab another cube from the pyramid
-            "",
+            "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3, M=P) DT(3, S=0.5) DD(-30) FU()",
 
-            // Get another cube after scoring on the scale on our
-            "TB(-55) FD() DD(70) I(2, M=P) DT(2, S=0.5) DD(-20) FU()"
+            // Get another cube after scoring on the scale
+            "TB(-57) FD() DD(60) I(2, M=P) DT(2, S=0.5) DD(-20) FU()"
     };
 
     // Stores the chunks that make up the autonomous sequences
