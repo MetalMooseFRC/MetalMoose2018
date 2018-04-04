@@ -6,16 +6,16 @@ import org.usfirst.frc.team1391.robot.Robot;
 public class VisionMonitor extends Command {
 
     public VisionMonitor() {
-        requires(Robot.myVisionSystem);
+        requires(Robot.myVisionSystemClient);
     }
 
     protected void initialize() {
-        Robot.myVisionSystem.initVision();
+        Robot.myVisionSystemClient.initVision();
     }
 
     protected void execute() {
-    	Robot.myVisionSystem.updateVision();
-    	System.out.println(Robot.myVisionSystem.getVisionAngle());
+    	Robot.myVisionSystemClient.updateVision();
+    	System.out.println(Robot.myVisionSystemClient.getVisionAngle());
     }
 
     protected boolean isFinished() {
