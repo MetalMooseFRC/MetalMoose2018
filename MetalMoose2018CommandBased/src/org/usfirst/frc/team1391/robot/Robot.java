@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
     public static final Hanger myHanger = new Hanger();
     public static final HangerArm myHangerArm = new HangerArm();
     public static final Clamp myClamp = new Clamp();
+    public static final VisionSystemClient myVisionSystemClient = new VisionSystemClient();
 
     // Create the OI
     public static final OI myOI = new OI();
