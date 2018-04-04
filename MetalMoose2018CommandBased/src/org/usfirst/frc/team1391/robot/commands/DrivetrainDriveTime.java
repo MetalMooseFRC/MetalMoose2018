@@ -20,6 +20,7 @@ public class DrivetrainDriveTime extends Command {
      * @param time Time for the robot to drive.
      */
     DrivetrainDriveTime(double time) {
+        requires(Robot.myDrivetrain);
         this.time = time;
     }
 
@@ -30,6 +31,7 @@ public class DrivetrainDriveTime extends Command {
      * @param speed Speed at which to drive for the certain amount of time.
      */
     DrivetrainDriveTime(double time, double speed) {
+        requires(Robot.myDrivetrain);
         this.time = time;
         this.speed = speed;
     }

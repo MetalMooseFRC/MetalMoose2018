@@ -20,6 +20,7 @@ public class DrivetrainDriveDistance extends Command {
      * @param distance Distance to be driven (in inches).
      */
     DrivetrainDriveDistance(double distance) {
+        requires(Robot.myDrivetrain);
         this.distance = distance;
     }
 
@@ -30,6 +31,7 @@ public class DrivetrainDriveDistance extends Command {
      * @param speed    The speed at which to drive the distance.
      */
     DrivetrainDriveDistance(double distance, double speed) {
+        requires(Robot.myDrivetrain);
         this.distance = distance;
         this.speed = speed;
     }

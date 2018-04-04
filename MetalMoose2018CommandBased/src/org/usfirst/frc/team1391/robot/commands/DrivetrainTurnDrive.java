@@ -20,6 +20,7 @@ public class DrivetrainTurnDrive extends Command {
      * @param angle Angle to be turned by (in degrees).
      */
     DrivetrainTurnDrive(double angle) {
+        requires(Robot.myDrivetrain);
         this.angle = angle;
     }
 
@@ -30,6 +31,7 @@ public class DrivetrainTurnDrive extends Command {
      * @param speed The speed at which to turn and drive.
      */
     DrivetrainTurnDrive(double angle, double speed) {
+        requires(Robot.myDrivetrain);
         this.angle = angle;
         this.speed = speed;
     }
