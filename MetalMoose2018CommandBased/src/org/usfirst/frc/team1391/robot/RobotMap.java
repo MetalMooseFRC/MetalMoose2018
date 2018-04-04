@@ -194,4 +194,5 @@ public class RobotMap {
     public static double minimalJoystickAxisInput = 0.1;
     
     public static int visionPort = 5800;
+    public static byte[] piAddress = {10, 13, 91, 12};
 }
