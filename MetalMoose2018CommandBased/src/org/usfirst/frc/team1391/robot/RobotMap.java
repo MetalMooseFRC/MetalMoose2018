@@ -193,6 +193,6 @@ public class RobotMap {
     // Minimal input from the joystick axes (when in default position, they are not always zero
     public static double minimalJoystickAxisInput = 0.1;
     
-    public static int visionPort = 5800;
+    public static int visionPort = 5830;
     public static byte[] piAddress = {10, 13, 91, 12};
 }

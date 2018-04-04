@@ -17,6 +17,7 @@ public class UDPClient {
 	private byte[] addressBytes = RobotMap.piAddress;
 
 	public UDPClient() {
+		initSocket();
 		
 	}
 
@@ -27,6 +28,8 @@ public class UDPClient {
 			socket.setSoTimeout(3);
 			return true;
 		} catch (Exception e) {
+			System.out.println("Socket init failed");
+			System.out.println(address);
 			System.out.println(e);
 			return false;
 		}

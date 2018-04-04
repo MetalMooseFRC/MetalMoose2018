@@ -10,7 +10,7 @@ public class VisionMonitor extends Command {
     }
 
     protected void initialize() {
-        Robot.myVisionSystemClient.initVision();
+        //Robot.myVisionSystemClient.initVision();
     }
 
     protected void execute() {
