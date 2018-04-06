@@ -64,7 +64,6 @@ public class VisionSystemClient extends Subsystem{
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new VisionMonitor());
 	}
 }
 
