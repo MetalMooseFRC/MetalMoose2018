@@ -47,17 +47,25 @@ public class DrivetrainTurnToCube extends Command {
      * Keeps re-adjusting the motors, depending on the output of PID.
      */
     protected void execute() {
-        if (timeSinceInitialized() > 0.5) {
-            Robot.myVisionSystemClient.updateVision();
+    	if (timeSinceInitialized() < 0.5) {
+            Robot.myDrivetrain.arcadeDrive(0, 0);
+    	} else if (timeSinceInitialized() < 0.8) {
+    		Robot.myVisionSystemClient.updateVision();
 
             sum += Robot.myVisionSystemClient.getVisionAngle();
-        } else if (timeSinceInitialized() > 0.8) {
+            counter++;
+            Robot.myDrivetrain.arcadeDrive(0, 0);
+    	} else if (!wasInitialized) {
             Robot.myDrivetrain.myAHRS.reset();
-
+            
             // Set point, enable gyro PID
-            Robot.myDrivetrain.gyroPID.setSetpoint(sum/counter);
+            Robot.myDrivetrain.gyroPID.setSetpoint(sum/counter * 0.50);
             Robot.myDrivetrain.gyroPID.reset();
             Robot.myDrivetrain.gyroPID.enable();
+            
+            Robot.myDrivetrain.arcadeDrive(0, 0);
+
+            wasInitialized = true;
         } else {
             double xSpeed = Robot.myDrivetrain.gyroPID.get();
 
@@ -71,7 +79,7 @@ public class DrivetrainTurnToCube extends Command {
      * Finished when it hits the gyroPID target
      */
     protected boolean isFinished() {
-        return Robot.myDrivetrain.gyroPID.onTarget() || isTimedOut();
+        return (Robot.myDrivetrain.gyroPID.onTarget() || isTimedOut()) && wasInitialized;
     }
 
     protected void end() {
