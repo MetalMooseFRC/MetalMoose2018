@@ -47,7 +47,7 @@ public class CollectorManualControl extends Command {
             }
 
             // Else if we want to hold the cube
-            if (RobotMap.collectorHold) Robot.myCollector.setAbsoluteSpeed(RobotMap.collectorHoldSpeed);
+            if (RobotMap.collectorHold) Robot.myCollector.hold();
 
                 // Else just set to zero
             else Robot.myCollector.setAbsoluteSpeed(0);

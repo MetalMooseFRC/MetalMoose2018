@@ -41,7 +41,6 @@ public class ElevatorManualControl extends Command {
         }
 
         // If we are down and the value of the encoder is the same as it was before, increment the counter
-        //
         // We are doing this, because every time the elevator goes up and down, there is a ~0.5 inch deviation in the encoder
         if (Robot.myElevator.elevatorEncoder.getDistance() < RobotMap.minimumElevatorHoldDistance && lastElevatorValue == Robot.myElevator.elevatorEncoder.getDistance())
             repeatCounter++;

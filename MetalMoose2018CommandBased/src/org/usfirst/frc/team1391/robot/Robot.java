@@ -74,9 +74,6 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Autonomous Default Turning Speed", RobotMap.autonomousDefaultTurningSpeed);
         SmartDashboard.putNumber("Autonomous Default Driving Speed", RobotMap.autonomousDefaultDrivingSpeed);
 
-        // Orientation of the hanger arm
-        SmartDashboard.putNumber("Hanger Arm Orientation", RobotMap.hangerArmOrientation);
-
         // A custom autonomous command String
         SmartDashboard.putString("Custom Autonomous Command", "");
 
@@ -185,9 +182,6 @@ public class Robot extends TimedRobot {
 
         // Get DriveMode from SmartDashBoard
         RobotMap.driveMode = driveModeChooser.getSelected();
-
-        // Get the orientation of the arm
-        RobotMap.hangerArmOrientation = (int) SmartDashboard.getNumber("Hanger Arm Orientation", RobotMap.hangerArmOrientation);
     }
 
     @Override

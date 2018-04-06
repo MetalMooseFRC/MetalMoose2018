@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1391.robot.subsystems;
 
 import org.usfirst.frc.team1391.robot.UDPClient;
+import org.usfirst.frc.team1391.robot.commands.VisionMonitor;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,7 +24,6 @@ public class VisionSystemClient extends Subsystem{
 		myUDPClient.query("q");
 		String visionString = myUDPClient.listen();
 		if (visionString.equals("timeout")) {
-			System.out.println("timeout");
 			isVisionConnected = false;
 		} else {
 			isVisionConnected = true;
@@ -32,9 +32,6 @@ public class VisionSystemClient extends Subsystem{
 			} catch (Exception e) {
 				isVisionTargeted = false;
 				visionAngle = 0;
-				System.out.println(visionAngle);
-				System.out.println(e);
-				System.out.println(visionString);
 			}
 		}
 	}
@@ -67,6 +64,7 @@ public class VisionSystemClient extends Subsystem{
 	}
 
 	public void initDefaultCommand() {
+		setDefaultCommand(new VisionMonitor());
 	}
 }
 
