@@ -101,23 +101,23 @@ public class RobotMap {
     // Data for the autonomous (layouts)
     public static String[][] chunkLayout = new String[][]{
             {"LeftLRL", "-C(4)"},
-            {"LeftLLL", "-C(3)"},
-            {"LeftRLR", "-C(3)"},
+            {"LeftLLL", "-C(3) -C(6)"},
+            {"LeftRLR", "-C(3) -C(6)"},
             {"LeftRRR", "-C(4)"},
             {"MiddleLRL", "-C(0) -C(5)"},
             {"MiddleLLL", "-C(0) -C(5)"},
             {"MiddleRLR", "C(0) C(5)"},
             {"MiddleRRR", "C(0) C(5)"},
-            {"RightLRL", "C(3)"},
+            {"RightLRL", "C(3) C(6)"},
             {"RightLLL", "C(4)"},
             {"RightRLR", "C(4)"},
-            {"RightRRR", "C(3)"}
+            {"RightRRR", "C(3) C(6)"}
     };
 
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
             // Middle to switch (for RRR and RLR)
-            "TD(45, S=0.78) DD(44) TD(-45, S=0.78) DT(1.5) O(0.5, S=0.8)",
+            "TD(45, S=0.78) DD(44) TD(-45, S=0.78) DT(1.5) O(1, S=0.8)",
 
             // Drive right to the switch (and pass the line in the process)
             "DD(130)",
@@ -126,16 +126,16 @@ public class RobotMap {
             "TB(-90) DT(1.5) O(0.8, S=0.8)",
 
             // Right to the scale
-            "DD(290) TB(-90) E(2) O(0.5, S=0.9) E(0)",
+            "DD(220, S=0.9) E(2) TB(-40, S=0.8) O(0.4, S=0.6) E(0, M=P)",
 
             // Right to scale on the opposite side
-            "DD(185) TD(-90) DD(160) TB(90) E(2) DT(2.2, S=0.5) O(1, S=0.25) DT(2.2, S=-0.5) E(0)",
+            "DD(185, S=0.8) TD(-90) DD(160, S=0.8) TB(90) E(2) DT(1.8, S=0.5) O(1, S=0.25) DT(1.8, S=-0.5) E(0)",
 
             // Back off from the middle, grab another cube from the pyramid
             "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3, M=P) DT(3, S=0.5) DD(-30) FU()",
 
             // Get another cube after scoring on the scale
-            "TB(-57) FD() DD(60) I(2, M=P) DT(2, S=0.5) DD(-20) FU()"
+            "TB(-90) FD() T(1) TTC() I(2, M=P) DT(1.5, S=0.55) FU() DT(0.5, S=0.7) E(1) O(0.3, S=0.9) E(0)"
     };
 
     // Stores the chunks that make up the autonomous sequences
