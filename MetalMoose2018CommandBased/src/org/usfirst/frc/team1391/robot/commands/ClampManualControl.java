@@ -19,14 +19,12 @@ public class ClampManualControl extends Command {
     protected void execute() {
         // If we are intaking with the collector, but not clamp yet, clamp (and cancel this command)
         if (RobotMap.collectorHold && !RobotMap.clamped) {
-            RobotMap.clamped = true;
             new ClampIn().start();
             this.cancel();
         }
 
         // If we are not intaking with the collector but clamped, unclamp (and cancel this command)
         else if (!RobotMap.collectorHold && RobotMap.clamped) {
-            RobotMap.clamped = false;
             new ClampOut().start();
             this.cancel();
         }

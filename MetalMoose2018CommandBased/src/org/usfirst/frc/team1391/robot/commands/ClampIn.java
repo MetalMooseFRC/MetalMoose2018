@@ -35,8 +35,10 @@ public class ClampIn extends Command {
     }
 
     protected void end() {
+    	RobotMap.clamped = true;
     }
 
     protected void interrupted() {
+    	RobotMap.clamped = true;
     }
 }

@@ -35,8 +35,10 @@ public class ClampOut extends Command {
     }
 
     protected void end() {
+    	RobotMap.clamped = false;
     }
 
     protected void interrupted() {
+    	RobotMap.clamped = false;
     }
 }
