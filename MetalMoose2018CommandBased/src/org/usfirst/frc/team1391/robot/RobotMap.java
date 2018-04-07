@@ -125,17 +125,26 @@ public class RobotMap {
             // Turn and place on the switch
             "TB(-90) DT(1.5) O(0.8, S=0.8)",
 
-            // Right to the scale
-            "DD(220, S=0.9) E(2) TB(-40, S=0.8) O(0.4, S=0.6) E(0, M=P)",
+            // Right to the scale (coming short)
+            "DD(224, S=0.9) E(2) TB(-35, S=0.7) O(0.4, S=0.8) E(0, M=P)",
 
             // Right to scale on the opposite side
-            "DD(185, S=0.8) TD(-90) DD(160, S=0.8) TB(90) E(2) DT(1.8, S=0.5) O(1, S=0.25) DT(1.8, S=-0.5) E(0)",
+            "DD(185, S=0.8) TD(-90) DD(160, S=0.8) TB(90) E(2) DT(1.8, S=0.5) O(1, S=0.35) DT(1.8, S=-0.5) E(0)",
 
             // Back off from the middle, grab another cube from the pyramid
             "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3, M=P) DT(3, S=0.5) DD(-30) FU()",
 
             // Get another cube after scoring on the scale
-            "TB(-90) FD() T(1) TTC() I(2, M=P) DT(1.5, S=0.55) FU() DT(0.5, S=0.7) E(1) O(0.3, S=0.9) E(0)"
+            "TB(-108, S=0.7) FD() DD(15) TTC() I(2.2, M=P) DT(1.8, S=0.55) CI()",
+
+            // Score on switch after picking up 2nd cube
+            "DD(-5) FU() DT(1) O(1)",
+
+            // Score on scale after picking up 2nd cube
+            "DD(-15) TB(100, M=P) FU() DD(20, M=P, S=0.5) E(2) O(1, S=0.35) DD(-20, S=0.5) E(0)",
+
+            // Scoring on the scale when fully driving into the null zone
+            "DD(285, S=0.85) TB(-90, S=0.8) DD(-13) E(2) O(0.8, S=0.9) E(0)"
     };
 
     // Stores the chunks that make up the autonomous sequences
