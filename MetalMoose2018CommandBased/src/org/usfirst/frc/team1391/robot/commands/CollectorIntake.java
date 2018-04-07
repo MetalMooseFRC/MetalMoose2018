@@ -50,6 +50,8 @@ public class CollectorIntake extends Command {
      */
     protected void initialize() {
         if (time != 0) setTimeout(time);
+
+        RobotMap.collectorHold = false;
     }
 
     /**
