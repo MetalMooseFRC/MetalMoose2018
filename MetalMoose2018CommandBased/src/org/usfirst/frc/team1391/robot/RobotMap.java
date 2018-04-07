@@ -202,6 +202,17 @@ public class RobotMap {
     // The speed at which to hold the clamp
     public static double clampHoldSpeed = 0.1;
 
+    /* VISION */
+    // Variables for the subsystem
+    public static int visionPort = 5805;
+    public static byte[] piAddress = {10, 13, 91, 12};
+
+    // Length of the information collecting from the RPi
+    public static double visionValueCollectionLength = 0.3;
+
+    // The vision does not give the correct angle - this coefficient aims to fix that
+    public static double visionCoefficient = 0.5;
+
     /* MISCELLANEOUS */
     // Switching drive modes
     // 0 is tank drive and 1 is arcade drive with the Logitech controller
@@ -210,7 +221,4 @@ public class RobotMap {
 
     // Minimal input from the joystick axes (when in default position, they are not always zero
     public static double minimalJoystickAxisInput = 0.1;
-    
-    public static int visionPort = 5805;
-    public static byte[] piAddress = {10, 13, 91, 12};
 }

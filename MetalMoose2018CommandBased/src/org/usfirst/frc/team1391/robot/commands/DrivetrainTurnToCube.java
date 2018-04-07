@@ -11,6 +11,7 @@ public class DrivetrainTurnToCube extends Command {
     // Optional speed (if set to anything but zero)
     private double speed = 0;
 
+    // Variables to average the vision reading over a period of time
     private double sum;
     private int counter;
 
@@ -47,23 +48,23 @@ public class DrivetrainTurnToCube extends Command {
      * Keeps re-adjusting the motors, depending on the output of PID.
      */
     protected void execute() {
-    	if (timeSinceInitialized() < 0.5) {
-            Robot.myDrivetrain.arcadeDrive(0, 0);
-    	} else if (timeSinceInitialized() < 0.8) {
+    	// Collect angle data
+        if (timeSinceInitialized() < RobotMap.visionValueCollectionLength) {
     		Robot.myVisionSystemClient.updateVision();
 
             sum += Robot.myVisionSystemClient.getVisionAngle();
             counter++;
             Robot.myDrivetrain.arcadeDrive(0, 0);
-    	} else if (!wasInitialized) {
+    	}
+
+    	// Initialize the encoder after collecting the data
+    	else if (!wasInitialized) {
             Robot.myDrivetrain.myAHRS.reset();
             
             // Set point, enable gyro PID
-            Robot.myDrivetrain.gyroPID.setSetpoint(sum/counter * 0.50);
+            Robot.myDrivetrain.gyroPID.setSetpoint(sum/counter * RobotMap.visionCoefficient);
             Robot.myDrivetrain.gyroPID.reset();
             Robot.myDrivetrain.gyroPID.enable();
-            
-            Robot.myDrivetrain.arcadeDrive(0, 0);
 
             wasInitialized = true;
         } else {
