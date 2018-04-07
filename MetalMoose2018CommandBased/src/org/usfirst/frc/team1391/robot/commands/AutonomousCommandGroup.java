@@ -188,7 +188,19 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                     break;
                 }
+                
+                case "CI": {
+                	addSequential(new ClampIn());
+                	
+                	break;
+                }
 
+                case "CO": {
+                	addSequential(new ClampOut());
+                	
+                	break;
+                }
+                
                 // Chunk(number of the chunk)
                 case "C": {
                     int chunkNumber = Integer.parseInt(commandParts[1]);
