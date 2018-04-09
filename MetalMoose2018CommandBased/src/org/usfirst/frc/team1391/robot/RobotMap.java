@@ -132,10 +132,10 @@ public class RobotMap {
             "DD(185, S=0.8) TD(-90) DD(160, S=0.8) TB(90)",
 
             // Back off from the middle, grab another cube from the pyramid
-            "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3, M=P) DT(3, S=0.5) DD(-30) FU()",
+            "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3) DT(3, S=0.5) DD(-30) FU()",
 
             // Get another cube after scoring on the scale
-            "TB(-98, S=0.7) FD() DD(15) TTC() TTC() I(2.2, M=P) DT(1.8, S=0.55) CI()",
+            "TB(-98, S=0.7) FD() DD(15) TTC() TTC() I(2.2) DT(1.8, S=0.55) CI()",
 
             // Lift the cube up after picking another one
             "DD(-5) FU()",
