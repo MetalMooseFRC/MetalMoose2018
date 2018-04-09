@@ -209,7 +209,7 @@ public class RobotMap {
     public static double clampOutSpeed = -0.6;
 
     // The speed at which to hold the clamp
-    public static double clampHoldSpeed = 0.1;
+    public static double clampHoldSpeed = 0.2;
 
     /* VISION */
     // Variables for the subsystem
