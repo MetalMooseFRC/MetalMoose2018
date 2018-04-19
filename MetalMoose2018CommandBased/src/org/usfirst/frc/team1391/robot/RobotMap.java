@@ -116,37 +116,37 @@ public class RobotMap {
 
     // Chunks of movement for the autonomous sequences
     public static String[] chunks = {
-            // Middle to switch (for RRR and RLR)
+            // Middle to switch
             "TD(45, S=0.78) DD(44) TD(-45, S=0.78) DT(1.5) O(1, S=0.8)",
 
-            // Drive right to the switch (and pass the line in the process)
+            // Cross the line
             "DD(130)",
 
-            // Turn and place on the switch
+            // Turn and place on the switch after crossing the line
             "TB(-90) DT(1.5) O(0.8, S=0.8)",
 
-            // Right to the scale (coming short)
+            // Same side scale (coming short)
             "DD(224, S=0.9) E(2) TB(-35, S=0.7) O(0.4, S=0.8) E(0, M=P)",
 
-            // Right to scale on the opposite side
+            // Opposite side scale
             "DD(185, S=0.8) TD(-90) DD(160, S=0.8) TB(90)",
 
-            // Back off from the middle, grab another cube from the pyramid
+            // Grab 2nd cube from the middle pyramid
             "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3) DT(3, S=0.5) DD(-30) FU()",
 
-            // Get another cube after scoring on the scale
+            // Grab 2nd cube after scoring on the scale
             "TB(-98, S=0.7) FD() DD(15) TTC() TTC() I(2.2) DT(1.8, S=0.55) CI()",
 
-            // Lift the cube up after picking another one
+            // Back off and lift a cube up
             "DD(-5) FU()",
 
             // Score on scale after picking up 2nd cube
             "DD(-15) TB(100, M=P) FU() DD(20, M=P, S=0.5) E(2) O(1, S=0.35) DD(-20, S=0.5) E(0)",
 
-            // Scoring on the scale when fully driving into the null zone
+            // Same side scale (fully into the null zone)
             "DD(285, S=0.85) TB(-90, S=0.8) DD(-13) E(2) O(0.8, S=0.9) E(0)",
             
-            // Score on the switch after lifting up the 2nd cube
+            // Score on switch after grabing 2nd cube
             "DT(1) O(1)"
     };
 
