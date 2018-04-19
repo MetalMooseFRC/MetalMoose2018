@@ -36,11 +36,10 @@ public class AutonomousCommandGroup extends CommandGroup {
 
             // Optional parameter variables
             double speed = 0;
-            String mode = "S";
+            String mode = "";
 
             // Get the values of all optional parameters
             for (int i = 1; i < commandParts.length; i++) {
-
                 // If it contains a "=", it has to be an optional parameter
                 if (commandParts[i].contains("=")) {
                     String[] optionalCommandParts = commandParts[i].split(" *= *");
@@ -60,12 +59,21 @@ public class AutonomousCommandGroup extends CommandGroup {
             }
 
             switch (commandParts[0]) {
-                // Elevate(position) - parallel - moves the elevator into a set position
+                // Elevate(position) - parallel - moves the elevator into position
                 case "E": {
                     int elevatorPosition = Integer.parseInt(commandParts[1]);
 
-                    if (mode.equals("S")) addSequential(new ElevatorToHeight(elevatorPosition));
-                    else if (mode.equals("P")) addParallel(new ElevatorToHeight(elevatorPosition));
+                    switch (mode) {
+                        case "S":
+                            addSequential(new ElevatorToHeight(elevatorPosition));
+                            break;
+                        case "P":
+                            addParallel(new ElevatorToHeight(elevatorPosition));
+                            break;
+                        default:
+                            addSequential(new ElevatorToHeight(elevatorPosition));
+                            break;
+                    }
 
                     break;
                 }
@@ -104,12 +112,30 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "TD": {
                     double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
 
-                    if (speed != 0) {
-                        if (mode.equals("S")) addSequential(new DrivetrainTurnDrive(angle, speed));
-                        else if (mode.equals("P")) addParallel(new DrivetrainTurnDrive(angle, speed));
+                    if (speed == 0) {
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainTurnDrive(angle));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainTurnDrive(angle));
+                                break;
+                            default:
+                                addSequential(new DrivetrainTurnDrive(angle));
+                                break;
+                        }
                     } else {
-                        if (mode.equals("S")) addSequential(new DrivetrainTurnDrive(angle));
-                        else if (mode.equals("P")) addParallel(new DrivetrainTurnDrive(angle));
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainTurnDrive(angle, speed));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainTurnDrive(angle, speed));
+                                break;
+                            default:
+                                addSequential(new DrivetrainTurnDrive(angle, speed));
+                                break;
+                        }
                     }
 
                     break;
@@ -117,29 +143,63 @@ public class AutonomousCommandGroup extends CommandGroup {
 
                 // TurnBy(angle in degrees) - sequential - turn by an angle
                 case "TB": {
-                    // If reversed is true, we need to invert the angle
                     double angle = Double.parseDouble(commandParts[1]) * (reversed ? -1 : 1);
 
-                    if (speed != 0) {
-                        if (mode.equals("S")) addSequential(new DrivetrainTurnByAngle(angle, speed));
-                        else if (mode.equals("P")) addParallel(new DrivetrainTurnByAngle(angle, speed));
+                    if (speed == 0) {
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainTurnByAngle(angle));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainTurnByAngle(angle));
+                                break;
+                            default:
+                                addSequential(new DrivetrainTurnByAngle(angle));
+                                break;
+                        }
                     } else {
-                        if (mode.equals("S")) addSequential(new DrivetrainTurnByAngle(angle));
-                        else if (mode.equals("P")) addParallel(new DrivetrainTurnByAngle(angle));
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainTurnByAngle(angle, speed));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainTurnByAngle(angle, speed));
+                                break;
+                            default:
+                                addSequential(new DrivetrainTurnByAngle(angle, speed));
+                                break;
+                        }
                     }
 
                     break;
                 }
 
-                // TurnToCube() - sequential - turn to the nearset cube
+                // TurnToCube() - sequential - turn to the nearest cube using vision
                 case "TTC": {
-
-                    if (speed != 0) {
-                        if (mode.equals("S")) addSequential(new DrivetrainTurnToCube(speed));
-                        else if (mode.equals("P")) addParallel(new DrivetrainTurnToCube(speed));
+                    if (speed == 0) {
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainTurnToCube());
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainTurnToCube());
+                                break;
+                            default:
+                                addSequential(new DrivetrainTurnToCube());
+                                break;
+                        }
                     } else {
-                        if (mode.equals("S")) addSequential(new DrivetrainTurnToCube());
-                        else if (mode.equals("P")) addParallel(new DrivetrainTurnToCube());
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainTurnToCube(speed));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainTurnToCube(speed));
+                                break;
+                            default:
+                                addSequential(new DrivetrainTurnToCube(speed));
+                                break;
+                        }
                     }
 
                     break;
@@ -149,12 +209,30 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "DD": {
                     double distance = Double.parseDouble(commandParts[1]);
 
-                    if (speed != 0) {
-                        if (mode.equals("S")) addSequential(new DrivetrainDriveDistance(distance, speed));
-                        else if (mode.equals("P")) addParallel(new DrivetrainDriveDistance(distance, speed));
+                    if (speed == 0) {
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainDriveDistance(distance));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainDriveDistance(distance));
+                                break;
+                            default:
+                                addSequential(new DrivetrainDriveDistance(distance));
+                                break;
+                        }
                     } else {
-                        if (mode.equals("S")) addSequential(new DrivetrainDriveDistance(distance));
-                        else if (mode.equals("P")) addParallel(new DrivetrainDriveDistance(distance));
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainDriveDistance(distance, speed));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainDriveDistance(distance, speed));
+                                break;
+                            default:
+                                addSequential(new DrivetrainDriveDistance(distance, speed));
+                                break;
+                        }
                     }
 
                     break;
@@ -164,44 +242,85 @@ public class AutonomousCommandGroup extends CommandGroup {
                 case "DT": {
                     double time = Double.parseDouble(commandParts[1]);
 
-                    if (speed != 0) {
-                        if (mode.equals("S")) addSequential(new DrivetrainDriveTime(time, speed));
-                        else if (mode.equals("P")) addParallel(new DrivetrainDriveTime(time, speed));
+                    if (speed == 0) {
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainDriveTime(time));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainDriveTime(time));
+                                break;
+                            default:
+                                addSequential(new DrivetrainDriveTime(time));
+                                break;
+                        }
                     } else {
-                        if (mode.equals("S")) addSequential(new DrivetrainDriveTime(time));
-                        else if (mode.equals("P")) addParallel(new DrivetrainDriveTime(time));
+                        switch (mode) {
+                            case "S":
+                                addSequential(new DrivetrainDriveTime(time, speed));
+                                break;
+                            case "P":
+                                addParallel(new DrivetrainDriveTime(time, speed));
+                                break;
+                            default:
+                                addSequential(new DrivetrainDriveTime(time, speed));
+                                break;
+                        }
                     }
 
                     break;
                 }
 
+                // FourbarRaise() / FourbarUp() - sequential - raise the fourbar
                 case "FR":
                 case "FU": {
-                    addSequential(new FourbarRaise());
+                    switch (mode) {
+                        case "S":
+                            addSequential(new FourbarRaise());
+                            break;
+                        case "P":
+                            addParallel(new FourbarRaise());
+                            break;
+                        default:
+                            addSequential(new FourbarRaise());
+                            break;
+                    }
 
                     break;
                 }
 
+                // FourbarLower() / FourbarDown() - sequential - lower the fourbar
                 case "FL":
                 case "FD": {
-                    addSequential(new FourbarLower());
-
+                    switch (mode) {
+                        case "S":
+                            addSequential(new FourbarLower());
+                            break;
+                        case "P":
+                            addParallel(new FourbarLower());
+                            break;
+                        default:
+                            addSequential(new FourbarLower());
+                            break;
+                    }
                     break;
                 }
-                
+
+                // ClampIn() - sequential - clamps in the collector
                 case "CI": {
                 	addSequential(new ClampIn());
                 	
                 	break;
                 }
 
+                // ClampOut() - sequential - clamps out the collector
                 case "CO": {
                 	addSequential(new ClampOut());
                 	
                 	break;
                 }
                 
-                // Chunk(number of the chunk)
+                // Chunk(chunk number) - recursively generates the commands depending on the chunk
                 case "C": {
                     int chunkNumber = Integer.parseInt(commandParts[1]);
                     String chunk = RobotMap.chunks[chunkNumber];
@@ -211,7 +330,7 @@ public class AutonomousCommandGroup extends CommandGroup {
                     break;
                 }
 
-                // -Chunk(number of the chunk) - inverted chunk
+                // -Chunk(chunk number) - recursively generates the inverted commands depending on the chunk
                 case "-C": {
                     int chunkNumber = Integer.parseInt(commandParts[1]);
                     String chunk = RobotMap.chunks[chunkNumber];
