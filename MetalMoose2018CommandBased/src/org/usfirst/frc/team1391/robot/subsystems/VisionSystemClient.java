@@ -17,6 +17,7 @@ public class VisionSystemClient extends Subsystem{
 	public VisionSystemClient() {
 		myUDPClient = new UDPClient();
 	}
+
 	/**
 	 * This method should be called at least once per FMS cycle while the vision system is actively being used.
 	 */

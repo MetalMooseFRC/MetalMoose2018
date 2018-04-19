@@ -10,8 +10,8 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class ElevatorManualControl extends Command {
     // These variables are for detecting repeated readings from the encoder and resetting it...
-    double lastElevatorValue = 0;
-    double repeatCounter = 0;
+    private double lastElevatorValue = 0;
+    private double valueRepeatCounter = 0;
 
     public ElevatorManualControl() {
         requires(Robot.myElevator);
@@ -43,16 +43,16 @@ public class ElevatorManualControl extends Command {
         // If we are down and the value of the encoder is the same as it was before, increment the counter
         // We are doing this, because every time the elevator goes up and down, there is a ~0.5 inch deviation in the encoder
         if (Robot.myElevator.elevatorEncoder.getDistance() < RobotMap.minimumElevatorHoldDistance && lastElevatorValue == Robot.myElevator.elevatorEncoder.getDistance())
-            repeatCounter++;
-        else repeatCounter = 0;
+            valueRepeatCounter++;
+        else valueRepeatCounter = 0;
 
         // If we repeated repetitionCounter number of times, reset the elevator encoder and the counter
-        if (repeatCounter > RobotMap.elevatorValueRepetitionCounter) {
+        if (valueRepeatCounter > RobotMap.elevatorValueRepetitionCounter) {
             Robot.myElevator.elevatorEncoder.reset();
-            repeatCounter = 0;
+            valueRepeatCounter = 0;
         }
 
-        // Save the last value of the encoder
+        // Save the last value of the encoder (for the repeat counter)
         lastElevatorValue = Robot.myElevator.elevatorEncoder.getDistance();
     }
 

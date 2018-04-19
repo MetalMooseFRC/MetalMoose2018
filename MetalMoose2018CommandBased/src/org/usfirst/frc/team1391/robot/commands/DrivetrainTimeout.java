@@ -21,6 +21,9 @@ public class DrivetrainTimeout extends Command {
         this.time = time;
     }
 
+    /**
+     * Sets timeout.
+     */
     protected void initialize() {
         setTimeout(time);
     }
@@ -28,6 +31,9 @@ public class DrivetrainTimeout extends Command {
     protected void execute() {
     }
 
+    /**
+     * Returns true when the command times out.
+     */
     protected boolean isFinished() {
         return isTimedOut();
     }

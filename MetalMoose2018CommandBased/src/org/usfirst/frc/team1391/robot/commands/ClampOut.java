@@ -34,10 +34,16 @@ public class ClampOut extends Command {
         return isTimedOut();
     }
 
+    /**
+     * Sets clamped to false (since the robot just unclamped).
+     */
     protected void end() {
     	RobotMap.clamped = false;
     }
 
+    /**
+     * Sets clamped to false (the robot tried to unclamp).
+     */
     protected void interrupted() {
     	RobotMap.clamped = false;
     }

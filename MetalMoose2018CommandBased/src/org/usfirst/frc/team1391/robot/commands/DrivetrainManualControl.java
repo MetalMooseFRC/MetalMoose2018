@@ -48,7 +48,8 @@ public class DrivetrainManualControl extends Command {
             }
 
             // Arcade drive using the y and the rotation (as x) axis of the Logitech joystick
-            case 2: {
+            case 2:
+            default: {
                 double forwardSpeed = -OI.driveStick.getY();
                 double turningSpeed = OI.driveStick.getRawAxis(RobotMap.arcadeDriveRotationAxisPort);
 

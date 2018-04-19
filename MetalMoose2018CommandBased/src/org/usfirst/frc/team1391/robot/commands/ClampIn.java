@@ -34,10 +34,16 @@ public class ClampIn extends Command {
         return isTimedOut();
     }
 
+    /**
+     * Sets clamped to true (since the robot just clamped).
+     */
     protected void end() {
     	RobotMap.clamped = true;
     }
 
+    /**
+     * Sets clamped to true (the robot tried to clamp).
+     */
     protected void interrupted() {
     	RobotMap.clamped = true;
     }

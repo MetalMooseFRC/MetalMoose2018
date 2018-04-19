@@ -15,6 +15,7 @@ public class DrivetrainTurnToCube extends Command {
     private double sum;
     private int counter;
 
+    // Were the PID values initialized in the execute method?
     private boolean wasInitialized = false;
 
     /**
@@ -36,33 +37,32 @@ public class DrivetrainTurnToCube extends Command {
         this.speed = speed;
     }
 
-    /**
-     * Resets encoder and gyro, set goals for PID, enables PID.
-     */
     protected void initialize() {
-        // If we are turning for more than 4 seconds, go to the next command
-        setTimeout(4);
     }
 
     /**
-     * Keeps re-adjusting the motors, depending on the output of PID.
+     * Collects vision data, then sets PID and starts to turn depending on PID output.
      */
     protected void execute() {
-    	// Collect angle data
+    	// Collect angle data for the valueCollectionLength
         if (timeSinceInitialized() < RobotMap.visionValueCollectionLength) {
+            // Update vision
     		Robot.myVisionSystemClient.updateVision();
 
+    		// Get data
             sum += Robot.myVisionSystemClient.getVisionAngle();
             counter++;
+
+            // Update DifferentialDrive
             Robot.myDrivetrain.arcadeDrive(0, 0);
     	}
 
-    	// Initialize the encoder after collecting the data
+    	// Reset and initialize the encoder after collecting the data
     	else if (!wasInitialized) {
             Robot.myDrivetrain.myAHRS.reset();
             
             // Set point, enable gyro PID
-            Robot.myDrivetrain.gyroPID.setSetpoint(sum/counter * RobotMap.visionCoefficient);
+            Robot.myDrivetrain.gyroPID.setSetpoint((sum/counter) * RobotMap.visionCoefficient);
             Robot.myDrivetrain.gyroPID.reset();
             Robot.myDrivetrain.gyroPID.enable();
 
@@ -77,10 +77,10 @@ public class DrivetrainTurnToCube extends Command {
     }
 
     /**
-     * Finished when it hits the gyroPID target
+     * Finished when it hits the gyroPID target after it was initialized.
      */
     protected boolean isFinished() {
-        return (Robot.myDrivetrain.gyroPID.onTarget() || isTimedOut()) && wasInitialized;
+        return (Robot.myDrivetrain.gyroPID.onTarget() && wasInitialized;
     }
 
     protected void end() {

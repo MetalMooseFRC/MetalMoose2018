@@ -39,7 +39,10 @@ public class ElevatorToHeight extends Command {
         Robot.myElevator.setThrottledSpeed(speed);
     }
 
-    // Only once we are close to the target do we stop
+
+    /**
+     * Finishes only when it's close to the end (see elevatorToHeightTolerance)
+     */
     protected boolean isFinished() {
         return Math.abs(Robot.myElevator.elevatorEncoder.getDistance() - endPosition) < RobotMap.elevatorToHeightTolerance;
     }

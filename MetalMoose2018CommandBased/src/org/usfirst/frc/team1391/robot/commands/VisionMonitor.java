@@ -8,40 +8,31 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  * Turns the robot in autonomous (by an angle).
  */
 public class VisionMonitor extends Command {
-	int counter = 0;
-	
+    // A counter to update the vision every updatePeriod seconds
+    private int counter = 0;
+    private double updatePeriod = 0.1;
 
-    /**
-     * Turn the robot to the nearest cube.
-     */
-   public VisionMonitor() {
+    public VisionMonitor() {
         requires(Robot.myVisionSystemClient);
     }
 
-
-    /**
-     * Resets encoder and gyro, set goals for PID, enables PID.
-     */
     protected void initialize() {
     }
 
     /**
-     * Keeps re-adjusting the motors, depending on the output of PID.
+     * Updates vision once every updatePeriod number of seconds
      */
     protected void execute() {
-    		if (timeSinceInitialized() > counter * 0.1) {
-    			counter++;
-    			
-    			Robot.myVisionSystemClient.updateVision();
-    		}
+        if (timeSinceInitialized() > counter * updatePeriod) {
+            Robot.myVisionSystemClient.updateVision();
+
+            counter++;
+        }
 
     }
 
-    /**
-     * Finished when it hits the gyroPID target
-     */
     protected boolean isFinished() {
-    	return false;
+        return false;
     }
 
     protected void end() {

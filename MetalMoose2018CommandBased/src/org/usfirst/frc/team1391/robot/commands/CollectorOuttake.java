@@ -9,7 +9,7 @@ import org.usfirst.frc.team1391.robot.RobotMap;
  */
 public class CollectorOuttake extends Command {
     // Length of the timeout, set by the autonomous constructor
-    double time = 0;
+    private double time = 0;
 
     // Speed of the outtake, set by the autonomous constructor
     double speed = 0;
@@ -77,6 +77,9 @@ public class CollectorOuttake extends Command {
         Robot.myCollector.setAbsoluteSpeed(0);
     }
 
+    /**
+     * If is interrupted, stop holding with the collector.
+     */
     protected void interrupted() {
         RobotMap.collectorHold = false;
         Robot.myCollector.setAbsoluteSpeed(0);
