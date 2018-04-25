@@ -15,7 +15,7 @@ public class DrivetrainTurnToCube extends Command {
     private double sum;
     private int counter;
 
-    // Were the PID values initialized in the execute method?
+    // Controls, whether the sensors were configured and PID set in the execute method
     private boolean wasInitialized = false;
 
     /**
@@ -34,6 +34,7 @@ public class DrivetrainTurnToCube extends Command {
     DrivetrainTurnToCube(double speed) {
         requires(Robot.myDrivetrain);
         requires(Robot.myVisionSystemClient);
+
         this.speed = speed;
     }
 
@@ -66,6 +67,7 @@ public class DrivetrainTurnToCube extends Command {
             Robot.myDrivetrain.gyroPID.reset();
             Robot.myDrivetrain.gyroPID.enable();
 
+            // The values were initialized (so this code is not called again)
             wasInitialized = true;
         } else {
             double xSpeed = Robot.myDrivetrain.gyroPID.get();

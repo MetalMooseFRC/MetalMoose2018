@@ -18,7 +18,6 @@ public class UDPClient {
 
 	public UDPClient() {
 		initSocket();
-		
 	}
 
 	public boolean initSocket() {

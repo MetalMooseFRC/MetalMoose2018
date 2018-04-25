@@ -39,7 +39,6 @@ public class ElevatorToHeight extends Command {
         Robot.myElevator.setThrottledSpeed(speed);
     }
 
-
     /**
      * Finishes only when it's close to the end (see elevatorToHeightTolerance)
      */

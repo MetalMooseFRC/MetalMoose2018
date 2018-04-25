@@ -114,39 +114,39 @@ public class RobotMap {
             {"RightRRR", "C(3) C(6) C(7)"}
     };
 
-    // Chunks of movement for the autonomous sequences
+    // Autonomous sequences
     public static String[] chunks = {
-            // Middle to switch
+            // [0] From middle to switch
             "TD(45, S=0.78) DD(44) TD(-45, S=0.78) DT(1.5) O(1, S=0.8)",
 
-            // Cross the line
+            // [1] Cross the line
             "DD(130)",
 
-            // Turn and place on the switch after crossing the line
+            // [2] Turn and place on the switch after crossing the line from the side
             "TB(-90) DT(1.5) O(0.8, S=0.8)",
 
-            // Same side scale (coming short)
+            // [3] Same side scale (coming short)
             "DD(224, S=0.9) E(2) TB(-35, S=0.7) O(0.4, S=0.8) E(0, M=P)",
 
-            // Opposite side scale
+            // [4] Opposite side scale
             "DD(185, S=0.8) TD(-90) DD(160, S=0.8) TB(90)",
 
-            // Grab 2nd cube from the middle pyramid
+            // [5] Grab 2nd cube from the middle pyramid
             "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3) DT(3, S=0.5) DD(-30) FU()",
 
-            // Grab 2nd cube after scoring on the scale
+            // [6] Grab 2nd cube after scoring on the scale
             "TB(-98, S=0.7) FD() DD(15) TTC() TTC() I(2.2) DT(1.8, S=0.55) CI()",
 
-            // Back off and lift a cube up
+            // [7] Back off and lift a cube up
             "DD(-5) FU()",
 
-            // Score on scale after picking up 2nd cube
+            // [8] Score on scale after picking up 2nd cube
             "DD(-15) TB(100, M=P) FU() DD(20, M=P, S=0.5) E(2) O(1, S=0.35) DD(-20, S=0.5) E(0)",
 
-            // Same side scale (fully into the null zone)
+            // [9] Same side scale (fully into the null zone)
             "DD(285, S=0.85) TB(-90, S=0.8) DD(-13) E(2) O(0.8, S=0.9) E(0)",
             
-            // Score on switch after grabing 2nd cube
+            // [10] Score on switch after grabing 2nd cube
             "DT(1) O(1)"
     };
 
