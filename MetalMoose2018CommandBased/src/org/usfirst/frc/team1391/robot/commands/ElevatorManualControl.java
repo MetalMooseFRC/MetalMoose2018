@@ -38,6 +38,7 @@ public class ElevatorManualControl extends Command {
                 Robot.myElevator.setThrottledSpeed(leftJoystickInput);
             else if (Robot.myElevator.elevatorEncoder.getDistance() > RobotMap.minimumElevatorHoldDistance)
                 Robot.myElevator.hold();
+            else Robot.myElevator.setAbsoluteSpeed(0);
         }
 
         // If we are down and the value of the encoder is the same as it was before, increment the counter
