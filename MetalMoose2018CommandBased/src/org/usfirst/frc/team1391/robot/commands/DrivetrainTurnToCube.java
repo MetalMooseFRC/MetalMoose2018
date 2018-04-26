@@ -82,7 +82,7 @@ public class DrivetrainTurnToCube extends Command {
      * Finished when it hits the gyroPID target after it was initialized.
      */
     protected boolean isFinished() {
-        return (Robot.myDrivetrain.gyroPID.onTarget() && wasInitialized;
+        return (Robot.myDrivetrain.gyroPID.onTarget() && wasInitialized);
     }
 
     protected void end() {
