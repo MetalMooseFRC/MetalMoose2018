@@ -104,14 +104,14 @@ public class RobotMap {
             {"LeftLLL", "-C(3) -C(6) -C(7)"},
             {"LeftRLR", "-C(3) -C(6) -C(7)"},
             {"LeftRRR", "-C(4)"},
-            {"MiddleLRL", "-C(0) -C(5)"},
-            {"MiddleLLL", "-C(0) -C(5)"},
+            {"MiddleLRL", "-C(13) -C(5)"},
+            {"MiddleLLL", "-C(13) -C(5)"},
             {"MiddleRLR", "C(0) C(5)"},
             {"MiddleRRR", "C(0) C(5)"},
-            {"RightLRL", "C(3) C(6) C(7)"},
+            {"RightLRL", "C(9)"},
             {"RightLLL", "C(4)"},
             {"RightRLR", "C(4)"},
-            {"RightRRR", "C(3) C(6) C(7)"}
+            {"RightRRR", "C(9)"}
     };
 
     // Autonomous sequences
@@ -126,28 +126,37 @@ public class RobotMap {
             "TB(-90) DT(1.5) O(0.8, S=0.8)",
 
             // [3] Same side scale (coming short)
-            "DD(224, S=0.9) E(2) TB(-35, S=0.7) O(0.4, S=0.8) E(0, M=P)",
+            "DD(224, S=0.9) E(2) TB(-40) O(0.4, S=1) E(0, M=P)",
 
             // [4] Opposite side scale
-            "DD(185, S=0.8) TD(-90) DD(160, S=0.8) TB(90)",
+            "DD(185, S=0.8) TD(-90) DD(130, S=0.8)",
 
             // [5] Grab 2nd cube from the middle pyramid
             "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3) DT(3, S=0.5) DD(-30) FU()",
 
             // [6] Grab 2nd cube after scoring on the scale
-            "TB(-98, S=0.7) FD() DD(15) TTC() TTC() I(2.2) DT(1.8, S=0.55) CI()",
+            "TB(-104) FD() T(0.5) TTC() TTC() I(0.7) DT(0.7) CI()",
 
             // [7] Back off and lift a cube up
             "DD(-5) FU()",
 
             // [8] Score on scale after picking up 2nd cube
-            "DD(-15) TB(100, M=P) FU() DD(20, M=P, S=0.5) E(2) O(1, S=0.35) DD(-20, S=0.5) E(0)",
+            "DD(-15) TB(135) FU(M=P) DD(25, M=P, S=0.6) E(2) O(1, S=0.45) DD(-20, S=0.5) E(0)",
 
             // [9] Same side scale (fully into the null zone)
             "DD(285, S=0.85) TB(-90, S=0.8) DD(-13) E(2) O(0.8, S=0.9) E(0)",
             
-            // [10] Score on switch after grabing 2nd cube
-            "DT(1) O(1)"
+            // [10] Score on switch after grabbing 2nd cube
+            "DT(1) O(1)",
+
+            // [11] Score on the same side switch and grab another cube (after this, use chunk 7)
+            "DD(120) TD(-90) DT(1) O(0.5, S=0.7) TD(-90, S=-0.78) FD() DD(-50) TTC() TTC() I(2.2) DT(2, S=0.6)",
+            
+            // [12] Opposite side throw cube
+            "DD(185, S=0.8) TD(-90) DD(70, S=0.8) O(0.5, S=0.65) FD() DD(-60, S=0.8) TB(-90) TTC() TTC() I(1.2) DT(1, S=0.65)",
+            
+            // [13] From middle to specifically the left switch
+            "TD(45, S=0.78) DD(50) TD(-45, S=0.78) DT(1.5) O(1, S=0.8)"
     };
 
     // Stores the chunks that make up the autonomous sequences
@@ -170,7 +179,7 @@ public class RobotMap {
     public static double elevatorMaximumDistance = 100;
 
     // Possible saved positions of the elevator
-    public static double[] elevatorSetPoints = new double[]{0, 11, 85};
+    public static double[] elevatorSetPoints = new double[]{0, 11, 92};
 
     // Hold speed and the limit above which to hold the elevator (in elevatorMaximumDistance units)
     public static double elevatorHoldSpeed = 0.3;
@@ -190,7 +199,7 @@ public class RobotMap {
     // The length and speed of the FourbarRaise and FourbarLower commands
     public static double fourbarRaiseSpeed = 0.85;
     public static double fourbarLowerSpeed = -0.4;
-    public static double fourbarRaiseLength = 1.5;
+    public static double fourbarRaiseLength = 1.0;
     public static double fourbarLowerLength = 0.4;
 
     // Should the fourbar be held in place now?
