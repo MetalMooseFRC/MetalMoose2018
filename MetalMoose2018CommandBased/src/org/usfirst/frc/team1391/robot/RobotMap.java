@@ -104,20 +104,20 @@ public class RobotMap {
             {"LeftLLL", "-C(3) -C(6) -C(7)"},
             {"LeftRLR", "-C(3) -C(6) -C(7)"},
             {"LeftRRR", "-C(4)"},
-            {"MiddleLRL", "-C(13) -C(5)"},
-            {"MiddleLLL", "-C(13) -C(5)"},
-            {"MiddleRLR", "C(0) C(5)"},
-            {"MiddleRRR", "C(0) C(5)"},
-            {"RightLRL", "C(9)"},
+            {"MiddleLRL", "-C(13) -C(5) -C(10)"},
+            {"MiddleLLL", "-C(13) -C(5) -C(10)"},
+            {"MiddleRLR", "C(0) C(5) C(10)"},
+            {"MiddleRRR", "C(0) C(5) C(10)"},
+            {"RightLRL", "C(3) C(6) C(8)"},
             {"RightLLL", "C(4)"},
-            {"RightRLR", "C(4)"},
-            {"RightRRR", "C(9)"}
+            {"RightRLR", "C(1) C(2)"},
+            {"RightRRR", "C(3) C(6) C(8)"}
     };
 
     // Autonomous sequences
     public static String[] chunks = {
             // [0] From middle to switch
-            "TD(45, S=0.78) DD(44) TD(-45, S=0.78) DT(1.5) O(1, S=0.8)",
+            "TD(45, S=0.78) DD(44) TD(-45, S=0.78) DT(0.35) O(0.4, S=0.8)",
 
             // [1] Cross the line
             "DD(130)",
@@ -129,25 +129,26 @@ public class RobotMap {
             "DD(224, S=0.9) E(2) TB(-40) O(0.4, S=1) E(0, M=P)",
 
             // [4] Opposite side scale
+            //"DD(185, S=0.8) TD(-90) DD(165, S=0.8) TB(90) DD(15, S=0.6, M=P) E(2) O(0.4, S=0.4) DD(-6, M=P, S=0.7) E(0) TB(180) FD() T(0.5) TTC() TTC() I(0.8) DT(0.8) CI() DD(-5) FU()",
             "DD(185, S=0.8) TD(-90) DD(130, S=0.8)",
 
             // [5] Grab 2nd cube from the middle pyramid
-            "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(1, S=-0.78) FD() I(3) DT(3, S=0.5) DD(-30) FU()",
+            "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(0.5, S=-0.78) FD() I(2) DT(2, S=0.65) DD(-10) FU(M=P)",
 
             // [6] Grab 2nd cube after scoring on the scale
-            "TB(-104) FD() T(0.5) TTC() TTC() I(0.7) DT(0.7) CI()",
+            "TB(-100) FD() DD(15) TTC() TTC() CO() I(1.9, S=0.6) DT(1.7, S=0.6) CI()",
 
             // [7] Back off and lift a cube up
             "DD(-5) FU()",
 
             // [8] Score on scale after picking up 2nd cube
-            "DD(-15) TB(135) FU(M=P) DD(25, M=P, S=0.6) E(2) O(1, S=0.45) DD(-20, S=0.5) E(0)",
+            "DD(-15) TB(130) FU(M=P) DD(25, M=P, S=0.6) E(2) O(1, S=0.45) DD(-20, S=0.5) E(0)",
 
             // [9] Same side scale (fully into the null zone)
             "DD(285, S=0.85) TB(-90, S=0.8) DD(-13) E(2) O(0.8, S=0.9) E(0)",
             
-            // [10] Score on switch after grabbing 2nd cube
-            "DT(1) O(1)",
+            // [10] Score 2nd cube mid and grab 3rd one
+            "TB(90) TD(-90, S=0.80) DT(0.4) O(0.5, S=0.8) FD(M=P) DD(-40) TB(-40) I(2.2) DT(2.2, S=0.6) CI() DD(-20) FU()",
 
             // [11] Score on the same side switch and grab another cube (after this, use chunk 7)
             "DD(120) TD(-90) DT(1) O(0.5, S=0.7) TD(-90, S=-0.78) FD() DD(-50) TTC() TTC() I(2.2) DT(2, S=0.6)",
@@ -156,7 +157,7 @@ public class RobotMap {
             "DD(185, S=0.8) TD(-90) DD(70, S=0.8) O(0.5, S=0.65) FD() DD(-60, S=0.8) TB(-90) TTC() TTC() I(1.2) DT(1, S=0.65)",
             
             // [13] From middle to specifically the left switch
-            "TD(45, S=0.78) DD(50) TD(-45, S=0.78) DT(1.5) O(1, S=0.8)"
+            "TD(45, S=0.78) DD(50) TD(-45, S=0.78) DT(0.35) O(0.4, S=0.8)"
     };
 
     // Stores the chunks that make up the autonomous sequences
