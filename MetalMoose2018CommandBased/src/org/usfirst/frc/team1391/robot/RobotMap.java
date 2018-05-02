@@ -31,6 +31,10 @@ public class RobotMap {
     public static final int reverseDriveButtonPort = 1;
     public static final int throttleDriveButtonPort = 5;
     public static final int fourbarButtonPort = 2;
+    public static final int fourbarUpButton1 = 3;
+    public static final int fourbarUpButton2 = 4;
+    public static final int fourbarUpButton3 = 5;
+    public static final int fourbarUpButton4 = 6;
 
     // Operator controller button mapping
     static final int operatorButtonAPort = 1;

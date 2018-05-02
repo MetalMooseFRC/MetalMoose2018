@@ -24,7 +24,11 @@ public class OI {
     // Driver control buttons
     public static final Button reverseDriveButton = new JoystickButton(driveStick, RobotMap.reverseDriveButtonPort),
             throttleDriveButton = new JoystickButton(driveStick, RobotMap.throttleDriveButtonPort),
-            fourbarButton = new JoystickButton(driveStick, RobotMap.fourbarButtonPort);
+            fourbarButton = new JoystickButton(driveStick, RobotMap.fourbarButtonPort),
+            topButton1 = new JoystickButton(driveStick, RobotMap.fourbarUpButton1),
+            topButton2 = new JoystickButton(driveStick, RobotMap.fourbarUpButton2),
+            topButton3 = new JoystickButton(driveStick, RobotMap.fourbarUpButton3),
+            topButton4 = new JoystickButton(driveStick, RobotMap.fourbarUpButton4);
 
     // Operator control buttons
     public static final Button operatorA = new JoystickButton(operatorController, RobotMap.operatorButtonAPort),

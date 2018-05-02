@@ -36,9 +36,10 @@ public class FourbarManualControl extends Command {
             
             return;
         }
-        
-        // Else just hold (either up or down)
-        if (RobotMap.holdFourbar) Robot.myFourbar.holdUp();
+
+        // If any of the top buttons are pressed, pull the fourbar up, else just hold up or down
+        if (OI.topButton1.get() || OI.topButton2.get() || OI.topButton3.get() || OI.topButton4.get()) Robot.myFourbar.setSpeed(1);
+        else if (RobotMap.holdFourbar) Robot.myFourbar.holdUp();
         else Robot.myFourbar.holdDown();
     }
 
