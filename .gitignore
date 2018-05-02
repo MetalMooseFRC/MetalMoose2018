@@ -6,7 +6,6 @@
 *.class
 *.iml
 
-
 # Files
 .*
 build.xml
