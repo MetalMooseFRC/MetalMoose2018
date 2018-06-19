@@ -22,7 +22,7 @@ There are a few interesting features of the 2018 year's code. To name a few:
 For more, refer to the "Other Documents" section of this markdown document.
 
 ## Building
-The easiest way to build and compile the code would be to create an IntelliJ project and compile with the FRC plugin, as shown in [one of the guides](https://github.com/Metal-Moose/MooseGuides/blob/master/FRC%20Development%20using%20IntelliJ.md) from our [MooseGuides repository](https://github.com/Metal-Moose/MooseGuides).
+The easiest way to build and compile the code would be to create an IntelliJ project and compile with the FRC plugin, as shown in [one of the guides](https://github.com/Metal-Moose/MooseGuides/blob/master/Code%20Development/FRC%20with%20IntelliJ.md) from our [MooseGuides repository](https://github.com/Metal-Moose/MooseGuides).
 
 ## Other Documents
 * [1391's 2018 Programming Overview](https://drive.google.com/file/d/1prEAt9fbYlkzANMdPi_Zu7v9fk1xWKYo/view?usp=sharing) - going into detail about the programming on the robot.
