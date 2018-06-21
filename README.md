@@ -25,5 +25,5 @@ For more, refer to the "Other Documents" section of this markdown document.
 The easiest way to build and compile the code would be to create an IntelliJ project and compile with the FRC plugin, as shown in [one of the guides](https://github.com/Metal-Moose/MooseGuides/blob/master/Code%20Development/FRC%20with%20IntelliJ.md) from our [MooseGuides repository](https://github.com/Metal-Moose/MooseGuides).
 
 ## Other Documents
-* [1391's 2018 Programming Overview](https://drive.google.com/file/d/1prEAt9fbYlkzANMdPi_Zu7v9fk1xWKYo/view?usp=sharing) - going into detail about the programming on the robot.
-* [1391's 2018 Offseason Guide](https://drive.google.com/file/d/1bhsEJl2fdqYKO4zaOJlK9KAFKW1eJ5QW/view?usp=sharing) - a guide on how to control the robot (from turning on to the design behind the code). This is mostly for the team.
+* [1391's 2018 Software Overview](https://github.com/Metal-Moose/MetalMoose2018/blob/master/Documents/Software%20Overview.pdf) - going into detail about the programming on the robot.
+* [1391's 2018 Offseason Guide](https://github.com/Metal-Moose/MetalMoose2018/blob/master/Documents/Offseason%20Guide.pdf) - a guide on how to control the robot (from turning on to the design behind the code). This is mostly for the team.
