@@ -48,6 +48,5 @@ public class OI {
 
         // Controls the fourbar
         fourbarButton.whenPressed(new FourbarLower());
-        fourbarButton.whenReleased(new FourbarRaise());
     }
 }
