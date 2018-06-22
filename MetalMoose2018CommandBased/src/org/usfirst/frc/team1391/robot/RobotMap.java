@@ -133,8 +133,7 @@ public class RobotMap {
             "DD(224, S=0.9) E(2) TB(-40) O(0.4, S=1) E(0, M=P)",
 
             // [4] Opposite side scale
-            //"DD(185, S=0.8) TD(-90) DD(165, S=0.8) TB(90) DD(15, S=0.6, M=P) E(2) O(0.4, S=0.4) DD(-6, M=P, S=0.7) E(0) TB(200) FD() T(0.5) TTC() TTC() I(0.8) DT(0.8) CI() DD(-5) FU()",
-            "DD(185, S=0.8) TD(-90)",
+            "DD(185, S=0.8) TD(-90) DD(165, S=0.8) TB(90) DD(15, S=0.6, M=P) E(2) O(0.4, S=0.4) DD(-6, M=P, S=0.7) E(0) TB(200) FD() T(0.5) TTC() TTC() I(0.8) DT(0.8) CI() DD(-5) FU()",
 
             // [5] Grab 2nd cube from the middle pyramid
             "DD(-10) TD(45, S=-0.78) DD(-44) TD(-45, S=-0.78) DT(0.5, S=-0.85) FD() I(1.65) DT(1.65, S=0.65) DD(-10) FU(M=P)",
@@ -165,7 +164,7 @@ public class RobotMap {
     };
 
     // Stores the chunks that make up the autonomous sequences
-    public static Map<String, String> autonomousFromLayout = new HashMap<>();
+    static Map<String, String> autonomousFromLayout = new HashMap<>();
 
     /* COLLECTOR */
     // Values for the collector speeds
